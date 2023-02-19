@@ -33,6 +33,12 @@
     <ClCompile Include="helpers\wcsstri.cpp">
       <Filter>Helper Files</Filter>
     </ClCompile>
+    <ClCompile Include="Adapter_FrontEndClass.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Adapter_BackEndFunctions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="helpers\replace.h">
@@ -46,6 +52,12 @@
     </ClInclude>
     <ClInclude Include="helpers\wcsstri.h">
       <Filter>Helper Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Adapter.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Adapter_BackEndFunctions.h">
+      <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

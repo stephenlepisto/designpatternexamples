@@ -147,6 +147,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Adapter_BackEndFunctions.cpp" />
+    <ClCompile Include="Adapter_FrontEndClass.cpp" />
     <ClCompile Include="helpers\replace.cpp" />
     <ClCompile Include="helpers\replacew.cpp" />
     <ClCompile Include="helpers\strstri.cpp" />
@@ -154,6 +156,8 @@
     <ClCompile Include="program.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Adapter.h" />
+    <ClInclude Include="Adapter_BackEndFunctions.h" />
     <ClInclude Include="helpers\replace.h" />
     <ClInclude Include="helpers\stringlist.h" />
     <ClInclude Include="helpers\strstri.h" />
