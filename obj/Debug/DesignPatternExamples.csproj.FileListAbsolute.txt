@@ -1,0 +1,6 @@
+C:\work\vs2015\DesignPatternExamples\bin\Debug\DesignPatternExamples.exe.config
+C:\work\vs2015\DesignPatternExamples\bin\Debug\DesignPatternExamples.exe
+C:\work\vs2015\DesignPatternExamples\bin\Debug\DesignPatternExamples.pdb
+C:\work\vs2015\DesignPatternExamples\obj\Debug\DesignPatternExamples.csprojResolveAssemblyReference.cache
+C:\work\vs2015\DesignPatternExamples\obj\Debug\DesignPatternExamples.exe
+C:\work\vs2015\DesignPatternExamples\obj\Debug\DesignPatternExamples.pdb

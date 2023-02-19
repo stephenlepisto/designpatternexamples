@@ -1,0 +1,4 @@
+2/17/2023 5:39:37 PM [TRACE] Starting log to file example
+2/17/2023 5:39:37 PM [INFO ] An example of an informational line
+2/17/2023 5:39:37 PM [ERROR] An example of an error log entry
+2/17/2023 5:39:37 PM [TRACE] Done with log to file example
