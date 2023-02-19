@@ -2,6 +2,7 @@
 //
 // A composite design is for a hierarchical list of items where some items are
 // containers for additional items.  The root of the list is always a container.
+// The hierarchical list is a composite of all the node types in the list.
 //
 // A common example of this is a file/directory structure.  A directory contains
 // entries that can be a file or another directory.  The root of the structure
@@ -30,7 +31,7 @@
 // can be written in any number of ways with a common approach separating the
 // names of each entry by '/' like this: "/root/itemcontainer1/item2".  This
 // should look familiar as it is very much like a file path in an operating
-// system with a hiearchical file structure.
+// system with a hierarchical file structure.
 
 using System;
 
@@ -38,7 +39,7 @@ namespace DesignPatternExamples
 {
     /// <summary>
     /// Represents the type of entries allowed in the hierarchy for the
-    /// Composite design pattner example.
+    /// Composite design pattern example.
     /// </summary>
     public enum FileDirTypes
     {
@@ -72,7 +73,7 @@ namespace DesignPatternExamples
 
         /// <summary>
         /// The number of bytes representing the size of this entry.  For directories,
-        /// represents the cummulative total of all child entries.
+        /// represents the cumulative total of all child entries.
         /// </summary>
         long Length { get;  }
 

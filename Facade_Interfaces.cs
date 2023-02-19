@@ -25,7 +25,7 @@
 // implementation class (COM Class or coclass).  A coclass can implement
 // multiple different COM interfaces.  From any interface, any other interface
 // on that coclass can be requested.  A Visual Studio plugin is a coclass that
-// implements mulitple interfaces exposed to Visual Studio.  Those interfaces
+// implements multiple interfaces exposed to Visual Studio.  Those interfaces
 // on the plugin are facades to the plugin.  Visual Studio itself is exposed
 // to the plugin through different COM interfaces, which become the facades on
 // the Visual Studio system.
@@ -48,64 +48,64 @@
 namespace DesignPatternExamples
 {
     /// <summary>
-    /// Represents a network of TAP chains and the low level access to that
-    /// network.  In general, the caller should take a lock on a TAP chain
-    /// befor accessing it then release the lock when done.
+    /// Represents a network of device chains and the low level access to that
+    /// network.  In general, the caller should take a lock on a device chain
+    /// before accessing it then release the lock when done.
     /// </summary>
     /// <remarks>
-    /// This interface makes it easier to contrast with the ITAPNetworkHighLevel
+    /// This interface makes it easier to contrast with the IDeviceNetworkLowLevel
     /// interface.
     /// </remarks>
-    public interface ITAPNetworkLowLevel
+    public interface IDeviceNetworkLowLevel
     {
         /// <summary>
-        /// Retrieve the number of TAP chains available in the network.
+        /// Retrieve the number of device chains available in the network.
         /// </summary>
-        /// <returns>Returns the number of TAP chains available.</returns>
+        /// <returns>Returns the number of device chains available.</returns>
         int GetNumChains();
 
         /// <summary>
-        /// Lock the specified TAP chain for exclusive access.
+        /// Lock the specified device chain for exclusive access.
         /// </summary>
-        /// <param name="chainIndex">Index of the TAP chain (0..n-1).</param>
-        /// <returns>Returns true if the TAP chain was successfully locked.</returns>
-        bool LockTAPs(int chainIndex);
+        /// <param name="chainIndex">Index of the device chain (0..n-1).</param>
+        /// <returns>Returns true if the device chain was successfully locked.</returns>
+        bool LockDeviceChain(int chainIndex);
 
         /// <summary>
-        /// Unlock the specified TAP chain to release exclusive access.
+        /// Unlock the specified device chain to release exclusive access.
         /// </summary>
-        /// <param name="chainIndex">Index of the TAP chain (0..n-1).</param>
-        /// <returns>Returns true if the TAP chain was successfully unlocked.</returns>
-        bool UnlockTAPs(int chainIndex);
+        /// <param name="chainIndex">Index of the device chain (0..n-1).</param>
+        /// <returns>Returns true if the device chain was successfully unlocked.</returns>
+        bool UnlockDeviceChain(int chainIndex);
 
         /// <summary>
-        /// Reset the visibility of all TAPs on the specified TAP chain.
+        /// Reset the visibility of all devices on the specified device chain.
         /// </summary>
-        /// <param name="chainIndex">Index of the TAP chain (0..n-1).</param>
-        void ResetTAPs(int chainIndex);
+        /// <param name="chainIndex">Index of the device chain (0..n-1).</param>
+        void ResetDeviceChain(int chainIndex);
 
         /// <summary>
-        /// Make visible the specified TAPs on the specified TAP chain.
+        /// Make visible the specified devices on the specified device chain.
         /// </summary>
-        /// <param name="chainIndex">Index of the TAP chain (0..n-1).</param>
-        /// <param name="tapSelectMask">Bit mask where each bit set indicates the
+        /// <param name="chainIndex">Index of the device chain (0..n-1).</param>
+        /// <param name="devicesSelectMask">Bit mask where each bit set indicates the
         /// corresponding TAP should be made visible.  Bit 0 corresponds to the first
         /// TAP, bit 1 to the second TAP, etc.  CLTAP devices are always visible.</param>
-        void SelectTAPs(int chainIndex, uint tapSelectMask);
+        void EnableDevicesInDeviceChain(int chainIndex, uint devicesSelectMask);
 
         /// <summary>
-        /// Make invisible the specified TAPs on the specified TAP chain.
+        /// Make invisible the specified devices on the specified device chain.
         /// </summary>
-        /// <param name="chainIndex">Index of the TAP chain (0..n-1).</param>
-        /// <param name="tapSelectMask">Bit mask where each bit set indicates the
+        /// <param name="chainIndex">Index of the device chain (0..n-1).</param>
+        /// <param name="devicesSelectMask">Bit mask where each bit set indicates the
         /// corresponding TAP should be made invisible.  Bit 0 corresponds to the first
         /// TAP, bit 1 to the second TAP, etc.  CLTAP devices are always visible.</param>
-        void DeselectTAPs(int chainIndex, uint tapSelectMask);
+        void DisableDevicesInDeviceChain(int chainIndex, uint devicesSelectMask);
 
         /// <summary>
-        /// Retrieve a list of idcodes of all visible TAPs in the given TAP chain.
+        /// Retrieve a list of idcodes of all visible devices in the given device chain.
         /// </summary>
-        /// <param name="chainIndex">Index of the TAP chain (0..n-1).</param>
+        /// <param name="chainIndex">Index of the device chain (0..n-1).</param>
         /// <returns>Returns an array of idcodes for each visible TAP, with the first
         /// TAP being at index 0.</returns>
         uint[] GetIdcodes(int chainIndex);
@@ -117,8 +117,8 @@ namespace DesignPatternExamples
 
 
     /// <summary>
-    /// Represents a high level view of a complex network of TAP chains.
-    /// A TAP chain can be thought of as a list of devices that can be made
+    /// Represents a high level view of a complex network of device chains.
+    /// A device chain can be thought of as a list of devices that can be made
     /// visible or hidden in the list but maintain the same relationship to
     /// each other regardless of visibility.
     /// 
@@ -131,37 +131,37 @@ namespace DesignPatternExamples
     /// simplification and thus a facade for the low level interface and the
     /// system underneath.
     /// </summary>
-    public interface ITAPNetworkHighLevel
+    public interface IDeviceNetworkHighLevel
     {
         /// <summary>
-        /// The number of TAP chains available from the sub-system.
+        /// The number of device chains available from the sub-system.
         /// </summary>
         int NumChains { get; }
 
         /// <summary>
         /// Returns a list of all idcodes from all selected devices in the
-        /// given TAP chain.
+        /// given device chain.
         /// </summary>
-        /// <param name="chainIndex">Index of the TAP chain to access (0..NumChains-1).</param>
-        /// <returns>An array holding the idcodes of all visible TAPs in the given
+        /// <param name="chainIndex">Index of the device chain to access (0..NumChains-1).</param>
+        /// <returns>An array holding the idcodes of all visible devices in the given
         /// chain.</returns>
         uint[] GetIdcodes(int chainIndex);
 
         /// <summary>
-        /// Make visible certain TAPs in the given TAP chain.  The selectMask value
+        /// Make visible certain devices in the given device chain.  The selectMask value
         /// has a bit set for each TAP device to make visible.
         /// </summary>
-        /// <param name="chainIndex">Index of the TAP chain to access (0..NumChains-1).</param>
+        /// <param name="chainIndex">Index of the device chain to access (0..NumChains-1).</param>
         /// <param name="selectMask">A bit mask where each bit corresponds to a TAP,
-        /// up to the number of TAPs in the given TAP chain.  Bit 0 is ignored as the first
+        /// up to the number of devices in the given device chain.  Bit 0 is ignored as the first
         /// TAP is always visible.</param>
-        void SelectTAPs(int chainIndex, uint selectMask);
+        void EnableDevicesInDeviceChain(int chainIndex, uint selectMask);
 
         /// <summary>
-        /// Resets the given TAP chain so that all devices except the TAP
+        /// Resets the given device chain so that all devices except the TAP
         /// controller is no longer visible.
         /// </summary>
-        /// <param name="chainIndex">Index of the TAP chain to access (0..NumChains-1).</param>
-        void ResetTAPs(int chainIndex);
+        /// <param name="chainIndex">Index of the device chain to access (0..NumChains-1).</param>
+        void DisableDevicesInDeviceChain(int chainIndex);
     }
 }

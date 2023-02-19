@@ -116,7 +116,7 @@ namespace DesignPatternExamples
         /// </summary>
         /// <param name="name">Name of the directory</param>
         /// <param name="modDate">modification date time of the entry</param>
-        /// <param name="children">Array of children.  Must not be null.</param>
+        /// <param name="children">Array of children.  Must not be null but can be empty.</param>
         /// <exception cref="ArgumentNullException">The list of children cannot be null but can be empty.</exception>
         public DirEntry(string name, DateTime modDate, IFileDirEntry[] children)
         {
@@ -143,7 +143,7 @@ namespace DesignPatternExamples
             {
                 if (!_lengthSet)
                 {
-                    // Recurse over all children, accummulating their size.
+                    // Recurse over all children, accumulating their size.
                     foreach(IFileDirEntry entry in Children)
                     {
                         _length += entry.Length;

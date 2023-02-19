@@ -58,7 +58,7 @@ namespace DesignPatternExamples
         /// </summary>
         /// <param name="entries">The list of EntryInformation objects to sort.</param>
         /// <remarks>
-        /// This implemenation sorts by name in ascending (or descending) order.
+        /// This implementation sorts by name in ascending (or descending) order.
         /// </remarks>
         public void Sort(List<EntryInformation> entries)
         {
@@ -105,7 +105,7 @@ namespace DesignPatternExamples
         /// </summary>
         /// <param name="entries">The list of EntryInformation objects to sort.</param>
         /// <remarks>
-        /// This implemenation sorts by age in ascending (or descending) order.
+        /// This implementation sorts by age in ascending (or descending) order.
         /// </remarks>
         public void Sort(List<EntryInformation> entries)
         {
@@ -152,7 +152,7 @@ namespace DesignPatternExamples
         /// </summary>
         /// <param name="entries">The list of EntryInformation objects to sort.</param>
         /// <remarks>
-        /// This implemenation sorts by height in ascending (or descending) order.
+        /// This implementation sorts by height in ascending (or descending) order.
         /// </remarks>
         public void Sort(List<EntryInformation> entries)
         {

@@ -86,6 +86,15 @@ namespace DesignPatternExamples
 
 
         /// <summary>
+        /// Display the move command and its name followed by a newline.
+        /// </summary>
+        public void Show()
+        {
+            Console.WriteLine("    '{0}' -> {1}", Command, Name);
+        }
+
+
+        /// <summary>
         /// Execute the command.  Derived classes must implement this.
         /// </summary>
         public abstract void Execute();
@@ -338,7 +347,7 @@ namespace DesignPatternExamples
         {
             foreach(MoveCommand command in commands)
             {
-                Console.WriteLine("    '{0}' -> {1}", command.Command, command.Name);
+                command.Show();
             }
         }
 

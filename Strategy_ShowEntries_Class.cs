@@ -1,5 +1,5 @@
 ﻿// The Strategy pattern is used when a choice of multiple different but
-// related algorithms can be made at startup time.  The implementation of each
+// related algorithms can be made at run time.  The implementation of each
 // related algorithm exposes the same interface so as to hide the details of
 // implementation from the calling program.
 //
@@ -8,7 +8,7 @@
 // implementation to be changed without affecting the caller.  The Strategy
 // pattern takes this one step further to allow entire algorithms to be
 // hidden behind the interface and then swap in different instances of the
-// interface to change the algorithm being used.
+// interface to change the algorithm being used at run time.
 //
 // Typically a Strategy pattern implementation specifies the algorithm at the
 // time the program starts up or is configured.  It can also be configured at
@@ -86,7 +86,7 @@
 //
 // All the really hard stuff happens inside the implementation of each
 // strategy.  And additional implementations of each strategy can be added
-// later on without affecting the above psuedo-code.
+// later on without affecting the above pseudo-code.
 //
 // As interesting as the above file lister example would be, it would be just
 // a bit too long as an example (like a 1000 lines long).  So in a

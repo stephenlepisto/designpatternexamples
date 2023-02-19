@@ -24,7 +24,7 @@
 // */
 // int ProcessData(CurrentState* pState, void* pData)
 // {
-//     int processContinues = 1;
+//     int continueProcessing = 1;
 //
 //     switch (*pState):
 //     {
@@ -43,11 +43,11 @@
 //
 //         case EndState:
 //             DoEndState();
-//             processContinues = 0;
+//             continueProcessing = 0;
 //             *pState = InitState;
 //             break;
 //     }
-//     return processContinues;
+//     return continueProcessing;
 // }
 //
 // /* Execute the state machine on the given data, returning when done. */
@@ -121,17 +121,17 @@ namespace DesignPatternExamples
     /// </summary>
     enum CurrentState
     {
-        Initial,         // State before the state machine actually starts.  transitions to NormalText
-        NormalText,      // '"' transitions to QuotedText, '/' transitions to StartComment, EOF transitions to Done
-        DoubleQuotedText,      // '\' transitions to EscapedDoubleQuoteText, '"' transitions to NormalText, EOF transitions to Done
-        SingleQuotedText, // '\'' transitions to EscapedSingleQuoteText, '\'' transitions to NormalText, EOF transitions to Done
-        EscapedDoubleQuoteText,     // '\' transitions to QuotedText, EOF transitions to Done
-        EscapedSingleQuoteText, // '\' transitions to SingleQuotedText, EOF transitions to Done
-        StartComment,    // '/' transitions to LineComment, '*' transitions to BlockComment, EOF transitions to Done, all else transitions to NormalText
-        LineComment,     // '\n' transitions to NormalText, EOF transitions to Done
-        BlockComment,    // '*' transitions to EndBlockComment, EOF transitions to Done
-        EndBlockComment, // '/' transitions to NormalText, EOF transitions to Done, all else transitions to BlockComment
-        Done             // Indicates processing is done
+        Initial,                // State before the state machine actually starts.  transitions to NormalText
+        NormalText,             // " transitions to QuotedText, / transitions to StartComment, EOF transitions to Done
+        DoubleQuotedText,       // \ transitions to EscapedDoubleQuoteText, " transitions to NormalText, EOF transitions to Done
+        SingleQuotedText,       // ' transitions to EscapedSingleQuoteText, \ transitions to NormalText, EOF transitions to Done
+        EscapedDoubleQuoteText, // \ transitions to QuotedText, EOF transitions to Done
+        EscapedSingleQuoteText, // \ transitions to SingleQuotedText, EOF transitions to Done
+        StartComment,           // / transitions to LineComment, * transitions to BlockComment, EOF transitions to Done, all else transitions to NormalText
+        LineComment,            // \n transitions to NormalText, EOF transitions to Done
+        BlockComment,           // * transitions to EndBlockComment, EOF transitions to Done
+        EndBlockComment,        // / transitions to NormalText, EOF transitions to Done, all else transitions to BlockComment
+        Done                    // Indicates processing is done
     }
 
 
@@ -142,7 +142,7 @@ namespace DesignPatternExamples
     //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
     /// <summary>
-    /// represents constants used in the State machine.  This is needed in a
+    /// Represents constants used in the State machine.  This is needed in a
     /// separate class because 1) C# requires constants to be defined inside a
     /// class or struct and 2) the constant is needed across multiple classes.
     /// 
@@ -390,7 +390,7 @@ namespace DesignPatternExamples
     /// accurately detect the end of the string.
     /// 
     /// Transitions to the following states for the seen input:
-    /// {ANY} - go to CurrentState.NormalText (end of escape sequence)
+    /// {ANY} - go to CurrentState.DoubleQuotedText (end of escape sequence)
     /// EOF - go to CurrentState.Done (no more input)
     /// </summary>
     internal class State_EscapedDoubleQuoteText : IStateBehavior
@@ -437,7 +437,7 @@ namespace DesignPatternExamples
     /// accurately detect the end of the string.
     /// 
     /// Transitions to the following states for the seen input:
-    /// {ANY} - go to CurrentState.NormalText (end of escape sequence)
+    /// {ANY} - go to CurrentState.SingleQuotedText (end of escape sequence)
     /// EOF - go to CurrentState.Done (no more input)
     /// </summary>
     internal class State_EscapedSingleQuoteText : IStateBehavior

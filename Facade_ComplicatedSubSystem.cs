@@ -17,14 +17,14 @@ using System.Threading.Tasks;
 namespace DesignPatternExamples
 {
     /// <summary>
-    /// Identifies the type of TAPs that can appear in a TAP chain.
+    /// Identifies the type of devices that can appear in a device chain.
     /// </summary>
-    public enum TAPTypes
+    public enum DeviceTypes
     {
         /// <summary>
-        /// TAP controller.  This is always visible.
+        /// device controller.  This is always visible.
         /// </summary>
-        CLTAP,
+        DEVICECONTROLLER,
         /// <summary>
         /// Core device
         /// </summary>
@@ -49,43 +49,43 @@ namespace DesignPatternExamples
 
 
     /// <summary>
-    /// Represents a single TAP.
+    /// Represents a single device.
     /// </summary>
-    public class TAPNode
+    public class DeviceNode
     {
         /// <summary>
-        /// Whether the TAP is visible in the TAP chain.
+        /// Whether the device is visible in the device chain.
         /// </summary>
         public bool Visible;
         
         /// <summary>
-        /// Name of this TAP.
+        /// Name of this device.
         /// </summary>
         public string Name;
 
         /// <summary>
-        /// The idcode for this TAP.
+        /// The idcode for this device.
         /// </summary>
         public uint Idcode;
 
         /// <summary>
-        /// A value from the TAPTypes enumeration identifying the type of the
-        /// TAP.
+        /// A value from the DeviceTypes enumeration identifying the type of the
+        /// device.
         /// </summary>
-        public TAPTypes TAPType;
+        public DeviceTypes DeviceType;
 
         /// <summary>
         /// Constructor.
         /// </summary>
         /// <param name="name">Name to use.</param>
-        /// <param name="idcode">idcode for the TAP.</param>
-        /// <param name="tapType">Value from the TAPTypes enumeration.</param>
+        /// <param name="idcode">idcode for the device.</param>
+        /// <param name="tapType">Value from the DeviceTypes enumeration.</param>
         /// <param name="initiallyVisible">true if initially visible; otherwise false.</param>
-        public TAPNode(string name, uint idcode, TAPTypes tapType, bool initiallyVisible)
+        public DeviceNode(string name, uint idcode, DeviceTypes tapType, bool initiallyVisible)
         {
             Name = name;
             Idcode = idcode;
-            TAPType = tapType;
+            DeviceType = tapType;
             Visible = initiallyVisible;
         }
     }
@@ -96,48 +96,48 @@ namespace DesignPatternExamples
 
 
     /// <summary>
-    /// Represents a TAP chain, which is a collection of TAPNode objects.
+    /// Represents a device chain, which is a collection of DeviceNode objects.
     /// </summary>
-    public class TAPChain
+    public class DeviceChain
     {
         /// <summary>
-        /// The list of TAPNodes on this TAP chain.
+        /// The list of TAPNodes on this device chain.
         /// </summary>
-        private List<TAPNode> _nodes = new List<TAPNode>();
+        private List<DeviceNode> _nodes = new List<DeviceNode>();
 
         /// <summary>
-        /// The Name of this TAP chain.
+        /// The Name of this device chain.
         /// </summary>
         public string Name;
 
         /// <summary>
-        /// Whether this TAP chain is locked for access.
+        /// Whether this device chain is locked for access.
         /// </summary>
         public bool IsLocked;
 
         /// <summary>
         /// Constructor.
         /// </summary>
-        /// <param name="name">Name of this TAP chain.</param>
-        public TAPChain(string name)
+        /// <param name="name">Name of this device chain.</param>
+        public DeviceChain(string name)
         {
             Name = name;
         }
 
         /// <summary>
-        /// Helper method to show or hide TAPs on the TAP chain.
+        /// Helper method to show or hide devices on the device chain.
         /// </summary>
         /// <param name="nodeSelectMask">A bit mask where the position of each bit
-        /// corresponds to a device in the TAP chain, with bit 0 being the first TAP,
-        /// bit 1 being the second TAP, and so on.</param>
-        /// <param name="makeVisible">true if the TAP is to be made visible on the
-        /// TAP chain; otherwise false, the TAP cannot be seen on the TAP chain.</param>
+        /// corresponds to a device in the device chain, with bit 0 being the first device,
+        /// bit 1 being the second device, and so on.</param>
+        /// <param name="makeVisible">true if the device is to be made visible on the
+        /// device chain; otherwise false, the device cannot be seen on the device chain.</param>
         private void _ShowHideNodes(uint nodeSelectMask, bool makeVisible)
         {
-            uint bitMask = 0x2; // bit 0 is always the CLTAP and is always selected
+            uint bitMask = 0x2; // bit 0 is always the DEVICECONTROLLER and is always selected
             int numNodes = _nodes.Count;
 
-            // Start at the device after the CLTAP
+            // Start at the device after the DEVICECONTROLLER
             for (int index = 1; index < numNodes; ++index)
             {
                 if ((bitMask & nodeSelectMask) != 0)
@@ -155,17 +155,17 @@ namespace DesignPatternExamples
 
 
         /// <summary>
-        /// Helper method to add a TAPNode to the TAP chain.  TAPNode objects
-        /// that are of TapTypes.CLTAP are always inserted as the first TAP in
-        /// the TAP chain, with the assumption there is only one CLTAP in a
-        /// given TAP chain (this is not actually enforced, though).
+        /// Helper method to add a DeviceNode to the device chain.  DeviceNode objects
+        /// that are of DeviceTypes.DEVICECONTROLLER are always inserted as the first device in
+        /// the device chain, with the assumption there is only one DEVICECONTROLLER in a
+        /// given device chain (this is not actually enforced, though).
         /// </summary>
-        /// <param name="node">A TAPNode object to add to the tap chain.</param>
-        internal void AddNode(TAPNode node)
+        /// <param name="node">A DeviceNode object to add to the device chain.</param>
+        internal void AddNode(DeviceNode node)
         {
-            if (_nodes.Count > 0 && node.TAPType == TAPTypes.CLTAP)
+            if (_nodes.Count > 0 && node.DeviceType == DeviceTypes.DEVICECONTROLLER)
             {
-                // CLTAP always goes at the start of the list.
+                // DEVICECONTROLLER always goes at the start of the list.
                 _nodes.Insert(0, node);
             }
             else
@@ -176,14 +176,14 @@ namespace DesignPatternExamples
 
 
         /// <summary>
-        /// Resets the TAP chain so that all TAPs that are not CLTAPs are no
-        /// longer visible in the TAP chain.
+        /// Resets the device chain so that all devices that are not CLdevices are no
+        /// longer visible in the device chain.
         /// </summary>
         public void ResetVisibility()
         {
-            foreach (TAPNode node in _nodes)
+            foreach (DeviceNode node in _nodes)
             {
-                if (node.TAPType != TAPTypes.CLTAP)
+                if (node.DeviceType != DeviceTypes.DEVICECONTROLLER)
                 {
                     node.Visible = false;
                 }
@@ -191,22 +191,22 @@ namespace DesignPatternExamples
         }
 
         /// <summary>
-        /// Make visible one or more TAPs in the TAP chain.
+        /// Make visible one or more devices in the device chain.
         /// </summary>
-        /// <param name="nodeSelectMask">a bit mask specifying which TAP or TAPs
-        /// to make visible, where bit 0 is the first TAP, bit 1 is the second, etc.
-        /// Bit 0 is ignored as the first TAP is always visible.</param>
+        /// <param name="nodeSelectMask">a bit mask specifying which device or devices
+        /// to make visible, where bit 0 is the first device, bit 1 is the second, etc.
+        /// Bit 0 is ignored as the first device is always visible.</param>
         public void SelectNodes(uint nodeSelectMask)
         {
             _ShowHideNodes(nodeSelectMask, true);
         }
 
         /// <summary>
-        /// Make invisible one or more TAPs in the TAP chain.
+        /// Make invisible one or more devices in the device chain.
         /// </summary>
-        /// <param name="nodeSelectMask">a bit mask specifying which TAP or TAPs
-        /// to hide, where bit 0 is the first TAP, bit 1 is the second, etc.
-        /// Bit 0 is ignored as the first TAP is always visible.</param>
+        /// <param name="nodeSelectMask">a bit mask specifying which device or devices
+        /// to hide, where bit 0 is the first device, bit 1 is the second, etc.
+        /// Bit 0 is ignored as the first device is always visible.</param>
         public void DeselectNodes(uint nodeSelectMask)
         {
             _ShowHideNodes(nodeSelectMask, false);
@@ -214,17 +214,17 @@ namespace DesignPatternExamples
 
 
         /// <summary>
-        /// Retrieve a list of idcodes for all TAPs that are visible in
-        /// the TAP chain.
+        /// Retrieve a list of idcodes for all devices that are visible in
+        /// the device chain.
         /// </summary>
         /// <returns>Returns an array of uints corresponding to the idcodes of
-        /// each visible TAP.  The first idcode corresponds to the first visible
-        /// TAP.</returns>
+        /// each visible device.  The first idcode corresponds to the first visible
+        /// device.</returns>
         public uint[] GetIdCodesForVisibleNodes()
         {
             List<uint> idcodes = new List<uint>();
 
-            foreach(TAPNode node in _nodes)
+            foreach(DeviceNode node in _nodes)
             {
                 if (node.Visible)
                 {
@@ -242,46 +242,46 @@ namespace DesignPatternExamples
 
 
     /// <summary>
-    /// Represents some kind of system that contains multiple TAP chains.
+    /// Represents some kind of system that contains multiple device chains.
     /// </summary>
     /// <remarks>
     /// The following operations are available:
     ///  - GetNumChains()
-    ///  - LockTAPs()
-    ///  - UnlockTAPs()
-    ///  - ResetTAPs()
-    ///  - SelectTAPs()
-    ///  - DeselectTAPs()
+    ///  - LockDevices()
+    ///  - UnlockDevices()
+    ///  - ResetDevices()
+    ///  - SelectDevices()
+    ///  - DeselectDevices()
     ///  - GetIdcodes()
     /// </remarks>
-    public class Facade_ComplicatedSubSystem : ITAPNetworkLowLevel, ITAPNetworkHighLevel
+    public class Facade_ComplicatedSubSystem : IDeviceNetworkLowLevel, IDeviceNetworkHighLevel
     {
         /// <summary>
-        /// The list of TAP chains.  In this case, there are two.
+        /// The list of device chains.  In this case, there are two.
         /// </summary>
-        private TAPChain[] _tapChains = { new TAPChain("CHAIN0"), new TAPChain("CHAIN1") };
+        private DeviceChain[] _deviceChains = { new DeviceChain("CHAIN0"), new DeviceChain("CHAIN1") };
 
         /// <summary>
         /// Class factory for the sub-system class.
         /// </summary>
         /// <returns>Returns a new instance of the class.</returns>
-        public static ITAPNetworkLowLevel CreateInstance()
+        public static IDeviceNetworkLowLevel CreateInstance()
         {
             return new Facade_ComplicatedSubSystem();
         }
 
         /// <summary>
-        /// (private) Constructor.  Sets up the TAP chains.
+        /// (private) Constructor.  Sets up the device chains.
         /// </summary>
         private Facade_ComplicatedSubSystem()
         {
-            _tapChains[0].AddNode(new TAPNode("DDD_CLTAP0", 0x10101010, TAPTypes.CLTAP, true));
-            _tapChains[0].AddNode(new TAPNode("DDD_CORE0", 0x20202020, TAPTypes.CORE, false));
-            _tapChains[0].AddNode(new TAPNode("DDD_GTE0", 0x30303030, TAPTypes.GTE, false));
+            _deviceChains[0].AddNode(new DeviceNode("DDD_DEVCTRL0", 0x10101010, DeviceTypes.DEVICECONTROLLER, true));
+            _deviceChains[0].AddNode(new DeviceNode("DDD_CORE0", 0x20202020, DeviceTypes.CORE, false));
+            _deviceChains[0].AddNode(new DeviceNode("DDD_GTE0", 0x30303030, DeviceTypes.GTE, false));
             
-            _tapChains[1].AddNode(new TAPNode("DDD_CLTAP1", 0x10101011, TAPTypes.CLTAP, true));
-            _tapChains[1].AddNode(new TAPNode("DDD_PCH0", 0x40404040, TAPTypes.PCH, false));
-            _tapChains[1].AddNode(new TAPNode("DDD_PMC0", 0x50505050, TAPTypes.PMC, false));
+            _deviceChains[1].AddNode(new DeviceNode("DDD_DEVCTRL1", 0x10101011, DeviceTypes.DEVICECONTROLLER, true));
+            _deviceChains[1].AddNode(new DeviceNode("DDD_PCH0", 0x40404040, DeviceTypes.PCH, false));
+            _deviceChains[1].AddNode(new DeviceNode("DDD_PMC0", 0x50505050, DeviceTypes.PMC, false));
         }
 
 
@@ -290,30 +290,30 @@ namespace DesignPatternExamples
         //====================================================================
         #region ITAPNetworkLowLevel methods
         /// <summary>
-        /// Retrieve the number of TAP chains.
+        /// Retrieve the number of device chains.
         /// </summary>
-        /// <returns>Returns the number of TAP chains</returns>
-        int ITAPNetworkLowLevel.GetNumChains()
+        /// <returns>Returns the number of device chains</returns>
+        int IDeviceNetworkLowLevel.GetNumChains()
         {
-            return _tapChains.Length;
+            return _deviceChains.Length;
         }
 
         /// <summary>
-        /// Lock the specified TAP chain to indicate exclusive access is
+        /// Lock the specified device chain to indicate exclusive access is
         /// desired.
         /// </summary>
-        /// <param name="chainIndex">The index of the TAP chain to access (0..n-1).</param>
-        /// <returns>Returns true if the TAP chain was successfully locked; otherwise,
-        /// returns false (chain index out of range or the TAP chain is already locked)</returns>
-        bool ITAPNetworkLowLevel.LockTAPs(int chainIndex)
+        /// <param name="chainIndex">The index of the device chain to access (0..n-1).</param>
+        /// <returns>Returns true if the device chain was successfully locked; otherwise,
+        /// returns false (chain index out of range or the device chain is already locked)</returns>
+        bool IDeviceNetworkLowLevel.LockDeviceChain(int chainIndex)
         {
             bool locked = false;
 
-            if (chainIndex >= 0 && chainIndex < _tapChains.Length)
+            if (chainIndex >= 0 && chainIndex < _deviceChains.Length)
             {
-                if (!_tapChains[chainIndex].IsLocked)
+                if (!_deviceChains[chainIndex].IsLocked)
                 {
-                    _tapChains[chainIndex].IsLocked = true;
+                    _deviceChains[chainIndex].IsLocked = true;
                     locked = true;
                 }
             }
@@ -322,21 +322,21 @@ namespace DesignPatternExamples
         }
 
         /// <summary>
-        /// Unlock the specified TAP chain to indicate exclusive access is no
+        /// Unlock the specified device chain to indicate exclusive access is no
         /// longer desired.
         /// </summary>
-        /// <param name="chainIndex">The index of the TAP chain to access (0..n-1).</param>
-        /// <returns>Returns true if the TAP chain was successfully unlocked; otherwise,
-        /// returns false (chain index out of range or the TAP chain is already unlocked)</returns>
-        bool ITAPNetworkLowLevel.UnlockTAPs(int chainIndex)
+        /// <param name="chainIndex">The index of the device chain to access (0..n-1).</param>
+        /// <returns>Returns true if the device chain was successfully unlocked; otherwise,
+        /// returns false (chain index out of range or the device chain is already unlocked)</returns>
+        bool IDeviceNetworkLowLevel.UnlockDeviceChain(int chainIndex)
         {
             bool unlocked = false;
 
-            if (chainIndex >= 0 && chainIndex < _tapChains.Length)
+            if (chainIndex >= 0 && chainIndex < _deviceChains.Length)
             {
-                if (_tapChains[chainIndex].IsLocked)
+                if (_deviceChains[chainIndex].IsLocked)
                 {
-                    _tapChains[chainIndex].IsLocked = false;
+                    _deviceChains[chainIndex].IsLocked = false;
                     unlocked = true;
                 }
             }
@@ -345,66 +345,66 @@ namespace DesignPatternExamples
         }
 
         /// <summary>
-        /// Reset the visibility of all TAPs on the given TAP chain so that
-        /// all TAPs except the first are not visible.
+        /// Reset the visibility of all devices on the given device chain so that
+        /// all devices except the first are not visible.
         /// </summary>
-        /// <param name="chainIndex">The index of the TAP chain to access (0..n-1).</param>
-        void ITAPNetworkLowLevel.ResetTAPs(int chainIndex)
+        /// <param name="chainIndex">The index of the device chain to access (0..n-1).</param>
+        void IDeviceNetworkLowLevel.ResetDeviceChain(int chainIndex)
         {
-            if (chainIndex >= 0 && chainIndex < _tapChains.Length)
+            if (chainIndex >= 0 && chainIndex < _deviceChains.Length)
             {
-                _tapChains[chainIndex].ResetVisibility();
+                _deviceChains[chainIndex].ResetVisibility();
             }
         }
 
         /// <summary>
-        /// Select one or more TAPs in the given TAP chain so those TAPs are
+        /// Select one or more devices in the given device chain so those devices are
         /// visible.
         /// </summary>
-        /// <param name="chainIndex">The index of the TAP chain to access (0..n-1).</param>
-        /// <param name="tapSelectMask">A bit mask indicating which TAPs to make
-        /// visible, with bit 0 corresponding to the first TAP, bit 1 corresponding
-        /// to the second TAP, etc.  Bit 0 is ignored as the first TAP is always
+        /// <param name="chainIndex">The index of the device chain to access (0..n-1).</param>
+        /// <param name="deviceselectMask">A bit mask indicating which devices to make
+        /// visible, with bit 0 corresponding to the first device, bit 1 corresponding
+        /// to the second device, etc.  Bit 0 is ignored as the first device is always
         /// visible.</param>
-        void ITAPNetworkLowLevel.SelectTAPs(int chainIndex, uint tapSelectMask)
+        void IDeviceNetworkLowLevel.EnableDevicesInDeviceChain(int chainIndex, uint deviceselectMask)
         {
-            if (chainIndex >= 0 && chainIndex < _tapChains.Length)
+            if (chainIndex >= 0 && chainIndex < _deviceChains.Length)
             {
-                _tapChains[chainIndex].SelectNodes(tapSelectMask);
+                _deviceChains[chainIndex].SelectNodes(deviceselectMask);
             }
         }
 
         /// <summary>
-        /// Deselect one or more TAPs in the given TAP chain so those TAPs are
+        /// Deselect one or more devices in the given device chain so those devices are
         /// no longer visible.
         /// </summary>
-        /// <param name="chainIndex">The index of the TAP chain to access (0..n-1).</param>
-        /// <param name="tapSelectMask">A bit mask indicating which TAPs to make
-        /// invisible, with bit 0 corresponding to the first TAP, bit 1 corresponding
-        /// to the second TAP, etc.  Bit 0 is ignored as the first TAP is always
+        /// <param name="chainIndex">The index of the device chain to access (0..n-1).</param>
+        /// <param name="deviceselectMask">A bit mask indicating which devices to make
+        /// invisible, with bit 0 corresponding to the first device, bit 1 corresponding
+        /// to the second device, etc.  Bit 0 is ignored as the first device is always
         /// visible.</param>
-        void ITAPNetworkLowLevel.DeselectTAPs(int chainIndex, uint tapSelectMask)
+        void IDeviceNetworkLowLevel.DisableDevicesInDeviceChain(int chainIndex, uint deviceselectMask)
         {
-            if (chainIndex >= 0 && chainIndex < _tapChains.Length)
+            if (chainIndex >= 0 && chainIndex < _deviceChains.Length)
             {
-                _tapChains[chainIndex].DeselectNodes(tapSelectMask);
+                _deviceChains[chainIndex].DeselectNodes(deviceselectMask);
             }
         }
 
         /// <summary>
-        /// Retrieve a list of idcodes for each TAP in the given TAP chain
+        /// Retrieve a list of idcodes for each device in the given device chain
         /// that is visible.
         /// </summary>
-        /// <param name="chainIndex">The index of the TAP chain to access (0..n-1).</param>
-        /// <returns>An array of uints holding the idcodes for each TAP, with the
-        /// first idcode corresponding to the first visible TAP.</returns>
-        uint[] ITAPNetworkLowLevel.GetIdcodes(int chainIndex)
+        /// <param name="chainIndex">The index of the device chain to access (0..n-1).</param>
+        /// <returns>An array of uints holding the idcodes for each device, with the
+        /// first idcode corresponding to the first visible device.</returns>
+        uint[] IDeviceNetworkLowLevel.GetIdcodes(int chainIndex)
         {
             uint[] idcodes = null;
 
-            if (chainIndex >= 0 && chainIndex < _tapChains.Length)
+            if (chainIndex >= 0 && chainIndex < _deviceChains.Length)
             {
-                idcodes = _tapChains[chainIndex].GetIdCodesForVisibleNodes();
+                idcodes = _deviceChains[chainIndex].GetIdCodesForVisibleNodes();
             }
             return idcodes;
         }
@@ -412,68 +412,68 @@ namespace DesignPatternExamples
 
 
         //====================================================================
-        // ITAPNetworkHighLevel methods
+        // IDeviceNetworkHighLevel methods
         //====================================================================
         #region ITAPNetworkHighLevel methods
 
         /// <summary>
-        /// The number of TAP chains available from the sub-system.
+        /// The number of device chains available from the sub-system.
         /// </summary>
-        int ITAPNetworkHighLevel.NumChains
+        int IDeviceNetworkHighLevel.NumChains
         {
             get
             {
-                return ((ITAPNetworkLowLevel)this).GetNumChains();
+                return ((IDeviceNetworkLowLevel)this).GetNumChains();
             }
         }
 
         /// <summary>
         /// Returns a list of all idcodes from all selected devices in the
-        /// given TAP chain.
+        /// given device chain.
         /// </summary>
-        /// <param name="chainIndex">Index of the TAP chain to access (0..NumChains-1).</param>
-        /// <returns>An array holding the idcodes of all visible TAPs in the given
+        /// <param name="chainIndex">Index of the device chain to access (0..NumChains-1).</param>
+        /// <returns>An array holding the idcodes of all visible devices in the given
         /// chain.</returns>
-        uint[] ITAPNetworkHighLevel.GetIdcodes(int chainIndex)
+        uint[] IDeviceNetworkHighLevel.GetIdcodes(int chainIndex)
         {
             uint[] idcodes = null;
 
-            if (((ITAPNetworkLowLevel)this).LockTAPs(chainIndex))
+            if (((IDeviceNetworkLowLevel)this).LockDeviceChain(chainIndex))
             {
-                idcodes = ((ITAPNetworkLowLevel)this).GetIdcodes(chainIndex);
-                ((ITAPNetworkLowLevel)this).UnlockTAPs(chainIndex);
+                idcodes = ((IDeviceNetworkLowLevel)this).GetIdcodes(chainIndex);
+                ((IDeviceNetworkLowLevel)this).UnlockDeviceChain(chainIndex);
             }
             return idcodes;
         }
 
         /// <summary>
-        /// Make visible certain TAPs in the given TAP chain.  The selectMask value
-        /// has a bit set for each TAP device to make visible.
+        /// Make visible certain devices in the given device chain.  The selectMask value
+        /// has a bit set for each device device to make visible.
         /// </summary>
-        /// <param name="chainIndex">Index of the TAP chain to access (0..NumChains-1).</param>
-        /// <param name="selectMask">A bit mask where each bit corresponds to a TAP,
-        /// up to the number of TAPs in the given TAP chain.  Bit 0 is ignored as the first
-        /// TAP is always visible.</param>
-        void ITAPNetworkHighLevel.SelectTAPs(int chainIndex, uint selectMask)
+        /// <param name="chainIndex">Index of the device chain to access (0..NumChains-1).</param>
+        /// <param name="selectMask">A bit mask where each bit corresponds to a device,
+        /// up to the number of devices in the given device chain.  Bit 0 is ignored as the first
+        /// device is always visible.</param>
+        void IDeviceNetworkHighLevel.EnableDevicesInDeviceChain(int chainIndex, uint selectMask)
         {
-            if (((ITAPNetworkLowLevel)this).LockTAPs(chainIndex))
+            if (((IDeviceNetworkLowLevel)this).LockDeviceChain(chainIndex))
             {
-                ((ITAPNetworkLowLevel)this).SelectTAPs(chainIndex, selectMask);
-                ((ITAPNetworkLowLevel)this).UnlockTAPs(chainIndex);
+                ((IDeviceNetworkLowLevel)this).EnableDevicesInDeviceChain(chainIndex, selectMask);
+                ((IDeviceNetworkLowLevel)this).UnlockDeviceChain(chainIndex);
             }
         }
 
         /// <summary>
-        /// Resets the given TAP chain so that all devices except the TAP
+        /// Resets the given device chain so that all devices except the device
         /// controller is no longer visible.
         /// </summary>
-        /// <param name="chainIndex">Index of the TAP chain to access (0..NumChains-1).</param>
-        void ITAPNetworkHighLevel.ResetTAPs(int chainIndex)
+        /// <param name="chainIndex">Index of the device chain to access (0..NumChains-1).</param>
+        void IDeviceNetworkHighLevel.DisableDevicesInDeviceChain(int chainIndex)
         {
-            if (((ITAPNetworkLowLevel)this).LockTAPs(chainIndex))
+            if (((IDeviceNetworkLowLevel)this).LockDeviceChain(chainIndex))
             {
-                ((ITAPNetworkLowLevel)this).ResetTAPs(chainIndex);
-                ((ITAPNetworkLowLevel)this).UnlockTAPs(chainIndex);
+                ((IDeviceNetworkLowLevel)this).ResetDeviceChain(chainIndex);
+                ((IDeviceNetworkLowLevel)this).UnlockDeviceChain(chainIndex);
             }
         }
         #endregion
@@ -496,14 +496,14 @@ namespace DesignPatternExamples
         /// <summary>
         /// A singleton instance of the sub-system.
         /// </summary>
-        static ITAPNetworkLowLevel _instance;
+        static IDeviceNetworkLowLevel _instance;
 
 
         /// <summary>
         /// Class factory for a singleton instance of the sub-system class.
         /// </summary>
         /// <returns>Returns a singleton instance of the class.</returns>
-        public static ITAPNetworkLowLevel CreateLowLevelInstance()
+        public static IDeviceNetworkLowLevel CreateLowLevelInstance()
         {
             if (_instance == null)
             {
@@ -516,13 +516,13 @@ namespace DesignPatternExamples
         /// Class factory for a singleton instance of the sub-system class.
         /// </summary>
         /// <returns>Returns a singleton instance of the class.</returns>
-        public static ITAPNetworkHighLevel CreateHighLevelInstance()
+        public static IDeviceNetworkHighLevel CreateHighLevelInstance()
         {
             if (_instance == null)
             {
                 _instance = Facade_ComplicatedSubSystem.CreateInstance();
             }
-            return (ITAPNetworkHighLevel)_instance;
+            return (IDeviceNetworkHighLevel)_instance;
         }
     }
 }

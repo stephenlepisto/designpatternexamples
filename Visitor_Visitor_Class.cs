@@ -5,7 +5,7 @@
 // classes and associated Visitor class must be engineered to support the
 // Visitor pattern.
 //
-// Probably the best way think of the Visitor pattern is a way to apply
+// Probably the best way to think of the Visitor pattern is as a way to apply
 // operations to a collection of data classes without changing the data
 // classes themselves.  The data classes are set up to support a visitor class
 // and from then on can support any visitor that derives from that visitor
@@ -164,7 +164,7 @@
 // must be recompiled even if none of the visitors care about the new data
 // type.
 //
-// Note: The C++ Standard Template Libary (STL) has an algorithm called
+// Note: The C++ Standard Template Library (STL) has an algorithm called
 // for_each().  This applies a user-defined function to every element in the
 // container passed to the for_each() function.  This is a version of the
 // Visitor pattern, where the visitor is a user-supplied function that is

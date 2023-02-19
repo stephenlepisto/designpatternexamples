@@ -90,16 +90,19 @@ namespace DesignPatternExamples
             Console.WriteLine("Bridge Exercise");
             using (Logger logger = new Logger(Logger.LoggerTypes.ToFile, "Bridge.log"))
             {
+                Console.WriteLine("  Example of writing to a log file...");
                 _Bridge_Exercise_Demonstrate_Logging(logger, "file");
             }
 
             using (Logger logger = new Logger(Logger.LoggerTypes.ToConsole))
             {
+                Console.WriteLine("  Example of writing to the console...");
                 _Bridge_Exercise_Demonstrate_Logging(logger, "console");
             }
 
             using (Logger logger = new Logger(Logger.LoggerTypes.ToNull))
             {
+                Console.WriteLine("  Example of writing to a Null object (no output)...");
                 // Note: The resulting log lines will not be shown anywhere.
                 _Bridge_Exercise_Demonstrate_Logging(logger, "null");
             }
@@ -236,9 +239,9 @@ namespace DesignPatternExamples
 
         /// <summary>
         /// Helper method to present a formatted list of idcodes for a particular
-        /// TAP chain.  The output is on a single line.
+        /// device chain.  The output is on a single line.
         /// </summary>
-        /// <param name="chainIndex">Index of the TAP chain being displayed.</param>
+        /// <param name="chainIndex">Index of the device chain being displayed.</param>
         /// <param name="idcodes">Array of 32-bit idcodes to be printed in hex.</param>
         void _Facade_ShowIdCodes(int chainIndex, uint[] idcodes)
         {
@@ -260,7 +263,7 @@ namespace DesignPatternExamples
         /// exposed.
         /// 
         /// In this example, the complicated subsystem is a representation of
-        /// a TAP network complete with scan chains, device idcodes, and TAP
+        /// a device network complete with scan chains, device idcodes, and device
         /// devices that can be selected and deselected.  The Facade exposed
         /// by this complex network exposes only the scan chain, getting
         /// device idcodes based on an index into those scan chains, resetting
@@ -272,20 +275,20 @@ namespace DesignPatternExamples
             Console.WriteLine();
             Console.WriteLine("Facade Exercise");
 
-            ITAPNetworkHighLevel deviceChainFacade = Facade_ComplicatedSubSystemFactory.CreateHighLevelInstance();
+            IDeviceNetworkHighLevel deviceChainFacade = Facade_ComplicatedSubSystemFactory.CreateHighLevelInstance();
             int numChains = deviceChainFacade.NumChains;
-            Console.WriteLine("  Showing idcodes of TAP devices after a TAP reset...");
+            Console.WriteLine("  Showing idcodes of devices after a device reset (expect one device on each chain)...");
             for (int chainIndex = 0; chainIndex < numChains; ++chainIndex)
             {
-                deviceChainFacade.ResetTAPs(chainIndex);
+                deviceChainFacade.DisableDevicesInDeviceChain(chainIndex);
                 uint[] idcodes = deviceChainFacade.GetIdcodes(chainIndex);
                 _Facade_ShowIdCodes(chainIndex, idcodes);
             }
 
-            Console.WriteLine("  Showing idcodes of TAP devices after selecting all TAPs...");
+            Console.WriteLine("  Showing idcodes of devices after selecting all devices...");
             for (int chainIndex = 0; chainIndex < numChains; ++chainIndex)
             {
-                deviceChainFacade.SelectTAPs(chainIndex, 0xffffffff);
+                deviceChainFacade.EnableDevicesInDeviceChain(chainIndex, 0xffffffff);
                 uint[] idcodes = deviceChainFacade.GetIdcodes(chainIndex);
                 _Facade_ShowIdCodes(chainIndex, idcodes);
             }
@@ -968,6 +971,7 @@ namespace DesignPatternExamples
                 // output easier to, er, interpret.
                 Console.WriteLine("  {0,-50} ==> \"{1}\"", tokensAsString, sentence);
             }
+            Console.WriteLine("  Done.");
         }
 
         //########################################################################
@@ -1013,7 +1017,7 @@ namespace DesignPatternExamples
                 Console.WriteLine("    {0} = {1}", item.Key, item.Value);
             }
 
-            Console.WriteLine("  Done");
+            Console.WriteLine("  Done.");
         }
 
 
@@ -1117,8 +1121,8 @@ namespace DesignPatternExamples
 
             Console.WriteLine("  Operation 6: Remove a user from a group.");
             userName = "Marvin";
-            groupName = "Power User";
-            mediator.RemoveUserFromGroup("Marvin", "Power Users");
+            groupName = "Power Users";
+            mediator.RemoveUserFromGroup(userName, groupName);
             Console.WriteLine("    Removed user '{0}' from group '{1}'", userName, groupName);
             groupNames = mediator.GetGroupsWithUser(userName);
             Console.WriteLine("      All groups with user '{0}': {1}", userName, _StringListToCommaArray(groupNames));
@@ -1152,7 +1156,7 @@ namespace DesignPatternExamples
                 Console.WriteLine("      Users in group '{0}': {1}", name, _StringListToCommaArray(userNames));
             }
 
-            Console.WriteLine("  Done");
+            Console.WriteLine("  Done.");
         }
 
 
@@ -1306,7 +1310,7 @@ namespace DesignPatternExamples
 
             Console.WriteLine("  Final text   : \"{0}\"", text);
 
-            Console.WriteLine("  Done");
+            Console.WriteLine("  Done.");
         }
 
         //########################################################################
@@ -1348,7 +1352,7 @@ namespace DesignPatternExamples
             Console.Write("    {0} -> ", moveString);
             moveProcessor.ExecuteMoveList(moveString);
 
-            Console.WriteLine("  Done");
+            Console.WriteLine("  Done.");
         }
 
         //########################################################################
@@ -1393,9 +1397,9 @@ namespace DesignPatternExamples
             // Tell the number producer about the observers who are notified
             // whenever the value changes.
             IEventNotifications eventNotifier = numberProducer as IEventNotifications;
-            eventNotifier.SubscribeNumberChanged(observerDecimal);
-            eventNotifier.SubscribeNumberChanged(observerHexadecimal);
-            eventNotifier.SubscribeNumberChanged(observerBinary);
+            eventNotifier.SubscribeToNumberChanged(observerDecimal);
+            eventNotifier.SubscribeToNumberChanged(observerHexadecimal);
+            eventNotifier.SubscribeToNumberChanged(observerBinary);
 
             // Call the number producer's Update() method a number of times.
             // The observers automatically print out the current value in
@@ -1408,11 +1412,11 @@ namespace DesignPatternExamples
 
             // When done, remove the observers from the number producer.
             // It's always good to clean up after ourselves.
-            eventNotifier.UnsubscribeNumberChanged(observerDecimal);
-            eventNotifier.UnsubscribeNumberChanged(observerHexadecimal);
-            eventNotifier.UnsubscribeNumberChanged(observerBinary);
+            eventNotifier.UnsubscribeFromNumberChanged(observerDecimal);
+            eventNotifier.UnsubscribeFromNumberChanged(observerHexadecimal);
+            eventNotifier.UnsubscribeFromNumberChanged(observerBinary);
 
-            Console.WriteLine("  Done");
+            Console.WriteLine("  Done.");
         }
 
 
@@ -1479,7 +1483,7 @@ namespace DesignPatternExamples
             Console.WriteLine("  Filtered text:");
             _State_DisplayText(filteredText);
 
-            Console.WriteLine("  Done");
+            Console.WriteLine("  Done.");
         }
 
 
@@ -1507,7 +1511,7 @@ namespace DesignPatternExamples
         /// class is created.
         /// 
         /// In this exercise, the Strategy_ShowEntries_Class instance sorts
-        /// and diplays a list of EntryInformation elements.  Three different
+        /// and displays a list of EntryInformation elements.  Three different
         /// sorting strategies are provided (Name, Age, Height) and an option
         /// to reverse the normal order of the sort.
         /// </summary>
@@ -1528,7 +1532,7 @@ namespace DesignPatternExamples
             displaySortedByHeightDescending = new Strategy_ShowEntries_Class(Strategy_ShowEntries_Class.SortOptions.ByHeight, true);
             displaySortedByHeightDescending.ShowEntries(entries);
 
-            Console.WriteLine("  Done");
+            Console.WriteLine("  Done.");
         }
 
         //########################################################################

@@ -8,7 +8,7 @@
 // how a "sentence" is constructed with "words".
 //
 // The process of converting one or more "sentences" into tokens or objects is
-// called parsing.  The result of parsing is a list of these token.  For a
+// called parsing.  The result of parsing is a list of these tokens.  For a
 // complex grammar, a hierarchical tree of tokens may be created so as to
 // maintain a particular relationship between tokens.  This tree is known as
 // an abstract syntax tree or AST.
@@ -17,7 +17,7 @@
 // is where the Interpreter pattern comes in.  The interpreter moves through
 // an AST, performing actions based on the tokens.  Those actions are
 // typically functions or methods on a class.  What those actions are depends
-// on what is expected from the the grammar.
+// on what is expected from the grammar.
 //
 // The most obvious form of this parse/interpret cycle is a programming
 // language.  The grammar for a programming language describes how all the
@@ -60,7 +60,7 @@
 // A common use case for interpreters is handling simple one line "sentences"
 // or expressions that the user enters to alter the behavior of the program
 // at certain strategic points.  For example, a regular expression parser
-// converts a set of match tokens into an astract syntax tree and then an
+// converts a set of match tokens into an abstract syntax tree and then an
 // interpreter processes that tree in the context of a string to search for
 // a matching pattern.
 //
@@ -69,7 +69,7 @@
 // The expression might include other variables.
 //
 // Where there is an interpreter, there is (usually) a parser to create the
-// elements that are interpreted.  The process of intepreting the elements
+// elements that are interpreted.  The process of interpreting the elements
 // causes changes to the program's state or the data contained within the
 // program.
 //
@@ -104,7 +104,7 @@ namespace DesignPatternExamples
     /// Interpreter Rules:
     /// 1. Each token must be in the range of 0 through 39 (maximum number of
     ///    words known by the interpreter) or must be 100 ('.') or 101 ('?').
-    /// 2. The word corresponding to the first token is always capitialized.
+    /// 2. The word corresponding to the first token is always capitalized.
     /// 3. A single space appears between each word.
     /// 4. No space appears between the last two tokens.
     /// </summary>

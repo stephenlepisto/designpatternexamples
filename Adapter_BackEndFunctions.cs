@@ -20,6 +20,25 @@ namespace DesignPatternExamples
     internal static class DataReadWriteFunctions
     {
         /// <summary>
+        /// Error code returned by the Data Read/Write functions. 
+        /// </summary>
+        /// <remarks>The caller would consult a reference manual for these
+        /// error codes or get them from a header file.  These are defined here
+        /// for this example to make it clear error codes are being returned.
+        /// The caller can use GetLastErrorMessage() to translate the error
+        /// code to a human-readable string.
+        /// </remarks>
+        private enum ErrorCodes
+        {
+            NoError = 0,
+            InvalidParameter = 1,
+            AlreadyShutDown = 2,
+            AlreadyStarted = 3,
+            InvalidDataHandle = 4
+        }
+
+
+        /// <summary>
         /// A dictionary mapping a string name to a buffer of bytes.
         /// </summary>
         private static Dictionary<string, byte[]> _localData = new Dictionary<string, byte[]>();
@@ -38,7 +57,7 @@ namespace DesignPatternExamples
         /// <summary>
         /// The last error code set by a function.
         /// </summary>
-        private static int _lastErrorCode;
+        private static ErrorCodes _lastErrorCode;
 
 
         /// <summary>
@@ -49,7 +68,7 @@ namespace DesignPatternExamples
         /// <returns>0 if successful; otherwise, non-zero if there was an error.</returns>
         public static int Startup(string initData, out int dataHandle)
         {
-            _lastErrorCode = 3;
+            _lastErrorCode = ErrorCodes.AlreadyStarted;
             dataHandle = -1;
             if (!_localData.ContainsKey(initData))
             {
@@ -71,7 +90,7 @@ namespace DesignPatternExamples
                 _lastErrorCode = 0;
             }
 
-            return _lastErrorCode;
+            return (int)_lastErrorCode;
         }
 
 
@@ -82,7 +101,7 @@ namespace DesignPatternExamples
         /// <returns>0 if successful; otherwise, non-zero if there was an error.</returns>
         public static int Shutdown(int dataHandle)
         {
-            _lastErrorCode = 2;
+            _lastErrorCode = ErrorCodes.AlreadyShutDown;
 
             if (_handleToKey.ContainsKey(dataHandle))
             {
@@ -91,7 +110,7 @@ namespace DesignPatternExamples
                 _lastErrorCode = 0;
             }
 
-            return _lastErrorCode;
+            return (int)_lastErrorCode;
         }
 
 
@@ -105,22 +124,22 @@ namespace DesignPatternExamples
             string errorMessage = "";
             switch(_lastErrorCode)
             {
-                case 0:
+                case ErrorCodes.NoError:
                     break;
 
-                case 1:
+                case ErrorCodes.InvalidParameter:
                     errorMessage = "Invalid parameter";
                     break;
                 
-                case 2:
+                case ErrorCodes.AlreadyShutDown:
                     errorMessage = "Data reader/writer already shut down.";
                     break;
 
-                case 3:
+                case ErrorCodes.AlreadyStarted:
                     errorMessage = "Data reader/writer already started.";
                     break;
 
-                case 4:
+                case ErrorCodes.InvalidDataHandle:
                     errorMessage = "Invalid data handle";
                     break;
 
@@ -141,11 +160,11 @@ namespace DesignPatternExamples
         /// <returns>0 if successful; otherwise, non-zero if there was an error.</returns>
         public static int WriteData(int dataHandle, byte[] data, uint dataLength)
         {
-            _lastErrorCode = 1;
+            _lastErrorCode = ErrorCodes.InvalidParameter;
 
             if (data != null && data.Length <= dataLength)
             {
-                _lastErrorCode = 4;
+                _lastErrorCode = ErrorCodes.InvalidDataHandle;
                 if (_handleToKey.ContainsKey(dataHandle))
                 {
                     byte[] localData = _localData[_handleToKey[dataHandle]];
@@ -158,11 +177,11 @@ namespace DesignPatternExamples
                     {
                         localData[index] = data[index];
                     }
-                    _lastErrorCode = 0;
+                    _lastErrorCode = ErrorCodes.NoError;
                 }
             }
 
-            return _lastErrorCode;
+            return (int)_lastErrorCode;
         }
 
 
@@ -171,11 +190,14 @@ namespace DesignPatternExamples
         /// </summary>
         /// <param name="dataHandle">Handle to data reader/writer.</param>
         /// <param name="maxDataLength">The maximum number of bytes to read.</param>
-        /// <param name="data">The buffer to store the bytes.</param>
+        /// <param name="data">The buffer to store the bytes  Can be null if attempting to
+        /// retrieve the amount of data available.</param>
+        /// <param name="availableDataLength">Returns the number of bytes available for
+        /// reading.</param>
         /// <returns>0 if successful; otherwise, non-zero if there was an error.</returns>
         public static int ReadData(int dataHandle, uint maxDataLength, byte[] data, out uint availableDataLength)
         {
-            _lastErrorCode = 4;
+            _lastErrorCode = ErrorCodes.InvalidDataHandle;
 
             availableDataLength = 0;
             if (_handleToKey.ContainsKey(dataHandle))
@@ -183,10 +205,10 @@ namespace DesignPatternExamples
                 byte[] localData = _localData[_handleToKey[dataHandle]];
                 availableDataLength = (uint)localData.Length;
 
-                _lastErrorCode = 0;
+                _lastErrorCode = ErrorCodes.NoError; // data parameter is allowed to be null
                 if (data != null)
                 {
-                    _lastErrorCode = 1;
+                    _lastErrorCode = ErrorCodes.InvalidParameter;
                     // If buffer is large enough to contain the requested data then
                     if (data.Length >= maxDataLength)
                     {
@@ -196,12 +218,12 @@ namespace DesignPatternExamples
                         {
                             data[index] = localData[index];
                         }
-                        _lastErrorCode = 0;
+                        _lastErrorCode = ErrorCodes.NoError;
                     }
                 }
             }
 
-            return _lastErrorCode;
+            return (int)_lastErrorCode;
         }
     }
 }

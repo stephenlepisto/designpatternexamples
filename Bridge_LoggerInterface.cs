@@ -1,4 +1,8 @@
-﻿using System;
+﻿// The Logger class acts as the Bridge between the program and the logger
+// implementations.  The logger implementations implement the ILogger interface
+// so the Logger class doesn't know about the actual implementation of the
+// logger.
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;

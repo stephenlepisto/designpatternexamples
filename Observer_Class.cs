@@ -40,7 +40,7 @@
 //  2) The Subject pushes the data to the Observer as part of the change
 //     notification.
 //
-// The pull approach can be inefficent if multiple observers are observing
+// The pull approach can be inefficient if multiple observers are observing
 // the same Subject.  When each observer gets the change notification, each
 // observer fetches potentially the same data from the Subject, producing
 // redundant data fetches.  There is not a lot that can be done about this but

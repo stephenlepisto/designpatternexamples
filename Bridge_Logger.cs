@@ -40,7 +40,7 @@
 // the LoggerType and optional parameter as arguments and return an actual
 // implementation represented by the ILogger class.  This eliminates the need
 // for a bridge class altogether and completely hides any details of the
-// implementation.
+// implementation.  In other words, the interface itself is the "bridge".
 //
 // Basically, the use of an interface and a class factory can hide any
 // implementation and it works in any programming language that supports the
@@ -177,6 +177,7 @@ namespace DesignPatternExamples
 
         #endregion
 
+        // The logger implementation represented by the ILogger interface.
         private ILogger _logger;
     }
 

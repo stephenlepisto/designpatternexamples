@@ -47,13 +47,13 @@ namespace DesignPatternExamples
     /// Subscribe/Unsubscribe method that uses overloading to take different
     /// observer interfaces.
     /// 
-    /// This interface is use dto ensure the Subject implements all the
+    /// This interface is use to ensure the Subject implements all the
     /// necessary methods to support observers.
     /// </remarks>
     public interface IEventNotifications
     {
-        void SubscribeNumberChanged(IObserverNumberChanged observer);
-        void UnsubscribeNumberChanged(IObserverNumberChanged observer);
+        void SubscribeToNumberChanged(IObserverNumberChanged observer);
+        void UnsubscribeFromNumberChanged(IObserverNumberChanged observer);
     }
 
 
@@ -161,7 +161,7 @@ namespace DesignPatternExamples
         /// given observer is already subscribed.
         /// </summary>
         /// <param name="observer">An observer represented by the IObserverNumberChanged interface.</param>
-        void IEventNotifications.SubscribeNumberChanged(IObserverNumberChanged observer)
+        void IEventNotifications.SubscribeToNumberChanged(IObserverNumberChanged observer)
         {
             // In a multi-threaded environment, this would be protected by
             // a lock of some form.  This example doesn't use multiple threads
@@ -179,7 +179,7 @@ namespace DesignPatternExamples
         /// if the given observer was not subscribed.
         /// </summary>
         /// <param name="observer">An observer represented by the IObserverNumberChanged interface.</param>
-        void IEventNotifications.UnsubscribeNumberChanged(IObserverNumberChanged observer)
+        void IEventNotifications.UnsubscribeFromNumberChanged(IObserverNumberChanged observer)
         {
             // In a multi-threaded environment, this would be protected by
             // a lock of some form.  This example doesn't use multiple threads
