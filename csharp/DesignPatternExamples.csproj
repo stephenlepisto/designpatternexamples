@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{8A5D373A-567B-4F53-96FC-2181AF2ED313}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DesignPatternExamples</RootNamespace>
+    <AssemblyName>DesignPatternExamples</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\bin\Debug\csharp\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..bin\Release\csharp\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Adapter_BackEndFunctions.cs" />
+    <Compile Include="Adapter_FrontEndClass.cs" />
+    <Compile Include="Bridge_ConsoleLogger.cs" />
+    <Compile Include="Bridge_FileLogger.cs" />
+    <Compile Include="Bridge_LoggerHelpers.cs" />
+    <Compile Include="Bridge_LoggerInterface.cs" />
+    <Compile Include="Bridge_Logger.cs" />
+    <Compile Include="Bridge_NullLogger.cs" />
+    <Compile Include="Command.cs" />
+    <Compile Include="Composite_FileAccess.cs" />
+    <Compile Include="Composite_FileDirEntry.cs" />
+    <Compile Include="Composite_IFileDirEntry.cs" />
+    <Compile Include="Decorator_Classes.cs" />
+    <Compile Include="Facade_ComplicatedSubSystem.cs" />
+    <Compile Include="Facade_Interfaces.cs" />
+    <Compile Include="HandlerChain_Class.cs" />
+    <Compile Include="HandlerChain_MessageWindow_Class.cs" />
+    <Compile Include="HandlerChain_Message_Class.cs" />
+    <Compile Include="Interpreter_Class.cs" />
+    <Compile Include="IteratorContainer_Class.cs" />
+    <Compile Include="Mediator_Class.cs" />
+    <Compile Include="Mediator_Group_Classes.cs" />
+    <Compile Include="Mediator_User_Classes.cs" />
+    <Compile Include="Memento.cs" />
+    <Compile Include="Null_Object.cs" />
+    <Compile Include="Observer_Class.cs" />
+    <Compile Include="ObserverSubject_NumberProducer.cs" />
+    <Compile Include="Private_Class.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Proxy_Class.cs" />
+    <Compile Include="State_Class.cs" />
+    <Compile Include="Strategy_ShowEntries_Class.cs" />
+    <Compile Include="Strategy_SortEntries_Classes.cs" />
+    <Compile Include="Templates.cs" />
+    <Compile Include="Visitor_Visitor_Class.cs" />
+    <Compile Include="Visitor_Element_Classes.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Flyweight_Class.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
