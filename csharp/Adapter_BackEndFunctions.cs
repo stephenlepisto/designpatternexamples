@@ -87,7 +87,7 @@ namespace DesignPatternExamples
                 dataHandle = _nextKey;
                 ++_nextKey;
                 _handleToKey[dataHandle] = initData;
-                _lastErrorCode = 0;
+                _lastErrorCode = ErrorCodes.NoError;
             }
 
             return (int)_lastErrorCode;
@@ -107,7 +107,7 @@ namespace DesignPatternExamples
             {
                 _localData.Remove(_handleToKey[dataHandle]);
                 _handleToKey.Remove(dataHandle);
-                _lastErrorCode = 0;
+                _lastErrorCode = ErrorCodes.NoError;
             }
 
             return (int)_lastErrorCode;
