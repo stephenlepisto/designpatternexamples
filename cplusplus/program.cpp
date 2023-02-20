@@ -3,6 +3,7 @@
 
 #include <functional>
 #include <iostream>
+#include <sstream>
 #include <vector>
 #include <string>
 #include <stdint.h>
@@ -11,6 +12,7 @@
 #include "helpers/stringlist.h"
 
 #include "Adapter.h"
+#include "Bridge_Logger.h"
 
 namespace DesignPatternExamples
 {
@@ -183,6 +185,27 @@ namespace DesignPatternExamples
 
 
         /// <summary>
+        /// Helper function to show an example of writing to a logger.
+        /// 
+        /// This is called for all types of loggers, showing how the Logger
+        /// class hides the details of the underlying implementation.
+        /// </summary>
+        /// <param name="logger">A Logger instance to log to</param>
+        /// <param name="loggerType">The type of the underlying implementation.</param>
+        void _Bridge_Exercise_Demonstrate_Logging(Logger& logger, std::string loggerType)
+        {
+            std::ostringstream output;
+            output << "Starting log to " << loggerType << " example";
+            logger.LogTrace(output.str());
+            logger.LogInfo("An example of an informational line");
+            logger.LogError("An example of an error log entry");
+            output.clear();
+            output << "Done with log to " << loggerType << " example";
+            logger.LogTrace(output.str());
+        }
+
+
+        /// <summary>
         /// Example of using the Bridge design pattern.
         /// 
         /// The Bridge pattern is used to allow a program to offer multiple
@@ -196,6 +219,24 @@ namespace DesignPatternExamples
         {
             std::cout << std::endl;
             std::cout << "Bridge Exercise" << std::endl;
+            {
+                Logger logger("Bridge.log"); // Logger::LoggerTypes::ToFile type
+                std::cout << "  Example of writing to a log file..." << std::endl;
+                _Bridge_Exercise_Demonstrate_Logging(logger, "file");
+            }
+
+            {
+                Logger logger(Logger::LoggerTypes::ToConsole);
+                std::cout << "  Example of writing to the console..." << std::endl;
+                _Bridge_Exercise_Demonstrate_Logging(logger, "console");
+            }
+
+            {
+                Logger logger(Logger::LoggerTypes::ToNull);
+                std::cout << "  Example of writing to a Null object (no output)..." << std::endl;
+                // Note: The resulting log lines will not be shown anywhere.
+                _Bridge_Exercise_Demonstrate_Logging(logger, "null");
+            }
 
             std::cout << "  Done." << std::endl;
         }

@@ -149,6 +149,11 @@
   <ItemGroup>
     <ClCompile Include="Adapter_BackEndFunctions.cpp" />
     <ClCompile Include="Adapter_FrontEndClass.cpp" />
+    <ClCompile Include="Bridge_ConsoleLogger.cpp" />
+    <ClCompile Include="Bridge_FileLogger.cpp" />
+    <ClCompile Include="Bridge_Logger.cpp" />
+    <ClCompile Include="Bridge_LoggerHelpers.cpp" />
+    <ClCompile Include="Bridge_NullLogger.cpp" />
     <ClCompile Include="helpers\replace.cpp" />
     <ClCompile Include="helpers\replacew.cpp" />
     <ClCompile Include="helpers\strstri.cpp" />
@@ -158,6 +163,12 @@
   <ItemGroup>
     <ClInclude Include="Adapter.h" />
     <ClInclude Include="Adapter_BackEndFunctions.h" />
+    <ClInclude Include="Bridge_ConsoleLogger.h" />
+    <ClInclude Include="Bridge_FileLogger.h" />
+    <ClInclude Include="Bridge_Logger.h" />
+    <ClInclude Include="Bridge_LoggerHelpers.h" />
+    <ClInclude Include="Bridge_LoggerInterface.h" />
+    <ClInclude Include="Bridge_NullLogger.h" />
     <ClInclude Include="helpers\replace.h" />
     <ClInclude Include="helpers\stringlist.h" />
     <ClInclude Include="helpers\strstri.h" />
