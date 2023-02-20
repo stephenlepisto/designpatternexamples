@@ -133,7 +133,7 @@ namespace DesignPatternExamples
                         {
                             output << " ";
                         }
-                        output << std::hex << std::setw(2) << std::setfill('0') << static_cast<int>(data[row + col]);
+                        output << std::hex << std::setw(2) << std::setfill('0') << static_cast<int>(data[static_cast<size_t>(row) + col]);
                     }
                     output << std::endl;
                 }
