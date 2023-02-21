@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="UTF-8">
+        <TITLE>Snippet</TITLE>
+    <style type="text/css">
+        div.explanation {
+
+        }
+        div.panel {
+            border:thin solid black;
+            padding: 0.2em 0.2em 0.2em 0.2em;
+        }
+        .tab {
+            width: 5.0em;
+            text-align: center;
+            border-block-style: solid;
+            border-block-width: thin;
+        }
+        .tab_selected {
+            font-weight: bold;
+            border-block-width: thick;
+        }
+    </style>
+    <script type="text/javascript" language="javascript" src="testpage.js"></script>
+    </head>
+<body onload="onload()">
+    <h1>The Adapter Pattern</h1>
+    <div class="explanation">
+        <p>
+            The Adapter design pattern is used when code written in one way needs to
+            communicate with code written in a completely different way.  For example,
+            an object-oriented program needs to call into a library of functions.  A
+            related example is if the library produces error codes but the main program
+            uses exceptions.  The Adapter design adapts a library with one calling
+            convention to another convention, hiding the details of the library.
+        </p>
+
+        <p>
+            In this example, the DataReaderWriter class provides an object-oriented
+            interface to a set of functions.  The functions are static and return error
+            codes.  The DataReaderWriter class is the Adapter, converting primitive
+            function calls into an object-oriented class, complete with exceptions.
+        </p>
+
+    </div>
+    <h1>Example Code</h1>
+    <div class="multipanel" id="panel_example1" title="Multi">
+        <table class="multipanel_tabs">
+            <tr>
+                <td class="tab" onclick="select_tab(this)">C#</td>
+                <td class="tab" onclick="select_tab(this)">C++</td>
+            </tr>
+        </table>
+        <div class="panel" title="C#" hidden>
+            <!--StartFragment--><pre style="font-family:Hack;font-size:12px;color:black;background:white;"><span style="color:gray;">///</span><span style="color:green;">&nbsp;</span><span style="color:gray;">&lt;</span><span style="color:gray;">summary</span><span style="color:gray;">&gt;</span>
+<span style="color:gray;">///</span><span style="color:green;">&nbsp;Example&nbsp;of&nbsp;using&nbsp;the&nbsp;Adapter&nbsp;design&nbsp;pattern.</span>
+<span style="color:gray;">///</span><span style="color:green;">&nbsp;</span>
+<span style="color:gray;">///</span><span style="color:green;">&nbsp;This&nbsp;example&nbsp;adapts&nbsp;functions&nbsp;that&nbsp;return&nbsp;error&nbsp;codes&nbsp;into&nbsp;a&nbsp;class&nbsp;object</span>
+<span style="color:gray;">///</span><span style="color:green;">&nbsp;that&nbsp;throws&nbsp;exceptions,&nbsp;which&nbsp;is&nbsp;more&nbsp;fitting&nbsp;of&nbsp;an&nbsp;object-oriented</span>
+<span style="color:gray;">///</span><span style="color:green;">&nbsp;language.</span>
+<span style="color:gray;">///</span><span style="color:green;">&nbsp;</span><span style="color:gray;">&lt;/</span><span style="color:gray;">summary</span><span style="color:gray;">&gt;</span>
+<span style="color:blue;">void</span>&nbsp;<span style="color:#74531f;">Adapter_Exercise</span>()
+{
+&nbsp;&nbsp;&nbsp;&nbsp;Console.WriteLine();
+&nbsp;&nbsp;&nbsp;&nbsp;Console.WriteLine(<span style="color:#a31515;">&quot;Adapter&nbsp;Exercise&quot;</span>);
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#8f08c4;">try</span>
+&nbsp;&nbsp;&nbsp;&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:green;">//&nbsp;Will&nbsp;call&nbsp;Dispose()&nbsp;automatically&nbsp;when&nbsp;exiting&nbsp;the&nbsp;using&nbsp;block</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">using</span>&nbsp;(<span style="color:blue;">var</span>&nbsp;<span style="color:#1f377f;">dataReaderWriter</span>&nbsp;=&nbsp;<span style="color:blue;">new</span>&nbsp;DataReaderWriter(<span style="color:#a31515;">&quot;-target&nbsp;BXT&quot;</span>))
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">uint</span>&nbsp;<span style="color:#1f377f;">dataSize</span>&nbsp;=&nbsp;128;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">byte</span>[]&nbsp;<span style="color:#1f377f;">writeData</span>&nbsp;=&nbsp;<span style="color:blue;">new</span>&nbsp;<span style="color:blue;">byte</span>[dataSize];
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#8f08c4;">for</span>&nbsp;(<span style="color:blue;">int</span>&nbsp;<span style="color:#1f377f;">index</span>&nbsp;=&nbsp;0;&nbsp;index&nbsp;&lt;&nbsp;dataSize;&nbsp;++index)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;writeData[index]&nbsp;=&nbsp;(<span style="color:blue;">byte</span>)index;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">string</span>&nbsp;<span style="color:#1f377f;">dataDump</span>&nbsp;=&nbsp;dataReaderWriter.BufferToString(writeData,&nbsp;dataSize,&nbsp;2);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Console.WriteLine(<span style="color:#a31515;">&quot;&nbsp;&nbsp;Data&nbsp;written:{0}{1}&quot;</span>,&nbsp;Environment.NewLine,&nbsp;dataDump);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dataReaderWriter.Write(writeData,&nbsp;dataSize);
+ 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">byte</span>[]&nbsp;<span style="color:#1f377f;">readData</span>&nbsp;=&nbsp;dataReaderWriter.Read(dataSize);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dataDump&nbsp;=&nbsp;dataReaderWriter.BufferToString(readData,&nbsp;dataSize,&nbsp;2);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Console.WriteLine(<span style="color:#a31515;">&quot;&nbsp;&nbsp;Data&nbsp;read:{0}{1}&quot;</span>,&nbsp;Environment.NewLine,&nbsp;dataDump);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+ 
+&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#8f08c4;">catch</span>(DataReaderWriterInitException&nbsp;<span style="color:#1f377f;">e</span>)
+&nbsp;&nbsp;&nbsp;&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Console.WriteLine(<span style="color:#a31515;">&quot;Error&nbsp;with&nbsp;startup&nbsp;or&nbsp;shutdown!&nbsp;{0}&quot;</span>,&nbsp;e.Message);
+&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#8f08c4;">catch</span>(DataReaderWriterException&nbsp;<span style="color:#1f377f;">e</span>)
+&nbsp;&nbsp;&nbsp;&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Console.WriteLine(<span style="color:#a31515;">&quot;Error&nbsp;with&nbsp;reading&nbsp;or&nbsp;writing!&nbsp;{0}&quot;</span>,&nbsp;e.Message);
+&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;Console.WriteLine(<span style="color:#a31515;">&quot;&nbsp;&nbsp;Done.&quot;</span>);
+}
+</pre><!--EndFragment-->
+        </div>
+
+        <div class="panel" title="C++" hidden>
+            <!--StartFragment--><pre style="font-family:Hack;font-size:12px;color:black;background:white;"><span style="color:darkgreen;">///&nbsp;</span><span style="color:darkgray;">&lt;summary&gt;</span>
+<span style="color:darkgreen;">///&nbsp;Example&nbsp;of&nbsp;using&nbsp;the&nbsp;Adapter&nbsp;design&nbsp;pattern.</span>
+<span style="color:darkgreen;">///&nbsp;</span>
+<span style="color:darkgreen;">///&nbsp;This&nbsp;example&nbsp;adapts&nbsp;functions&nbsp;that&nbsp;return&nbsp;error&nbsp;codes&nbsp;into&nbsp;a&nbsp;class</span>
+<span style="color:darkgreen;">///&nbsp;object&nbsp;that&nbsp;throws&nbsp;exceptions,&nbsp;which&nbsp;is&nbsp;more&nbsp;fitting&nbsp;of&nbsp;an&nbsp;object-</span>
+<span style="color:darkgreen;">///&nbsp;oriented&nbsp;language.</span>
+<span style="color:darkgreen;">///&nbsp;</span><span style="color:darkgray;">&lt;/summary&gt;</span>
+<span style="color:blue;">void</span>&nbsp;<span style="color:#74531f;">Adapter_Exercise</span>()
+{
+&nbsp;&nbsp;&nbsp;&nbsp;std::cout&nbsp;<span style="color:teal;">&lt;&lt;</span>&nbsp;std::<span style="color:#74531f;">endl</span>;
+&nbsp;&nbsp;&nbsp;&nbsp;std::cout&nbsp;<span style="color:teal;">&lt;&lt;</span>&nbsp;<span style="color:#e21f1f;">&quot;</span><span style="color:#a31515;">Adapter&nbsp;Exercise</span><span style="color:#e21f1f;">&quot;</span>&nbsp;<span style="color:teal;">&lt;&lt;</span>&nbsp;std::<span style="color:#74531f;">endl</span>;
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#8f08c4;">try</span>
+&nbsp;&nbsp;&nbsp;&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;std::<span style="color:#2b91af;">unique_ptr</span>&lt;<span style="color:#2b91af;">DataReaderWriter</span>&gt;&nbsp;<span style="color:#1f377f;">dataReaderWriter</span>&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#74531f;">CreateDataReaderWriter</span>(<span style="color:#e21f1f;">&quot;</span><span style="color:#a31515;">-target&nbsp;BXT</span><span style="color:#e21f1f;">&quot;</span>);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#2b91af;">uint32_t</span>&nbsp;<span style="color:#1f377f;">dataSize</span>&nbsp;=&nbsp;128;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;std::<span style="color:#2b91af;">vector</span>&lt;<span style="color:#2b91af;">uint8_t</span>&gt;&nbsp;<span style="color:#1f377f;">writeData</span>(<span style="color:#1f377f;">dataSize</span>);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#8f08c4;">for</span>&nbsp;(<span style="color:#2b91af;">uint32_t</span>&nbsp;<span style="color:#1f377f;">index</span>&nbsp;=&nbsp;0;&nbsp;<span style="color:#1f377f;">index</span>&nbsp;&lt;&nbsp;<span style="color:#1f377f;">dataSize</span>;&nbsp;++<span style="color:#1f377f;">index</span>)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#1f377f;">writeData</span><span style="color:teal;">[</span><span style="color:#1f377f;">index</span><span style="color:teal;">]</span>&nbsp;=&nbsp;<span style="color:blue;">static_cast</span>&lt;<span style="color:#2b91af;">uint8_t</span>&gt;(<span style="color:#1f377f;">index</span>);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;std::<span style="color:#2b91af;">string</span>&nbsp;<span style="color:#1f377f;">dataDump</span>&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#1f377f;">dataReaderWriter</span><span style="color:teal;">-&gt;</span><span style="color:#74531f;">BufferToString</span>(<span style="color:#1f377f;">writeData</span>,&nbsp;<span style="color:#1f377f;">dataSize</span>,&nbsp;2);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;std::cout&nbsp;<span style="color:teal;">&lt;&lt;</span>&nbsp;<span style="color:#e21f1f;">&quot;</span><span style="color:#a31515;">&nbsp;&nbsp;Data&nbsp;written:</span><span style="color:#e21f1f;">&quot;</span>&nbsp;<span style="color:teal;">&lt;&lt;</span>&nbsp;std::<span style="color:#74531f;">endl</span>;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;std::cout&nbsp;<span style="color:teal;">&lt;&lt;</span>&nbsp;<span style="color:#1f377f;">dataDump</span>;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#1f377f;">dataReaderWriter</span><span style="color:teal;">-&gt;</span><span style="color:#74531f;">Write</span>(<span style="color:#1f377f;">writeData</span>,&nbsp;<span style="color:#1f377f;">dataSize</span>);
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;std::<span style="color:#2b91af;">vector</span>&lt;<span style="color:#2b91af;">uint8_t</span>&gt;&nbsp;<span style="color:#1f377f;">readData</span>&nbsp;=&nbsp;<span style="color:#1f377f;">dataReaderWriter</span><span style="color:teal;">-&gt;</span><span style="color:#74531f;">Read</span>(<span style="color:#1f377f;">dataSize</span>);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#1f377f;">dataDump</span>&nbsp;<span style="color:teal;">=</span>&nbsp;<span style="color:#1f377f;">dataReaderWriter</span><span style="color:teal;">-&gt;</span><span style="color:#74531f;">BufferToString</span>(<span style="color:#1f377f;">readData</span>,&nbsp;<span style="color:#1f377f;">dataSize</span>,&nbsp;2);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;std::cout&nbsp;<span style="color:teal;">&lt;&lt;</span>&nbsp;<span style="color:#e21f1f;">&quot;</span><span style="color:#a31515;">&nbsp;&nbsp;Data&nbsp;read:</span><span style="color:#e21f1f;">&quot;</span>&nbsp;<span style="color:teal;">&lt;&lt;</span>&nbsp;std::<span style="color:#74531f;">endl</span>;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;std::cout&nbsp;<span style="color:teal;">&lt;&lt;</span>&nbsp;<span style="color:#1f377f;">dataDump</span>;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#8f08c4;">catch</span>&nbsp;(<span style="color:#2b91af;">DataReaderWriterInitException</span>&amp;&nbsp;<span style="color:#1f377f;">e</span>)
+&nbsp;&nbsp;&nbsp;&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;std::cout&nbsp;<span style="color:teal;">&lt;&lt;</span>&nbsp;<span style="color:#e21f1f;">&quot;</span><span style="color:#a31515;">Error&nbsp;with&nbsp;startup&nbsp;or&nbsp;shutdown!&nbsp;</span><span style="color:#e21f1f;">&quot;</span>&nbsp;<span style="color:teal;">&lt;&lt;</span>&nbsp;<span style="color:#1f377f;">e</span>.<span style="color:#74531f;">what</span>()
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:teal;">&lt;&lt;</span>&nbsp;std::<span style="color:#74531f;">endl</span>;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#8f08c4;">catch</span>&nbsp;(<span style="color:#2b91af;">DataReaderWriterException</span>&amp;&nbsp;<span style="color:#1f377f;">e</span>)
+&nbsp;&nbsp;&nbsp;&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;std::cout&nbsp;<span style="color:teal;">&lt;&lt;</span>&nbsp;<span style="color:#e21f1f;">&quot;</span><span style="color:#a31515;">Error&nbsp;with&nbsp;reading&nbsp;or&nbsp;writing!&nbsp;</span><span style="color:#e21f1f;">&quot;</span>&nbsp;<span style="color:teal;">&lt;&lt;</span>&nbsp;<span style="color:#1f377f;">e</span>.<span style="color:#74531f;">what</span>()
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:teal;">&lt;&lt;</span>&nbsp;std::<span style="color:#74531f;">endl</span>;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+&nbsp;&nbsp;&nbsp;&nbsp;std::cout&nbsp;<span style="color:teal;">&lt;&lt;</span>&nbsp;<span style="color:#e21f1f;">&quot;</span><span style="color:#a31515;">&nbsp;&nbsp;Done.</span><span style="color:#e21f1f;">&quot;</span>&nbsp;<span style="color:teal;">&lt;&lt;</span>&nbsp;std::<span style="color:#74531f;">endl</span>;
+}
+</pre><!--EndFragment-->
+        </div>
+    </div>
+
+    <div class="multipanel" id="panel_example2" title="Multi">
+        <table class="multipanel_tabs">
+            <tr>
+                <td class="tab" onclick="select_tab(this)">C#</td>
+                <td class="tab" onclick="select_tab(this)">C++</td>
+            </tr>
+        </table>
+        <div class="panel" title="C#" hidden>
+        </div>
+
+        <div class="panel" title="C++" hidden>
+        </div>
+    </div>
+
+</body>
+</html>
