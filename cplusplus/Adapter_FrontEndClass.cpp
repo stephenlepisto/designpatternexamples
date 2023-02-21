@@ -5,7 +5,10 @@
 
 namespace DesignPatternExamples
 {
-    class DataReaderWriterImpl : public DataReaderWriter
+    /// <summary>
+    /// Represents a concrete instance of a DataReaderWriter interface.
+    /// </summary>
+    class DataReaderWriterImpl : public IDataReaderWriter
     {
     private:
         bool _initialized;
@@ -30,6 +33,11 @@ namespace DesignPatternExamples
         }
 
     public:
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="init">String used to initialize the underlying
+        /// data reader/writer functions.</param>
         DataReaderWriterImpl(const char* init)
             : _initialized(false)
             , _dataHandle(0)
@@ -41,27 +49,32 @@ namespace DesignPatternExamples
             }
             else
             {
-                std::string msg = _ConstructErrorMessage("Initializing data reader/writer");
+                std::string msg =
+                    _ConstructErrorMessage("Initializing data reader/writer");
                 throw new DataReaderWriterInitException(msg);
             }
         }
 
-        /// <summary>
-        /// Read a specified number of bytes.
-        /// </summary>
-        /// <param name="maxBytes">Number of bytes to read</param>
-        /// <returns>An array of bytes that were read.</returns>
-        /// <exception cref="DataReaderWriterInitException">Data reader/writer not initialized.</exception>
-        /// <exception cref="DataReaderWriterException">Failed to read data.</exception>
+
+        ///////////////////////////////////////////////////////////////////////
+        // IDataReaderWriter interface methods
+        ///////////////////////////////////////////////////////////////////////
+
+
+        ///////////////////////////////////////////////////////////////////////
+        // Read a specified number of bytes.
+        ///////////////////////////////////////////////////////////////////////
         std::vector<uint8_t> Read(uint32_t maxBytes)
         {
             if (!_initialized)
             {
-                throw new DataReaderWriterInitException("Data reader/writer is not initialized.");
+                throw new DataReaderWriterInitException(
+                    "Data reader/writer is not initialized.  Unable to read.");
             }
 
             uint32_t availableByteCount = 0;
-            int errorCode = DataReadWriteFunctions::ReadData(_dataHandle, 0, nullptr, &availableByteCount);
+            int errorCode = DataReadWriteFunctions::ReadData(_dataHandle, 0,
+                nullptr, &availableByteCount);
 
             if (errorCode != 0)
             {
@@ -71,7 +84,8 @@ namespace DesignPatternExamples
 
             std::vector<uint8_t> data(availableByteCount);
 
-            errorCode = DataReadWriteFunctions::ReadData(_dataHandle, maxBytes, &data[0], &availableByteCount);
+            errorCode = DataReadWriteFunctions::ReadData(_dataHandle, maxBytes,
+                &data[0], &availableByteCount);
             if (errorCode != 0)
             {
                 std::string msg = _ConstructErrorMessage("Reading data");
@@ -81,20 +95,18 @@ namespace DesignPatternExamples
             return data;
         }
 
-        /// <summary>
-        /// Write a specified number of bytes.
-        /// </summary>
-        /// <param name="data">Array of bytes to write.  Must be at least 'maxBytes' in length.</param>
-        /// <param name="maxBytes">Number of bytes to write</param>
-        /// <exception cref="DataReaderWriterInitException">Data reader/writer not initialized.</exception>
-        /// <exception cref="DataReaderWriterException">Failed to write data.</exception>
+        ///////////////////////////////////////////////////////////////////////
+        // Write a specified number of bytes.
+        ///////////////////////////////////////////////////////////////////////
         void Write(const std::vector<uint8_t>& data, uint32_t maxBytes)
         {
             if (!_initialized)
             {
-                throw new DataReaderWriterInitException("Data reader/writer is not initialized.");
+                throw new DataReaderWriterInitException(
+                    "Data reader/writer is not initialized.  Unable to write.");
             }
-            int errorCode = DataReadWriteFunctions::WriteData(_dataHandle, &data[0], maxBytes);
+            int errorCode = DataReadWriteFunctions::WriteData(_dataHandle,
+                &data[0], maxBytes);
             if (errorCode != 0)
             {
                 std::string msg = _ConstructErrorMessage("Writing data");
@@ -102,16 +114,12 @@ namespace DesignPatternExamples
             }
         }
 
-        /// <summary>
-        /// Convert the specified data up to the specified number of bytes into a
-        /// string by performing a "hex dump" on the data.
-        /// </summary>
-        /// <param name="data">The data to process.</param>
-        /// <param name="maxBytes">The number of bytes from the data to process.</param>
-        /// <param name="indent">Number of spaces to indent each line.</param>
-        /// <returns>A string containing the data in the form of a hex dump, possibly
-        /// multiple lines.</returns>
-        std::string BufferToString(const std::vector<uint8_t>& data, uint32_t maxBytes, int indent)
+        ///////////////////////////////////////////////////////////////////////
+        // Convert the specified data up to the specified number of bytes into a
+        // string by performing a "hex dump" on the data.
+        ///////////////////////////////////////////////////////////////////////
+        std::string BufferToString(const std::vector<uint8_t>& data,
+            uint32_t maxBytes, int indent)
         {
             std::ostringstream output;
             std::string indentSpaces(indent, ' ');
@@ -126,14 +134,21 @@ namespace DesignPatternExamples
                 uint32_t bytesPerRow = 32;
                 for (uint32_t row = 0; row < maxBytes; row += bytesPerRow)
                 {
-                    output << indentSpaces << std::hex << std::setw(4) << std::setfill('0') << row << std::dec << "--";
-                    for (uint32_t col = 0; col < bytesPerRow && (row + col) < maxBytes; ++col)
+                    output << indentSpaces << std::hex << std::setw(4)
+                           << std::setfill('0')
+                           << row
+                           << std::dec << "--";
+                    for (uint32_t col = 0;
+                        col < bytesPerRow && (row + col) < maxBytes;
+                        ++col)
                     {
                         if (col > 0)
                         {
                             output << " ";
                         }
-                        output << std::hex << std::setw(2) << std::setfill('0') << static_cast<int>(data[static_cast<size_t>(row) + col]);
+                        size_t dataIndex = static_cast<size_t>(row) + col;
+                        output << std::hex << std::setw(2) << std::setfill('0')
+                               << static_cast<int>(data[dataIndex]);
                     }
                     output << std::endl;
                 }
@@ -146,8 +161,11 @@ namespace DesignPatternExamples
     //########################################################################
     //########################################################################
 
+    //////////////////////////////////////////////////////////////////////////
+    // Class factory to generate a DataReaderWriter object.
+    //////////////////////////////////////////////////////////////////////////
 
-    std::unique_ptr<DataReaderWriter> CreateDataReaderWriter(const char* init)
+    std::unique_ptr<IDataReaderWriter> CreateDataReaderWriter(const char* init)
     {
         return std::make_unique<DataReaderWriterImpl>(init);
     }

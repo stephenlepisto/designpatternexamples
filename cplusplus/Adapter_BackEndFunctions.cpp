@@ -52,12 +52,9 @@ namespace DesignPatternExamples
 {
     namespace DataReadWriteFunctions
     {
-        /// <summary>
-        /// Initialize the data reader/writer.
-        /// </summary>
-        /// <param name="initData">Initialization string</param>
-        /// <param name="dataHandle">Returns the handle representing the data reader/writer</param>
-        /// <returns>0 if successful; otherwise, non-zero if there was an error.</returns>
+        ///////////////////////////////////////////////////////////////////////
+        // Initialize the data reader/writer.
+        ///////////////////////////////////////////////////////////////////////
         int Startup(std::string initData, int* dataHandle)
         {
             _lastErrorCode = ErrorCodes::InvalidParameter;
@@ -67,8 +64,8 @@ namespace DesignPatternExamples
                 *dataHandle = -1;
                 if (_localData.find(initData) == std::end(_localData))
                 {
-                    // Generate a buffer of integers to use as the initial data that
-                    // in turn is associated with the initData name.
+                    // Generate a buffer of integers to use as the initial data
+                    // that in turn is associated with the initData name.
                     std::vector<uint8_t> data(128);
                     for (size_t index = 0; index < data.size(); ++index)
                     {
@@ -89,11 +86,9 @@ namespace DesignPatternExamples
         }
 
 
-        /// <summary>
-        /// Shut down the data reader/writer.
-        /// </summary>
-        /// <param name="dataHandle">Handle to shut down</param>
-        /// <returns>0 if successful; otherwise, non-zero if there was an error.</returns>
+        ///////////////////////////////////////////////////////////////////////
+        // Shut down the data reader/writer.
+        ///////////////////////////////////////////////////////////////////////
         int Shutdown(int dataHandle)
         {
             _lastErrorCode = ErrorCodes::AlreadyShutDown;
@@ -109,11 +104,9 @@ namespace DesignPatternExamples
         }
 
 
-        /// <summary>
-        /// Retrieve the message related to the last error reported as a string.
-        /// </summary>
-        /// <returns>A string containing the last error message.  Returns an empty string
-        /// if there was no error.</returns>
+        ///////////////////////////////////////////////////////////////////////
+        // Retrieve the message related to the last error reported as a string.
+        ///////////////////////////////////////////////////////////////////////
         std::string GetLastErrorMessage()
         {
             std::string errorMessage = "";
@@ -146,13 +139,9 @@ namespace DesignPatternExamples
         }
 
 
-        /// <summary>
-        /// Write a block of bytes to the target.
-        /// </summary>
-        /// <param name="dataHandle">Handle to data reader/writer.</param>
-        /// <param name="data">A block of data of at least 'dataLength' bytes.</param>
-        /// <param name="dataLength">The number of bytes to write.</param>
-        /// <returns>0 if successful; otherwise, non-zero if there was an error.</returns>
+        ///////////////////////////////////////////////////////////////////////
+        // Write a block of bytes to the target.
+        ///////////////////////////////////////////////////////////////////////
         int WriteData(int dataHandle, const uint8_t* data, uint32_t dataLength)
         {
             _lastErrorCode = ErrorCodes::InvalidParameter;
@@ -162,7 +151,8 @@ namespace DesignPatternExamples
                 _lastErrorCode = ErrorCodes::InvalidDataHandle;
                 if (_handleToKey.find(dataHandle) != std::end(_handleToKey))
                 {
-                    std::vector<uint8_t>& localData = _localData[_handleToKey[dataHandle]];
+                    std::vector<uint8_t>& localData =
+                        _localData[_handleToKey[dataHandle]];
                     if (dataLength > localData.size())
                     {
                         localData.resize(dataLength);
@@ -180,17 +170,11 @@ namespace DesignPatternExamples
         }
 
 
-        /// <summary>
-        /// Read a block of bytes from the target.
-        /// </summary>
-        /// <param name="dataHandle">Handle to data reader/writer.</param>
-        /// <param name="maxDataLength">The maximum number of bytes to read.</param>
-        /// <param name="data">The buffer to store the bytes  Can be null if attempting to
-        /// retrieve the amount of data available.</param>
-        /// <param name="availableDataLength">Returns the number of bytes available for
-        /// reading.</param>
-        /// <returns>0 if successful; otherwise, non-zero if there was an error.</returns>
-        int ReadData(int dataHandle, uint32_t maxDataLength, uint8_t* data, uint32_t* availableDataLength)
+        ///////////////////////////////////////////////////////////////////////
+        // Read a block of bytes from the target.
+        ///////////////////////////////////////////////////////////////////////
+        int ReadData(int dataHandle, uint32_t maxDataLength, uint8_t* data,
+            uint32_t* availableDataLength)
         {
             _lastErrorCode = ErrorCodes::InvalidParameter;
 
@@ -200,18 +184,22 @@ namespace DesignPatternExamples
                 _lastErrorCode = ErrorCodes::InvalidDataHandle;
                 if (_handleToKey.find(dataHandle) != std::end(_handleToKey))
                 {
-                    std::vector<uint8_t>& localData = _localData[_handleToKey[dataHandle]];
+                    std::vector<uint8_t>& localData =
+                        _localData[_handleToKey[dataHandle]];
                     *availableDataLength = (uint32_t)localData.size();
 
-                    _lastErrorCode = ErrorCodes::NoError; // data parameter is allowed to be null
+                    // Note: data parameter is allowed to be null
+                    _lastErrorCode = ErrorCodes::NoError;
                     if (data != nullptr)
                     {
                         _lastErrorCode = ErrorCodes::InvalidParameter;
-                        // If buffer is large enough to contain the requested data then
+                        // If buffer is large enough to contain the requested
+                        // data then
                         if (*availableDataLength >= maxDataLength)
                         {
                             // Read only up to the amount available
-                            uint32_t byteCount = maxDataLength > localData.size() ? (uint32_t)localData.size() : maxDataLength;
+                            uint32_t byteCount = maxDataLength > localData.size()
+                                ? (uint32_t)localData.size() : maxDataLength;
                             for (uint32_t index = 0; index < byteCount; ++index)
                             {
                                 data[index] = localData[index];

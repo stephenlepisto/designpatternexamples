@@ -1,6 +1,3 @@
-// DesignPatternExamples_cplusplus.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
 #include <functional>
 #include <iostream>
 #include <sstream>
@@ -71,15 +68,16 @@ namespace DesignPatternExamples
         /// <summary>
         /// Helper method to show usage information for this program.
         /// </summary>
-        /// <param name="exercises">List of Exercise objects for which to show the names.</param>
+        /// <param name="exercises">List of Exercise objects for which to show the
+        /// names.</param>
         void Help(ExerciseList exercises)
         {
             std::string usage =
                 "{0} by Stephen P. Lepisto\n"
-                "usage: {0} [--help][-?][options] [exercise_name][[ exercise_name][...]]\n"
+                "usage: {0} [options] [exercise_name][[ exercise_name][...]]\n"
                 "\n"
-                "Runs through a series of exercises showing off design patterns.  If no exercise_name\n"
-                "is given, then run through all exercises.\n"
+                "Runs through a series of exercises showing off design patterns.  If no"
+                "exercise_name is given, then run through all exercises.\n"
                 "\n"
                 "Options:\n"
                 "--help, -?\n"
@@ -103,10 +101,13 @@ namespace DesignPatternExamples
         /// returns false.
         /// </summary>
         /// <param name="args">List of arguments passed on the command line.</param>
-        /// <param name="exercises">List of Exercise objects to display if help is needed.</param>
-        /// <param name="options">An Options structure to be filled in by command line parameters.</param>
-        /// <returns>true if the command lines were valid and help was not asked.  Otherwise,
-        /// a command line option was not valid or help was requested.</returns>
+        /// <param name="exercises">List of Exercise objects to display if
+        /// help is needed.</param>
+        /// <param name="options">An Options structure to be filled in by command
+        /// line parameters.</param>
+        /// <returns>true if the command lines were valid and help was not asked.
+        /// Otherwise, a command line option was not valid or help was
+        /// requested.</returns>
         bool ParseOptions(StringList args, ExerciseList exercises, Options& options)
         {
             bool optionsValid = true;
@@ -140,9 +141,9 @@ namespace DesignPatternExamples
         /// <summary>
         /// Example of using the Adapter design pattern.
         /// 
-        /// This example adapts functions that return error codes into a class object
-        /// that throws exceptions, which is more fitting of an object-oriented
-        /// language.
+        /// This example adapts functions that return error codes into a class
+        /// object that throws exceptions, which is more fitting of an object-
+        /// oriented language.
         /// </summary>
         void Adapter_Exercise()
         {
@@ -150,14 +151,16 @@ namespace DesignPatternExamples
             std::cout << "Adapter Exercise" << std::endl;
             try
             {
-                std::unique_ptr<DataReaderWriter> dataReaderWriter = CreateDataReaderWriter("-target BXT");
+                std::unique_ptr<IDataReaderWriter> dataReaderWriter =
+                    CreateDataReaderWriter("-target BXT");
                 uint32_t dataSize = 128;
                 std::vector<uint8_t> writeData(dataSize);
                 for (uint32_t index = 0; index < dataSize; ++index)
                 {
                     writeData[index] = static_cast<uint8_t>(index);
                 }
-                std::string dataDump = dataReaderWriter->BufferToString(writeData, dataSize, 2);
+                std::string dataDump =
+                    dataReaderWriter->BufferToString(writeData, dataSize, 2);
                 std::cout << "  Data written:" << std::endl;
                 std::cout << dataDump;
                 dataReaderWriter->Write(writeData, dataSize);
@@ -169,11 +172,13 @@ namespace DesignPatternExamples
             }
             catch (DataReaderWriterInitException& e)
             {
-                std::cout << "Error with startup or shutdown! " << e.what() << std::endl;
+                std::cout << "Error with startup or shutdown! " << e.what()
+                          << std::endl;
             }
             catch (DataReaderWriterException& e)
             {
-                std::cout << "Error with reading or writing! " << e.what() << std::endl;
+                std::cout << "Error with reading or writing! " << e.what()
+                          << std::endl;
             }
 
             std::cout << "  Done." << std::endl;
@@ -191,16 +196,20 @@ namespace DesignPatternExamples
         /// class hides the details of the underlying implementation.
         /// </summary>
         /// <param name="logger">A Logger instance to log to</param>
-        /// <param name="loggerType">The type of the underlying implementation.</param>
-        void _Bridge_Exercise_Demonstrate_Logging(Logger& logger, std::string loggerType)
+        /// <param name="loggerType">The type of the underlying implementation.
+        /// </param>
+        void _Bridge_Exercise_Demonstrate_Logging(
+            Logger& logger, std::string loggerType)
         {
             std::ostringstream output;
-            output << "Starting log to " << loggerType << " example";
+            output << "Starting \"log to " << loggerType << "\" example";
             logger.LogTrace(output.str());
+
             logger.LogInfo("An example of an informational line");
             logger.LogError("An example of an error log entry");
-            output.clear();
-            output << "Done with log to " << loggerType << " example";
+
+            output.str(std::string()); // Clear stream contents so we can reuse.
+            output << "Done with \"log to " << loggerType << "\" example";
             logger.LogTrace(output.str());
         }
 
@@ -219,6 +228,9 @@ namespace DesignPatternExamples
         {
             std::cout << std::endl;
             std::cout << "Bridge Exercise" << std::endl;
+
+            // Note: Use local contexts to automatically close the various loggers
+            // when the loggers go out of scope.
             {
                 Logger logger("Bridge.log"); // Logger::LoggerTypes::ToFile type
                 std::cout << "  Example of writing to a log file..." << std::endl;
@@ -233,7 +245,8 @@ namespace DesignPatternExamples
 
             {
                 Logger logger(Logger::LoggerTypes::ToNull);
-                std::cout << "  Example of writing to a Null object (no output)..." << std::endl;
+                std::cout << "  Example of writing to a Null object (no output)..."
+                          << std::endl;
                 // Note: The resulting log lines will not be shown anywhere.
                 _Bridge_Exercise_Demonstrate_Logging(logger, "null");
             }
@@ -524,7 +537,7 @@ namespace DesignPatternExamples
         /// A series of operations are then performed through the mediator.
         /// The output shows the results of each operation.  Note that all
         /// operations are done using user and group names, with no knowledge
-        /// of the actual lists of users and groups.  The medaitor hides all
+        /// of the actual lists of users and groups.  The mediator hides all
         /// the details.
         /// </summary>
         void Mediator_Exercise()
@@ -730,8 +743,16 @@ namespace DesignPatternExamples
             {
                 for (Exercise exercise : exercises)
                 {
-                    if (options.exercise_names.size() == 0 ||
-                        std::find(std::begin(options.exercise_names), std::end(options.exercise_names), exercise.name) != std::end(options.exercise_names))
+                    bool runExercise = options.exercise_names.empty();
+                    if (!runExercise)
+                    {
+                        auto foundIter = std::find(
+                            std::begin(options.exercise_names),
+                            std::end(options.exercise_names),
+                            exercise.name);
+                        runExercise = (foundIter != std::end(options.exercise_names));
+                    }
+                    if (runExercise)
                     {
                         exercise.exercise_to_run();
                     }
@@ -749,8 +770,10 @@ namespace DesignPatternExamples
 /// <summary>
 /// Main entry point into this example program.
 /// </summary>
-/// <param name="argc">Number of command line arguments + 1 (the first argument is the name of the program).</param>
-/// <param name="argv">Pointer to a list of strings containing the command line arguments.</param>
+/// <param name="argc">Number of command line arguments + 1 (the first argument
+/// is the name of the program).</param>
+/// <param name="argv">Pointer to a list of zero-terminated strings containing
+/// the command line arguments.</param>
 int main(int argc, char** argv)
 {
     DesignPatternExamples::Program prog;
