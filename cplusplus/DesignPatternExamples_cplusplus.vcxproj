@@ -154,6 +154,7 @@
     <ClCompile Include="Bridge_Logger.cpp" />
     <ClCompile Include="Bridge_LoggerHelpers.cpp" />
     <ClCompile Include="Bridge_NullLogger.cpp" />
+    <ClCompile Include="helpers\makelocaltime.cpp" />
     <ClCompile Include="helpers\replace.cpp" />
     <ClCompile Include="helpers\replacew.cpp" />
     <ClCompile Include="helpers\strstri.cpp" />
@@ -169,6 +170,7 @@
     <ClInclude Include="Bridge_LoggerHelpers.h" />
     <ClInclude Include="Bridge_LoggerInterface.h" />
     <ClInclude Include="Bridge_NullLogger.h" />
+    <ClInclude Include="helpers\makelocaltime.h" />
     <ClInclude Include="helpers\replace.h" />
     <ClInclude Include="helpers\stringlist.h" />
     <ClInclude Include="helpers\strstri.h" />

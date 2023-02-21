@@ -1,31 +1,28 @@
+// Posix way of asking for bounds-checked versions of library functions.
 #define __STDC_WANT_LIB_EXT1__ 1
-#include <time.h>
 #include <chrono>
 #include <sstream>
 #include <iomanip>
+
+#include "helpers/makelocaltime.h"
 #include "Bridge_LoggerHelpers.h"
 
 namespace // Anonymous
 {
 
     /// <summary>
-    /// Return a regular time stamp of the current time.
+    /// Return a regular time stamp of the current time in local time.
     /// </summary>
-    /// <returns>A string containing the current date and time.</returns>
+    /// <returns>A string containing the current date and time expressed in
+    /// local time.</returns>
     std::string _GetTimeStamp()
     {
         auto now_time = std::chrono::system_clock::now();
-        std::time_t now_time_t = std::chrono::system_clock::to_time_t(now_time);
+        auto now_time_t = std::chrono::system_clock::to_time_t(now_time);
         struct tm local_time { 0 };
-#ifdef _MSC_VER
-        errno_t err = localtime_s(&local_time, &now_time_t);
-#elif defined(__STDC_LIB_EXT1__)
-        localtime_s(&now_time_t, &local_time);
-#else
-        localtime_r(&now_time_t, &local_Time)
-#endif
-        char str[128]{ '\0'};
-        if (err == 0)
+        char str[128] { '\0' };
+        auto returnval = Helpers::makelocaltime(&now_time_t, &local_time);
+        if (returnval != nullptr)
         {
             strftime(str, sizeof str, "%m/%d/%Y %r", &local_time);
         }

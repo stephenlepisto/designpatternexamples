@@ -54,6 +54,9 @@
     <ClCompile Include="Bridge_FileLogger.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="helpers\makelocaltime.cpp">
+      <Filter>Helper Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="helpers\replace.h">
@@ -91,6 +94,9 @@
     </ClInclude>
     <ClInclude Include="Bridge_FileLogger.h">
       <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="helpers\makelocaltime.h">
+      <Filter>Helper Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
