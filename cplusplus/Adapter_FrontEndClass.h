@@ -3,13 +3,16 @@
 #define __ADAPTER_H__
 
 #include <exception>
-#include <memory>
 #include <string>
 #include <vector>
 #include <stdint.h>
 
 namespace DesignPatternExamples
 {
+
+    // Represents an array of 8-bit values or bytes.
+    typedef std::vector<uint8_t> ByteArray;
+
 
     /// <summary>
     /// Represents an error that occurred during initialization or shut down of
@@ -49,9 +52,34 @@ namespace DesignPatternExamples
     /// Represents a data reader/writer to a caller.
     /// </summary>
     /// <remarks>Wraps the DataReaderWriterFunctions.</remarks>
-    struct IDataReaderWriter
+    class DataReaderWriter
     {
-        virtual ~IDataReaderWriter() { }
+    private:
+        bool _initialized;
+        int _dataHandle;
+
+    private:
+        /// <summary>
+        /// Creates a formatted error message from the given operation, using
+        /// the last error message from the DataReaderWriterFunctions library.
+        /// </summary>
+        /// <param name="operation">The operation that was in process when the
+        /// error occurred.</param>
+        /// <returns>Returns an error message formatted as a string.</returns>
+        std::string _ConstructErrorMessage(const char* operation);
+
+    public:
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="init">String used for initializing the data
+        /// reader/writer.</param>
+        DataReaderWriter(const char* init);
+
+        /// <summary>
+        /// Destructor.
+        /// </summary>
+        ~DataReaderWriter();
 
         /// <summary>
         /// Read a specified number of bytes.
@@ -62,7 +90,7 @@ namespace DesignPatternExamples
         /// Data reader/writer not initialized.</exception>
         /// <exception cref="DataReaderWriterException">
         /// Failed to read data.</exception>
-        virtual std::vector<uint8_t> Read(uint32_t maxBytes) = 0;
+        ByteArray Read(uint32_t maxBytes);
 
         /// <summary>
         /// Write a specified number of bytes.
@@ -74,11 +102,11 @@ namespace DesignPatternExamples
         /// Data reader/writer not initialized.</exception>
         /// <exception cref="DataReaderWriterException">
         /// Failed to write data.</exception>
-        virtual void Write(const std::vector<uint8_t>& data, uint32_t maxBytes) = 0;
+        void Write(const ByteArray& data, uint32_t maxBytes);
 
         /// <summary>
-        /// Convert the specified data up to the specified number of bytes into a
-        /// string by performing a "hex dump" on the data.
+        /// Convert the specified data up to the specified number of bytes into
+        /// a string by performing a "hex dump" on the data.
         /// </summary>
         /// <param name="data">The data to process.</param>
         /// <param name="maxBytes">The number of bytes from the data to
@@ -86,17 +114,9 @@ namespace DesignPatternExamples
         /// <param name="indent">Number of spaces to indent each line.</param>
         /// <returns>A string containing the data in the form of a hex dump,
         /// possibly multiple lines.</returns>
-        virtual std::string BufferToString(const std::vector<uint8_t>& data,
-            uint32_t maxBytes, int indent) = 0;
+        std::string BufferToString(const ByteArray& data, uint32_t maxBytes,
+            int indent);
     };
-
-    /// <summary>
-    /// Construct an instance of the IDataReaderWriter interface.
-    /// </summary>
-    /// <param name="init">A string containing the initialization
-    /// information.</param>
-    /// <returns>An IDataReaderWriter object</returns>
-    std::unique_ptr<IDataReaderWriter> CreateDataReaderWriter(const char* init);
 
 } // end namespace
 

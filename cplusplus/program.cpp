@@ -8,7 +8,7 @@
 #include "helpers/replace.h"
 #include "helpers/stringlist.h"
 
-#include "Adapter.h"
+#include "Adapter_FrontEndClass.h"
 #include "Bridge_Logger.h"
 
 namespace DesignPatternExamples
@@ -151,8 +151,7 @@ namespace DesignPatternExamples
             std::cout << "Adapter Exercise" << std::endl;
             try
             {
-                std::unique_ptr<IDataReaderWriter> dataReaderWriter =
-                    CreateDataReaderWriter("-target BXT");
+                DataReaderWriter dataReaderWriter("-target BXT");
                 uint32_t dataSize = 128;
                 std::vector<uint8_t> writeData(dataSize);
                 for (uint32_t index = 0; index < dataSize; ++index)
@@ -160,13 +159,13 @@ namespace DesignPatternExamples
                     writeData[index] = static_cast<uint8_t>(index);
                 }
                 std::string dataDump =
-                    dataReaderWriter->BufferToString(writeData, dataSize, 2);
+                    dataReaderWriter.BufferToString(writeData, dataSize, 2);
                 std::cout << "  Data written:" << std::endl;
                 std::cout << dataDump;
-                dataReaderWriter->Write(writeData, dataSize);
+                dataReaderWriter.Write(writeData, dataSize);
 
-                std::vector<uint8_t> readData = dataReaderWriter->Read(dataSize);
-                dataDump = dataReaderWriter->BufferToString(readData, dataSize, 2);
+                std::vector<uint8_t> readData = dataReaderWriter.Read(dataSize);
+                dataDump = dataReaderWriter.BufferToString(readData, dataSize, 2);
                 std::cout << "  Data read:" << std::endl;
                 std::cout << dataDump;
             }

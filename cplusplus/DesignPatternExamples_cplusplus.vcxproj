@@ -162,8 +162,8 @@
     <ClCompile Include="program.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Adapter.h" />
     <ClInclude Include="Adapter_BackEndFunctions.h" />
+    <ClInclude Include="Adapter_FrontEndClass.h" />
     <ClInclude Include="Bridge_ConsoleLogger.h" />
     <ClInclude Include="Bridge_FileLogger.h" />
     <ClInclude Include="Bridge_Logger.h" />

@@ -71,9 +71,6 @@
     <ClInclude Include="helpers\wcsstri.h">
       <Filter>Helper Files</Filter>
     </ClInclude>
-    <ClInclude Include="Adapter.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="Adapter_BackEndFunctions.h">
       <Filter>Source Files</Filter>
     </ClInclude>
@@ -97,6 +94,9 @@
     </ClInclude>
     <ClInclude Include="helpers\makelocaltime.h">
       <Filter>Helper Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Adapter_FrontEndClass.h">
+      <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
