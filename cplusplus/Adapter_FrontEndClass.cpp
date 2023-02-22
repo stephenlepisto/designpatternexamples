@@ -8,7 +8,7 @@
 #include "Adapter_BackEndFunctions.h"
 
 
-namespace DesignPatternExamples
+namespace DesignPatternExamples_cpp
 {
     ///////////////////////////////////////////////////////////////////////////
     // DataReaderWriter::_ConstructErrorMessage method

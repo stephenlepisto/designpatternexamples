@@ -38,7 +38,7 @@ namespace // Anonymous
 
 
 
-namespace DesignPatternExamples
+namespace DesignPatternExamples_cpp
 {
 
     namespace LoggerHelpers

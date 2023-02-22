@@ -5,20 +5,22 @@
 #include <memory>
 #include "Bridge_LoggerInterface.h"
 
-namespace DesignPatternExamples
+namespace DesignPatternExamples_cpp
 {
 
     /// <summary>
     /// Represents a logger that writes logging to a file.
     /// </summary>
-    namespace FileLogger
+    class FileLogger
     {
+    public:
         /// <summary>
         /// Create an instance of a console logger, which writes to a file.
         /// </summary>
         /// <returns>An instance of an ILogger object.</returns>
-        std::unique_ptr<ILogger> CreateLogger(const std::string& filename);
-    }
+        static std::unique_ptr<ILogger> CreateLogger(const std::string& filename);
+    };
+
 } // end namespace
 
 #endif // __BRIDGE_FILELOGGER_H__

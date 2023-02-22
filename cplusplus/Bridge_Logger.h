@@ -6,7 +6,7 @@
 #include <string>
 #include "Bridge_LoggerInterface.h"
 
-namespace DesignPatternExamples
+namespace DesignPatternExamples_cpp
 {
 
     class Logger

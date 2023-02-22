@@ -5,7 +5,7 @@ namespace // Anonymous
     /// <summary>
     /// Represents a logger that throws away anything sent its way.
     /// </summary>
-    class NullLoggerImpl : public DesignPatternExamples::ILogger
+    class NullLoggerImpl : public DesignPatternExamples_cpp::ILogger
     {
     public:
         /// <summary>
@@ -33,20 +33,16 @@ namespace // Anonymous
 } // end anonymous namespace
 
 
-namespace DesignPatternExamples
+namespace DesignPatternExamples_cpp
 {
-    namespace NullLogger
+    
+    /// <summary>
+    /// Create an instance of a null logger, a logger that doesn't do anything.
+    /// </summary>
+    /// <returns>An instance of an ILogger object.</returns>
+    std::unique_ptr<ILogger> NullLogger::CreateLogger()
     {
+        return std::make_unique<NullLoggerImpl>();
+    }
     
-        /// <summary>
-        /// Create an instance of a null logger, a logger that doesn't do anything.
-        /// </summary>
-        /// <returns>An instance of an ILogger object.</returns>
-        std::unique_ptr<ILogger> CreateLogger()
-        {
-            return std::make_unique<NullLoggerImpl>();
-        }
-    
-    } // end namespace
-
 } // end namespace

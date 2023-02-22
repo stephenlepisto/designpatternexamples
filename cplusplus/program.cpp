@@ -17,7 +17,7 @@
 #include "Bridge_Logger.h"
 
 
-namespace DesignPatternExamples
+namespace DesignPatternExamples_cpp
 {
 
     //typedef void (*Action)(); // Represents a function to be called
@@ -91,7 +91,7 @@ namespace DesignPatternExamples
                 "\n"
                 ""; // End of string.
 
-            std::string appName = "DesignPatternExamples";
+            std::string appName = "DesignPatternExamples_cpp";
             std::cout << Helpers::Replace(usage, "{0}", appName.c_str());
 
             std::cout << std::endl << "Exercises available:" << std::endl;
@@ -780,7 +780,7 @@ namespace DesignPatternExamples
 /// the command line arguments.</param>
 int main(int argc, char** argv)
 {
-    DesignPatternExamples::Program prog;
+    DesignPatternExamples_cpp::Program prog;
     StringList args;
     for (int argIndex = 1; argIndex < argc; ++argIndex)
     {

@@ -10,7 +10,7 @@
 #include "Bridge_NullLogger.h"
 
 
-namespace DesignPatternExamples
+namespace DesignPatternExamples_cpp
 {
 
 /// <summary>
@@ -45,20 +45,18 @@ Logger::Logger(LoggerTypes loggerType)
 }
 
 
-/// <summary>
-/// Constructor that creates a file logger.
-/// </summary>
-/// <param name="filename">Path to a file to create for the file logger.</param>
+//////////////////////////////////////////////////////////////////////////////
+// Constructor
+//////////////////////////////////////////////////////////////////////////////
 Logger::Logger(const std::string& filename)
 {
     _logger = FileLogger::CreateLogger(filename);
 }
 
 
-/// <summary>
-/// Log trace messages to the configured output.
-/// </summary>
-/// <param name="message">The message to log.</param>
+//////////////////////////////////////////////////////////////////////////////
+// LogTrace
+//////////////////////////////////////////////////////////////////////////////
 void Logger::LogTrace(std::string message)
 {
     if (_logger != nullptr)
@@ -67,10 +65,9 @@ void Logger::LogTrace(std::string message)
     }
 }
 
-/// <summary>
-/// Log informational messages to the configured output.
-/// </summary>
-/// <param name="message">The message to log.</param>
+//////////////////////////////////////////////////////////////////////////////
+// LogInfo
+//////////////////////////////////////////////////////////////////////////////
 void Logger::LogInfo(std::string message)
 {
     if (_logger != nullptr)
@@ -79,10 +76,9 @@ void Logger::LogInfo(std::string message)
     }
 }
 
-/// <summary>
-/// Log error messages to the configured output.
-/// </summary>
-/// <param name="message">The message to log.</param>
+//////////////////////////////////////////////////////////////////////////////
+// LogError
+//////////////////////////////////////////////////////////////////////////////
 void Logger::LogError(std::string message)
 {
     if (_logger != nullptr)

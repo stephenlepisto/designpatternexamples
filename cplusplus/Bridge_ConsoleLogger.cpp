@@ -7,7 +7,7 @@ namespace // Anonymous
     /// <summary>
     /// Represents a logger that throws away anything sent its way.
     /// </summary>
-    class ConsoleLoggerImpl : public DesignPatternExamples::ILogger
+    class ConsoleLoggerImpl : public DesignPatternExamples_cpp::ILogger
     {
     private:
 
@@ -18,7 +18,7 @@ namespace // Anonymous
         /// <param name="msg">The message to log.</param>
         void _WriteLine(const std::string& logLevel, const std::string& msg)
         {
-            std::string output = DesignPatternExamples::LoggerHelpers::FormatLogLine(logLevel, msg);
+            std::string output = DesignPatternExamples_cpp::LoggerHelpers::FormatLogLine(logLevel, msg);
             std::cout << output << std::endl;
         }
 
@@ -51,21 +51,16 @@ namespace // Anonymous
 } // end anonymous namespace
 
 
-namespace DesignPatternExamples
+namespace DesignPatternExamples_cpp
 {
-    namespace ConsoleLogger
+    /// <summary>
+    /// Create an instance of a console logger, which writes to the standard
+    /// output.
+    /// </summary>
+    /// <returns>An instance of an ILogger object.</returns>
+    std::unique_ptr<ILogger> ConsoleLogger::CreateLogger()
     {
-
-        /// <summary>
-        /// Create an instance of a console logger, which writes to the standard
-        /// output.
-        /// </summary>
-        /// <returns>An instance of an ILogger object.</returns>
-        std::unique_ptr<ILogger> CreateLogger()
-        {
-            return std::make_unique<ConsoleLoggerImpl>();
-        }
-
-    } // end namespace
+        return std::make_unique<ConsoleLoggerImpl>();
+    }
 
 } // end namespace

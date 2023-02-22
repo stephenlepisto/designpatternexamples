@@ -48,7 +48,7 @@ namespace // Anonymous
 } // end namespace
 
 
-namespace DesignPatternExamples
+namespace DesignPatternExamples_cpp
 {
     namespace DataReadWriteFunctions
     {

@@ -7,7 +7,7 @@
 #include <vector>
 #include <stdint.h>
 
-namespace DesignPatternExamples
+namespace DesignPatternExamples_cpp
 {
 
     // Represents an array of 8-bit values or bytes.

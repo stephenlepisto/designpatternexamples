@@ -4,7 +4,7 @@
 
 #include <string>
 
-namespace DesignPatternExamples
+namespace DesignPatternExamples_cpp
 {
     /// <summary>
     /// Represents an implementation of a logger object as call from the Logger class.

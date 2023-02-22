@@ -5,20 +5,22 @@
 #include <memory>
 #include "Bridge_LoggerInterface.h"
 
-namespace DesignPatternExamples
+namespace DesignPatternExamples_cpp
 {
 
     /// <summary>
     /// Represents a logger that throws away anything sent its way.
     /// </summary>
-    namespace NullLogger
+    class NullLogger
     {
+    public:
         /// <summary>
         /// Create an instance of a null logger, a logger that doesn't do anything.
         /// </summary>
         /// <returns>An instance of an ILogger object.</returns>
-        std::unique_ptr<ILogger> CreateLogger();
-    }
+        static std::unique_ptr<ILogger> CreateLogger();
+    };
+
 } // end namespace
 
 #endif // __BRIDGE_NULLLOGGER_H__

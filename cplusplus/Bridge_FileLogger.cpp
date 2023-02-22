@@ -9,7 +9,7 @@ namespace // Anonymous
     /// <summary>
     /// Represents a logger that throws away anything sent its way.
     /// </summary>
-    class FileLoggerImpl : public DesignPatternExamples::ILogger
+    class FileLoggerImpl : public DesignPatternExamples_cpp::ILogger
     {
     private:
         std::ofstream _outputFile;
@@ -25,7 +25,7 @@ namespace // Anonymous
         {
             if (_outputFile.is_open())
             {
-                std::string output = DesignPatternExamples::LoggerHelpers::FormatLogLine(logLevel, msg);
+                std::string output = DesignPatternExamples_cpp::LoggerHelpers::FormatLogLine(logLevel, msg);
                 _outputFile << output << std::endl;
             }
 
@@ -68,20 +68,15 @@ namespace // Anonymous
 } // end anonymous namespace
 
 
-namespace DesignPatternExamples
+namespace DesignPatternExamples_cpp
 {
-    namespace FileLogger
+    /// <summary>
+    /// Create an instance of a console logger, which writes to a file.
+    /// </summary>
+    /// <returns>An instance of an ILogger object.</returns>
+    std::unique_ptr<ILogger> FileLogger::CreateLogger(const std::string& filename)
     {
-
-        /// <summary>
-        /// Create an instance of a console logger, which writes to a file.
-        /// </summary>
-        /// <returns>An instance of an ILogger object.</returns>
-        std::unique_ptr<ILogger> CreateLogger(const std::string& filename)
-        {
-            return std::make_unique<FileLoggerImpl>(filename);
-        }
-
-    } // end namespace
+        return std::make_unique<FileLoggerImpl>(filename);
+    }
 
 } // end namespace

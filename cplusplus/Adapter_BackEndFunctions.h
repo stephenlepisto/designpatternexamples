@@ -6,7 +6,7 @@
 #include <vector>
 #include <stdint.h>
 
-namespace DesignPatternExamples
+namespace DesignPatternExamples_cpp
 {
     /// <summary>
     /// Represents a collection of functions used for accessing some arbitrarily-
