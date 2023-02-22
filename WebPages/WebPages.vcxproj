@@ -127,6 +127,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <None Include="explain.css" />
+    <None Include="multipanel.css" />
     <None Include="testpage.html" />
     <None Include="testpage.js" />
   </ItemGroup>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <TITLE>Snippet</TITLE>
+    <link href="highlight/styles/vs.min.css" rel="stylesheet" />
+    <script src="highlight/highlight.min.js"></script>
+
+    <link rel="stylesheet" href="explain.css" />
+    <link rel="stylesheet" href="multipanel.css" />
+    <script type="text/javascript" language="javascript" src="testpage.js"></script>
+</head>
+<body onload="onload()">
+    <h1>The Adapter Pattern</h1>
+    <div class="explanation">
+        <div class="explanation_text">
+            <img class="explanation_image" src="adapter_diagram.png" />
+            <p>
+                The Adapter pattern is a wrapper class around an external component.
+                The wrapper class adapts the external component to match how the rest of
+                the program behaves so the program doesn't know it is dealing with an
+                external component.  The wrapper class is responsible for initializing
+                and disposing of the external component, as well as adapting procedure
+                calls, arguments, and error handling.
+            </p>
+            <p>
+                A function can also act as an adapter, where the function adapts the
+                calling conventions of the external component to the conventions of the
+                program.  One common use of adapter functions is to hide differences in
+                external libraries that arise from different implementations, such as
+                the C library as it appears on different operating systems.
+            </p>
+        </div>
+    </div>
+    <h1 style="clear:both">Example Code</h1>
+    <div class="multipanel" id="panel_example1" title="Multi">
+        <table class="multipanel_tabs">
+            <tr>
+                <td class="tab" onclick="select_tab(this)">C#</td>
+                <td class="tab" onclick="select_tab(this)">C++</td>
+            </tr>
+        </table>
+        <div class="panel" title="C#" hidden>
+            <pre><code class="language-csharp">
+/// &lt;summary&gt;
+/// Example of using the Adapter design pattern.
+/// 
+/// This example adapts functions that return error codes into a class object
+/// that throws exceptions, which is more fitting of an object-oriented
+/// language.
+/// &lt;/summary&gt;
+void Adapter_Exercise()
+{
+    Console.WriteLine();
+    Console.WriteLine("Adapter Exercise");
+    try
+    {
+        // Will call Dispose() automatically when exiting the using block
+        using (var dataReaderWriter = new DataReaderWriter("-target BXT"))
+        {
+            uint dataSize = 128;
+            byte[] writeData = new byte[dataSize];
+            for (int index = 0; index &lt; dataSize; ++index)
+            {
+                writeData[index] = (byte)index;
+            }
+            string dataDump = dataReaderWriter.BufferToString(writeData, dataSize, 2);
+            Console.WriteLine("  Data written:{0}{1}", Environment.NewLine, dataDump);
+            dataReaderWriter.Write(writeData, dataSize);
+
+            byte[] readData = dataReaderWriter.Read(dataSize);
+            dataDump = dataReaderWriter.BufferToString(readData, dataSize, 2);
+            Console.WriteLine("  Data read:{0}{1}", Environment.NewLine, dataDump);
+        }
+
+    }
+    catch(DataReaderWriterInitException e)
+    {
+        Console.WriteLine("Error with startup or shutdown! {0}", e.Message);
+    }
+    catch(DataReaderWriterException e)
+    {
+        Console.WriteLine("Error with reading or writing! {0}", e.Message);
+    }
+    Console.WriteLine("  Done.");
+}
+            </code></pre>
+        </div>
+
+        <div class="panel" title="C++" hidden>
+            <pre><code class="language-cpp">
+/// &lt;summary&gt;
+/// Example of using the Adapter design pattern.
+/// 
+/// This example adapts functions that return error codes into a class
+/// object that throws exceptions, which is more fitting of an object-
+/// oriented language.
+/// &lt;/summary&gt;
+void Adapter_Exercise()
+{
+    std::cout &lt;&lt; std::endl;
+    std::cout &lt;&lt; "Adapter Exercise" &lt;&lt; std::endl;
+    try
+    {
+        std::unique_ptr&lt;IDataReaderWriter&gt; dataReaderWriter =
+            CreateDataReaderWriter("-target BXT");
+        uint32_t dataSize = 128;
+        std::vector&lt;uint8_t&gt; writeData(dataSize);
+        for (uint32_t index = 0; index &lt; dataSize; ++index)
+        {
+            writeData[index] = static_cast&lt;uint8_t&gt;(index);
+        }
+        std::string dataDump =
+            dataReaderWriter-&gt;BufferToString(writeData, dataSize, 2);
+        std::cout &lt;&lt; "  Data written:" &lt;&lt; std::endl;
+        std::cout &lt;&lt; dataDump;
+        dataReaderWriter-&gt;Write(writeData, dataSize);
+
+        std::vector&lt;uint8_t&gt; readData = dataReaderWriter-&gt;Read(dataSize);
+        dataDump = dataReaderWriter-&gt;BufferToString(readData, dataSize, 2);
+        std::cout &lt;&lt; "  Data read:" &lt;&lt; std::endl;
+        std::cout &lt;&lt; dataDump;
+    }
+    catch (DataReaderWriterInitException& e)
+    {
+        std::cout &lt;&lt; "Error with startup or shutdown! " &lt;&lt; e.what()
+                  &lt;&lt; std::endl;
+    }
+    catch (DataReaderWriterException& e)
+    {
+        std::cout &lt;&lt; "Error with reading or writing! " &lt;&lt; e.what()
+                  &lt;&lt; std::endl;
+    }
+
+    std::cout &lt;&lt; "  Done." &lt;&lt; std::endl;
+}
+            </code></pre>
+        </div>
+    </div>
+
+    <div class="multipanel" id="panel_example2" title="Multi">
+        <table class="multipanel_tabs">
+            <tr>
+                <td class="tab" onclick="select_tab(this)">C#</td>
+                <td class="tab" onclick="select_tab(this)">C++</td>
+            </tr>
+        </table>
+        <div class="panel" title="C#" hidden>
+        </div>
+
+        <div class="panel" title="C++" hidden>
+        </div>
+    </div>
+
+</body>
+</html>

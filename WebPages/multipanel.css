@@ -1,0 +1,20 @@
+/* This is used for rendering tabbed panels */
+div.panel {
+    background-color: white;
+    border: thin solid black;
+    padding: 0.2em 0.5em 0.2em 0.5em;
+}
+
+.tab {
+    background-color: lightgray;
+    width: 5.0em;
+    text-align: center;
+    border-block-style: solid;
+    border-block-width: thin;
+}
+
+.tab_selected {
+    background-color: white;
+    font-weight: bold;
+    border-block-width: thick;
+}

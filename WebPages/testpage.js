@@ -8,6 +8,13 @@ function get_ancestor_element_by_type(start_element, parent_type) {
     return element;
 }
 
+function highlightCode() {
+    var pres = document.querySelectorAll("pre>code");
+    for (var i = 0; i < pres.length; i++) {
+        hljs.highlightBlock(pres[i]);
+    }
+}
+
 // Called on body load, after the page is fully loaded.
 //
 // Assumptions:
@@ -34,6 +41,8 @@ function onload() {
             select_tab(tabs[0])
         }
     }
+
+    highlightCode();
 }
 
 

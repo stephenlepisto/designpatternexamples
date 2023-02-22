@@ -21,5 +21,11 @@
     <None Include="testpage.js">
       <Filter>Source Files</Filter>
     </None>
+    <None Include="explain.css">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="multipanel.css">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
 </Project>
