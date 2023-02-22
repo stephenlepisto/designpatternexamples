@@ -114,7 +114,7 @@ using System.Collections.Generic;
 using System.Text;
 
 
-namespace DesignPatternExamples
+namespace DesignPatternExamples_csharp
 {
     /// <summary>
     /// Represents the current state of the state machine.

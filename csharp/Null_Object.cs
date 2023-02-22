@@ -45,7 +45,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace DesignPatternExamples
+namespace DesignPatternExamples_csharp
 {
     /// <summary>
     /// Base class that represents a move command.  A move command has a name

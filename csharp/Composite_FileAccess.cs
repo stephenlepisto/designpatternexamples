@@ -12,7 +12,7 @@
 using System;
 using System.IO;
 
-namespace DesignPatternExamples
+namespace DesignPatternExamples_csharp
 {
     public static class Composite_FileAccess
     {

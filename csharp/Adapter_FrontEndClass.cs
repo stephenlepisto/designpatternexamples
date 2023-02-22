@@ -13,7 +13,7 @@
 using System;
 using System.Text;
 
-namespace DesignPatternExamples
+namespace DesignPatternExamples_csharp
 {
     /// <summary>
     /// Represents an error that occurred during initialization or shut down of the

@@ -89,7 +89,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DesignPatternExamples
+namespace DesignPatternExamples_csharp
 {
     [Flags]
     public enum EntryFlags

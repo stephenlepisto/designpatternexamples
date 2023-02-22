@@ -7,7 +7,7 @@
     <ProjectGuid>{8A5D373A-567B-4F53-96FC-2181AF2ED313}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DesignPatternExamples</RootNamespace>
+    <RootNamespace>DesignPatternExamples_csharp</RootNamespace>
     <AssemblyName>DesignPatternExamples</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

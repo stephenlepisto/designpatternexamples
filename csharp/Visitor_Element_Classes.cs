@@ -4,7 +4,7 @@
 // Visitor example.
 
 
-namespace DesignPatternExamples
+namespace DesignPatternExamples_csharp
 {
     /// <summary>
     /// All visitors must implement this base class and then override one or

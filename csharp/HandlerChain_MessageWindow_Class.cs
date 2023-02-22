@@ -4,7 +4,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace DesignPatternExamples
+namespace DesignPatternExamples_csharp
 {
     /// <summary>
     /// Represents a rectangular region, with upper left and lower right

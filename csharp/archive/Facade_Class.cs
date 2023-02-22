@@ -48,7 +48,7 @@
 // In some ways, this Facade class is actually a bridge.
 
 
-namespace DesignPatternExamples
+namespace DesignPatternExamples_csharp
 {
     /// <summary>
     /// This class simplifies (to an extent) access to a sub-system that

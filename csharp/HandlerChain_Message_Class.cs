@@ -3,7 +3,7 @@
 
 using System;
 
-namespace DesignPatternExamples
+namespace DesignPatternExamples_csharp
 {
     /// <summary>
     /// Type of message handled by MessageWindow.

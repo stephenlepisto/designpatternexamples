@@ -45,7 +45,7 @@
 // interface.  A facade is provided through a second interface that exposes
 // a simplified set of functions for most common operations.
 
-namespace DesignPatternExamples
+namespace DesignPatternExamples_csharp
 {
     /// <summary>
     /// Represents a network of device chains and the low level access to that

@@ -8,7 +8,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace DesignPatternExamples
+namespace DesignPatternExamples_csharp
 {
     /// <summary>
     /// Base class representing a File or Directory entry.

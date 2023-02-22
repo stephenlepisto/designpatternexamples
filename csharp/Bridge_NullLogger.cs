@@ -6,7 +6,7 @@
 
 using System;
 
-namespace DesignPatternExamples
+namespace DesignPatternExamples_csharp
 {
     /// <summary>
     /// Represents a logger that throws away anything sent its way.

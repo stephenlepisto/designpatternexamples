@@ -5,7 +5,7 @@
 
 using System;
 
-namespace DesignPatternExamples
+namespace DesignPatternExamples_csharp
 {
     /// <summary>
     /// Represents a logger that writes to the console window.

@@ -42,7 +42,7 @@
 
 using System.Collections.Generic;
 
-namespace DesignPatternExamples
+namespace DesignPatternExamples_csharp
 {
     /// <summary>
     /// Represents the context for an instance of the Flyweight_Class.

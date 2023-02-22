@@ -40,7 +40,7 @@
 
 using System;
 
-namespace DesignPatternExamples
+namespace DesignPatternExamples_csharp
 {
     /// <summary>
     /// Container for a string.  Need to use a class that allows the text to

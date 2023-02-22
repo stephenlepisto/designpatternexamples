@@ -35,7 +35,7 @@
 
 using System;
 
-namespace DesignPatternExamples
+namespace DesignPatternExamples_csharp
 {
     /// <summary>
     /// Represents the type of entries allowed in the hierarchy for the

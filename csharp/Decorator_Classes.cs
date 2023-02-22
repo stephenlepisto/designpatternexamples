@@ -38,7 +38,7 @@
 
 using System;
 
-namespace DesignPatternExamples
+namespace DesignPatternExamples_csharp
 {
     /// <summary>
     /// Represents an element that can be rendered in text.  All decorators

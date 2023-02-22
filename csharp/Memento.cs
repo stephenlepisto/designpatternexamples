@@ -43,7 +43,7 @@
 // efficient than commands for creating an undo stack.
 
 
-namespace DesignPatternExamples
+namespace DesignPatternExamples_csharp
 {
     /// <summary>
     /// Represents a single memento, a single snapshot of the state of the

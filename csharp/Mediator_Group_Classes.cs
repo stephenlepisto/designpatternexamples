@@ -11,7 +11,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace DesignPatternExamples
+namespace DesignPatternExamples_csharp
 {
     /// <summary>
     /// Represents a single group.  A group has a name and zero or more users.

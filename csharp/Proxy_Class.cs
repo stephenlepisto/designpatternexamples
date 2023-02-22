@@ -42,7 +42,7 @@
 using System;
 
 
-namespace DesignPatternExamples
+namespace DesignPatternExamples_csharp
 {
     /// <summary>
     /// Represents what can be done on the proxy object.

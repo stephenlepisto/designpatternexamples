@@ -91,7 +91,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace DesignPatternExamples
+namespace DesignPatternExamples_csharp
 {
     /// <summary>
     /// Represents a handler in a chain of handlers.  All objects that

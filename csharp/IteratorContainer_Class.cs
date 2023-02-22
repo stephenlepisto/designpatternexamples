@@ -53,7 +53,7 @@
 
 using System.Collections.Generic;
 
-namespace DesignPatternExamples
+namespace DesignPatternExamples_csharp
 {
     /// <summary>
     /// Represents a key/value pair where the key and value are strings.

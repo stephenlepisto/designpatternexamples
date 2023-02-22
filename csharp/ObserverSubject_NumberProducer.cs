@@ -11,7 +11,7 @@
 
 using System.Collections.Generic;
 
-namespace DesignPatternExamples
+namespace DesignPatternExamples_csharp
 {
     /// <summary>
     /// Represents an observer to the Subject class.  An observer implements

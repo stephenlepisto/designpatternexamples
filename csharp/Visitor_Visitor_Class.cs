@@ -181,7 +181,7 @@
 
 using System;
 
-namespace DesignPatternExamples
+namespace DesignPatternExamples_csharp
 {
     /// <summary>
     /// An operation to apply to one or more data elements.  This is the

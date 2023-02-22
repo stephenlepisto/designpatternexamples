@@ -4,7 +4,7 @@
 // being modeled in this example.  The Facade_Class uses an instance of this
 // interface to make calls into the sub-system.
 
-namespace DesignPatternExamples
+namespace DesignPatternExamples_csharp
 {
     /// <summary>
     /// Represents a network of TAP chains.

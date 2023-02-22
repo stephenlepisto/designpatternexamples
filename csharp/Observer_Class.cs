@@ -75,7 +75,7 @@
 using System;
 using System.Text;
 
-namespace DesignPatternExamples
+namespace DesignPatternExamples_csharp
 {
     /// <summary>
     /// Represents an observer that prints out the current number from the
