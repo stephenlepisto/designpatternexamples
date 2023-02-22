@@ -1,6 +1,11 @@
+// This test requires /Zc:__cplusplus to be specified on the build command line.
+#if !defined(__cplusplus) || __cplusplus < 202002L
+#error Requires C++ 20 or later to compile!
+#endif
+#include <format> // Requires C++20
+
 #include <functional>
 #include <iostream>
-#include <sstream>
 #include <vector>
 #include <string>
 #include <stdint.h>
@@ -10,6 +15,7 @@
 
 #include "Adapter_FrontEndClass.h"
 #include "Bridge_Logger.h"
+
 
 namespace DesignPatternExamples
 {
@@ -161,13 +167,13 @@ namespace DesignPatternExamples
                 std::string dataDump =
                     dataReaderWriter.BufferToString(writeData, dataSize, 2);
                 std::cout << "  Data written:" << std::endl;
-                std::cout << dataDump;
+                std::cout << dataDump << std::endl;
                 dataReaderWriter.Write(writeData, dataSize);
 
                 std::vector<uint8_t> readData = dataReaderWriter.Read(dataSize);
                 dataDump = dataReaderWriter.BufferToString(readData, dataSize, 2);
                 std::cout << "  Data read:" << std::endl;
-                std::cout << dataDump;
+                std::cout << dataDump << std::endl;
             }
             catch (DataReaderWriterInitException& e)
             {
@@ -200,16 +206,15 @@ namespace DesignPatternExamples
         void _Bridge_Exercise_Demonstrate_Logging(
             Logger& logger, std::string loggerType)
         {
-            std::ostringstream output;
-            output << "Starting \"log to " << loggerType << "\" example";
-            logger.LogTrace(output.str());
+            std::string output;
+            output = std::format("Starting \"log to {}\" example", loggerType);
+            logger.LogTrace(output);
 
             logger.LogInfo("An example of an informational line");
             logger.LogError("An example of an error log entry");
 
-            output.str(std::string()); // Clear stream contents so we can reuse.
-            output << "Done with \"log to " << loggerType << "\" example";
-            logger.LogTrace(output.str());
+            output = std::format("Done with \"log to {}\" example", loggerType);
+            logger.LogTrace(output);
         }
 
 

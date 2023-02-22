@@ -1,7 +1,12 @@
-#include <sstream>
-#include <iomanip>
+// This test requires /Zc:__cplusplus to be specified on the build command line.
+#if !defined(__cplusplus) || __cplusplus < 202002L
+#error Requires C++ 20 or later to compile!
+#endif
+#include <format> // Requires C++20
+
 #include "Adapter_FrontEndClass.h"
 #include "Adapter_BackEndFunctions.h"
+
 
 namespace DesignPatternExamples
 {
@@ -10,12 +15,8 @@ namespace DesignPatternExamples
     ///////////////////////////////////////////////////////////////////////////
     std::string DataReaderWriter::_ConstructErrorMessage(const char* operation)
     {
-        std::ostringstream output;
-
         std::string msg = DataReadWriteFunctions::GetLastErrorMessage();
-        output << operation << ": " << msg;
-
-        return output.str();
+        return std::format("{0}: {1}", operation, msg);
     }
 
     ///////////////////////////////////////////////////////////////////////////
@@ -109,7 +110,7 @@ namespace DesignPatternExamples
     std::string DataReaderWriter::BufferToString(const ByteArray& data,
         uint32_t maxBytes, int indent)
     {
-        std::ostringstream output;
+        std::string output;
         std::string indentSpaces(indent, ' ');
 
         if (maxBytes != 0)
@@ -122,26 +123,22 @@ namespace DesignPatternExamples
             uint32_t bytesPerRow = 32;
             for (uint32_t row = 0; row < maxBytes; row += bytesPerRow)
             {
-                output << indentSpaces << std::hex << std::setw(4)
-                        << std::setfill('0')
-                        << row
-                        << std::dec << "--";
+                output += std::format("{}{:04x} --", indentSpaces, row);
                 for (uint32_t col = 0;
                     col < bytesPerRow && (row + col) < maxBytes;
                     ++col)
                 {
                     if (col > 0)
                     {
-                        output << " ";
+                        output += " ";
                     }
                     size_t dataIndex = static_cast<size_t>(row) + col;
-                    output << std::hex << std::setw(2) << std::setfill('0')
-                            << static_cast<int>(data[dataIndex]);
+                    output += std::format("{:02x}", data[dataIndex]);
                 }
-                output << std::endl;
+                output += "\n";
             }
         }
-        return output.str();
+        return output;
     }
 
 } // end namespace

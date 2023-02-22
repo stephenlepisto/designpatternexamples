@@ -1,8 +1,13 @@
+// This test requires /Zc:__cplusplus to be specified on the build command line.
+#if !defined(__cplusplus) || __cplusplus < 202002L
+#error Requires C++ 20 or later to compile!
+#endif
+
+#include <format> // Requires C++20
+
 // Posix way of asking for bounds-checked versions of library functions.
 #define __STDC_WANT_LIB_EXT1__ 1
 #include <chrono>
-#include <sstream>
-#include <iomanip>
 
 #include "helpers/makelocaltime.h"
 #include "Bridge_LoggerHelpers.h"
@@ -47,9 +52,7 @@ namespace DesignPatternExamples
         std::string FormatLogLine(const std::string& logLevel, const std::string& msg)
         {
             std::string timestamp = _GetTimeStamp();
-            std::ostringstream output;
-            output << timestamp << " [" << logLevel << "] " << msg;
-            return output.str();
+            return std::format("{} [{}] {}", timestamp, logLevel, msg);
         }
 
     } // end namespace
