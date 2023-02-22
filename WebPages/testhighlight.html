@@ -102,8 +102,7 @@ void Adapter_Exercise()
     std::cout &lt;&lt; "Adapter Exercise" &lt;&lt; std::endl;
     try
     {
-        std::unique_ptr&lt;IDataReaderWriter&gt; dataReaderWriter =
-            CreateDataReaderWriter("-target BXT");
+        DataReaderWriter dataReaderWriter("-target BXT");
         uint32_t dataSize = 128;
         std::vector&lt;uint8_t&gt; writeData(dataSize);
         for (uint32_t index = 0; index &lt; dataSize; ++index)
@@ -111,13 +110,13 @@ void Adapter_Exercise()
             writeData[index] = static_cast&lt;uint8_t&gt;(index);
         }
         std::string dataDump =
-            dataReaderWriter-&gt;BufferToString(writeData, dataSize, 2);
+            dataReaderWriter.BufferToString(writeData, dataSize, 2);
         std::cout &lt;&lt; "  Data written:" &lt;&lt; std::endl;
         std::cout &lt;&lt; dataDump;
-        dataReaderWriter-&gt;Write(writeData, dataSize);
+        dataReaderWriter.Write(writeData, dataSize);
 
-        std::vector&lt;uint8_t&gt; readData = dataReaderWriter-&gt;Read(dataSize);
-        dataDump = dataReaderWriter-&gt;BufferToString(readData, dataSize, 2);
+        std::vector&lt;uint8_t&gt; readData = dataReaderWriter.Read(dataSize);
+        dataDump = dataReaderWriter.BufferToString(readData, dataSize, 2);
         std::cout &lt;&lt; "  Data read:" &lt;&lt; std::endl;
         std::cout &lt;&lt; dataDump;
     }

@@ -129,6 +129,7 @@
   <ItemGroup>
     <None Include="explain.css" />
     <None Include="multipanel.css" />
+    <None Include="testhighlight.html" />
     <None Include="testpage.html" />
     <None Include="testpage.js" />
   </ItemGroup>

@@ -27,5 +27,8 @@
     <None Include="multipanel.css">
       <Filter>Source Files</Filter>
     </None>
+    <None Include="testhighlight.html">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
 </Project>
