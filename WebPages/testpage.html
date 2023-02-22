@@ -1,50 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-        <meta charset="UTF-8">
-        <TITLE>Snippet</TITLE>
+    <meta charset="UTF-8">
+    <TITLE>Snippet</TITLE>
     <style type="text/css">
-        div.explanation {
+        body {
+            background-color: #fdf2e3;
+            font-family: Georgia,'Times New Roman',serif;
+            margin-left: auto;
+            margin-right: auto;
+            max-width: 1000px;
+            padding: 20px;
+        }
 
+        div.explanation {
+            text-align: justify;
+            word-wrap: break-word;
+            line-height: 1.5em;
         }
+
+        div.explanation_text {
+            padding: 0.0em 1.0em 0.0em 1.0em;
+        }
+
+        img.explanation_image {
+            padding: 0.0em 1.0em 0.0em 1.0em;
+            float: right;
+        }
+
         div.panel {
-            border:thin solid black;
-            padding: 0.2em 0.2em 0.2em 0.2em;
+            background-color: white;
+            border: thin solid black;
+            padding: 0.2em 0.5em 0.2em 0.5em;
         }
+
         .tab {
+            background-color: lightgray;
             width: 5.0em;
             text-align: center;
             border-block-style: solid;
             border-block-width: thin;
         }
+
         .tab_selected {
+            background-color: white;
             font-weight: bold;
             border-block-width: thick;
         }
     </style>
     <script type="text/javascript" language="javascript" src="testpage.js"></script>
-    </head>
+</head>
 <body onload="onload()">
     <h1>The Adapter Pattern</h1>
     <div class="explanation">
-        <p>
-            The Adapter design pattern is used when code written in one way needs to
-            communicate with code written in a completely different way.  For example,
-            an object-oriented program needs to call into a library of functions.  A
-            related example is if the library produces error codes but the main program
-            uses exceptions.  The Adapter design adapts a library with one calling
-            convention to another convention, hiding the details of the library.
-        </p>
-
-        <p>
-            In this example, the DataReaderWriter class provides an object-oriented
-            interface to a set of functions.  The functions are static and return error
-            codes.  The DataReaderWriter class is the Adapter, converting primitive
-            function calls into an object-oriented class, complete with exceptions.
-        </p>
-
+        <div class="explanation_text">
+            <img class="explanation_image" src="adapter_diagram.png" />
+            <p>
+                The Adapter pattern is a wrapper class around an external component.
+                The wrapper class adapts the external component to match how the rest of
+                the program behaves so the program doesn't know it is dealing with an
+                external component.  The wrapper class is responsible for initializing
+                and disposing of the external component, as well as adapting procedure
+                calls, arguments, and error handling.
+            </p>
+            <p>
+                A function can also act as an adapter, where the function adapts the
+                calling conventions of the external component to the conventions of the
+                program.  One common use of adapter functions is to hide differences in
+                external libraries that arise from different implementations, such as
+                the C library as it appears on different operating systems.
+            </p>
+        </div>
     </div>
-    <h1>Example Code</h1>
+    <h1 style="clear:both">Example Code</h1>
     <div class="multipanel" id="panel_example1" title="Multi">
         <table class="multipanel_tabs">
             <tr>
