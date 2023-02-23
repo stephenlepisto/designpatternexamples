@@ -287,6 +287,7 @@ namespace DesignPatternExamples_cpp
         /// This example uses a file structure of file and directories to
         /// represent each object type.
         /// </summary>
+        //! [Using Composite in C++]
         void Composite_Exercise()
         {
             std::cout << std::endl;
@@ -294,6 +295,7 @@ namespace DesignPatternExamples_cpp
 
             std::cout << "  Done." << std::endl;
         }
+        //! [Using Composite in C++]
 
 
         //########################################################################
@@ -311,6 +313,7 @@ namespace DesignPatternExamples_cpp
         /// decorators must ultimately wrap a non-decorator class to be of any
         /// use.
         /// </summary>
+        //! [Using Decorator in C++]
         void Decorator_Exercise()
         {
             std::cout << std::endl;
@@ -318,6 +321,7 @@ namespace DesignPatternExamples_cpp
 
             std::cout << "  Done." << std::endl;
         }
+        //! [Using Decorator in C++]
 
 
         //########################################################################
@@ -340,6 +344,7 @@ namespace DesignPatternExamples_cpp
         /// the scan chains and selecting a device to appear in the scan
         /// chain.
         /// </summary>
+        //! [Using Facade in C++]
         void Facade_Exercise()
         {
             std::cout << std::endl;
@@ -347,6 +352,7 @@ namespace DesignPatternExamples_cpp
 
             std::cout << "  Done." << std::endl;
         }
+        //! [Using Facade in C++]
 
 
         //########################################################################
@@ -370,6 +376,7 @@ namespace DesignPatternExamples_cpp
         /// edges of the display area 60 times a second.  This continues for
         /// 1000 iterations or until a key is pressed.
         /// </summary>
+        //! [Using Flyweight in C++]
         void Flyweight_Exercise()
         {
             std::cout << std::endl;
@@ -377,6 +384,7 @@ namespace DesignPatternExamples_cpp
 
             std::cout << "  Done." << std::endl;
         }
+        //! [Using Flyweight in C++]
 
 
         //########################################################################
@@ -400,6 +408,7 @@ namespace DesignPatternExamples_cpp
         /// first call showing the real class being instantiated.  The subsequent
         /// calls do not show this line.
         /// </summary>
+        //! [Using Proxy in C++]
         void Proxy_Exercise()
         {
             std::cout << std::endl;
@@ -407,6 +416,7 @@ namespace DesignPatternExamples_cpp
 
             std::cout << "  Done." << std::endl;
         }
+        //! [Using Proxy in C++]
 
 
         //########################################################################
@@ -427,6 +437,7 @@ namespace DesignPatternExamples_cpp
         /// that can be done on the element types.  In this exercise, the
         /// operations just print out what was received.
         /// </summary>
+        //! [Using Visitor in C++]
         void Visitor_Exercise()
         {
             std::cout << std::endl;
@@ -434,6 +445,7 @@ namespace DesignPatternExamples_cpp
 
             std::cout << "  Done." << std::endl;
         }
+        //! [Using Visitor in C++]
 
 
         //########################################################################
@@ -452,6 +464,7 @@ namespace DesignPatternExamples_cpp
         /// commands are applied to the text object in succession then
         /// effectively undone.
         /// </summary>
+        //! [Using Command in C++]
         void Command_Exercise()
         {
             std::cout << std::endl;
@@ -459,6 +472,7 @@ namespace DesignPatternExamples_cpp
 
             std::cout << "  Done." << std::endl;
         }
+        //! [Using Command in C++]
 
 
         //########################################################################
@@ -480,6 +494,7 @@ namespace DesignPatternExamples_cpp
         /// passes message objects to each MessageWindow until the message is
         /// handled.
         /// </summary>
+        //! [Using HandlerChain in C++]
         void HandlerChain_Exercise()
         {
             std::cout << std::endl;
@@ -487,6 +502,7 @@ namespace DesignPatternExamples_cpp
 
             std::cout << "  Done." << std::endl;
         }
+        //! [Using HandlerChain in C++]
 
 
         //########################################################################
@@ -510,6 +526,7 @@ namespace DesignPatternExamples_cpp
         /// The output shows the token list followed by the sentence produced
         /// from the tokens.
         /// </summary>
+        //! [Using Interpreter in C++]
         void Interpreter_Exercise()
         {
             std::cout << std::endl;
@@ -517,6 +534,7 @@ namespace DesignPatternExamples_cpp
 
             std::cout << "  Done." << std::endl;
         }
+        //! [Using Interpreter in C++]
 
 
         //########################################################################
@@ -532,6 +550,7 @@ namespace DesignPatternExamples_cpp
         /// 
         /// The output shows the output from each iterator.
         /// </summary>
+        //! [Using Iterator in C++]
         void Iterator_Exercise()
         {
             std::cout << std::endl;
@@ -539,6 +558,7 @@ namespace DesignPatternExamples_cpp
 
             std::cout << "  Done." << std::endl;
         }
+        //! [Using Iterator in C++]
 
 
         //########################################################################
@@ -557,6 +577,7 @@ namespace DesignPatternExamples_cpp
         /// of the actual lists of users and groups.  The mediator hides all
         /// the details.
         /// </summary>
+        //! [Using Mediator in C++]
         void Mediator_Exercise()
         {
             std::cout << std::endl;
@@ -564,6 +585,7 @@ namespace DesignPatternExamples_cpp
 
             std::cout << "  Done." << std::endl;
         }
+        //! [Using Mediator in C++]
 
 
         //########################################################################
@@ -594,6 +616,7 @@ namespace DesignPatternExamples_cpp
         /// differences in the "Memento_ApplyXXOperation()" methods, which
         /// more cleanly separate the save from the operation.
         /// </summary>
+        //! [Using Memento in C++]
         void Memento_Exercise()
         {
             std::cout << std::endl;
@@ -601,6 +624,7 @@ namespace DesignPatternExamples_cpp
 
             std::cout << "  Done." << std::endl;
         }
+        //! [Using Memento in C++]
 
 
         //########################################################################
@@ -626,6 +650,7 @@ namespace DesignPatternExamples_cpp
         /// This example highlights the Null Object pattern while utilizing
         /// the Command and Interpreter patterns.
         /// </summary>
+        //! [Using NullObject in C++]
         void NullObject_Exercise()
         {
             std::cout << std::endl;
@@ -633,6 +658,7 @@ namespace DesignPatternExamples_cpp
 
             std::cout << "  Done." << std::endl;
         }
+        //! [Using NullObject in C++]
 
 
         //########################################################################
@@ -659,6 +685,7 @@ namespace DesignPatternExamples_cpp
         /// implement a "pull" style observer without having too much knowledge
         /// about the Subject.
         /// </summary>
+        //! [Using Observer in C++]
         void Observer_Exercise()
         {
             std::cout << std::endl;
@@ -666,6 +693,7 @@ namespace DesignPatternExamples_cpp
 
             std::cout << "  Done." << std::endl;
         }
+        //! [Using Observer in C++]
 
 
         //########################################################################
@@ -685,6 +713,7 @@ namespace DesignPatternExamples_cpp
         /// The filtering process starts with creating the context that drives
         /// the state machine.  Internal classes are provided for each state.
         /// </summary>
+        //! [Using State in C++]
         void State_Exercise()
         {
             std::cout << std::endl;
@@ -692,6 +721,7 @@ namespace DesignPatternExamples_cpp
 
             std::cout << "  Done." << std::endl;
         }
+        //! [Using State in C++]
 
 
         //########################################################################
@@ -710,6 +740,7 @@ namespace DesignPatternExamples_cpp
         /// sorting strategies are provided (Name, Age, Height) and an option
         /// to reverse the normal order of the sort.
         /// </summary>
+        //! [Using Strategy in C++]
         void Strategy_Exercise()
         {
             std::cout << std::endl;
@@ -717,6 +748,7 @@ namespace DesignPatternExamples_cpp
 
             std::cout << "  Done." << std::endl;
         }
+        //! [Using Strategy in C++]
 
 
         //########################################################################
