@@ -1,4 +1,4 @@
-# Bridge Pattern
+# Bridge Pattern{#bridge_pattern}
 
 @image html bridge_diagram.png "Diagram of the bridge pattern"
 
