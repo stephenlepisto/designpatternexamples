@@ -9,8 +9,9 @@
 #define __STDC_WANT_LIB_EXT1__ 1
 #include <chrono>
 
-#include "helpers/makelocaltime.h"
+#include "helpers/DateTime.h"
 #include "Bridge_LoggerHelpers.h"
+using Helpers::DateTime;
 
 namespace // Anonymous
 {
@@ -22,16 +23,7 @@ namespace // Anonymous
     /// local time.</returns>
     std::string _GetTimeStamp()
     {
-        auto now_time = std::chrono::system_clock::now();
-        auto now_time_t = std::chrono::system_clock::to_time_t(now_time);
-        struct tm local_time { 0 };
-        char str[128] { '\0' };
-        auto returnval = Helpers::makelocaltime(&now_time_t, &local_time);
-        if (returnval != nullptr)
-        {
-            strftime(str, sizeof str, "%m/%d/%Y %r", &local_time);
-        }
-        return str;
+        return DateTime::Now().ToString();
     }
 
 } // end anonymous
