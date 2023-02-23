@@ -15,5 +15,26 @@ program.  One common use of adapter functions is to hide differences in
 external libraries that arise from different implementations, such as
 the C library as it appears on different operating systems.
 
+## How to Use
+
+Links to the DataReaderWriter class description:
+- @ref DesignPatternExamples_cpp::DataReaderWriter "DataReaderWriter class" (C++)
+- @ref DesignPatternExamples_csharp.DataReaderWriter "DataReaderWriter class" (C#)
+
+In the Adapter pattern example, the DataReaderWriter class is the adapter
+class.  It hides the details of getting data into and out of some external
+entity.  In this example, some data is created, the DataReaderWriter class is
+used to write the data out (to the external component), followed by using the
+DataReaderWriter class to read the data back.
+
+__C++__
+
+@snippet cplusplus/program.cpp Using Adapter in C++
+
+__C#__
+
+@snippet csharp/program.cs Using Adapter in C#
+
+
 ### See Also
 - @ref mainpage "Main page"
