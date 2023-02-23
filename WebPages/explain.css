@@ -1,4 +1,7 @@
 /* Used for styling explanations */
+.title {
+    text-align : center;
+}
 body {
     background-color: #fdf2e3;
     font-family: Georgia,'Times New Roman',serif;
@@ -8,7 +11,7 @@ body {
     padding: 20px;
 }
 
-div.explanation {
+div.explanation,.textblock {
     text-align: justify;
     word-wrap: break-word;
     line-height: 1.5em;
