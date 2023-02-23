@@ -24,6 +24,13 @@ who sees only the abstract class.
 That abstract class must be a class since it must contain some kind of
 reference to the underlying implementation.
 
+## How to Use
+
+Links to the DataReaderWriter class description:
+
+- @ref DesignPatternExamples_cpp::Logger "Logger class" (C++)
+- @ref DesignPatternExamples_csharp.Logger "Logger class" (C#)
+
 In this example, the Logger class is what the program uses for all logging.
 The program logs information at various levels of granularity to some
 output.  The program doesn't care where the logged output ends up.
@@ -38,7 +45,7 @@ methods regardless of the actual implementation.
 In this way, the Logger class is the bridge between the program and the
 logger implementations.
 
-Note: The Bridge_NullLogger is an example of the Null Object pattern.
+Note: The Bridge_NullLogger class is an example of the Null Object pattern.
 
 An alternative implementation would use a class factory method to take
 the LoggerType and optional parameter as arguments and return an actual
@@ -49,6 +56,15 @@ implementation.  In other words, the interface itself is the "bridge".
 Basically, the use of an interface and a class factory can hide any
 implementation and it works in any programming language that supports the
 idea of a base class or interface.
+
+__C++__
+
+@snippet cplusplus/program.cpp Using Bridge in C++
+
+__C#__
+
+@snippet csharp/program.cs Using Bridge in C#
+
 
 ### See Also
 - @ref mainpage "Main Page"
