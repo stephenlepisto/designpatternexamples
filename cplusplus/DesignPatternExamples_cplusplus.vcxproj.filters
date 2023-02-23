@@ -57,6 +57,18 @@
     <ClCompile Include="helpers\makelocaltime.cpp">
       <Filter>Helper Files</Filter>
     </ClCompile>
+    <ClCompile Include="helpers\DateTime.cpp">
+      <Filter>Helper Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Composite_FileAccess.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="helpers\split.cpp">
+      <Filter>Helper Files</Filter>
+    </ClCompile>
+    <ClCompile Include="helpers\splitw.cpp">
+      <Filter>Helper Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="helpers\replace.h">
@@ -97,6 +109,21 @@
     </ClInclude>
     <ClInclude Include="Adapter_FrontEndClass.h">
       <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Composite_IFileEntry.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="helpers\DateTime.h">
+      <Filter>Helper Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Composite_FileDirEntry.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Composite_FileAccess.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="helpers\split.h">
+      <Filter>Helper Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

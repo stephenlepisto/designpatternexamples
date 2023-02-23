@@ -162,9 +162,13 @@
     <ClCompile Include="Bridge_Logger.cpp" />
     <ClCompile Include="Bridge_LoggerHelpers.cpp" />
     <ClCompile Include="Bridge_NullLogger.cpp" />
+    <ClCompile Include="Composite_FileAccess.cpp" />
+    <ClCompile Include="helpers\DateTime.cpp" />
     <ClCompile Include="helpers\makelocaltime.cpp" />
     <ClCompile Include="helpers\replace.cpp" />
     <ClCompile Include="helpers\replacew.cpp" />
+    <ClCompile Include="helpers\split.cpp" />
+    <ClCompile Include="helpers\splitw.cpp" />
     <ClCompile Include="helpers\strstri.cpp" />
     <ClCompile Include="helpers\wcsstri.cpp" />
     <ClCompile Include="program.cpp" />
@@ -178,8 +182,13 @@
     <ClInclude Include="Bridge_LoggerHelpers.h" />
     <ClInclude Include="Bridge_LoggerInterface.h" />
     <ClInclude Include="Bridge_NullLogger.h" />
+    <ClInclude Include="Composite_FileAccess.h" />
+    <ClInclude Include="Composite_FileDirEntry.h" />
+    <ClInclude Include="Composite_IFileEntry.h" />
+    <ClInclude Include="helpers\DateTime.h" />
     <ClInclude Include="helpers\makelocaltime.h" />
     <ClInclude Include="helpers\replace.h" />
+    <ClInclude Include="helpers\split.h" />
     <ClInclude Include="helpers\stringlist.h" />
     <ClInclude Include="helpers\strstri.h" />
     <ClInclude Include="helpers\wcsstri.h" />
