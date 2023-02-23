@@ -365,6 +365,8 @@ popd
   <ItemDefinitionGroup>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <None Include="..\docs\adapter.md" />
+    <None Include="..\docs\mainpage.md" />
     <None Include="Doxyfile" />
     <None Include="pagefooter.html" />
     <None Include="pageheader.html" />

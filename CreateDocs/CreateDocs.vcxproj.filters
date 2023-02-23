@@ -13,6 +13,10 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Document Files">
+      <UniqueIdentifier>{35d349be-0344-487d-9ab6-6b42a47d0390}</UniqueIdentifier>
+      <Extensions>*.md;*.markdown</Extensions>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="Doxyfile">
@@ -26,6 +30,12 @@
     </None>
     <None Include="pagestyle.css">
       <Filter>Source Files</Filter>
+    </None>
+    <None Include="..\docs\mainpage.md">
+      <Filter>Document Files</Filter>
+    </None>
+    <None Include="..\docs\adapter.md">
+      <Filter>Document Files</Filter>
     </None>
   </ItemGroup>
 </Project>
