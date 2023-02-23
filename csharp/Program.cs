@@ -17,6 +17,7 @@ namespace DesignPatternExamples_csharp
         /// that throws exceptions, which is more fitting of an object-oriented
         /// language.
         /// </summary>
+        //! [Using Adapter in C#]
         void Adapter_Exercise()
         {
             Console.WriteLine();
@@ -26,17 +27,25 @@ namespace DesignPatternExamples_csharp
                 // Will call Dispose() automatically when exiting the using block
                 using (var dataReaderWriter = new DataReaderWriter("-target BXT"))
                 {
+                    // Create the data to be written
                     uint dataSize = 128;
                     byte[] writeData = new byte[dataSize];
                     for (int index = 0; index < dataSize; ++index)
                     {
                         writeData[index] = (byte)index;
                     }
+
+                    // Display the data to be written
                     string dataDump = dataReaderWriter.BufferToString(writeData, dataSize, 2);
                     Console.WriteLine("  Data written:{0}{1}", Environment.NewLine, dataDump);
+
+                    // Write the data to the external component
                     dataReaderWriter.Write(writeData, dataSize);
 
+                    // Read the data from the external component
                     byte[] readData = dataReaderWriter.Read(dataSize);
+
+                    // Display the data read back.  Should be the same as was written.
                     dataDump = dataReaderWriter.BufferToString(readData, dataSize, 2);
                     Console.WriteLine("  Data read:{0}{1}", Environment.NewLine, dataDump);
                 }
@@ -52,6 +61,7 @@ namespace DesignPatternExamples_csharp
             }
             Console.WriteLine("  Done.");
         }
+        //! [Using Adapter in C#]
 
 
         //########################################################################
@@ -84,6 +94,7 @@ namespace DesignPatternExamples_csharp
         /// In this exercise, note how the calls into the logger are the
         /// same regardless of the logger used.
         /// </summary>
+        //! [Using Bridge in C#]
         void Bridge_Exercise()
         {
             Console.WriteLine();
@@ -108,6 +119,7 @@ namespace DesignPatternExamples_csharp
             }
             Console.WriteLine("  Done.");
         }
+        //! [Using Bridge in C#]
 
 
         //########################################################################
