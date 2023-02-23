@@ -4,6 +4,7 @@
 #endif
 #include <format> // Requires C++20
 
+#include <filesystem>
 #include <functional>
 #include <iostream>
 #include <vector>
@@ -15,6 +16,8 @@
 
 #include "Adapter_FrontEndClass.h"
 #include "Bridge_Logger.h"
+#include "Composite_IFileEntry.h"
+#include "Composite_FileAccess.h"
 
 
 namespace DesignPatternExamples_cpp
@@ -277,6 +280,57 @@ namespace DesignPatternExamples_cpp
 
 
         /// <summary>
+        /// Format the specified entry for display.
+        /// 
+        /// This is a recursive call.
+        /// </summary>
+        /// <param name="entry">The IFileDirEntry object to format</param>
+        /// <param name="depth">The current recursion depth.  This is used as
+        /// leading space.</param>
+        /// <returns>A string containing the formatted text for the given entry.</returns>
+        std::string Composite_Exercise_FormatEntry(IFileDirEntry* entry, int depth)
+        {
+            const int NAME_PADDING_SIZE = 20;
+            std::string output = "";
+            std::string spaces(depth * 2, ' ');
+            output.append(std::format("{0}{1}", spaces, entry->Name()));
+            size_t padding = NAME_PADDING_SIZE - entry->Name().size()  - (depth * 2);
+            if (entry->FileDirType() == FileDirTypes::Directory)
+            {
+                output.append("/");
+                padding--;
+            }
+            output.append(std::string(padding, ' '));
+            output.append(std::format("{0:4}", entry->Length()));
+            output.append(std::format("  {0}", entry->WhenModified().ToString()));
+            output.append("\n");
+
+            IFileDirEntryList children = entry->Children();
+            if (!children.empty())
+            {
+                for (int index = 0; index < children.size(); ++index)
+                {
+                    output.append(Composite_Exercise_FormatEntry(children[index].get(), depth + 1));
+                }
+            }
+
+            return output;
+        }
+
+
+        /// <summary>
+        /// Recursively display the contents of the hierarchical list of objects
+        /// starting with the given object.
+        /// </summary>
+        /// <param name="entry"></param>
+        void Composite_Exercise_ShowEntry(IFileDirEntry* entry)
+        {
+            std::string output = Composite_Exercise_FormatEntry(entry, 2);
+            std::cout << output << std::endl;
+        }
+
+
+        /// <summary>
         /// Example of using the Composite design pattern.
         /// 
         /// The Composite pattern is used when a collection of objects is to
@@ -292,6 +346,23 @@ namespace DesignPatternExamples_cpp
         {
             std::cout << std::endl;
             std::cout << "Composite Exercise" << std::endl;
+
+            try
+            {
+                std::string filepath = "root";
+                IFileDirEntry* rootEntry = Composite_FileAccess::GetEntry(filepath);
+                std::cout << "  Showing object '" << filepath << "'" << std::endl;
+                Composite_Exercise_ShowEntry(rootEntry);
+
+                filepath = "root/subdir1/FileD.txt";
+                rootEntry = Composite_FileAccess::GetEntry(filepath);
+                std::cout << "  Showing object '" << filepath << "'" << std::endl;
+                Composite_Exercise_ShowEntry(rootEntry);
+            }
+            catch (std::filesystem::filesystem_error& e)
+            {
+                std::cout << "Error! filesystem_error: " << e.what() << std::endl;
+            }
 
             std::cout << "  Done." << std::endl;
         }
