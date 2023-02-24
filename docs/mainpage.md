@@ -10,3 +10,5 @@ Helm, Johnson, and Vlissid.
 ### See Also
 - @ref adapter_pattern
 - @ref bridge_pattern
+- @ref composite_pattern
+

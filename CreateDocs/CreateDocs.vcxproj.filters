@@ -40,5 +40,8 @@
     <None Include="..\docs\bridge.md">
       <Filter>Document Files</Filter>
     </None>
+    <None Include="..\docs\composite.md">
+      <Filter>Document Files</Filter>
+    </None>
   </ItemGroup>
 </Project>
