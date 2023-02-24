@@ -16,7 +16,7 @@
 
 #include "Adapter_FrontEndClass.h"
 #include "Bridge_Logger.h"
-#include "Composite_IFileEntry.h"
+#include "Composite_FileDirEntry.h"
 #include "Composite_FileAccess.h"
 
 
@@ -284,11 +284,11 @@ namespace DesignPatternExamples_cpp
         /// 
         /// This is a recursive call.
         /// </summary>
-        /// <param name="entry">The IFileDirEntry object to format</param>
+        /// <param name="entry">The FileDirEntry object to format</param>
         /// <param name="depth">The current recursion depth.  This is used as
         /// leading space.</param>
         /// <returns>A string containing the formatted text for the given entry.</returns>
-        std::string Composite_Exercise_FormatEntry(IFileDirEntry* entry, int depth)
+        std::string Composite_Exercise_FormatEntry(FileDirEntry* entry, int depth)
         {
             const int NAME_PADDING_SIZE = 20;
             std::string output = "";
@@ -305,7 +305,7 @@ namespace DesignPatternExamples_cpp
             output.append(std::format("  {0}", entry->WhenModified().ToString()));
             output.append("\n");
 
-            IFileDirEntryList children = entry->Children();
+            FileDirEntryList children = entry->Children();
             if (!children.empty())
             {
                 for (int index = 0; index < children.size(); ++index)
@@ -322,8 +322,8 @@ namespace DesignPatternExamples_cpp
         /// Recursively display the contents of the hierarchical list of objects
         /// starting with the given object.
         /// </summary>
-        /// <param name="entry"></param>
-        void Composite_Exercise_ShowEntry(IFileDirEntry* entry)
+        /// <param name="entry">The file entry to display</param>
+        void Composite_Exercise_ShowEntry(FileDirEntry* entry)
         {
             std::string output = Composite_Exercise_FormatEntry(entry, 2);
             std::cout << output << std::endl;
@@ -350,7 +350,7 @@ namespace DesignPatternExamples_cpp
             try
             {
                 std::string filepath = "root";
-                IFileDirEntry* rootEntry = Composite_FileAccess::GetEntry(filepath);
+                FileDirEntry* rootEntry = Composite_FileAccess::GetEntry(filepath);
                 std::cout << "  Showing object '" << filepath << "'" << std::endl;
                 Composite_Exercise_ShowEntry(rootEntry);
 

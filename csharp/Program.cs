@@ -131,11 +131,11 @@ namespace DesignPatternExamples_csharp
         /// 
         /// This is a recursive call.
         /// </summary>
-        /// <param name="entry">The IFileDirEntry object to format</param>
+        /// <param name="entry">The FileDirEntry object to format</param>
         /// <param name="depth">The current recursion depth.  This is used as
         /// leading space.</param>
         /// <returns>A string containing the formatted text for the given entry.</returns>
-        string Composite_Exercise_FormatEntry(IFileDirEntry entry, int depth)
+        string Composite_Exercise_FormatEntry(FileDirEntry entry, int depth)
         {
             const int NAME_PADDING_SIZE = 20;
             StringBuilder output = new StringBuilder();
@@ -152,7 +152,7 @@ namespace DesignPatternExamples_csharp
             output.AppendFormat("  {0}", entry.WhenModified.ToString());
             output.AppendFormat("{0}", Environment.NewLine);
 
-            IFileDirEntry[] children = entry.Children;
+            FileDirEntry[] children = entry.Children;
             if (children != null)
             {
                 for (int index = 0; index < children.Length; ++index)
@@ -170,7 +170,7 @@ namespace DesignPatternExamples_csharp
         /// starting with the given object.
         /// </summary>
         /// <param name="entry"></param>
-        void Composite_Exercise_ShowEntry(IFileDirEntry entry)
+        void Composite_Exercise_ShowEntry(FileDirEntry entry)
         {
             string output = Composite_Exercise_FormatEntry(entry, 2);
             Console.WriteLine(output);
@@ -196,7 +196,7 @@ namespace DesignPatternExamples_csharp
             try
             {
                 string filepath = "root";
-                IFileDirEntry rootEntry = Composite_FileAccess.GetEntry(filepath);
+                FileDirEntry rootEntry = Composite_FileAccess.GetEntry(filepath);
                 Console.WriteLine("  Showing object '{0}'", filepath);
                 Composite_Exercise_ShowEntry(rootEntry);
 

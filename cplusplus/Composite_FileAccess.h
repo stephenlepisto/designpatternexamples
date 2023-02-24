@@ -13,10 +13,10 @@ namespace DesignPatternExamples_cpp
     private:
         static std::shared_ptr<FileDirEntry> rootEntry;
 
-        static IFileDirEntry* _FindEntry(std::string filepath);
+        static FileDirEntry* _FindEntry(std::string filepath);
 
     public:
-        static IFileDirEntry* GetEntry(std::string filepath);
+        static FileDirEntry* GetEntry(std::string filepath);
     };
 } // end namespace
 

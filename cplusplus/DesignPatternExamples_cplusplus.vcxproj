@@ -184,7 +184,6 @@
     <ClInclude Include="Bridge_NullLogger.h" />
     <ClInclude Include="Composite_FileAccess.h" />
     <ClInclude Include="Composite_FileDirEntry.h" />
-    <ClInclude Include="Composite_IFileEntry.h" />
     <ClInclude Include="helpers\DateTime.h" />
     <ClInclude Include="helpers\makelocaltime.h" />
     <ClInclude Include="helpers\replace.h" />

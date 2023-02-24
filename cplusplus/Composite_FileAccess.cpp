@@ -19,14 +19,14 @@ namespace DesignPatternExamples_cpp
         // The hardcoded hierarchy representing a file/directory structure.
         // Note: This is the Composite pattern in action.
         std::shared_ptr<FileDirEntry> Composite_FileAccess::rootEntry =
-            std::make_shared<DirEntry>("root", DateTime::Now(), IFileDirEntryList{
+            std::make_shared<DirEntry>("root", DateTime::Now(), FileDirEntryList{
                 std::make_shared<FileEntry>("FileA.txt", 101, DateTime::Now()),
                 std::make_shared<FileEntry>("FileB.txt", 102, DateTime::Now()),
                 std::make_shared<FileEntry>("FileC.txt", 103, DateTime::Now()),
-                std::make_shared<DirEntry>("subdir1", DateTime::Now(), IFileDirEntryList{
+                std::make_shared<DirEntry>("subdir1", DateTime::Now(), FileDirEntryList{
                     std::make_shared<FileEntry>("FileD.txt", 104, DateTime::Now()),
                     std::make_shared<FileEntry>("FileE.txt", 105, DateTime::Now()),
-                    std::make_shared<DirEntry>("subdir2", DateTime::Now(), IFileDirEntryList{
+                    std::make_shared<DirEntry>("subdir2", DateTime::Now(), FileDirEntryList{
                         std::make_shared<FileEntry>("FileF.txt", 106, DateTime::Now()),
                         std::make_shared<FileEntry>("FileG.txt", 107, DateTime::Now())
                     }),
@@ -41,9 +41,9 @@ namespace DesignPatternExamples_cpp
         /// <param name="filepath">A "path" specifying the entry to find, with each
         /// component separated by '/'.</param>
         /// <returns>Returns the found entry; otherwise, returns null.</returns>
-        IFileDirEntry* Composite_FileAccess::_FindEntry(std::string filepath)
+        FileDirEntry* Composite_FileAccess::_FindEntry(std::string filepath)
         {
-            IFileDirEntry* root = rootEntry.get();
+            FileDirEntry* root = rootEntry.get();
             bool found = true;
 
             std::vector<std::string> pathComponents = Helpers::split(filepath, "/");
@@ -65,7 +65,7 @@ namespace DesignPatternExamples_cpp
                 // Still haven't reached end of specified path, look at
                 // the current root for children.
 
-                IFileDirEntryList children = root->Children();
+                FileDirEntryList children = root->Children();
                 if (children.empty())
                 {
                     // Path included leaf in the middle, bad path
@@ -76,7 +76,7 @@ namespace DesignPatternExamples_cpp
                 root = nullptr; // assume we won't find anything
                 // Look ahead in the path for a matching child.
                 std::string childComponent = pathComponents[index + 1];
-                for (IFileDirEntryList::iterator childIter = std::begin(children);
+                for (FileDirEntryList::iterator childIter = std::begin(children);
                     childIter != std::end(children);
                     childIter++)
                 {
@@ -98,19 +98,19 @@ namespace DesignPatternExamples_cpp
 
 
         /// <summary>
-        /// Return an IFileDirEntry object representing the specified file "path"
+        /// Return a FileDirEntry object representing the specified file "path"
         /// in an internal list of data entries that is organized in a file/
         /// directory structure.
         /// </summary>
         /// <param name="filepath">A "path" specifying the entry to find, with each
         /// component separated by '/'.</param>
-        /// <returns>Returns an IFileDirEntry object representing the specified file entry.
+        /// <returns>Returns a FileDirEntry object representing the specified file entry.
         /// </returns>
         /// <exception cref="FIleNotFoundException">The specified file entry was not found.</exception>
-        IFileDirEntry* Composite_FileAccess::GetEntry(std::string filepath)
+        FileDirEntry* Composite_FileAccess::GetEntry(std::string filepath)
         {
             filepath = Helpers::Replace(filepath, '\\', '/');
-            IFileDirEntry* fileDirEntry = _FindEntry(filepath);
+            FileDirEntry* fileDirEntry = _FindEntry(filepath);
 
             if (fileDirEntry == nullptr)
             {

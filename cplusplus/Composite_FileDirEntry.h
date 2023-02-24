@@ -2,17 +2,42 @@
 #ifndef __COMPOSITE_FILEDIRENTRY_H__
 #define __COMPOSITE_FILEDIRENTRY_H__
 
-#include "Composite_IFileEntry.h"
+#include <string>
+#include <vector>
+#include "helpers/DateTime.h"
+using Helpers::DateTime;
 
 namespace DesignPatternExamples_cpp
 {
 
     /// <summary>
-    /// Base class representing a File or Directory entry.
-    /// 
-    /// Provides default implementations for the IFileDirEntry interface.
+    /// Represents the type of entries allowed in the hierarchy for the
+    /// Composite design pattern example.
     /// </summary>
-    class FileDirEntry : public IFileDirEntry
+    enum FileDirTypes
+    {
+        /// <summary>
+        /// Represents a file entry.
+        /// </summary>
+        File,
+
+        /// <summary>
+        /// Represents a directory entry that can contain other FileDirEntry components.
+        /// </summary>
+        Directory
+    };
+
+    class FileDirEntry; // forward declaration
+
+    /// <summary>
+    /// Makes it easier to refer to a list of child nodes.
+    /// </summary>
+    typedef std::vector<std::shared_ptr<FileDirEntry>> FileDirEntryList;
+
+    /// <summary>
+    /// Base class representing a File or Directory entry.
+    /// </summary>
+    class FileDirEntry
     {
     protected:
         FileDirTypes fileDirType;
@@ -47,34 +72,32 @@ namespace DesignPatternExamples_cpp
         {
         }
 
-        // IFileDirEntry Members
-
         /// <summary>
         /// The type of this entry as represented by a value from the FileDirTypes enumeration.
         /// </summary>
-        FileDirTypes FileDirType() { return fileDirType; }
+        virtual FileDirTypes FileDirType() { return fileDirType; }
 
         /// <summary>
         /// The name of this entry.
         /// </summary>
-        std::string Name() { return name; }
+        virtual std::string Name() { return name; }
 
         /// <summary>
         /// The length in bytes of this entry.  Directory entries are the sum of
         /// the length of all children.
         /// </summary>
-        long Length() { return length; }
+        virtual long Length() { return length; }
 
         /// <summary>
         /// When this entry was last modified.
         /// </summary>
-        DateTime WhenModified() { return whenModified; }
+        virtual DateTime WhenModified() { return whenModified; }
 
         /// <summary>
         /// The children of this entry.  Is empty if the entry can never have
         /// any children (that is, it isn't a container of other entries).
         /// </summary>
-        IFileDirEntryList Children() { return IFileDirEntryList(); }
+        virtual FileDirEntryList Children() { return FileDirEntryList(); }
     };
 
 
@@ -119,7 +142,7 @@ namespace DesignPatternExamples_cpp
     class DirEntry : public FileDirEntry
     {
     public:
-        IFileDirEntryList _children;
+        FileDirEntryList _children;
         bool _lengthSet;
 
         /// <summary>
@@ -128,7 +151,7 @@ namespace DesignPatternExamples_cpp
         /// <param name="entryName">Name of the directory</param>
         /// <param name="modDate">modification date time of the entry</param>
         /// <param name="children">Array of children.  Can be empty.</param>
-        DirEntry(std::string entryName, DateTime modDate, IFileDirEntryList children)
+        DirEntry(std::string entryName, DateTime modDate, FileDirEntryList children)
             : FileDirEntry(FileDirTypes::Directory, entryName, 0, modDate)
             , _children(children)
             , _lengthSet(false)
@@ -147,7 +170,7 @@ namespace DesignPatternExamples_cpp
             if (!_lengthSet)
             {
                 // Recurse over all children, accumulating their size.
-                for (IFileDirEntryList::iterator entryIter = std::begin(_children);
+                for (FileDirEntryList::iterator entryIter = std::begin(_children);
                     entryIter != std::end(_children);
                     entryIter++)
                 {
@@ -166,7 +189,7 @@ namespace DesignPatternExamples_cpp
         /// children entries stored in the DirEntry class so the base
         /// class doesn't need to store it.
         /// </summary>
-        IFileDirEntryList Children()
+        FileDirEntryList Children()
         {
             return _children;
         }

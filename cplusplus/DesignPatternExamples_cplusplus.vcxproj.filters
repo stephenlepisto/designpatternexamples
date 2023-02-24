@@ -110,9 +110,6 @@
     <ClInclude Include="Adapter_FrontEndClass.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="Composite_IFileEntry.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="helpers\DateTime.h">
       <Filter>Helper Files</Filter>
     </ClInclude>
