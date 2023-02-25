@@ -16,6 +16,10 @@
 namespace DesignPatternExamples_cpp
 {
 
+    //########################################################################
+    //########################################################################
+
+
     /// <summary>
     /// Represents an element that can be rendered in text.  All decorators
     /// and the core element class implement this interface.
@@ -42,14 +46,51 @@ namespace DesignPatternExamples_cpp
 
 
     /// <summary>
-    /// Represents the Body decorator, which wraps the rendered element in
-    /// "<body>""</body>" tags.  This decorator is typically applied last.
+    /// Represents the base class of all decorators and is responsible for
+    /// handling the wrapped element being decorated.
     /// </summary>
-    class BodyDecorator : public IRenderElement
+    class Decorator : public IRenderElement
     {
     private:
         IRenderElement::shared_ptr_t _wrappedElement;
+    
+    public:
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="element">The IRenderElement to be wrapped and
+        /// decorated.</param>
+        Decorator(IRenderElement::shared_ptr_t element)
+            : _wrappedElement(element)
+        {
+            if (!_wrappedElement)
+            {
+                throw Helpers::argumentnull_error("element",
+                    "The element being decorated cannot be null.");
+            }
+        }
 
+
+        /// <summary>
+        /// Render the wrapped element.
+        /// </summary>
+        /// <returns>A string containing the rendered wrapped element.</returns>
+        std::string Render()
+        {
+            return _wrappedElement->Render();
+        }
+    };
+
+    //########################################################################
+    //########################################################################
+
+
+    /// <summary>
+    /// Represents the Body decorator, which wraps the rendered element in
+    /// "<body>""</body>" tags.  This decorator is typically applied last.
+    /// </summary>
+    class BodyDecorator : public Decorator
+    {
     public:
 
         /// <summary>
@@ -60,13 +101,8 @@ namespace DesignPatternExamples_cpp
         /// <exception cref="argumentnull_error">The element being decorated
         /// cannot be null.</exception>
         BodyDecorator(IRenderElement::shared_ptr_t element)
+            : Decorator(element)
         {
-            if (!element)
-            {
-                throw Helpers::argumentnull_error("element",
-                    "The element being decorated cannot be null.");
-            }
-            _wrappedElement = element;
         }
 
         // IRenderElement Members
@@ -77,7 +113,7 @@ namespace DesignPatternExamples_cpp
         /// <returns>A string containing the decorated rendered element.</returns>
         std::string Render()
         {
-            return std::format("<body>{0}</body>", _wrappedElement->Render());
+            return std::format("<body>{0}</body>", Decorator::Render());
         }
     };
 
@@ -91,11 +127,8 @@ namespace DesignPatternExamples_cpp
     /// "<p>""</p>" tags.  This decorator is typically applied before the Body
     /// decorator.
     /// </summary>
-    class ParagraphDecorator : public IRenderElement
+    class ParagraphDecorator : public Decorator
     {
-    private:
-        IRenderElement::shared_ptr_t _wrappedElement;
-
     public:
 
         /// <summary>
@@ -106,13 +139,8 @@ namespace DesignPatternExamples_cpp
         /// <exception cref="argumentnull_error">The element being decorated
         /// cannot be null.</exception>
         ParagraphDecorator(IRenderElement::shared_ptr_t element)
+            : Decorator(element)
         {
-            if (!element)
-            {
-                throw Helpers::argumentnull_error("element",
-                    "The element being decorated cannot be null.");
-            }
-            _wrappedElement = element;
         }
 
         // IRenderElement Members
@@ -123,7 +151,7 @@ namespace DesignPatternExamples_cpp
         /// <returns>A string containing the decorated rendered element.</returns>
         std::string Render()
         {
-            return std::format("<p>{0}</p>", _wrappedElement->Render());
+            return std::format("<p>{0}</p>", Decorator::Render());
         }
     };
 
@@ -137,11 +165,8 @@ namespace DesignPatternExamples_cpp
     /// "<em>""</em>" tags.  This decorator is typically applied before any
     /// other decorator.
     /// </summary>
-    class EmphasisDecorator : public IRenderElement
+    class EmphasisDecorator : public Decorator
     {
-    private:
-        IRenderElement::shared_ptr_t _wrappedElement;
-
     public:
 
         /// <summary>
@@ -152,13 +177,8 @@ namespace DesignPatternExamples_cpp
         /// <exception cref="argumentnull_error">The element being decorated
         /// cannot be null.</exception>
         EmphasisDecorator(IRenderElement::shared_ptr_t element)
+            : Decorator(element)
         {
-            if (!element)
-            {
-                throw Helpers::argumentnull_error("element",
-                    "The element being decorated cannot be null.");
-            }
-            _wrappedElement = element;
         }
 
         // IRenderElement Members
@@ -169,7 +189,7 @@ namespace DesignPatternExamples_cpp
         /// <returns>A string containing the decorated rendered element.</returns>
         std::string Render()
         {
-            return std::format("<em>{0}</em>", _wrappedElement->Render());
+            return std::format("<em>{0}</em>", Decorator::Render());
         }
     };
 

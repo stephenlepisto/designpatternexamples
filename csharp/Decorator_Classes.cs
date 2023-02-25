@@ -37,9 +37,15 @@
 // Composite pattern also support decorators).
 
 using System;
+using System.Xml.Linq;
 
 namespace DesignPatternExamples_csharp
 {
+
+    //########################################################################
+    //########################################################################
+
+
     /// <summary>
     /// Represents an element that can be rendered in text.  All decorators
     /// and the core element class implement this interface.
@@ -59,40 +65,69 @@ namespace DesignPatternExamples_csharp
 
 
     /// <summary>
-    /// Represents the Body decorator, which wraps the rendered element in
-    /// "<body>""</body>" tags.  This decorator is typically applied last.
+    /// Represents the base class of all decorators and is responsible for
+    /// handling the wrapped element being decorated.
     /// </summary>
-    public class BodyDecorator : IRenderElement
+    public class Decorator : IRenderElement
     {
         IRenderElement _wrappedElement;
 
         /// <summary>
-        /// Constructor that wraps the specified element.
+        /// Constructor
         /// </summary>
-        /// <param name="element">The IRenderElement to be decorated.  Cannot be null.</param>
-        /// <exception cref="ArgumentNullException">The element being decorated cannot be null.</exception>
-        public BodyDecorator(IRenderElement element)
+        /// <param name="wrappedElement">The IRenderElement element to be
+        /// wrapped.</param>
+        /// <exception cref="ArgumentNullException">The element being decorated
+        /// cannot be null.</exception>
+        public Decorator(IRenderElement wrappedElement)
         {
-            if (element == null)
+            if (wrappedElement == null)
             {
-                throw new ArgumentNullException("element", "The element being decorated cannot be null.");
+                throw new ArgumentNullException("wrappedElement",
+                    "The element being decorated cannot be null.");
             }
-            _wrappedElement = element;
+            _wrappedElement = wrappedElement;
         }
 
-        #region IRenderElement Members
+        /// <summary>
+        /// Retrieves the rendering of the wrapped element.
+        /// </summary>
+        /// <returns>A string containing the rendered wrapped element.</returns>
+        virtual public string Render()
+        {
+            return _wrappedElement.Render();
+        }
+    }
+
+    //########################################################################
+    //########################################################################
+
+
+    /// <summary>
+    /// Represents the Body decorator, which wraps the rendered element in
+    /// "<body>""</body>" tags.  This decorator is typically applied last.
+    /// </summary>
+    public class BodyDecorator : Decorator
+    {
+        /// <summary>
+        /// Constructor that wraps the specified element.
+        /// </summary>
+        /// <param name="element">The IRenderElement to be decorated.
+        /// Cannot be null.</param>
+        /// <exception cref="ArgumentNullException">The element being decorated
+        /// cannot be null.</exception>
+        public BodyDecorator(IRenderElement element) : base(element)
+        {
+        }
 
         /// <summary>
         /// Render the wrapped element with decorations.
         /// </summary>
         /// <returns>A string containing the decorated rendered element.</returns>
-        public string Render()
+        public override string Render()
         {
-            string output = String.Format("<body>{0}</body>", _wrappedElement.Render());
-            return output;
+            return String.Format("<body>{0}</body>", base.Render());
         }
-
-        #endregion
     }
 
 
@@ -105,38 +140,28 @@ namespace DesignPatternExamples_csharp
     /// "<p>""</p>" tags.  This decorator is typically applied before the Body
     /// decorator.
     /// </summary>
-    public class ParagraphDecorator : IRenderElement
+    public class ParagraphDecorator : Decorator
     {
-        IRenderElement _wrappedElement;
-
         /// <summary>
         /// Constructor that wraps the specified element.
         /// </summary>
-        /// <param name="element">The IRenderElement to be decorated.  Cannot be null.</param>
-        /// <exception cref="ArgumentNullException">The element being decorated cannot be null.</exception>
-        public ParagraphDecorator(IRenderElement element)
+        /// <param name="element">The IRenderElement to be decorated.
+        /// Cannot be null.</param>
+        /// <exception cref="ArgumentNullException">The element being decorated
+        /// cannot be null.</exception>
+        public ParagraphDecorator(IRenderElement element) : base(element)
         {
-            if (element == null)
-            {
-                throw new ArgumentNullException("element", "The element being decorated cannot be null");
-            }
-            _wrappedElement = element;
         }
-
-        #region IRenderElement Members
 
 
         /// <summary>
         /// Render the wrapped element with decorations.
         /// </summary>
         /// <returns>A string containing the decorated rendered element.</returns>
-        public string Render()
+        override public string Render()
         {
-            string output = String.Format("<p>{0}</p>", _wrappedElement.Render());
-            return output;
+            return String.Format("<p>{0}</p>", base.Render());
         }
-
-        #endregion
     }
 
 
@@ -149,38 +174,28 @@ namespace DesignPatternExamples_csharp
     /// "<em>""</em>" tags.  This decorator is typically applied before any
     /// other decorator.
     /// </summary>
-    public class EmphasisDecorator : IRenderElement
+    public class EmphasisDecorator : Decorator
     {
-        IRenderElement _wrappedElement;
-
         /// <summary>
         /// Constructor that wraps the specified element.
         /// </summary>
-        /// <param name="element">The IRenderElement to be decorated.  Cannot be null.</param>
-        /// <exception cref="ArgumentNullException">The element being decorated cannot be null.</exception>
-        public EmphasisDecorator(IRenderElement element)
+        /// <param name="element">The IRenderElement to be decorated.
+        /// Cannot be null.</param>
+        /// <exception cref="ArgumentNullException">The element being decorated
+        /// cannot be null.</exception>
+        public EmphasisDecorator(IRenderElement element) : base(element)
         {
-            if (element == null)
-            {
-                throw new ArgumentNullException("element", "The element being decorated cannot be null");
-            }
-            _wrappedElement = element;
         }
-
-        #region IRenderElement Members
 
 
         /// <summary>
         /// Render the wrapped element with decorations.
         /// </summary>
         /// <returns>A string containing the decorated rendered element.</returns>
-        public string Render()
+        override public string Render()
         {
-            string output = String.Format("<em>{0}</em>", _wrappedElement.Render());
-            return output;
+            return String.Format("<em>{0}</em>", base.Render());
         }
-
-        #endregion
     }
 
 
