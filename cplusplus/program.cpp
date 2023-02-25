@@ -7,6 +7,7 @@
 #include <filesystem>
 #include <functional>
 #include <iostream>
+#include <memory>
 #include <vector>
 #include <string>
 #include <stdint.h>
@@ -18,6 +19,7 @@
 #include "Bridge_Logger.h"
 #include "Composite_FileDirEntry.h"
 #include "Composite_FileAccess.h"
+#include "Decorator_Classes.h"
 
 
 namespace DesignPatternExamples_cpp
@@ -389,6 +391,22 @@ namespace DesignPatternExamples_cpp
         {
             std::cout << std::endl;
             std::cout << "Decorator Exercise" << std::endl;
+            IRenderElement::shared_ptr_t baseElement;
+            baseElement = std::make_shared<TextElement>("This is raw text");
+
+            // Wrap the base element in three decorators in a specific order.
+            IRenderElement::shared_ptr_t wrappedElement =
+                std::make_shared<BodyDecorator>(
+                    std::make_shared<ParagraphDecorator>(
+                        std::make_shared<EmphasisDecorator>(baseElement)));
+
+            // Now render the elements to the console.
+            std::cout
+                << std::format("  base Text element: \"{0}\"", baseElement->Render())
+                << std::endl;
+            std::cout
+                << std::format("  Decorated element: \"{0}\"", wrappedElement->Render())
+                << std::endl;
 
             std::cout << "  Done." << std::endl;
         }

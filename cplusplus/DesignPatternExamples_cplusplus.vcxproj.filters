@@ -122,5 +122,11 @@
     <ClInclude Include="helpers\split.h">
       <Filter>Helper Files</Filter>
     </ClInclude>
+    <ClInclude Include="helpers\argumentnull_error.h">
+      <Filter>Helper Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Decorator_Classes.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
