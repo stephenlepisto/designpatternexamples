@@ -21,25 +21,21 @@ decorator.
 
 Since each decorator looks like any other decorator (of the same kind),
 the decorators need to be designed to work in pretty much any order,
-with the core class taking whatever parameters it needs to (by definition,
-the core class does not take a decorator; decorators are applied to the
-core class by wrapping the core class).
+with the core or concrete class taking whatever parameters it needs to be
+instantiated (by definition, the concrete class does not take a decorator;
+decorators are applied to the concrete class by wrapping the concrete class).
 
 # How to Use
 
-In this example, the core class is called TextElement and up to three
+In this example, the concrete class is called TextElement and up to three
 decorators can be applied (BodyElement, ParagraphElement, and
 EmphasisElement).  Decorators should ideally be designed to be applied
 in any order but as this example shows, there is often a specific order
 for the decorators to be used.  This order would be specified in the
-documentation.  All decorators and the TextElement class implement the
-IRenderElement interface.
-
-Frequently the decorator pattern is combined with the Composite pattern
-so that wrapped elements can contain child elements that are each wrapped
-by one or more decorators (basically, the classes that participate in the
-Composite pattern also support decorators).  This example does not show this
-particular implementation.
+documentation that comes with the decorators.  All decorators implement a base
+class that manages the wrapped elements (and implements the IRenderElement
+interface) and the TextElement class just implements the IRenderElement
+interface.
 
 __C++__
 
