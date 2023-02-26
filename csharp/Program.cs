@@ -1724,7 +1724,8 @@ namespace DesignPatternExamples_csharp
                 foreach (Exercise exercise in exercises)
                 {
                     if (options.exercise_names.Count == 0 ||
-                        options.exercise_names.FindIndex((string option_name) => String.Compare(option_name, exercise.name, true) == 0) != -1)
+                        options.exercise_names.FindIndex((string option_name) =>
+                            String.Compare(option_name, exercise.name, true) == 0) != -1)
                     {
                         exercise.exercise_to_run();
                     }
