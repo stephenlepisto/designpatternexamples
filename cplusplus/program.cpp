@@ -21,6 +21,8 @@
 #include "Composite_FileDirEntry.h"
 #include "Composite_FileAccess.h"
 #include "Decorator_Classes.h"
+#include "FacadeSubsystem_Interface.h"
+#include "Facade_Interface.h"
 
 
 namespace DesignPatternExamples_cpp
@@ -420,6 +422,23 @@ namespace DesignPatternExamples_cpp
 
 
         /// <summary>
+        /// Helper method to present a formatted list of idcodes for a particular
+        /// device chain.  The output is on a single line.
+        /// </summary>
+        /// <param name="chainIndex">Index of the device chain being displayed.</param>
+        /// <param name="idcodes">Array of 32-bit idcodes to be printed in hex.</param>
+        void _Facade_ShowIdCodes(int chainIndex, const std::vector<uint32_t>& idcodes)
+        {
+            std::cout << std::format("    On chain {0}, idcodes = [ ", chainIndex);
+            for(uint32_t idcode : idcodes)
+            {
+                std::cout << std::format("0x{0:X} ", idcode);
+            }
+            std::cout << "]" << std::endl;
+        }
+
+
+        /// <summary>
         /// Example of using the Facade design pattern.
         /// 
         /// The Facade pattern is used when a simplified version of an
@@ -440,6 +459,27 @@ namespace DesignPatternExamples_cpp
         {
             std::cout << std::endl;
             std::cout << "Facade Exercise" << std::endl;
+
+            IDeviceNetworkHighLevel* deviceChainFacade = CreateHighLevelInstance();
+            int numChains = deviceChainFacade->NumChains();
+            std::cout
+                << "  Showing idcodes of devices after a device reset (expect one device on each chain)..."
+                << std::endl;
+            for (int chainIndex = 0; chainIndex < numChains; ++chainIndex)
+            {
+                deviceChainFacade->DisableDevicesInDeviceChain(chainIndex);
+                std::vector<uint32_t> idcodes = deviceChainFacade->GetIdcodes(chainIndex);
+                _Facade_ShowIdCodes(chainIndex, idcodes);
+            }
+
+            std::cout << "  Showing idcodes of devices after selecting all devices..."
+                << std::endl;
+            for (int chainIndex = 0; chainIndex < numChains; ++chainIndex)
+            {
+                deviceChainFacade->EnableDevicesInDeviceChain(chainIndex, 0xffffffff);
+                std::vector<uint32_t> idcodes = deviceChainFacade->GetIdcodes(chainIndex);
+                _Facade_ShowIdCodes(chainIndex, idcodes);
+            }
 
             std::cout << "  Done." << std::endl;
         }

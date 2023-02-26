@@ -163,6 +163,8 @@
     <ClCompile Include="Bridge_LoggerHelpers.cpp" />
     <ClCompile Include="Bridge_NullLogger.cpp" />
     <ClCompile Include="Composite_FileAccess.cpp" />
+    <ClCompile Include="Facade_Interface.cpp" />
+    <ClCompile Include="Faced_ComplicatedSubSystem.cpp" />
     <ClCompile Include="helpers\DateTime.cpp" />
     <ClCompile Include="helpers\enablevtmode.cpp" />
     <ClCompile Include="helpers\makelocaltime.cpp" />
@@ -186,6 +188,8 @@
     <ClInclude Include="Composite_FileAccess.h" />
     <ClInclude Include="Composite_FileDirEntry.h" />
     <ClInclude Include="Decorator_Classes.h" />
+    <ClInclude Include="FacadeSubsystem_Interface.h" />
+    <ClInclude Include="Facade_Interface.h" />
     <ClInclude Include="helpers\argumentnull_error.h" />
     <ClInclude Include="helpers\DateTime.h" />
     <ClInclude Include="helpers\enablevtmode.h" />

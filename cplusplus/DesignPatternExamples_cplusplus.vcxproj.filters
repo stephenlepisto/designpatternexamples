@@ -72,6 +72,12 @@
     <ClCompile Include="helpers\enablevtmode.cpp">
       <Filter>Helper Files</Filter>
     </ClCompile>
+    <ClCompile Include="Faced_ComplicatedSubSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Facade_Interface.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="helpers\replace.h">
@@ -133,6 +139,12 @@
     </ClInclude>
     <ClInclude Include="helpers\enablevtmode.h">
       <Filter>Helper Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Facade_Interface.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FacadeSubsystem_Interface.h">
+      <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
