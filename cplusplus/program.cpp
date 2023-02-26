@@ -14,6 +14,7 @@
 
 #include "helpers/replace.h"
 #include "helpers/stringlist.h"
+#include "helpers/enablevtmode.h"
 
 #include "Adapter_FrontEndClass.h"
 #include "Bridge_Logger.h"
@@ -391,14 +392,15 @@ namespace DesignPatternExamples_cpp
         {
             std::cout << std::endl;
             std::cout << "Decorator Exercise" << std::endl;
+
             IRenderElement::shared_ptr_t baseElement;
             baseElement = std::make_shared<TextElement>("This is raw text");
 
-            // Wrap the base element in three decorators in a specific order.
+            // Wrap the base element in three decorators.
             IRenderElement::shared_ptr_t wrappedElement =
-                std::make_shared<BodyDecorator>(
-                    std::make_shared<ParagraphDecorator>(
-                        std::make_shared<EmphasisDecorator>(baseElement)));
+                std::make_shared<WhiteBackgroundDecorator>(
+                    std::make_shared<UnderlineDecorator>(
+                        std::make_shared<RedForegroundDecorator>(baseElement)));
 
             // Now render the elements to the console.
             std::cout
@@ -914,6 +916,8 @@ namespace DesignPatternExamples_cpp
 /// the command line arguments.</param>
 int main(int argc, char** argv)
 {
+    Helpers::enableVTMode();
+
     DesignPatternExamples_cpp::Program prog;
     StringList args;
     for (int argIndex = 1; argIndex < argc; ++argIndex)

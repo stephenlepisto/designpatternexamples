@@ -104,10 +104,10 @@ namespace DesignPatternExamples_csharp
 
 
     /// <summary>
-    /// Represents the Body decorator, which wraps the rendered element in
-    /// "<body>""</body>" tags.  This decorator is typically applied last.
+    /// Represents the WhiteBackground decorator, which changes the background
+    /// color of the wrapped element to white.
     /// </summary>
-    public class BodyDecorator : Decorator
+    public class WhiteBackgroundDecorator : Decorator
     {
         /// <summary>
         /// Constructor that wraps the specified element.
@@ -116,7 +116,7 @@ namespace DesignPatternExamples_csharp
         /// Cannot be null.</param>
         /// <exception cref="ArgumentNullException">The element being decorated
         /// cannot be null.</exception>
-        public BodyDecorator(IRenderElement element) : base(element)
+        public WhiteBackgroundDecorator(IRenderElement element) : base(element)
         {
         }
 
@@ -126,7 +126,7 @@ namespace DesignPatternExamples_csharp
         /// <returns>A string containing the decorated rendered element.</returns>
         public override string Render()
         {
-            return String.Format("<body>{0}</body>", base.Render());
+            return String.Format("\x1b[47m{0}\x1b[49m", base.Render());
         }
     }
 
@@ -136,11 +136,10 @@ namespace DesignPatternExamples_csharp
 
 
     /// <summary>
-    /// Represents the Paragraph decorator, which wraps the rendered element in
-    /// "<p>""</p>" tags.  This decorator is typically applied before the Body
-    /// decorator.
+    /// Represents the Underline decorator, which underlines the wrapped
+    /// content.
     /// </summary>
-    public class ParagraphDecorator : Decorator
+    public class UnderlineDecorator : Decorator
     {
         /// <summary>
         /// Constructor that wraps the specified element.
@@ -149,7 +148,7 @@ namespace DesignPatternExamples_csharp
         /// Cannot be null.</param>
         /// <exception cref="ArgumentNullException">The element being decorated
         /// cannot be null.</exception>
-        public ParagraphDecorator(IRenderElement element) : base(element)
+        public UnderlineDecorator(IRenderElement element) : base(element)
         {
         }
 
@@ -160,7 +159,7 @@ namespace DesignPatternExamples_csharp
         /// <returns>A string containing the decorated rendered element.</returns>
         override public string Render()
         {
-            return String.Format("<p>{0}</p>", base.Render());
+            return String.Format("\x1b[4m{0}\x1b[24m", base.Render());
         }
     }
 
@@ -170,11 +169,10 @@ namespace DesignPatternExamples_csharp
 
 
     /// <summary>
-    /// Represents the Emphasis decorator, which wraps the rendered element in
-    /// "<em>""</em>" tags.  This decorator is typically applied before any
-    /// other decorator.
+    /// Represents the RedForeground decorator, which renders the wrapped
+    /// content as red text.
     /// </summary>
-    public class EmphasisDecorator : Decorator
+    public class RedForegroundDecorator : Decorator
     {
         /// <summary>
         /// Constructor that wraps the specified element.
@@ -183,7 +181,7 @@ namespace DesignPatternExamples_csharp
         /// Cannot be null.</param>
         /// <exception cref="ArgumentNullException">The element being decorated
         /// cannot be null.</exception>
-        public EmphasisDecorator(IRenderElement element) : base(element)
+        public RedForegroundDecorator(IRenderElement element) : base(element)
         {
         }
 
@@ -194,7 +192,7 @@ namespace DesignPatternExamples_csharp
         /// <returns>A string containing the decorated rendered element.</returns>
         override public string Render()
         {
-            return String.Format("<em>{0}</em>", base.Render());
+            return String.Format("\x1b[31m{0}\x1b[39m", base.Render());
         }
     }
 

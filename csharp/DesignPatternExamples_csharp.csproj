@@ -54,6 +54,7 @@
     <Compile Include="Composite_FileAccess.cs" />
     <Compile Include="Composite_FileDirEntry.cs" />
     <Compile Include="Decorator_Classes.cs" />
+    <Compile Include="EnableVTModeForWindowsConsole.cs" />
     <Compile Include="Facade_ComplicatedSubSystem.cs" />
     <Compile Include="Facade_Interfaces.cs" />
     <Compile Include="HandlerChain_Class.cs" />

@@ -236,11 +236,11 @@ namespace DesignPatternExamples_csharp
             Console.WriteLine("Decorator Exercise");
             IRenderElement baseElement = new TextElement("This is raw text");
 
-            // Wrap the base element in three decorators in a specific order.
+            // Wrap the base element in three decorators.
             IRenderElement wrappedElement =
-                new BodyDecorator(
-                    new ParagraphDecorator(
-                        new EmphasisDecorator(baseElement)));
+                new WhiteBackgroundDecorator(
+                    new UnderlineDecorator(
+                        new RedForegroundDecorator(baseElement)));
 
             // Now render the elements to the console.
             Console.WriteLine("  base Text element: \"{0}\"", baseElement.Render());
@@ -1732,10 +1732,9 @@ namespace DesignPatternExamples_csharp
             }
         }
 
-        
-        //########################################################################
-        //########################################################################
 
+        //########################################################################
+        //########################################################################
 
         /// <summary>
         /// Main entry point into this example program.
@@ -1743,8 +1742,13 @@ namespace DesignPatternExamples_csharp
         /// <param name="args">Command line arguments.</param>
         static void Main(string[] args)
         {
-            Program prog = new Program();
-            prog.Run(args);
+            // Enable the virtual terminal processing mode for the life of this
+            // program.
+            using (EnableVTModeForWindowsConsole o = new EnableVTModeForWindowsConsole())
+            {
+                Program prog = new Program();
+                prog.Run(args);
+            }
         }
     }
 }

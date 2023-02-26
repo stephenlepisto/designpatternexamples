@@ -86,10 +86,10 @@ namespace DesignPatternExamples_cpp
 
 
     /// <summary>
-    /// Represents the Body decorator, which wraps the rendered element in
-    /// "<body>""</body>" tags.  This decorator is typically applied last.
+    /// Represents the WhiteBackground decorator, which changes the background
+    /// color of the wrapped element to white.
     /// </summary>
-    class BodyDecorator : public Decorator
+    class WhiteBackgroundDecorator : public Decorator
     {
     public:
 
@@ -100,7 +100,7 @@ namespace DesignPatternExamples_cpp
         /// Cannot be null.</param>
         /// <exception cref="argumentnull_error">The element being decorated
         /// cannot be null.</exception>
-        BodyDecorator(IRenderElement::shared_ptr_t element)
+        WhiteBackgroundDecorator(IRenderElement::shared_ptr_t element)
             : Decorator(element)
         {
         }
@@ -113,7 +113,7 @@ namespace DesignPatternExamples_cpp
         /// <returns>A string containing the decorated rendered element.</returns>
         std::string Render()
         {
-            return std::format("<body>{0}</body>", Decorator::Render());
+            return std::format("\x1b[47m{0}\x1b[49m", Decorator::Render());
         }
     };
 
@@ -123,11 +123,10 @@ namespace DesignPatternExamples_cpp
 
 
     /// <summary>
-    /// Represents the Paragraph decorator, which wraps the rendered element in
-    /// "<p>""</p>" tags.  This decorator is typically applied before the Body
-    /// decorator.
+    /// Represents the Underline decorator, which underlines the wrapped
+    /// content.
     /// </summary>
-    class ParagraphDecorator : public Decorator
+    class UnderlineDecorator : public Decorator
     {
     public:
 
@@ -138,7 +137,7 @@ namespace DesignPatternExamples_cpp
         /// Cannot be null.</param>
         /// <exception cref="argumentnull_error">The element being decorated
         /// cannot be null.</exception>
-        ParagraphDecorator(IRenderElement::shared_ptr_t element)
+        UnderlineDecorator(IRenderElement::shared_ptr_t element)
             : Decorator(element)
         {
         }
@@ -151,7 +150,7 @@ namespace DesignPatternExamples_cpp
         /// <returns>A string containing the decorated rendered element.</returns>
         std::string Render()
         {
-            return std::format("<p>{0}</p>", Decorator::Render());
+            return std::format("\x1b[4m{0}\x1b[24m", Decorator::Render());
         }
     };
 
@@ -161,11 +160,10 @@ namespace DesignPatternExamples_cpp
 
 
     /// <summary>
-    /// Represents the Emphasis decorator, which wraps the rendered element in
-    /// "<em>""</em>" tags.  This decorator is typically applied before any
-    /// other decorator.
+    /// Represents the RedForeground decorator, which renders the wrapped
+    /// content as red text.
     /// </summary>
-    class EmphasisDecorator : public Decorator
+    class RedForegroundDecorator : public Decorator
     {
     public:
 
@@ -176,7 +174,7 @@ namespace DesignPatternExamples_cpp
         /// Cannot be null.</param>
         /// <exception cref="argumentnull_error">The element being decorated
         /// cannot be null.</exception>
-        EmphasisDecorator(IRenderElement::shared_ptr_t element)
+        RedForegroundDecorator(IRenderElement::shared_ptr_t element)
             : Decorator(element)
         {
         }
@@ -189,7 +187,7 @@ namespace DesignPatternExamples_cpp
         /// <returns>A string containing the decorated rendered element.</returns>
         std::string Render()
         {
-            return std::format("<em>{0}</em>", Decorator::Render());
+            return std::format("\x1b[31m{0}\x1b[39m", Decorator::Render());
         }
     };
 
