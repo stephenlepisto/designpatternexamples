@@ -54,10 +54,10 @@ namespace DesignPatternExamples_csharp
     /// </summary>
     public struct Flyweight_Context
     {
-        public int Position_X;
-        public int Position_Y;
-        public int Velocity_X;
-        public int Velocity_Y;
+        public double Position_X;
+        public double Position_Y;
+        public double Velocity_X;
+        public double Velocity_Y;
 
         /// <summary>
         /// Constructor
@@ -66,7 +66,7 @@ namespace DesignPatternExamples_csharp
         /// <param name="position_y">Y position of the top left corner of the big resource.</param>
         /// <param name="velocity_x">Initial X velocity.</param>
         /// <param name="velocity_y">Initial Y velocity.</param>
-        public Flyweight_Context(int position_x, int position_y, int velocity_x, int velocity_y)
+        public Flyweight_Context(double position_x, double position_y, double velocity_x, double velocity_y)
         {
             Position_X = position_x;
             Position_Y = position_y;

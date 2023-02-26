@@ -343,12 +343,12 @@ namespace DesignPatternExamples_csharp
                 if (row == 0 || (row + 1) == height)
                 {
                     // top and bottom row are the same.
-                    image_row = new string('1', width);
+                    image_row = "+" + new string('-', width - 2) + "+";
                 }
                 else
                 {
                     // All other rows are each the same.
-                    image_row = '1' + new string('0', width - 2) + '1';
+                    image_row = '|' + new string('0', width - 2) + '|';
                 }
                 image.Add(image_row);
             }
@@ -430,8 +430,8 @@ namespace DesignPatternExamples_csharp
                 Flyweight_Context context = flyweight.Context;
                 int image_width = flyweight.ImageWidth;
                 int image_height = flyweight.ImageHeight;
-                int newx = context.Position_X + context.Velocity_X;
-                int newy = context.Position_Y + context.Velocity_Y;
+                double newx = context.Position_X + context.Velocity_X;
+                double newy = context.Position_Y + context.Velocity_Y;
 
                 if (newx < 0 || (newx + image_width) > display_width)
                 {
@@ -465,10 +465,24 @@ namespace DesignPatternExamples_csharp
             // of the Flyweight class.
             foreach (Flyweight_Class flyweight in flyweightInstances)
             {
-                flyweight.Render(displayArea, flyweight.Context.Position_X, flyweight.Context.Position_Y);
+                flyweight.Render(displayArea,
+                    (int)flyweight.Context.Position_X,
+                    (int)flyweight.Context.Position_Y);
             }
         }
 
+        /// <summary>
+        /// Generate a random velocity, which includes a speed and a direction.
+        /// The velocity is 0.2 to 1.0 (in increments of 0.2) and the direction
+        /// is either + or -.
+        /// </summary>
+        /// <returns>Returns the velocity.</returns>
+        double GenerateVelocity(Random randomizer)
+        {
+            double speed = (randomizer.Next(1, 5) / 5.0);
+            double direction = ((randomizer.Next(100) > 50) ? 1.0 : -1.0);
+            return speed * direction;
+        }
 
         /// <summary>
         /// Helper method to generate the specified number of flyweight class
@@ -500,8 +514,8 @@ namespace DesignPatternExamples_csharp
                 context.Position_X = randomizer.Next(0, display_width - image_width);
                 context.Position_Y = randomizer.Next(0, display_height - image_height);
                 // Randomize the initial velocity.
-                context.Velocity_X = (randomizer.Next(100) > 50) ? 1 : -1;
-                context.Velocity_Y = (randomizer.Next(100) > 50) ? 1 : -1;
+                context.Velocity_X = GenerateVelocity(randomizer);
+                context.Velocity_Y = GenerateVelocity(randomizer);
 
                 // Create an instance of the Flyweight_Class for the given big
                 // resource and with the new context.
