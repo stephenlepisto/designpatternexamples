@@ -369,6 +369,7 @@ popd
     <None Include="..\docs\bridge.md" />
     <None Include="..\docs\composite.md" />
     <None Include="..\docs\decorator.md" />
+    <None Include="..\docs\facade.md" />
     <None Include="..\docs\mainpage.md" />
     <None Include="Doxyfile" />
     <None Include="pagefooter.html" />

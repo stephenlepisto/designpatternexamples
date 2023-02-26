@@ -11,6 +11,7 @@ namespace // Anonymous
     /// the high level IDeviceNetworkHighLevel interface, which is a simpler
     /// interface.  All calls on the high level interface are forwarded to the
     /// appropriate low level interface.
+    /// Part of the @ref facade_pattern "Facade pattern" example.
     /// </summary>
     class DeviceNetworkHighLevel : public DesignPatternExamples_cpp::IDeviceNetworkHighLevel
     {

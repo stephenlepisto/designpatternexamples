@@ -51,9 +51,11 @@ namespace DesignPatternExamples_csharp
     /// Represents a network of device chains and the low level access to that
     /// network.  In general, the caller should take a lock on a device chain
     /// before accessing it then release the lock when done.
+    /// Part of the @ref facade_pattern "Facade pattern" example.
     /// </summary>
     /// <remarks>
-    /// This interface makes it easier to contrast with the IDeviceNetworkLowLevel
+    /// This interface makes it easier to contrast with the
+    /// @ref DesignPatternExamples_csharp.IDeviceNetworkHighLevel "IDeviceNetworkHighLevel"
     /// interface.
     /// </remarks>
     public interface IDeviceNetworkLowLevel
@@ -123,13 +125,14 @@ namespace DesignPatternExamples_csharp
     /// each other regardless of visibility.
     /// 
     /// The methods on this high level interface may seem the same as on the
-    /// ITAPNetworkLowLevel interface.  However, most of the methods on this
-    /// high level interface hide the need for taking a lock on a chain before
-    /// accessing the chain.
+    /// @ref DesignPatternExamples_csharp.IDeviceNetworkLowLevel "IDeviceNetworkLowLevel"
+    /// interface.  However, most of the methods on this high level interface
+    /// hide the need for taking a lock on a chain before accessing the chain.
     /// 
     /// This high level interface is a
     /// simplification and thus a facade for the low level interface and the
     /// system underneath.
+    /// Part of the @ref facade_pattern "Facade pattern" example.
     /// </summary>
     public interface IDeviceNetworkHighLevel
     {

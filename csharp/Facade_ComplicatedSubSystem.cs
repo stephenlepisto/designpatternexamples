@@ -18,6 +18,7 @@ namespace DesignPatternExamples_csharp
 {
     /// <summary>
     /// Identifies the type of devices that can appear in a device chain.
+    /// Part of the @ref facade_pattern "Facade pattern" example.
     /// </summary>
     public enum DeviceTypes
     {
@@ -50,6 +51,7 @@ namespace DesignPatternExamples_csharp
 
     /// <summary>
     /// Represents a single device.
+    /// Part of the @ref facade_pattern "Facade pattern" example.
     /// </summary>
     public class DeviceNode
     {
@@ -97,6 +99,7 @@ namespace DesignPatternExamples_csharp
 
     /// <summary>
     /// Represents a device chain, which is a collection of DeviceNode objects.
+    /// Part of the @ref facade_pattern "Facade pattern" example.
     /// </summary>
     public class DeviceChain
     {
@@ -243,6 +246,7 @@ namespace DesignPatternExamples_csharp
 
     /// <summary>
     /// Represents some kind of system that contains multiple device chains.
+    /// Part of the @ref facade_pattern "Facade pattern" example.
     /// </summary>
     /// <remarks>
     /// The following operations are available:
@@ -286,9 +290,9 @@ namespace DesignPatternExamples_csharp
 
 
         //====================================================================
-        // ITAPNetworkLowLevel methods
+        // IDeviceNetworkLowLevel methods
         //====================================================================
-        #region ITAPNetworkLowLevel methods
+        #region IDeviceNetworkLowLevel methods
         /// <summary>
         /// Retrieve the number of device chains.
         /// </summary>
@@ -486,6 +490,7 @@ namespace DesignPatternExamples_csharp
 
     /// <summary>
     /// Class factory for the complicated sub-system class.
+    /// Part of the @ref facade_pattern "Facade pattern" example.
     /// </summary>
     /// <remarks>
     /// Hides the details of constructing the complicated sub-system and

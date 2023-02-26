@@ -17,4 +17,5 @@ its kind.
 - @ref bridge_pattern
 - @ref composite_pattern
 - @ref decorator_pattern
+- @ref facade_pattern
 

@@ -14,13 +14,14 @@ namespace DesignPatternExamples_cpp
     /// each other regardless of visibility.
     /// 
     /// The methods on this high level interface may seem the same as on the
-    /// ITAPNetworkLowLevel interface.  However, most of the methods on this
+    /// IDeviceNetworkLowLevel interface.  However, most of the methods on this
     /// high level interface hide the need for taking a lock on a chain before
     /// accessing the chain.
     /// 
-    /// This high level interface is a
-    /// simplification and thus a facade for the low level interface and the
-    /// system underneath.
+    /// This high level interface is a simplification and thus a facade for the
+    /// low level interface and the system underneath.
+    /// 
+    /// Part of the @ref facade_pattern "Facade pattern" example.
     /// </summary>
     struct IDeviceNetworkHighLevel
     {
@@ -66,6 +67,7 @@ namespace DesignPatternExamples_cpp
     /// <summary>
     /// Class factory for a singleton instance of the IDeviceNetworkHighLevel
     /// interface.
+    /// Part of the @ref facade_pattern "Facade pattern" example.
     /// </summary>
     /// <returns>Returns a singleton instance of the class.</returns>
     IDeviceNetworkHighLevel* CreateHighLevelInstance();
