@@ -93,6 +93,9 @@
     <ClCompile Include="Flyweight_Classes.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Proxy_Class.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="helpers\replace.h">
@@ -174,6 +177,9 @@
       <Filter>Helper Files</Filter>
     </ClInclude>
     <ClInclude Include="Flyweight_Classes.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Proxy_Class.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

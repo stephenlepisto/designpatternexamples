@@ -29,6 +29,7 @@
 #include "FacadeSubsystem_Interface.h"
 #include "Facade_Interface.h"
 #include "Flyweight_Classes.h"
+#include "Proxy_Class.h"
 
 
 namespace DesignPatternExamples_cpp
@@ -839,6 +840,21 @@ namespace DesignPatternExamples_cpp
         {
             std::cout << std::endl;
             std::cout << "Proxy Exercise" << std::endl;
+
+            std::cout << "  Getting proxy object..." << std::endl;
+            std::unique_ptr<IWorkByProxy> proxyObject = Proxy_Classes_Container::CreateProxy();
+
+            std::cout << "  Calling Dowork() on proxy..." << std::endl;
+            std::string output = proxyObject->DoWork("Initial call");
+            std::cout << std::format("  Output from proxy = \"{0}\"", output) << std::endl;
+
+            std::cout << "  Calling Dowork() on proxy..." << std::endl;
+            output = proxyObject->DoWork("Second call");
+            std::cout << std::format("  Output from proxy = \"{0}\"", output) << std::endl;
+
+            std::cout << "  Calling Dowork() on proxy..." << std::endl;
+            output = proxyObject->DoWork("Third call");
+            std::cout << std::format("  Output from proxy = \"{0}\"", output) << std::endl;
 
             std::cout << "  Done." << std::endl;
         }

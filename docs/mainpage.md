@@ -19,4 +19,5 @@ its kind.
 - @ref decorator_pattern
 - @ref facade_pattern
 - @ref flyweight_pattern
+- @ref proxy_pattern
 
