@@ -437,14 +437,28 @@ namespace DesignPatternExamples_csharp
                 {
                     // Bounce off left or right edge.
                     context.Velocity_X = -context.Velocity_X;
-                    newx = context.Position_X + context.Velocity_X;
+                    if (newx < 0)
+                    {
+                        newx = 0;
+                    }
+                    else
+                    {
+                        newx = display_width - image_width;
+                    }
                 }
 
                 if (newy < 0 || (newy + image_height) > display_height)
                 {
-                    // Bounce off top of bottom edge.
+                    // Bounce off top or bottom edge.
                     context.Velocity_Y = -context.Velocity_Y;
-                    newy = context.Position_Y + context.Velocity_Y;
+                    if (newy < 0)
+                    {
+                        newy = 0;
+                    }
+                    else
+                    {
+                        newy = display_height - image_height;
+                    }
                 }
 
                 context.Position_X = newx;
