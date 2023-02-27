@@ -420,7 +420,7 @@ namespace DesignPatternExamples_csharp
         /// 
         /// The display size and image size are provided here
         /// </summary>
-        /// <param name="flyweightInstances">List of Flyweight_Clas instances to move.</param>
+        /// <param name="flyweightInstances">List of Flyweight_Class instances to move.</param>
         /// <param name="display_width">Width of display.</param>
         /// <param name="display_height">Height of display.</param>
         void _Flyweight_MoveFlyweights(List<Flyweight_Class> flyweightInstances, int display_width, int display_height)

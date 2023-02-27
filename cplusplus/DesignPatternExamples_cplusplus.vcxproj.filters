@@ -78,6 +78,21 @@
     <ClCompile Include="Facade_Interface.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="helpers\sleep.cpp">
+      <Filter>Helper Files</Filter>
+    </ClCompile>
+    <ClCompile Include="helpers\cursor.cpp">
+      <Filter>Helper Files</Filter>
+    </ClCompile>
+    <ClCompile Include="helpers\checkforkey.cpp">
+      <Filter>Helper Files</Filter>
+    </ClCompile>
+    <ClCompile Include="helpers\readkey.cpp">
+      <Filter>Helper Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Flyweight_Classes.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="helpers\replace.h">
@@ -144,6 +159,21 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="FacadeSubsystem_Interface.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="helpers\sleep.h">
+      <Filter>Helper Files</Filter>
+    </ClInclude>
+    <ClInclude Include="helpers\cursor.h">
+      <Filter>Helper Files</Filter>
+    </ClInclude>
+    <ClInclude Include="helpers\checkforkey.h">
+      <Filter>Helper Files</Filter>
+    </ClInclude>
+    <ClInclude Include="helpers\readkey.h">
+      <Filter>Helper Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Flyweight_Classes.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
