@@ -755,7 +755,6 @@ namespace DesignPatternExamples_cpp
             // and changing a character in a string is not allowed.
             std::vector<std::vector<char>> displayArea = _Flyweight_GenerateDisplay(DISPLAY_WIDTH, DISPLAY_HEIGHT);
 
-            Helpers::savecursorposition();
             // Finally, display the rendered output.
             std::cout << std::format("  The image rendered {0} times:", NUMFLYWEIGHTS) << std::endl;
             std::cout << std::endl; // Blank line for iteration count
@@ -764,13 +763,24 @@ namespace DesignPatternExamples_cpp
 
             // Now let's have some fun and bounce those images around for a while!
             // (Or until a keypress.)
-            //cursorTop -= DISPLAY_HEIGHT + 1;
+            int cursorLeft = -1;
+            int cursorTop = -1;
+            Helpers::getcursorposition(&cursorTop, &cursorLeft);
+            if (cursorLeft != -1 && cursorTop != -1)
+            {
+                cursorTop -= DISPLAY_HEIGHT + 1;
+            }
             for (int index = 0; index < NUM_ITERATIONS; ++index)
             {
-                Helpers::restorecursorposition();
-                //Console.SetCursorPosition(cursorLeft, cursorTop - 1);
+                if (cursorLeft != -1)
+                {
+                    Helpers::setcursorposition(cursorTop - 1, cursorLeft);
+                }
                 std::cout << std::format("  {0:5}/{1} iterations [press a key to exit early]", index + 1, NUM_ITERATIONS) << std::endl;
-                //Console.SetCursorPosition(cursorLeft, cursorTop);
+                if (cursorLeft != -1)
+                {
+                    Helpers::setcursorposition(cursorTop, cursorLeft);
+                }
 
                 _Flyweight_ClearDisplay(displayArea);
                 _Flyweight_MoveFlyweights(flyweightInstances, DISPLAY_WIDTH, DISPLAY_HEIGHT);

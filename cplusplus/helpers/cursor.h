@@ -6,31 +6,19 @@ namespace Helpers
 {
 
     /// <summary>
-    /// Show the text cursor in the console window.
-    /// </summary>
-    void showcursor();
-
-    /// <summary>
-    /// Hide the text cursor in the console window.
-    /// </summary>
-    void hidecursor();
-
-    /// <summary>
-    /// Save the current cursor position to memory.
-    /// </summary>
-    void savecursorposition();
-
-    /// <summary>
-    /// Restore the current cursor position from memory.
-    /// </summary>
-    void restorecursorposition();
-
-    /// <summary>
     /// Move the text cursor to the specified screen coordinates.
     /// </summary>
     /// <param name="row">Row index from top, starting at 0.</param>
     /// <param name="column">Column index from left, starting at 0</param>
     void setcursorposition(int row, int column);
+
+    /// <summary>
+    /// Retrieve the current cursor position in the console window.
+    /// </summary>
+    /// <param name="row">Returns the row index from the top, starting at 0.</param>
+    /// <param name="column">Returns the column index from the left, starting
+    /// at 0.</param>
+    void getcursorposition(int* row, int* column);
 
 } // end namespace
 
