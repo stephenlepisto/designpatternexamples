@@ -31,15 +31,17 @@ methods do nothing by default.  Each derived visitor class that provides an
 operation must override the appropriate `visit()` method for the Element type
 that operation is interested in.
 
-    class ElementOne; // forward declaration
-    class ElementTwo; // forward declaration
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.cpp}
+class ElementOne; // forward declaration
+class ElementTwo; // forward declaration
 
-    class Visitor
-    {
-    public:
-        virtual void visit(ElementOne* pData) { };
-        virtual void visit(ElementTwo* pData) { };
-    };
+class Visitor
+{
+public:
+    virtual void visit(ElementOne* pData) { };
+    virtual void visit(ElementTwo* pData) { };
+};
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Here's the second clunky part: The base Element class must define a pure
 virtual method typically called `accept()` that accepts the Visitor base
@@ -56,79 +58,83 @@ take advantage of polymorphism to select the right visit() method, the following
 `accept()` methods need to be repeated in each Element class so the `this`
 pointer is correctly typed to match the correct overloaded visit() methods:
 
-    //----------------------------------------------------------
-    // The Element declaration, which will be visited.
-    //----------------------------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.cpp}
+//----------------------------------------------------------
+// The Element declaration, which will be visited.
+//----------------------------------------------------------
 
-    // Each element must implement this interface in order to accept visitors.
-    class IElementVisitInterface
+// Each element must implement this interface in order to accept visitors.
+class IElementVisitInterface
+{
+public:
+    virtual ~IElementVisitInterface() {}
+    virtual void accept(Visitor* pVisitor) = 0;
+};
+
+// Declare the element classes, which inherit from the above interface.
+// If the class Visitor has been declared (for example, as above) then
+// we can provide definitions for the `accept()` method.
+//
+// However, the Visitor class requires forward declarations to these
+// element classes in order to be fully defined.
+
+class ElementOne : public IElementVisitInterface
+{
+public:
+    void accept(Visitor* pVisitor)
     {
-    public:
-        virtual ~IElementVisitInterface() {}
-        virtual void accept(Visitor* pVisitor) = 0;
-    };
+        pVisitor->visit(this);
+    }
+};
 
-    // Declare the element classes, which inherit from the above interface.
-    // If the class Visitor has been declared (for example, as above) then
-    // we can provide definitions for the `accept()` method.
-    //
-    // However, the Visitor class requires forward declarations to these
-    // element classes in order to be fully defined.
-
-    class ElementOne : public IElementVisitInterface
+class ElementTwo : public IElementVisitInterface
+{
+public:
+    void accept(Visitor* pVisitor)
     {
-    public:
-        void accept(Visitor* pVisitor)
-        {
-            pVisitor->visit(this);
-        }
-    };
-
-    class ElementTwo : public IElementVisitInterface
-    {
-    public:
-        void accept(Visitor* pVisitor)
-        {
-            pVisitor->visit(this);
-        }
-    };
+        pVisitor->visit(this);
+    }
+};
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Finally, the visitor implementations can be defined now that the Element classes
 are defined.
 
-    //----------------------------------------------------------
-    // The Visitor declaration/definition, which will do the visiting.
-    //----------------------------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.cpp}
+//----------------------------------------------------------
+// The Visitor declaration/definition, which will do the visiting.
+//----------------------------------------------------------
 
 
-    // The following Visitor definitions could appear in a .h file or in a .cpp
-    // file, but these definitions must appear after the `class Visitor`
-    // declaration.
+// The following Visitor definitions could appear in a .h file or in a .cpp
+// file, but these definitions must appear after the `class Visitor`
+// declaration.
 
-    // VisitorOperationOne is interested in two different elements.
-    class VisitorOperationOne : public Visitor
+// VisitorOperationOne is interested in two different elements.
+class VisitorOperationOne : public Visitor
+{
+public:
+    void visit(ElementOne* pData)
     {
-    public:
-        void visit(ElementOne* pData)
-        {
-            // Interested in ElementOne
-        }
+        // Interested in ElementOne
+    }
 
-        void visit(ElementTwo* pData)
-        {
-            // Also interested in ElementTwo
-        }
-    };
-
-    // VisitorOperationTwo is interested in only one element.
-    class VisitorOperationTwo : public Visitor
+    void visit(ElementTwo* pData)
     {
-    public:
-        void visit(ElementTwo* pData)
-        {
-            // Only interested in ElementTwo
-        }
-    };
+        // Also interested in ElementTwo
+    }
+};
+
+// VisitorOperationTwo is interested in only one element.
+class VisitorOperationTwo : public Visitor
+{
+public:
+    void visit(ElementTwo* pData)
+    {
+        // Only interested in ElementTwo
+    }
+};
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The above rigamarole is needed because of how polymorphism works in C++.
 Putting the `accept()` method into the base class won't work because the
