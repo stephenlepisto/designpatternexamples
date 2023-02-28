@@ -707,12 +707,16 @@ namespace DesignPatternExamples_csharp
             elements.Add(new ElementDerivedOne());
             elements.Add(new ElementDerivedTwo());
 
+            // Create the visitors
             VisitorOperationOne operationOne = new VisitorOperationOne();
             VisitorOperationTwo operationTwo = new VisitorOperationTwo();
+
             Console.WriteLine("  Applying operation One to all ElementDerivedOne and ElementDerivedTwo elements...");
             _ApplyOperation(elements, operationOne);
+
             Console.WriteLine("  Applying operation Two to all ElementDerivedTwo elements...");
             _ApplyOperation(elements, operationTwo);
+
             Console.WriteLine("  Done.");
         }
         //! [Using Visitor in C#]

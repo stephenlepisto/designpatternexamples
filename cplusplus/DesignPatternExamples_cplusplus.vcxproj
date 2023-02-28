@@ -181,6 +181,7 @@
     <ClCompile Include="helpers\wcsstri.cpp" />
     <ClCompile Include="program.cpp" />
     <ClCompile Include="Proxy_Class.cpp" />
+    <ClCompile Include="Visitor_Element_Classes.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Adapter_BackEndFunctions.h" />
@@ -211,6 +212,8 @@
     <ClInclude Include="helpers\strstri.h" />
     <ClInclude Include="helpers\wcsstri.h" />
     <ClInclude Include="Proxy_Class.h" />
+    <ClInclude Include="Visitor_Element_Classes.h" />
+    <ClInclude Include="Visitor_Visitor_Class.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

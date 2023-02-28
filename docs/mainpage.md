@@ -20,4 +20,5 @@ its kind.
 - @ref facade_pattern
 - @ref flyweight_pattern
 - @ref proxy_pattern
+- @ref visitor_pattern
 

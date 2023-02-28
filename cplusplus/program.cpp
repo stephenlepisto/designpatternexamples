@@ -30,6 +30,8 @@
 #include "Facade_Interface.h"
 #include "Flyweight_Classes.h"
 #include "Proxy_Class.h"
+#include "Visitor_Visitor_Class.h"
+
 
 
 namespace DesignPatternExamples_cpp
@@ -866,6 +868,23 @@ namespace DesignPatternExamples_cpp
 
 
         /// <summary>
+        /// Helper method to apply a visitor to all data items in a given list.
+        /// Each visitor is already designed to accept whatever element types
+        /// it is interested in (as part of the class design for a visitor).
+        /// </summary>
+        /// <param name="elements">A list of elements to visit</param>
+        /// <param name="operation">The operation to "visit" on each element</param>
+        void _ApplyOperation(std::vector<IElementVisitInterface::unique_ptr_t>& elements, ElementVisitor* operation)
+        {
+            for(IElementVisitInterface::unique_ptr_t& element : elements)
+            {
+                element->accept(operation);
+            }
+
+        }
+
+
+        /// <summary>
         /// Example of using the Visitor design pattern.
         /// 
         /// The Visitor pattern is used to add functionality to a list of
@@ -884,6 +903,25 @@ namespace DesignPatternExamples_cpp
         {
             std::cout << std::endl;
             std::cout << "Visitor Exercise" << std::endl;
+
+            std::vector<IElementVisitInterface::unique_ptr_t> elements;
+
+            // Populate our list of elements with a couple of each type to
+            // give at least a somewhat interesting output.
+            elements.push_back(std::make_unique<ElementDerivedOne>());
+            elements.push_back(std::make_unique<ElementDerivedTwo>());
+            elements.push_back(std::make_unique<ElementDerivedOne>());
+            elements.push_back(std::make_unique<ElementDerivedTwo>());
+            
+            // Create the visitors
+            VisitorOperationOne::unique_ptr_t operationOne = std::make_unique<VisitorOperationOne>();
+            VisitorOperationTwo::unique_ptr_t operationTwo = std::make_unique<VisitorOperationTwo>();
+
+            std::cout << "  Applying operation One to all ElementDerivedOne and ElementDerivedTwo elements..." << std::endl;
+            _ApplyOperation(elements, operationOne.get());
+
+            std::cout << "  Applying operation Two to all ElementDerivedTwo elements..." << std::endl;
+            _ApplyOperation(elements, operationTwo.get());
 
             std::cout << "  Done." << std::endl;
         }

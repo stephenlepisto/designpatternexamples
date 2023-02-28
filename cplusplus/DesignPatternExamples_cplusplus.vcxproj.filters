@@ -96,6 +96,9 @@
     <ClCompile Include="Proxy_Class.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Visitor_Element_Classes.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="helpers\replace.h">
@@ -180,6 +183,12 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="Proxy_Class.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Visitor_Element_Classes.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Visitor_Visitor_Class.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
