@@ -72,7 +72,7 @@
     <ClCompile Include="helpers\enablevtmode.cpp">
       <Filter>Helper Files</Filter>
     </ClCompile>
-    <ClCompile Include="Faced_ComplicatedSubSystem.cpp">
+    <ClCompile Include="Facade_ComplicatedSubSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Facade_Interface.cpp">
