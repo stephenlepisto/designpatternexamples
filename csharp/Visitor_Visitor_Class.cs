@@ -180,52 +180,109 @@
 // that can accept a visitor.
 
 using System;
+using System.Collections.Generic;
 
 namespace DesignPatternExamples_csharp
 {
-    /// <summary>
-    /// An operation to apply to one or more data elements.  This is the
-    /// Visitor.
-    /// </summary>
-    class VisitorOperationOne : ElementVisitor
-    {
-        /// <summary>
-        /// We want to visit elements of type ElementDerivedOne.
-        /// </summary>
-        /// <param name="element">The desired element to visit.</param>
-        public override void visit(ElementDerivedOne element)
-        {
-            Console.WriteLine("  --> {0} received element #{1} (type {2})", GetType().Name, element.InstanceId, element.GetType().Name);
-        }
-
-        /// <summary>
-        /// We also want to visit elements of type ElementDerivedTwo.
-        /// </summary>
-        /// <param name="element">The desired element to visit.</param>
-        public override void visit(ElementDerivedTwo element)
-        {
-            Console.WriteLine("  --> {0} received element #{1} (type {2})", GetType().Name, element.InstanceId, element.GetType().Name);
-        }
-    }
-
-
-    //########################################################################
-    //########################################################################
-
 
     /// <summary>
-    /// An operation to apply to one or more data elements.  This is the
-    /// Visitor.
+    /// A visitor used for ordering items from various shops.  The user starts
+    /// with an instance of this class and a list of what they want to order.
+    /// 
+    /// A shop will used this visitor to order ingredients to make a requested
+    /// item.
     /// </summary>
-    class VisitorOperationTwo : ElementVisitor
+    public class OrderVisitor : Visitor
     {
         /// <summary>
-        /// We only want to visit elements of type ElementDerivedTwo.
+        /// Items to be ordered from any shop that sells the item.
         /// </summary>
-        /// <param name="element">The desired element to visit.</param>
-        public override void visit(ElementDerivedTwo element)
+        public string[] ItemsToOrder
+        { get; set; }
+
+        /// <summary>
+        /// List of items received from an order/pickup process.
+        /// </summary>
+        public List<string> ItemsReceived
+        { get; set; }
+
+        /// <summary>
+        /// Name of the shop that provided the item(s).
+        /// </summary>
+        public string ShopNameReceivedFrom
+        { get; set; }
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="itemsToOrder">List of items to order.</param>
+        public OrderVisitor(string[] itemsToOrder)
         {
-            Console.WriteLine("  --> {0} received element #{1} (type {2})", GetType().Name, element.InstanceId, element.GetType().Name);
+            ItemsToOrder = itemsToOrder;
+            ItemsReceived = new List<string>();
+        }
+
+        public override void VisitBaker(Visitor_Baker shop)
+        {
+            if (shop.PlaceOrder(ItemsToOrder))
+            {
+                shop.PickupOrder(ItemsToOrder, ItemsReceived);
+                ShopNameReceivedFrom = shop.Name;
+            }
+        }
+
+        public override void VisitButcher(Visitor_Butcher shop)
+        {
+            if (shop.PlaceOrder(ItemsToOrder))
+            {
+                shop.PickupOrder(ItemsToOrder, ItemsReceived);
+                ShopNameReceivedFrom = shop.Name;
+            }
+        }
+
+        public override void VisitPickleGrocer(Visitor_PickleGrocer shop)
+        {
+            if (shop.PlaceOrder(ItemsToOrder))
+            {
+                shop.PickupOrder(ItemsToOrder, ItemsReceived);
+                ShopNameReceivedFrom = shop.Name;
+            }
+        }
+
+        public override void VisitCondimentGrocer(Visitor_CondimentGrocer shop)
+        {
+            if (shop.PlaceOrder(ItemsToOrder))
+            {
+                shop.PickupOrder(ItemsToOrder, ItemsReceived);
+                ShopNameReceivedFrom = shop.Name;
+            }
+        }
+
+        public override void VisitVegetableGrocer(Visitor_VegetableGrocer shop)
+        {
+            if (shop.PlaceOrder(ItemsToOrder))
+            {
+                shop.PickupOrder(ItemsToOrder, ItemsReceived);
+                ShopNameReceivedFrom = shop.Name;
+            }
+        }
+
+        public override void VisitMaker(Visitor_Maker shop)
+        {
+            if (shop.PlaceOrder(ItemsToOrder))
+            {
+                shop.PickupOrder(ItemsToOrder, ItemsReceived);
+                ShopNameReceivedFrom = shop.Name;
+            }
+        }
+
+        public override void VisitRestaurant(Visitor_Restaurant shop)
+        {
+            if (shop.PlaceOrder(ItemsToOrder))
+            {
+                shop.PickupOrder(ItemsToOrder, ItemsReceived);
+                ShopNameReceivedFrom = shop.Name;
+            }
         }
     }
 }

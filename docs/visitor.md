@@ -187,19 +187,16 @@ in the C++ example above (the power of C++ templates in action!).
 Links to the Facade interface description:
 ## Visitors that Visit Elements
 - @ref DesignPatternExamples_cpp::ElementVisitor "ElementVisitor base class" for visitors (C++)
-- @ref DesignPatternExamples_csharp.ElementVisitor "ElementVisitor base class" for visitors (C#)
+- @ref DesignPatternExamples_csharp.Visitor "Visitor base class" for visitors (C#)
 - @ref DesignPatternExamples_cpp::VisitorOperationOne "VisitorOperationOne class" for visitors (C++)
-- @ref DesignPatternExamples_csharp.VisitorOperationOne "VisitorOperationOne class" for visitors (C#)
-- @ref DesignPatternExamples_cpp::VisitorOperationTwo "VisitorOperationTwo class" for visitors (C++)
-- @ref DesignPatternExamples_csharp.VisitorOperationTwo "VisitorOperationTwo class" for visitors (C#)
+- @ref DesignPatternExamples_csharp.OrderVisitor "OrderVisitor class" for visitors (C#)
 
 ## Elements to be Visited
 - @ref DesignPatternExamples_cpp::IElementVisitInterface "IElementVisitInterface interface" for elements that accept visitors (C++)
-- @ref DesignPatternExamples_csharp::IElementVisitInterface "IElementVisitInterface interface" for elements that accept visitors (C#)
+- @ref DesignPatternExamples_csharp.ISupportVisitors "ISupportVisitors interface" for elements that accept visitors (C#)
 - @ref DesignPatternExamples_cpp::ElementDerivedOne "ElementDerivedOne class" (C++)
-- @ref DesignPatternExamples_csharp.ElementDerivedOne "ElementDerivedOne class" (C#)
+- @ref DesignPatternExamples_csharp.Visitor_Shop "Visitor_Shop base class for elements" (C#)
 - @ref DesignPatternExamples_cpp::ElementDerivedTwo "ElementDerivedTwo class" (C++)
-- @ref DesignPatternExamples_csharp.ElementDerivedTwo "ElementDerivedTwo class" (C#)
 
 The example provided here shows a C++ and a C# version of the same visitor
 pattern.  The C# version takes advantage of C#'s two-pass compilation to

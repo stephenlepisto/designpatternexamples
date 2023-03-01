@@ -662,23 +662,6 @@ namespace DesignPatternExamples_csharp
         //########################################################################
 
         /// <summary>
-        /// Helper method to apply a visitor to all data items in a given list.
-        /// Each visitor is already designed to accept whatever element types
-        /// it is interested in (as part of the class design for a visitor).
-        /// </summary>
-        /// <param name="elements">A list of elements to visit</param>
-        /// <param name="operation">The operation to "visit" on each element</param>
-        void _ApplyOperation(List<IElementVisitInterface> elements, ElementVisitor operation)
-        {
-            foreach (IElementVisitInterface element in elements)
-            {
-                element.accept(operation);
-            }
-
-        }
-
-
-        /// <summary>
         /// Example of using the Visitor design pattern.
         /// 
         /// The Visitor pattern is used to add functionality to a list of
@@ -687,10 +670,12 @@ namespace DesignPatternExamples_csharp
         /// itself to the function.  The visiting function then does something
         /// based on the type of the element.
         /// 
-        /// In this exercise, a list of element objects is created then two
-        /// visitors are created.  The visitors represent possible operations
-        /// that can be done on the element types.  In this exercise, the
-        /// operations just print out what was received.
+        /// In this exercise, a collection of shop object is initialized then
+        /// an order visitor is created to retrieve an item from one of the shop
+        /// objects.  Along the way, shops that don't have the necessary
+        /// ingredients use another order visitor to order ingredients from
+        /// other shops.  This approach assumes no two shops sell the same
+        /// thing.
         /// </summary>
         //! [Using Visitor in C#]
         void Visitor_Exercise()
@@ -698,24 +683,26 @@ namespace DesignPatternExamples_csharp
             Console.WriteLine();
             Console.WriteLine("Visitor Exercise");
 
-            List<IElementVisitInterface> elements = new List<IElementVisitInterface>();
+            Console.WriteLine("  Creating Village");
+            Village village = new Village();
+            village.LoadVillage();
 
-            // Populate our list of elements with a couple of each type to
-            // give at least a somewhat interesting output.
-            elements.Add(new ElementDerivedOne());
-            elements.Add(new ElementDerivedTwo());
-            elements.Add(new ElementDerivedOne());
-            elements.Add(new ElementDerivedTwo());
-
-            // Create the visitors
-            VisitorOperationOne operationOne = new VisitorOperationOne();
-            VisitorOperationTwo operationTwo = new VisitorOperationTwo();
-
-            Console.WriteLine("  Applying operation One to all ElementDerivedOne and ElementDerivedTwo elements...");
-            _ApplyOperation(elements, operationOne);
-
-            Console.WriteLine("  Applying operation Two to all ElementDerivedTwo elements...");
-            _ApplyOperation(elements, operationTwo);
+            OrderVisitor visitor = new OrderVisitor(new string[] { "hamburger"} );
+            Console.WriteLine("  Ordering a hamburger from a shop in the {0}", village.Name);
+            // Visit all shops and place an order for a hamburger at the shop
+            // that sells them.  We don't know which shop it is and we don't
+            // need to know until we receive the order.
+            village.Accept(visitor);
+            if (visitor.ItemsReceived.Count > 0)
+            {
+                // We are expecting only a single item
+                Console.WriteLine("  We received a {0} from {1}.",
+                    visitor.ItemsReceived[0], visitor.ShopNameReceivedFrom);
+            }
+            else
+            {
+                Console.WriteLine("  Failed to receive a hamburger");
+            }
 
             Console.WriteLine("  Done.");
         }
