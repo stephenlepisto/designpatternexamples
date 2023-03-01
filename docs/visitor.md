@@ -184,7 +184,8 @@ in the C++ example above (the power of C++ templates in action!).
 
 # How to Use
 
-Links to the Facade interface description:
+Links to the key Visitor classes and interfaces:
+
 ## Visitors that Visit Elements
 - @ref DesignPatternExamples_cpp::ElementVisitor "ElementVisitor base class" for visitors (C++)
 - @ref DesignPatternExamples_csharp.Visitor "Visitor base class" for visitors (C#)
