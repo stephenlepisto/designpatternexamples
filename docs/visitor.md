@@ -75,9 +75,9 @@ public:
 The derived Visitor class would override only the method or methods they are
 interested in.
 
-Note: It is possible to use `visit(SomeDataType* data()`, `visit(SomeOtherDataType* data)()`,
+*Note: It is possible to use `visit(SomeDataType* data()`, `visit(SomeOtherDataType* data)()`,
 etc., if the programming language being used supports overloaded methods.
-Which approach to use is a matter of style and preference.
+Which approach to use is a matter of style and preference.*
 
 Adding new data types requires adding a new VisitXXX() method to the Visitor
 base class; this is why the recommendation to use the Visitor pattern only when
@@ -88,17 +88,16 @@ the data types are going to change infrequently.
 Links to the key Visitor classes and interfaces:
 
 ## Visitors that Visit Elements
-- @ref DesignPatternExamples_cpp::ElementVisitor "ElementVisitor base class" for visitors (C++)
+- @ref DesignPatternExamples_cpp::Visitor "Visitor base class" for visitors (C++)
 - @ref DesignPatternExamples_csharp.Visitor "Visitor base class" for visitors (C#)
-- @ref DesignPatternExamples_cpp::VisitorOperationOne "VisitorOperationOne class" for visitors (C++)
+- @ref DesignPatternExamples_cpp::OrderVisitor "OrderVisitor class" as an example visitor (C++)
 - @ref DesignPatternExamples_csharp.OrderVisitor "OrderVisitor class" as an example visitor (C#)
 
 ## Elements to be Visited
-- @ref DesignPatternExamples_cpp::IElementVisitInterface "IElementVisitInterface interface" for elements that accept visitors (C++)
-- @ref DesignPatternExamples_csharp.ISupportVisitors "ISupportVisitors interface" for elements that accept visitors (C#)
-- @ref DesignPatternExamples_cpp::ElementDerivedOne "ElementDerivedOne class" (C++)
+- @ref DesignPatternExamples_cpp::Visitor_Shop "Visitor_Shop base class" for all elements (C++)
 - @ref DesignPatternExamples_csharp.Visitor_Shop "Visitor_Shop base class" for all elements (C#)
-- @ref DesignPatternExamples_cpp::ElementDerivedTwo "ElementDerivedTwo class" (C++)
+- @ref DesignPatternExamples_cpp::Visitor_Restaurant "Visitor_Restaurant class" example of an element class to be visited (C++)
+- @ref DesignPatternExamples_csharp.Visitor_Restaurant "Visitor_Restaurant class" example of an element class to be visited (C#)
 
 The example provided here shows a C++ and a C# version of the same visitor
 pattern.
