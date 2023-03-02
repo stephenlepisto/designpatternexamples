@@ -11,7 +11,7 @@ namespace DesignPatternExamples_csharp
     public class Village : ISupportVisitors
     {
         /// <summary>
-        /// Name of this shop.
+        /// Name of this village
         /// </summary>
         public string Name;
 
