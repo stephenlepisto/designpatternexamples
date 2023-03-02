@@ -2,13 +2,7 @@
 #ifndef __VISITOR_VISITOR_CLASS_H__
 #define __VISITOR_VISITOR_CLASS_H__
 
-// This test requires /Zc:__cplusplus to be specified on the build command line.
-#if !defined(__cplusplus) || __cplusplus < 202002L
-#error Requires C++ 20 or later to compile!
-#endif
-#include <format> // Requires C++20
-#include <iostream>
-#include <memory>
+#include "helpers/stringlist.h"
 
 #include "Visitor_Element_classes.h"
 
@@ -16,105 +10,121 @@ namespace DesignPatternExamples_cpp
 {
 
     /// <summary>
-    /// All visitors must implement this base class and then override one or
-    /// more of the visit() methods, depending on which element type the
-    /// visitor class is interested in.
+    /// A visitor used for ordering items from various shops.  The user starts
+    /// with an instance of this class and a list of what they want to order.
     /// 
-    /// For every new element class added, a new visit() method needs to be
-    /// added to this base class and then all visitor classes must be rebuilt.
-    /// There is no way around this as the Element and Visitor classes are
-    /// closely intertwined at least at the interface level.
+    /// A shop will used this visitor to order ingredients to make a requested
+    /// item.
     /// </summary>
-    class ElementVisitor
+    class OrderVisitor : public Visitor
     {
+    protected:
+        /// <summary>
+        /// Items to be ordered from any shop that sells the item.
+        /// </summary>
+        StringList ItemsToOrder;
+
     public:
         /// <summary>
-        /// Perform an operation on ElementDerivedOne types.
+        /// List of items received from an order/pickup process.
         /// </summary>
-        /// <param name="element">The element to affect.</param>
-        virtual void visit(ElementDerivedOne* element) { element; }
+        StringList ItemsReceived;
 
         /// <summary>
-        /// Perform an operation on ElementDerivedTwo types.
+        /// Name of the shop that provided the item(s).
         /// </summary>
-        /// <param name="element">The element to affect.</param>
-        virtual void visit(ElementDerivedTwo* element) { element; }
-    };
-
-
-    //########################################################################
-    //########################################################################
-
-
-    /// <summary>
-    /// An operation to apply to one or more data elements.  This is the
-    /// Visitor.
-    /// </summary>
-    class VisitorOperationOne : public ElementVisitor
-    {
-    public:
-        /// <summary>
-        /// Alias type to make it easier to read the code.
-        /// </summary>
-        using unique_ptr_t = std::unique_ptr<VisitorOperationOne>;
+        std::string ShopNameReceivedFrom;
 
         /// <summary>
-        /// We want to visit elements of type ElementDerivedOne.
+        /// Constructor
         /// </summary>
-        /// <param name="element">The desired element to visit.</param>
-        void visit(ElementDerivedOne* element)
+        /// <param name="itemsToOrder">List of items to order.</param>
+        OrderVisitor(StringList itemsToOrder)
+            : ItemsToOrder(itemsToOrder)
         {
-            if (element != nullptr)
+        }
+
+        void VisitBaker(Visitor_Baker* shop) override
+        {
+            if (shop != nullptr)
             {
-                std::cout << std::format("  --> {0} received element #{1} (type {2})",
-                    "VisitorOperationOne", element->InstanceId(), "ElementDerivedOne")
-                    << std::endl;
+                if (shop->PlaceOrder(ItemsToOrder))
+                {
+                    shop->PickupOrder(ItemsToOrder, ItemsReceived);
+                    ShopNameReceivedFrom = shop->Name();
+                }
             }
         }
 
-        /// <summary>
-        /// We also want to visit elements of type ElementDerivedTwo.
-        /// </summary>
-        /// <param name="element">The desired element to visit.</param>
-        void visit(ElementDerivedTwo* element)
+        void VisitButcher(Visitor_Butcher* shop) override
         {
-            if (element != nullptr)
+            if (shop != nullptr)
             {
-                std::cout << std::format("  --> {0} received element #{1} (type {2})",
-                    "VisitorOperationOne", element->InstanceId(), "ElementDerivedTwo")
-                    << std::endl;
+                if (shop->PlaceOrder(ItemsToOrder))
+                {
+                    shop->PickupOrder(ItemsToOrder, ItemsReceived);
+                    ShopNameReceivedFrom = shop->Name();
+                }
             }
         }
-    };
 
-
-    //########################################################################
-    //########################################################################
-
-
-    /// <summary>
-    /// An operation to apply to one or more data elements.  This is the
-    /// Visitor.
-    /// </summary>
-    class VisitorOperationTwo : public ElementVisitor
-    {
-    public:
-        /// <summary>
-        /// Alias type to make it easier to read the code.
-        /// </summary>
-        using unique_ptr_t = std::unique_ptr<VisitorOperationTwo>;
-
-        /// <summary>
-        /// We only want to visit elements of type ElementDerivedTwo.
-        /// </summary>
-        /// <param name="element">The desired element to visit.</param>
-        void visit(ElementDerivedTwo* element)
+        void VisitPickleGrocer(Visitor_PickleGrocer* shop) override
         {
-            if (element != nullptr)
+            if (shop != nullptr)
             {
-                std::cout << std::format("  --> {0} received element #{1} (type {2})",
-                    "VisitorOperationTwo", element->InstanceId(), "ElementDerivedTwo")
-                    << std::endl;
+                if (shop->PlaceOrder(ItemsToOrder))
+                {
+                    shop->PickupOrder(ItemsToOrder, ItemsReceived);
+                    ShopNameReceivedFrom = shop->Name();
+                }
+            }
+        }
+
+        void VisitCondimentGrocer(Visitor_CondimentGrocer* shop) override
+        {
+            if (shop != nullptr)
+            {
+                if (shop->PlaceOrder(ItemsToOrder))
+                {
+                    shop->PickupOrder(ItemsToOrder, ItemsReceived);
+                    ShopNameReceivedFrom = shop->Name();
+                }
+            }
+        }
+
+        void VisitVegetableGrocer(Visitor_VegetableGrocer* shop) override
+        {
+            if (shop != nullptr)
+            {
+                if (shop->PlaceOrder(ItemsToOrder))
+                {
+                    shop->PickupOrder(ItemsToOrder, ItemsReceived);
+                    ShopNameReceivedFrom = shop->Name();
+                }
+            }
+        }
+
+        void VisitMaker(Visitor_Maker* shop) override
+        {
+            if (shop != nullptr)
+            {
+                if (shop->PlaceOrder(ItemsToOrder))
+                {
+                    shop->PickupOrder(ItemsToOrder, ItemsReceived);
+                    ShopNameReceivedFrom = shop->Name();
+                }
+            }
+        }
+
+        void VisitRestaurant(Visitor_Restaurant* shop) override
+        {
+            if (shop != nullptr)
+            {
+                if (shop->PlaceOrder(ItemsToOrder))
+                {
+                    shop->PickupOrder(ItemsToOrder, ItemsReceived);
+                    ShopNameReceivedFrom = shop->Name();
+                }
             }
         }
     };
@@ -122,4 +132,3 @@ namespace DesignPatternExamples_cpp
 } // end namespace
 
 #endif // __VISITOR_VISITOR_CLASS_H__
-

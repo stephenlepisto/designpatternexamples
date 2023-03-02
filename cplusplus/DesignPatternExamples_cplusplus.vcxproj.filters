@@ -99,6 +99,9 @@
     <ClCompile Include="Visitor_Element_Classes.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Visitor_Village.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="helpers\replace.h">
@@ -190,6 +193,15 @@
     </ClInclude>
     <ClInclude Include="Visitor_Visitor_Class.h">
       <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Visitor_Village.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Visitor_Shop.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="helpers\mapofstrings.h">
+      <Filter>Helper Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

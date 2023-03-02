@@ -31,6 +31,7 @@
 #include "Flyweight_Classes.h"
 #include "Proxy_Class.h"
 #include "Visitor_Visitor_Class.h"
+#include "Visitor_Village.h"
 
 
 
@@ -867,36 +868,22 @@ namespace DesignPatternExamples_cpp
         //########################################################################
 
 
-        /// <summary>
-        /// Helper method to apply a visitor to all data items in a given list.
-        /// Each visitor is already designed to accept whatever element types
-        /// it is interested in (as part of the class design for a visitor).
-        /// </summary>
-        /// <param name="elements">A list of elements to visit</param>
-        /// <param name="operation">The operation to "visit" on each element</param>
-        void _ApplyOperation(std::vector<IElementVisitInterface::unique_ptr_t>& elements, ElementVisitor* operation)
-        {
-            for(IElementVisitInterface::unique_ptr_t& element : elements)
-            {
-                element->accept(operation);
-            }
-
-        }
-
 
         /// <summary>
         /// Example of using the Visitor design pattern.
         /// 
         /// The Visitor pattern is used to add functionality to a list of
-        /// otherwise unchanging element objects by passing a function to each
-        /// element object.  Each element object calls the function, passing
-        /// itself to the function.  The visiting function then does something
-        /// based on the type of the element.
+        /// otherwise unchanging element objects by passing a visitor object to
+        /// each element object.  Each element object calls the visitor object,
+        /// passing itself as an argument.  The visitor object then does
+        /// something based on the type of the element.
         /// 
-        /// In this exercise, a list of element objects is created then two
-        /// visitors are created.  The visitors represent possible operations
-        /// that can be done on the element types.  In this exercise, the
-        /// operations just print out what was received.
+        /// In this exercise, a collection of shop objects is initialized then
+        /// an order visitor is created to retrieve an item from one of the shop
+        /// objects.  Along the way, shops that don't have the necessary
+        /// ingredients use another order visitor to order ingredients from
+        /// other shops.  This approach assumes no two shops sell the same
+        /// thing.
         /// </summary>
         //! [Using Visitor in C++]
         void Visitor_Exercise()
@@ -904,24 +891,31 @@ namespace DesignPatternExamples_cpp
             std::cout << std::endl;
             std::cout << "Visitor Exercise" << std::endl;
 
-            std::vector<IElementVisitInterface::unique_ptr_t> elements;
+            std::cout << "  Creating Village" << std::endl;
+            std::unique_ptr<Visitor_Village> village = std::make_unique<Visitor_Village>();
+            village->LoadVillage();
 
-            // Populate our list of elements with a couple of each type to
-            // give at least a somewhat interesting output.
-            elements.push_back(std::make_unique<ElementDerivedOne>());
-            elements.push_back(std::make_unique<ElementDerivedTwo>());
-            elements.push_back(std::make_unique<ElementDerivedOne>());
-            elements.push_back(std::make_unique<ElementDerivedTwo>());
-            
-            // Create the visitors
-            VisitorOperationOne::unique_ptr_t operationOne = std::make_unique<VisitorOperationOne>();
-            VisitorOperationTwo::unique_ptr_t operationTwo = std::make_unique<VisitorOperationTwo>();
-
-            std::cout << "  Applying operation One to all ElementDerivedOne and ElementDerivedTwo elements..." << std::endl;
-            _ApplyOperation(elements, operationOne.get());
-
-            std::cout << "  Applying operation Two to all ElementDerivedTwo elements..." << std::endl;
-            _ApplyOperation(elements, operationTwo.get());
+            OrderVisitor visitor(StringList{ "hamburger" });
+            std::cout
+                << std::format("  Ordering a hamburger from a shop in the {0}",
+                    village->Name)
+                << std::endl;
+            // Visit all shops and place an order for a hamburger at the shop
+            // that sells them.  We don't know which shop it is and we don't
+            // need to know until we receive the order.
+            village->Accept(&visitor);
+            if (!visitor.ItemsReceived.empty())
+            {
+                // We are expecting only a single item
+                std::cout
+                    << std::format("  We received a {0} from {1}.",
+                        visitor.ItemsReceived[0], visitor.ShopNameReceivedFrom)
+                    << std::endl;
+            }
+            else
+            {
+                std::cout << "  Failed to receive a hamburger" << std::endl;
+            }
 
             std::cout << "  Done." << std::endl;
         }
