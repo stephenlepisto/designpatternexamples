@@ -86,10 +86,10 @@ namespace DesignPatternExamples_csharp
     /// region.
     /// </summary>
     /// <remarks>
-    /// Note: The IMessageHandler interface is an example of a Facade design
-    /// pattern, where the complexity of the MessageWindow is exposed only
-    /// through a few methods to a system that only needs to deal with those
-    /// few methods.
+    /// Note: The IMessageHandler interface is an example of a
+    /// @ref facade_pattern "Facade design pattern", where the complexity of
+    /// the MessageWindow is exposed only through a few methods to a system
+    /// that only needs to deal with those few methods.
     /// </remarks>
     public class MessageWindow : IMessageHandler
     {
