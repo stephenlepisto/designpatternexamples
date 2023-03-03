@@ -32,6 +32,7 @@
 #include "Proxy_Class.h"
 #include "Visitor_Visitor_Class.h"
 #include "Visitor_Village.h"
+#include "Command_Classes.h"
 
 
 
@@ -925,6 +926,110 @@ namespace DesignPatternExamples_cpp
         //########################################################################
         //########################################################################
 
+        /// <summary>
+        /// The list of commands applied.
+        /// </summary>
+        std::vector<Command> _commandUndoList;
+
+        /// <summary>
+        /// Save the given command on the undo list then execute the command on
+        /// the given text object.
+        /// </summary>
+        /// <param name="text">The Command_TextObject on which to apply the command.</param>
+        /// <param name="command">The Command object to apply to the text object.</param>
+        void Command_Save_And_Execute(Command_TextObject::shared_ptr_t text, Command command)
+        {
+            _commandUndoList.push_back(command);
+            command.Execute();
+        }
+
+        /// <summary>
+        /// An operation to search and replace text in a Command_TextObject.
+        /// </summary>
+        /// <param name="source">The Command_TextObject to affect.</param>
+        /// <param name="searchPattern">What to look for in the Command_TextObject.</param>
+        /// <param name="replaceText">What to replace the searchPattern with.</param>
+        static void Command_Operation_Replace(Command_TextObject::shared_ptr_t source, std::string searchPattern, std::string replaceText)
+        {
+            std::string newText = Helpers::Replace(source->Text(), searchPattern.c_str(), replaceText.c_str());
+            source->SetText(newText);
+        }
+
+        /// <summary>
+        /// An operation to reverse the characters in the given Command_TextObject.
+        /// </summary>
+        /// <param name="source">The Command_TextObject to affect.</param>
+        static void Command_Operation_Reverse(Command_TextObject::shared_ptr_t source)
+        {
+            std::ostringstream output;
+            std::string text = source->Text();
+            for (size_t index = 0; index < text.size(); ++index)
+            {
+                output << text[text.size() - 1 - index];
+            }
+            source->SetText(output.str());
+        }
+
+        /// <summary>
+        /// Perform an undo on the given Command_TextObject, using the commands in the
+        /// "global" undo list.  If the undo list is empty, nothing happens.
+        /// </summary>
+        /// <param name="text">The Command_TextObject to affect.</param>
+        void Command_Undo(Command_TextObject::shared_ptr_t text)
+        {
+            if (!_commandUndoList.empty())
+            {
+                // Reset the text to the starting point.
+                text->Reset();
+
+                // Get rid of the last command applied and remember it.
+                Command lastCommand = _commandUndoList.back();
+                _commandUndoList.pop_back();
+
+                // Now apply all remaining commands to the text in order
+                // (oldest to newest).
+                std::vector<Command>::iterator commandIter = std::begin(_commandUndoList);
+                while (commandIter != std::end(_commandUndoList))
+                {
+                    (*commandIter).Execute();
+                    commandIter++;
+                }
+
+                // Show off what we (un)did.
+                std::cout << std::format("    undoing command {0:<31}==> \"{1}\"", lastCommand.ToString(), text->ToString()) << std::endl;
+            }
+        }
+
+        /// <summary>
+        /// Helper function to create a Command object that replaces text in the given
+        /// Command_TextObject, adds the command to the undo list and then applies the command
+        /// to the Command_TextObject.  Finally, it shows off what was done.
+        /// </summary>
+        /// <param name="text">The Command_TextObject to affect.</param>
+        /// <param name="searchPattern">What to look for in the Command_TextObject.</param>
+        /// <param name="replaceText">What to replace the searchPattern with.</param>
+        void Command_ApplyReplaceCommand(Command_TextObject::shared_ptr_t text, std::string searchPattern, std::string replaceText)
+        {
+            Command command(text, "Replace", Command_Operation_Replace, searchPattern, replaceText);
+            Command_Save_And_Execute(text, command);
+            std::cout << std::format("    command {0:<31}==> \"{1}\"", command.ToString(), text->ToString()) << std::endl;
+        }
+
+
+        /// <summary>
+        /// Helper function to create a Command object that reverses the order of
+        /// the characters in the given Command_TextObject, adds the command to the undo
+        /// list and then applies the command to the Command_TextObject.  Finally, it shows
+        /// what was done.
+        /// </summary>
+        /// <param name="text">The Command_TextObject to affect.</param>
+        void Command_ApplyReverseCommand(Command_TextObject::shared_ptr_t text)
+        {
+            Command command(text, "Reverse", Command_Operation_Reverse);
+            Command_Save_And_Execute(text, command);
+            std::cout << std::format("    command {0:<31}==> \"{1}\"", command.ToString(), text->ToString()) << std::endl;
+        }
+
 
         /// <summary>
         /// Example of using the Command design pattern.
@@ -943,6 +1048,27 @@ namespace DesignPatternExamples_cpp
         {
             std::cout << std::endl;
             std::cout << "Command Exercise" << std::endl;
+
+            // The base text object to work from.
+            Command_TextObject::shared_ptr_t text = std::make_shared<Command_TextObject>("This is a line of text on which to experiment.");
+
+            std::cout << std::format("  Starting text: \"{0}\"", text->ToString()) << std::endl;
+
+            // Apply four operations to the text.
+            Command_ApplyReplaceCommand(text, "text", "painting");
+            Command_ApplyReplaceCommand(text, "on", "off");
+            Command_ApplyReverseCommand(text);
+            Command_ApplyReplaceCommand(text, "i", "!");
+
+            std::cout << "  Now perform undo until back to original" << std::endl;
+
+            // Now undo the four operations.
+            Command_Undo(text);
+            Command_Undo(text);
+            Command_Undo(text);
+            Command_Undo(text);
+
+            std::cout << std::format("  Final text   : \"{0}\"", text->ToString()) << std::endl;
 
             std::cout << "  Done." << std::endl;
         }

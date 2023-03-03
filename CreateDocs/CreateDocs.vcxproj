@@ -367,6 +367,7 @@ popd
   <ItemGroup>
     <None Include="..\docs\adapter.md" />
     <None Include="..\docs\bridge.md" />
+    <None Include="..\docs\command.md" />
     <None Include="..\docs\composite.md" />
     <None Include="..\docs\decorator.md" />
     <None Include="..\docs\facade.md" />

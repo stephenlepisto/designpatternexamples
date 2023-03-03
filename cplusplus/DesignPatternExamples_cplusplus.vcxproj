@@ -193,6 +193,7 @@
     <ClInclude Include="Bridge_LoggerHelpers.h" />
     <ClInclude Include="Bridge_LoggerInterface.h" />
     <ClInclude Include="Bridge_NullLogger.h" />
+    <ClInclude Include="Command_Classes.h" />
     <ClInclude Include="Composite_FileAccess.h" />
     <ClInclude Include="Composite_FileDirEntry.h" />
     <ClInclude Include="Decorator_Classes.h" />

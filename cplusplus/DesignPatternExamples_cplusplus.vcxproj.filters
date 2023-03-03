@@ -203,5 +203,8 @@
     <ClInclude Include="helpers\mapofstrings.h">
       <Filter>Helper Files</Filter>
     </ClInclude>
+    <ClInclude Include="Command_Classes.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

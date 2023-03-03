@@ -21,4 +21,5 @@ its kind.
 - @ref flyweight_pattern
 - @ref proxy_pattern
 - @ref visitor_pattern
+- @ref command_pattern
 
