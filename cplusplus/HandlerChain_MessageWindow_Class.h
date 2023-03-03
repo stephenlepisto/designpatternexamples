@@ -1,3 +1,8 @@
+/// @file
+/// @brief
+/// Declaration of the @ref DesignPatternExamples_cpp::MessageWindow "MessageWindow" class
+/// and @ref DesignPatternExamples_cpp::WindowRectangle "WindowRectangle" class.
+
 #pragma once
 #ifndef __HANDLECHAIN_MESSAGEWINDOW_CLASS_H__
 #define __HANDLECHAIN_MESSAGEWINDOW_CLASS_H__
@@ -28,7 +33,13 @@ namespace DesignPatternExamples_cpp
     class WindowRectangle
     {
     private:
+        /// <summary>
+        /// Minimum width of a window (to accommodate a close box).
+        /// </summary>
         const int MINIMUM_WIDTH = 4;
+        /// <summary>
+        /// Minimum height of a window (to accommodate a close box).
+        /// </summary>
         const int MINIMUM_HEIGHT = 4;
 
     public:

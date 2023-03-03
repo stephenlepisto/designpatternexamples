@@ -1,3 +1,7 @@
+/// @file
+/// @brief
+/// Implementation of the @ref DesignPatternExamples_cpp::MessageWindow "MessageWindow" class.
+
 #include "HandlerChain_MessageWindow_Class.h"
 
 namespace DesignPatternExamples_cpp

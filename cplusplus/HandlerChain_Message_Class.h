@@ -1,3 +1,8 @@
+/// @file
+/// @brief
+/// Implementation of the @ref DesignPatternExamples_cpp::Message "Message" struct
+/// and @ref DesignPatternExamples_cpp::MessagePosition "MessagePosition" struct.
+
 #pragma once
 #ifndef __HANDLERCHAIN_MESSAGE_CLASS_H__
 #define __HANDLERCHAIN_MESSAGE_CLASS_H__
