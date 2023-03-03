@@ -166,6 +166,7 @@
     <ClCompile Include="Facade_Interface.cpp" />
     <ClCompile Include="Facade_ComplicatedSubSystem.cpp" />
     <ClCompile Include="Flyweight_Classes.cpp" />
+    <ClCompile Include="HandlerChain_MessageWindow_Class.cpp" />
     <ClCompile Include="helpers\checkforkey.cpp" />
     <ClCompile Include="helpers\cursor.cpp" />
     <ClCompile Include="helpers\DateTime.cpp" />
@@ -200,6 +201,9 @@
     <ClInclude Include="FacadeSubsystem_Interface.h" />
     <ClInclude Include="Facade_Interface.h" />
     <ClInclude Include="Flyweight_Classes.h" />
+    <ClInclude Include="HandlerChain_MessageWindow_Class.h" />
+    <ClInclude Include="HandlerChain_Class.h" />
+    <ClInclude Include="HandlerChain_Message_Class.h" />
     <ClInclude Include="helpers\argumentnull_error.h" />
     <ClInclude Include="helpers\checkforkey.h" />
     <ClInclude Include="helpers\cursor.h" />

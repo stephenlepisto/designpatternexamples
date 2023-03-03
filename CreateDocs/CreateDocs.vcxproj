@@ -372,6 +372,7 @@ popd
     <None Include="..\docs\decorator.md" />
     <None Include="..\docs\facade.md" />
     <None Include="..\docs\flyweight.md" />
+    <None Include="..\docs\handlerchain.md" />
     <None Include="..\docs\mainpage.md" />
     <None Include="..\docs\visitor.md" />
     <None Include="Doxyfile" />

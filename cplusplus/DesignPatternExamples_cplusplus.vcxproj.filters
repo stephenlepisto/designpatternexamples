@@ -102,6 +102,9 @@
     <ClCompile Include="Visitor_Village.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="HandlerChain_MessageWindow_Class.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="helpers\replace.h">
@@ -204,6 +207,15 @@
       <Filter>Helper Files</Filter>
     </ClInclude>
     <ClInclude Include="Command_Classes.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HandlerChain_Class.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HandlerChain_Message_Class.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HandlerChain_MessageWindow_Class.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

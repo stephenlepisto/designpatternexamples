@@ -22,4 +22,5 @@ its kind.
 - @ref proxy_pattern
 - @ref visitor_pattern
 - @ref command_pattern
+- @ref handlerchain_pattern
 
