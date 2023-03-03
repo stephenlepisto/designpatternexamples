@@ -1,6 +1,6 @@
 /// @file
 /// @brief
-/// Implementation of the DesignPatternExamples_cpp::Visitor_Village class.
+/// Implementation of the @ref DesignPatternExamples_cpp::Visitor_Village "Visitor_Village" class.
 
 #include "Visitor_Village.h"
 #include "Visitor_Element_Classes.h"
