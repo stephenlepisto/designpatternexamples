@@ -1,42 +1,8 @@
-﻿// The Command pattern is used to associate an object with an operation that
-// is deferred to a later time for execution.  The command itself is an object
-// that contains the target of the command (known as the receiver) and the
-// command.  This means the command object can be treated like any other
-// object, even putting it into a list.
-//
-// A common application for the Command pattern is an undo buffer.  Another
-// application is a batch processor.
-//
-// At its heart, a Command object takes two parameters: The object to work on
-// and an operation to use.  The operation is typically a function pointer
-// (in C++) or a delegate (in C#).  A Command object can hold additional
-// parameters if the associated operation requires additional parameters.
-//
-// When invoked, the Command object calls the operation with the receiver
-// object and whatever additional parameters that might be required.  The
-// invocation is typically a single method called execute() so all Command
-// objects look the same to the entity doing the invocation of the Commands.
-//
-// It is typical for the Command objects to be created by one entity and
-// passed to another entity for invocation.
-//
-// For example, a program that supports undo would work like this (this is
-// a simplistic undo):
-// 1. Define all operations as functions that takes a single receiver (of the
-//    command) to operate on, along with any necessary additional parameters.
-// 2. Any time an operation other than Undo is invoked by the user:
-//    a. Create a Command object with the function for that operation along
-//       with the receiver on which the function applies
-//    b. Store the Command object in the undo container
-//    c. Invoke the Command object just created
-// 3. Repeat step 2 until the user selects Undo.
-// 4. Perform the Undo:
-//    a. If there are any commands to undo then
-//    b.   Completely reset the receiver that all commands are applied to
-//    c.   Remove the last Command object from the undo container, if any
-//    d.   For all Command objects in the undo container, invoke each Command
-//         in order on the receiver.  This puts the receiver back into the
-//         state it was in before the last command was applied.
+﻿/// @file
+/// @brief
+/// The @ref DesignPatternExamples_csharp.Command_TextObject "Command_TextObject"
+/// and @ref DesignPatternExamples_csharp.Command "Command" classes
+/// as used in the @ref command_pattern "Command pattern".
 
 using System;
 

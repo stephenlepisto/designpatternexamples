@@ -1,7 +1,7 @@
-﻿// The Bridge design pattern.  See Bridge_Logger.cs for the details.
-//
-// This is a specific implementation of a logger that logs to a file.
-// The logger is represented by the ILogger interface.
+﻿/// @file
+/// @brief
+/// The @ref DesignPatternExamples_csharp.FileLogger "FileLogger" class as used
+/// in the @ref bridge_pattern "Bridge pattern".
 
 using System;
 using System.Collections.Generic;

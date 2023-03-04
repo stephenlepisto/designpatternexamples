@@ -1,10 +1,12 @@
-﻿// The Adapter design pattern is used when code written in one way needs to
-// communicate with code written in a completely different way.
-//
-// For this example, the DataReadWriteFunctions class represents a library of
-// functions that use error codes for reporting errors.  In a real C# program,
-// the static methods on this class might actually be calls into an external
-// DLL.
+﻿/// @file
+/// @brief
+/// The @ref DesignPatternExamples_csharp.DataReadWriteFunctions "DataReadWriteFunctions"
+/// class static functions as used in the @ref adapter_pattern "Adapter pattern".
+/// 
+/// For this example, the DataReadWriteFunctions class represents a library of
+/// functions that use error codes for reporting errors.  In a real C# program,
+/// the static methods on this class might actually be calls into an external
+/// DLL.
 
 using System;
 using System.Collections.Generic;

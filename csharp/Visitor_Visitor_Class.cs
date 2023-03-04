@@ -1,4 +1,9 @@
-﻿// The Visitor pattern is a way of separating data from operations where the
+﻿/// @file
+/// @brief
+/// The @ref DesignPatternExamples_csharp.OrderVisitor "OrderVisitor" class
+/// used in the @ref visitor_pattern "Visitor pattern".
+
+// The Visitor pattern is a way of separating data from operations where the
 // operations can be applied after the list of data is created all while
 // leaving the data and operations as objects.  The visitor pattern works best
 // where the number of data classes changes very infrequently.  The data

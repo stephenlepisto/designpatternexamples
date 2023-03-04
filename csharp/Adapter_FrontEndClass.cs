@@ -1,14 +1,7 @@
-﻿// The Adapter design pattern is used when code written in one way needs to
-// communicate with code written in a completely different way.  For example,
-// an object-oriented program needs to call into a library of functions.  A
-// related example is if the library produces error codes but the main program
-// uses exceptions.  The Adapter design adapts a library with one calling
-// convention to another convention, hiding the details of the library.
-//
-// In this example, the DataReaderWriter class provides an object-oriented
-// interface to a set of functions.  The functions are static and return error
-// codes.  The DataReaderWriter class is the Adapter, converting primitive
-// function calls into an object-oriented class, complete with exceptions.
+﻿/// @file
+/// @brief
+/// The @ref DesignPatternExamples_csharp.DataReaderWriter "DataReaderWriter"
+/// class used in the @ref adapter_pattern "Adapter pattern".
 
 using System;
 using System.Text;

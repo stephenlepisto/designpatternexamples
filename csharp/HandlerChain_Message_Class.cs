@@ -1,5 +1,8 @@
-﻿// See HandlerChain_Class.cs for details of how the classes in this file are
-// used.
+﻿/// @file
+/// @brief
+/// The @ref DesignPatternExamples_csharp.MessagePosition "MessagePosition"
+/// and @ref DesignPatternExamples_csharp.Message "Message" structs
+/// used in the @ref handlerchain_pattern "HandlerChain pattern".
 
 using System;
 

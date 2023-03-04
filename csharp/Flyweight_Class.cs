@@ -1,44 +1,10 @@
-﻿// The flyweight pattern is used to represent some resource that can be shared
-// multiple times.  The flyweight class contains just enough information to
-// identify the resource and some context in which the instance of each
-// flyweight class is used.  Instances of flyweight classes are always
-// obtained through a class factory that is provided with the context
-// information as a parameter.
-//
-// The intent is to represent the shared resource with a small, lightweight
-// class instance that can be used many times without incurring large
-// memory penalties that might occur if the shared resource was actually
-// duplicated many times.
-//
-// An early form of flyweight class is a handle to a resource.  The handle
-// was typically a 32-bit value and could be easily shared and passed around
-// with minimal impact to the system.  The drawback is context information
-// could not be easily attached to the handle.
-//
-// The contents of a flyweight class typically consists of a handle to the
-// resource and some context information.  The context information is provided
-// by the caller to the flyweight factory to be inserted into a new instance
-// of the flyweight class.
-//
-// This example uses an image as the "big" resource.  The flyweight class
-// represents a position for that image as the context.  The flyweight class
-// also contains velocity information for moving the flyweight instance
-// around a display.  Of course, everything is in text but it's the thought
-// that counts.
-//
-// This module contains the following classes:
-//  - Flyweight_Context
-//    The context to be attached to the Flyweight_Class instance
-//  - Flyweight_Class
-//    The flyweight class example representing a BigResource
-//  - BigResource
-//    The big resource to be represented by a flyweight class
-//  - BigResourceManager
-//    A manager of big resources and the class factory for the
-//    Flyweight_Class.
-//
-// See Program.cs, Flyweight_Exercise() for details on how to use these
-// classes.
+﻿/// @file
+/// @brief
+/// The @ref DesignPatternExamples_csharp.Flyweight_Context "Flyweight_Context" struct,
+/// and the @ref DesignPatternExamples_csharp.Flyweight_Class "Flyweight_Class",
+/// @ref DesignPatternExamples_csharp.BigResource "BigResource", and
+/// @ref DesignPatternExamples_csharp.BigResourceManager "BigResourceManager"
+/// classes used in the @ref flyweight_pattern "Flyweight pattern".
 
 using System.Collections.Generic;
 

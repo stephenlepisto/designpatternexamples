@@ -1,13 +1,21 @@
-﻿// The Observer pattern is used when one or more entities need to be told
-// about a change in state of another entity (typically known as the Subject)
-// and those entities, upon notification, pull data from the Subject to
-// complete their own specific tasks.  Alternatively, the Subject could push
-// the data to the observing entities.  The example uses a pull approach.
-//
-// The code in this file defines the Subject for the example.  In addition,
-// this file contains the interfaces needed for the observers and the Subject
-// to interact "at arms length" from each other, so neither has any more
-// information about the other than is strictly necessary.
+﻿/// @file
+/// @brief
+/// The @ref DesignPatternExamples_csharp.IObserverNumberChanged "IObserverNumberChanged",
+/// @ref DesignPatternExamples_csharp.IEventNotifications "IEventNotifications",
+/// and @ref DesignPatternExamples_csharp.INumberProducer "INumberProducer" interfaces,
+/// and the @ref DesignPatternExamples_csharp.ObserverSubject_NumberProducer "ObserverSubject_NumberProducer"
+/// class used in the @ref observer_pattern "Observer pattern".
+///
+/// The Observer pattern is used when one or more entities need to be told
+/// about a change in state of another entity (typically known as the Subject)
+/// and those entities, upon notification, pull data from the Subject to
+/// complete their own specific tasks.  Alternatively, the Subject could push
+/// the data to the observing entities.  The example uses a pull approach.
+///
+/// The code in this file defines the Subject for the example.  In addition,
+/// this file contains the interfaces needed for the observers and the Subject
+/// to interact "at arms length" from each other, so neither has any more
+/// information about the other than is strictly necessary.
 
 using System.Collections.Generic;
 

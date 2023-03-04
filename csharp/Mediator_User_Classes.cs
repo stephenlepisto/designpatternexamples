@@ -1,4 +1,10 @@
-﻿// The Mediator pattern acts as a go-between for multiple entities that want
+﻿/// @file
+/// @brief
+/// The @ref DesignPatternExamples_csharp.User "User" and the
+/// @ref DesignPatternExamples_csharp.UserList "UserList" classes
+/// used in the @ref mediator_pattern "Mediator pattern".
+
+// The Mediator pattern acts as a go-between for multiple entities that want
 // no knowledge of any of the other entities except at the most abstract
 // level.
 //

@@ -1,4 +1,9 @@
-﻿using System.Collections.Generic;
+﻿/// @file
+/// @brief
+/// The @ref DesignPatternExamples_csharp.Village "Village" class
+/// used in the @ref visitor_pattern "Visitor pattern".
+
+using System.Collections.Generic;
 
 namespace DesignPatternExamples_csharp
 {

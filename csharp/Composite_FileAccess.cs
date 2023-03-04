@@ -1,13 +1,16 @@
-﻿// Composite design pattern example.  See Composite_FileDirEntry.cs for details.
-//
-// This module contains the hardcoded example of a file/directory hierarchy.
-// The example code calls Composite_FileAccess.GetEntry() with the path of
-// of the file or directory.  GetEntry() returns a FileDirEntry presenting
-// the requested entry, with possible children (if the entry is a directory).
-//
-// To simplify the example, the files and directories are hardcoded into a
-// composite list so that GetEntry() only needs to return the entry from the
-// composite list once it is found.
+﻿/// @file
+/// @brief
+/// The @ref DesignPatternExamples_csharp.Composite_FileAccess "Composite_FileAccess"
+/// static class as used in the @ref composite_pattern "Composite pattern".
+///
+/// This module contains the hardcoded example of a file/directory hierarchy.
+/// The example code calls Composite_FileAccess.GetEntry() with the path of
+/// of the file or directory.  GetEntry() returns a FileDirEntry presenting
+/// the requested entry, with possible children (if the entry is a directory).
+///
+/// To simplify the example, the files and directories are hardcoded into a
+/// composite list so that GetEntry() only needs to return the entry from the
+/// composite list once it is found.
 
 using System;
 using System.IO;

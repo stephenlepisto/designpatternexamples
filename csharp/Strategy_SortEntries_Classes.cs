@@ -1,4 +1,10 @@
-﻿// The Strategy pattern is used when a choice of multiple different but
+﻿/// @file
+/// @brief
+/// The @ref DesignPatternExamples_csharp.ISortEntries "ISortEntries" interface
+/// and the various StrategyXXX classes that implement the interface as used in
+/// the @ref strategy_pattern "Strategy pattern".
+
+// The Strategy pattern is used when a choice of multiple different but
 // related algorithms can be made at startup time.  The implementation of each
 // related algorithm exposes the same interface so as to hide the details of
 // implementation from the calling program.

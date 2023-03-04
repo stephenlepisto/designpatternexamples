@@ -61,5 +61,38 @@
     <None Include="..\docs\handlerchain.md">
       <Filter>Document Files</Filter>
     </None>
+    <None Include="..\docs\interpreter.md">
+      <Filter>Document Files</Filter>
+    </None>
+    <None Include="..\docs\iterator.md">
+      <Filter>Document Files</Filter>
+    </None>
+    <None Include="..\docs\mediator.md">
+      <Filter>Document Files</Filter>
+    </None>
+    <None Include="..\docs\memento.md">
+      <Filter>Document Files</Filter>
+    </None>
+    <None Include="..\docs\nullobject.md">
+      <Filter>Document Files</Filter>
+    </None>
+    <None Include="..\docs\observer.md">
+      <Filter>Document Files</Filter>
+    </None>
+    <None Include="..\docs\private.md">
+      <Filter>Document Files</Filter>
+    </None>
+    <None Include="..\docs\proxy.md">
+      <Filter>Document Files</Filter>
+    </None>
+    <None Include="..\docs\state.md">
+      <Filter>Document Files</Filter>
+    </None>
+    <None Include="..\docs\strategy.md">
+      <Filter>Document Files</Filter>
+    </None>
+    <None Include="..\docs\template.md">
+      <Filter>Document Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

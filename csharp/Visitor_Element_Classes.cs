@@ -1,8 +1,8 @@
-﻿// The Visitor design pattern.  See Visitor_Visitor_Class.cs for details.
-//
-// This module contains definitions of the element classes to be used in the
-// Visitor example.
-
+﻿/// @file
+/// @brief
+/// The @ref DesignPatternExamples_csharp.Visitor "Visitor" base class,
+/// the @ref DesignPatternExamples_csharp.Visitor_Shop "Visitor_Shop" base class,
+/// and the various "shop" classes used in the @ref visitor_pattern "Visitor pattern".
 
 using System;
 using System.Collections.Generic;

@@ -1,5 +1,8 @@
-﻿// See HandlerChain_Class.cs for details of how the classes in this file are
-// used.
+﻿/// @file
+/// @brief
+/// The @ref DesignPatternExamples_csharp.MessageWindow "MessageWindow"
+/// and @ref DesignPatternExamples_csharp.WindowRectangle "WindowRectangle"
+/// classes used in the @ref handlerchain_pattern "HandlerChain pattern".
 
 using System;
 using System.Collections.Generic;

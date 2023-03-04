@@ -1,4 +1,10 @@
-﻿using System;
+﻿/// @file
+/// @brief
+/// The @ref DesignPatternExamples_csharp.EnableVTModeForWindowsConsole "EnableVTModeForWindowsConsole"
+/// class to enable virtual terminal processing in the Windows terminal as
+/// used in the @ref decorator_pattern "Decorator pattern".
+
+using System;
 using System.IO;
 using System.Runtime.InteropServices;
 

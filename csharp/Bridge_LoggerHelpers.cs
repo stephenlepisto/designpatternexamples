@@ -1,5 +1,8 @@
-﻿// Helper functions for the various logger implementations used in the Bridge
-// pattern example.
+﻿/// @file
+/// @brief
+/// The @ref DesignPatternExamples_csharp.LoggerHelpers "LoggerHelpers" class
+/// static functions as used in the @ref bridge_pattern "Bridge pattern".
+
 using System;
 using System.Collections.Generic;
 using System.Linq;

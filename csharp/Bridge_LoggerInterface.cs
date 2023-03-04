@@ -1,7 +1,8 @@
-﻿// The Logger class acts as the Bridge between the program and the logger
-// implementations.  The logger implementations implement the ILogger interface
-// so the Logger class doesn't know about the actual implementation of the
-// logger.
+﻿/// @file
+/// @brief
+/// The @ref DesignPatternExamples_csharp.ILogger "ILogger" interface
+/// as used on all loggers in the @ref bridge_pattern "Bridge pattern".
+
 using System;
 using System.Collections.Generic;
 using System.Linq;

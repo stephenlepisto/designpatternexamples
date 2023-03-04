@@ -1,18 +1,10 @@
-﻿// The Facade design pattern.  See Facade_Interface.cs for details.
-//
-// This is a "complicated" sub-system that exposes a low level interface and
-// a high level interface (the facade).  The Facade_ComplicatedSubSystem class
-// implements both interfaces.
-//
-// For this example, there are only three classes.  In a larger sub-system,
-// there could be a dozen or more classes and interfaces representing a truly
-// dizzying array of functionality.
+﻿/// @file
+/// @brief
+/// The @ref DesignPatternExamples_csharp.Facade_ComplicatedSubSystem "Facade_ComplicatedSubSystem"
+/// class and supporting classes that represent the complicated sub-system used
+/// in the @ref facade_pattern "Facade pattern".
 
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DesignPatternExamples_csharp
 {

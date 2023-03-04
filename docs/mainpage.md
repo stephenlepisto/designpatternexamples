@@ -23,4 +23,11 @@ its kind.
 - @ref visitor_pattern
 - @ref command_pattern
 - @ref handlerchain_pattern
-
+- @ref interpreter_pattern
+- @ref iterator_pattern
+- @ref mediator_pattern
+- @ref memento_pattern
+- @ref observer_pattern
+- @ref private_pattern
+- @ref state_pattern
+-@ref template_pattern

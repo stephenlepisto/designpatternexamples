@@ -1,4 +1,10 @@
-﻿using System;
+﻿/// @file
+/// @brief
+/// Implementation of the @ref DesignPatternExamples_csharp.Program.Main "Main()"
+/// entry point and all the design pattern example functions.
+/// See @ref mainpage "Main Overview".
+
+using System;
 using System.Collections.Generic;
 using System.Text;
 
