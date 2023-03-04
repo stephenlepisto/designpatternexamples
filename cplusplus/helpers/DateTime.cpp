@@ -1,3 +1,8 @@
+/// @file
+/// @brief
+/// Implementation of the @ref Helpers::DateTime "DateTime" class to simplify
+/// getting the local time as a string (modeled after the C# version).
+
 #include <chrono>
 
 #include "DateTime.h"

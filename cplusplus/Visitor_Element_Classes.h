@@ -1,3 +1,8 @@
+/// @file
+/// @brief
+/// Declaration of the @ref DesignPatternExamples_cpp::Visitor "Visitor" base class
+/// and the various shop classes used in the @ref visitor_pattern "Visitor pattern"
+
 #pragma once
 #ifndef __VISITOR_ELEMENT_CLASSES_H__
 #define __VISITOR_ELEMENT_CLASSES_H__

@@ -1,6 +1,7 @@
 /// @file
 /// @brief
-/// Implementation of the @ref DesignPatternExamples_cpp::Visitor_Shop "Visitor_Shop" class.
+/// Implementation of the @ref DesignPatternExamples_cpp::Visitor_Shop "Visitor_Shop"
+/// base class used in the @ref visitor_pattern "Visitor pattern"
 
 // This test requires /Zc:__cplusplus to be specified on the build command line.
 #if !defined(__cplusplus) || __cplusplus < 202002L

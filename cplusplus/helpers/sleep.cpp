@@ -1,3 +1,8 @@
+/// @file
+/// @brief
+/// Implementation of the @ref Helpers::sleep "sleep" function, for sleeping for
+/// a number of milliseconds.
+
 #include <chrono>
 #include <thread>
 

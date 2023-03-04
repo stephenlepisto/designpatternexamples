@@ -1,3 +1,8 @@
+/// @file
+/// @brief
+/// Declaration of the @ref DesignPatternExamples_cpp::DataReaderWriter "DataReaderWriter"
+/// class used in the @ref adapter_pattern "Adapter pattern".
+
 #pragma once
 #ifndef __ADAPTER_H__
 #define __ADAPTER_H__

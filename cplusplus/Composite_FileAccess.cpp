@@ -1,3 +1,8 @@
+/// @file
+/// @brief
+/// Implementation of the @ref DesignPatternExamples_cpp::Composite_FileAccess "Composite_FileAccess"
+/// class used in the @ref composite_pattern "Composite pattern".
+
 // This test requires /Zc:__cplusplus to be specified on the build command line.
 #if !defined(__cplusplus) || __cplusplus < 202002L
 #error Requires C++ 20 or later to compile!
@@ -34,13 +39,6 @@ namespace DesignPatternExamples_cpp
             });
 
 
-        /// <summary>
-        /// Helper method to search the static data list for the specified
-        /// file/dir entry.
-        /// </summary>
-        /// <param name="filepath">A "path" specifying the entry to find, with each
-        /// component separated by '/'.</param>
-        /// <returns>Returns the found entry; otherwise, returns null.</returns>
         FileDirEntry* Composite_FileAccess::_FindEntry(std::string filepath)
         {
             FileDirEntry* root = rootEntry.get();
@@ -97,16 +95,6 @@ namespace DesignPatternExamples_cpp
         }
 
 
-        /// <summary>
-        /// Return a FileDirEntry object representing the specified file "path"
-        /// in an internal list of data entries that is organized in a file/
-        /// directory structure.
-        /// </summary>
-        /// <param name="filepath">A "path" specifying the entry to find, with each
-        /// component separated by '/'.</param>
-        /// <returns>Returns a FileDirEntry object representing the specified file entry.
-        /// </returns>
-        /// <exception cref="FIleNotFoundException">The specified file entry was not found.</exception>
         FileDirEntry* Composite_FileAccess::GetEntry(std::string filepath)
         {
             filepath = Helpers::Replace(filepath, '\\', '/');

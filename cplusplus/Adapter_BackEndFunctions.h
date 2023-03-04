@@ -1,3 +1,8 @@
+/// @file
+/// @brief
+/// Declaration of the @ref DesignPatternExamples_cpp::DataReadWriteFunctions "DataReadWriteFunctions"
+/// namespace functions as used in the @ref adapter_pattern "Adapter pattern".
+
 #pragma once
 #ifndef __ADAPTER_BACKENDFUNCTIONS_H__
 #define __ADAPTER_BACKENDFUNCTIONS_H__

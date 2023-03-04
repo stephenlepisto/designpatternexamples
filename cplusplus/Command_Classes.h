@@ -1,3 +1,9 @@
+/// @file
+/// @brief
+/// Implementation of the @ref DesignPatternExamples_cpp::Command_TextObject "Command_TextObject"
+/// and @ref DesignPatternExamples_cpp::Command "Command" classes used in the
+/// @ref command_pattern "Command pattern".
+
 #pragma once
 #ifndef __COMMAND_CLASSES_H__
 #define __COMMAND_CLASSES_H__

@@ -1,3 +1,9 @@
+/// @file
+/// @brief
+/// Implementation of the @ref DesignPatternExamples_cpp::Facade_ComplicatedSubSystem "Facade_ComplicatedSubSystem"
+/// class representing the complicated sub-system used in the
+/// @ref facade_pattern "Facade pattern".
+
 #include <memory>
 #include <string>
 

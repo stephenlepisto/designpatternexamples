@@ -1,7 +1,8 @@
 /// @file
 /// @brief
 /// Implementation of the @ref DesignPatternExamples_cpp::HandlerChain "HandlerChain" class
-/// and declaration of the @ref DesignPatternExamples_cpp::IMessageHandler "IMessageHandler" interface.
+/// and declaration of the @ref DesignPatternExamples_cpp::IMessageHandler "IMessageHandler"
+/// interface used in the @ref handlerchain_pattern "HandlerChain pattern"
 
 #pragma once
 #ifndef __HANDLERCHAIN_CLASS_H__

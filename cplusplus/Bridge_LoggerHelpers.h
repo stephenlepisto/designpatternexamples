@@ -1,3 +1,8 @@
+/// @file
+/// @brief
+/// Declaration of the @ref DesignPatternExamples_cpp::LoggerHelpers "LoggerHelpers"
+/// namespace functions used in the @ref bridge_pattern "Bridge pattern".
+
 #pragma once
 #ifndef __BRIDGE_LOGGERHELPERS_H__
 #define __BRIDGE_LOGGERHELPERS_H__

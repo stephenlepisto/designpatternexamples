@@ -1,3 +1,8 @@
+/// @file
+/// @brief
+/// Declaration of the @ref DesignPatternExamples_cpp::ILogger "ILogger"
+/// interface used by all logger classes in the @ref bridge_pattern "Bridge pattern".
+
 #pragma once
 #ifndef __BRIDGE_LOGGERINTERFACE_H__
 #define __BRIDGE_LOGGERINTERFACE_H__

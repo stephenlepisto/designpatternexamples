@@ -1,3 +1,8 @@
+/// @file
+/// @brief
+/// Declaration of the @ref Helpers::makelocaltime "makelocaltime()" function
+/// to convert a time_t to a struct tm containing the local time.
+
 #pragma once
 #ifndef __MAKELOCALTIME_H__
 #define __MAKELOCALTIME_H__

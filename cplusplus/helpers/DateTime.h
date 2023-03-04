@@ -1,3 +1,8 @@
+/// @file
+/// @brief
+/// Declaration of the @ref Helpers::DateTime "DateTime" class to simplify
+/// getting the local time as a string (modeled after the C# version).
+
 #pragma once
 #ifndef __DATETIME_H__
 #define __DATETIME_H__

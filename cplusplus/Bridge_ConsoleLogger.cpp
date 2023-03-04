@@ -1,3 +1,8 @@
+/// @file
+/// @brief
+/// Implementation of the @ref DesignPatternExamples_cpp::ConsoleLogger "ConsoleLogger"
+/// class used in the @ref bridge_pattern "Bridge pattern".
+
 #include <iostream>
 #include "Bridge_LoggerHelpers.h"
 #include "Bridge_ConsoleLogger.h"

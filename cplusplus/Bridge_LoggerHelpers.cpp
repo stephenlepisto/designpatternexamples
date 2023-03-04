@@ -1,4 +1,8 @@
-// This test requires /Zc:__cplusplus to be specified on the build command line.
+/// @file
+/// @brief
+/// Implementation of the @ref DesignPatternExamples_cpp::LoggerHelpers "LoggerHelpers"
+/// namespace functions used in the @ref bridge_pattern "Bridge pattern".
+
 #if !defined(__cplusplus) || __cplusplus < 202002L
 #error Requires C++ 20 or later to compile!
 #endif

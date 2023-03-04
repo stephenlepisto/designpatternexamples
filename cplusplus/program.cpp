@@ -1,3 +1,8 @@
+/// @file
+/// @brief
+/// Implementation of the main() entry point and all the design pattern example functions.
+/// See @ref mainpage "Main Overview".
+
 // This test requires /Zc:__cplusplus to be specified on the build command line.
 #if !defined(__cplusplus) || __cplusplus < 202002L
 #error Requires C++ 20 or later to compile!

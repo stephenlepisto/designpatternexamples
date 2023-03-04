@@ -1,3 +1,8 @@
+/// @file
+/// @brief
+/// Declaration of the @ref Helpers::argumentnull_error "argumentnull_error()"
+/// exception.
+
 #pragma once
 #ifndef __ARGUMENTNULL_ERROR_H__
 #define __ARGUMENTNULL_ERROR_H__

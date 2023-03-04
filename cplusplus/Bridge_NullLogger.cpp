@@ -1,3 +1,8 @@
+/// @file
+/// @brief
+/// Implementation of the @ref DesignPatternExamples_cpp::NullLogger "NullLogger"
+/// class factory used in the @ref bridge_pattern "Bridge pattern".
+
 #include "Bridge_NullLogger.h"
 
 namespace // Anonymous
@@ -36,10 +41,6 @@ namespace // Anonymous
 namespace DesignPatternExamples_cpp
 {
     
-    /// <summary>
-    /// Create an instance of a null logger, a logger that doesn't do anything.
-    /// </summary>
-    /// <returns>An instance of an ILogger object.</returns>
     std::unique_ptr<ILogger> NullLogger::CreateLogger()
     {
         return std::make_unique<NullLoggerImpl>();

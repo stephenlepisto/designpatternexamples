@@ -1,3 +1,8 @@
+/// @file
+/// @brief
+/// Implementation of the @ref DesignPatternExamples_cpp::Logger "Logger"
+/// class used in the @ref bridge_pattern "Bridge pattern".
+
 #include <exception>
 #include <memory>
 #include <string>

@@ -1,3 +1,8 @@
+/// @file
+/// @brief
+/// Implementation of the @ref Helpers::readkey() "readkey()" function, a
+/// blocking read for a key from the keyboard.
+
 #ifdef _MSC_VER
 #include <conio.h>
 #endif

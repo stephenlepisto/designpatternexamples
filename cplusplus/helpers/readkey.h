@@ -1,3 +1,8 @@
+/// @file
+/// @brief
+/// Declaration of the @ref Helpers::readkey() "readkey()" function, a
+/// blocking read for a key from the keyboard.
+
 #pragma once
 #ifndef __READKEY_H__
 #define __READKEY_H__

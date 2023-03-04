@@ -1,3 +1,9 @@
+/// @file
+/// @brief
+/// Declaration of the @ref Helpers::setcursorposition "setcursorposition()" and
+/// @ref Helpers::getcursorposition "getcursorposition()" functions for manipulating
+/// the cursor position on Windows terminals.
+
 #pragma once
 #ifndef __CURSOR_H__
 #define __CURSOR_H__

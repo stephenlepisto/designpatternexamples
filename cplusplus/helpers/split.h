@@ -1,3 +1,8 @@
+/// @file
+/// @brief
+/// Declaration of the @ref Helpers::split "split" functions, for splitting
+/// a string on delimiters.
+
 #pragma once
 #ifndef __SPLIT_H__
 #define __SPLIT_H__

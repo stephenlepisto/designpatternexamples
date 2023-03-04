@@ -1,3 +1,8 @@
+/// @file
+/// @brief
+/// Implementation of the @ref Helpers::makelocaltime "makelocaltime()" function
+/// to convert a time_t to a struct tm containing the local time.
+
 // Posix way of asking for bounds-checked versions of library functions.
 #define __STDC_WANT_LIB_EXT1__ 1
 #include <time.h>

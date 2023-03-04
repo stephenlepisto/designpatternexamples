@@ -1,11 +1,10 @@
-//////////////////////////////////////////////////////////////////////////////
-//
-// Module     : Replace
-//
-// Description: Functions to replace strings or characters within a source
-//              string, changing the source string in the process.
-//
-//////////////////////////////////////////////////////////////////////////////
+/// @file
+/// @brief
+/// Implementation of the
+/// @ref Helpers::Replace(const std::string&, const char*, const char*, bool) "Replace(const std::string&, const char*, const char*, bool)"
+/// and
+/// @ref Helpers::Replace(const std::string&, char, char, bool) "Replace(const std::string&, char, char, bool)"
+/// functions, for replacing narrow character characters and strings in a string.
 
 #include "replace.h"
 #include "strstri.h"

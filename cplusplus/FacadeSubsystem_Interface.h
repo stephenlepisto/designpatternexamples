@@ -1,3 +1,9 @@
+/// @file
+/// @brief
+/// Declaration of the @ref DesignPatternExamples_cpp::IDeviceNetworkLowLevel "IDeviceNetworkLowLevel"
+/// interface representing the complicated sub-system used in the
+/// @ref facade_pattern "Facade pattern".
+
 #pragma once
 #ifndef __FACADESUBSYSTEM_INTERFACE_H__
 #define __FACADESUBSYSTEM_INTERFACE_H__

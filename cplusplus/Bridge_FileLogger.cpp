@@ -1,3 +1,8 @@
+/// @file
+/// @brief
+/// Implementation of the @ref DesignPatternExamples_cpp::FileLogger "FileLogger"
+/// class used in the @ref bridge_pattern "Bridge pattern".
+
 #include <iostream>
 #include <fstream>
 

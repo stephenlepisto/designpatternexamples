@@ -1,3 +1,8 @@
+/// @file
+/// @brief
+/// Implementation of the @ref DesignPatternExamples_cpp::DataReaderWriter "DataReaderWriter"
+/// class used in the @ref adapter_pattern "Adapter pattern".
+
 // This test requires /Zc:__cplusplus to be specified on the build command line.
 #if !defined(__cplusplus) || __cplusplus < 202002L
 #error Requires C++ 20 or later to compile!

@@ -1,3 +1,8 @@
+/// @file
+/// @brief
+/// Declaration of the @ref DesignPatternExamples_cpp::Logger "Logger"
+/// class used in the @ref bridge_pattern "Bridge pattern".
+
 #pragma once
 #ifndef __BRIDGE_LOGGER_H__
 #define __BRIDGE_LOGGER_H__

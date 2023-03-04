@@ -1,3 +1,8 @@
+/// @file
+/// @brief
+/// Declaration of the @ref DesignPatternExamples_cpp::IDeviceNetworkHighLevel "IDeviceNetworkHighLevel"
+/// interface representing the high-level system used in the @ref facade_pattern "Facade pattern".
+
 #pragma once
 #ifndef __FACADE_INTERFACE_H__
 #define __FACADE_INTERFACE_H__

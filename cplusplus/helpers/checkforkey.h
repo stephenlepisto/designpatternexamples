@@ -1,3 +1,8 @@
+/// @file
+/// @brief
+/// Declaration of the @ref Helpers::checkforkey "checkforkey()" function
+/// for determining if a key has been pressed.
+
 #pragma once
 #ifndef __CHECKFORKEY_H__
 #define __CHECKFORKEY_H__

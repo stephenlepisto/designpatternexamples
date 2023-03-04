@@ -1,11 +1,10 @@
-//////////////////////////////////////////////////////////////////////////////
-//
-// Module     : Replace
-//
-// Description: Functions to replace strings or characters within a source
-//              string, changing the source string in the process.
-//
-//////////////////////////////////////////////////////////////////////////////
+/// @file
+/// @brief
+/// Implementation of the
+/// @ref Helpers::Replace(const std::wstring&, const wchar_t*, const wchar_t*, bool) "Replace(const std::wstring&, const wchar_t*, const wchar_t*, bool)"
+/// and
+/// @ref Helpers::Replace(const std::wstring&, wchar_t, wchar_t, bool) "Replace(const std::wstring&, wchar_t, wchar_t, bool)"
+/// functions, for replacing narrow character characters and strings in a string.
 
 #include "replace.h"
 #include "wcsstri.h"

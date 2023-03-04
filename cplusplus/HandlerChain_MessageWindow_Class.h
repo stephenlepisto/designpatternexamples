@@ -1,7 +1,8 @@
 /// @file
 /// @brief
 /// Declaration of the @ref DesignPatternExamples_cpp::MessageWindow "MessageWindow" class
-/// and @ref DesignPatternExamples_cpp::WindowRectangle "WindowRectangle" class.
+/// and @ref DesignPatternExamples_cpp::WindowRectangle "WindowRectangle" class
+/// used in the @ref handlerchain_pattern "HandlerChain pattern"
 
 #pragma once
 #ifndef __HANDLECHAIN_MESSAGEWINDOW_CLASS_H__

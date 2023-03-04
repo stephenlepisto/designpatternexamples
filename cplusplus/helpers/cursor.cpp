@@ -1,3 +1,9 @@
+/// @file
+/// @brief
+/// Implementation of the @ref Helpers::setcursorposition "setcursorposition()" and
+/// @ref Helpers::getcursorposition "getcursorposition()" functions for manipulating
+/// the cursor position on Windows terminals.
+
 #include <iostream>
 #include <format>
 #include <string>

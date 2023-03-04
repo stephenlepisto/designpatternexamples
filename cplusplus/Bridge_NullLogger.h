@@ -1,3 +1,8 @@
+/// @file
+/// @brief
+/// Declaration of the @ref DesignPatternExamples_cpp::NullLogger "NullLogger"
+/// class used in the @ref bridge_pattern "Bridge pattern".
+
 #pragma once
 #ifndef __BRIDGE_NULLLOGGER_H__
 #define __BRIDGE_NULLLOGGER_H__

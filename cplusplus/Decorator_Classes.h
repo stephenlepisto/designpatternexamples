@@ -1,3 +1,10 @@
+/// @file
+/// @brief
+/// Implementation of the @ref DesignPatternExamples_cpp::IRenderElement "IRenderElement"
+/// interface, @ref DesignPatternExamples_cpp::Decorator "Decorator" base class,
+/// @ref DesignPatternExamples_cpp::TextElement "TextElement" class, and the
+/// concrete decorator classes used in the @ref decorator_pattern "Decorator pattern".
+
 #pragma once
 #ifndef __DECORATOR_CLASSES_H__
 #define __DECORATOR_CLASSES_H__

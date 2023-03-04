@@ -1,3 +1,8 @@
+/// @file
+/// @brief
+/// Implementation of the @ref Helpers::split "split" functions, for splitting
+/// a wide character string on delimiters.
+
 #include "split.h"
 
 namespace Helpers

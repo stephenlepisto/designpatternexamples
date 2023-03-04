@@ -1,3 +1,8 @@
+/// @file
+/// @brief
+/// Implementation of the @ref Helpers::wcsstri "wcsstri" function, case-insensitive
+/// string search for wide character strings.
+
 #include <ctype.h>
 #include "wcsstri.h"
 

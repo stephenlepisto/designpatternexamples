@@ -1,3 +1,8 @@
+/// @file
+/// @brief
+/// Declaration of the @ref MapOfStrings typedef for declaring a map of
+/// strings keyed by another string.
+
 #pragma once
 
 #include <map>

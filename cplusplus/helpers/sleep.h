@@ -1,3 +1,8 @@
+/// @file
+/// @brief
+/// Declaration of the @ref Helpers::sleep "sleep" function, for sleeping for
+/// a number of milliseconds.
+
 #pragma once
 #ifndef __SLEEP_H__
 #define __SLEEP_H__

@@ -1,3 +1,8 @@
+/// @file
+/// @brief
+/// Implementation of the @ref Helpers::enableVTMode "enableVTMode()" function
+/// for configuring standard input to support the virtual terminal mode (on Windows).
+
 #ifdef _MSC_VER
 #include <iostream>
 #include <windows.h>
