@@ -179,7 +179,9 @@
     <ClCompile Include="helpers\split.cpp" />
     <ClCompile Include="helpers\splitw.cpp" />
     <ClCompile Include="helpers\strstri.cpp" />
+    <ClCompile Include="helpers\titlecase.cpp" />
     <ClCompile Include="helpers\wcsstri.cpp" />
+    <ClCompile Include="Interpreter_Class.cpp" />
     <ClCompile Include="program.cpp" />
     <ClCompile Include="Proxy_Class.cpp" />
     <ClCompile Include="Visitor_Element_Classes.cpp" />
@@ -217,7 +219,9 @@
     <ClInclude Include="helpers\split.h" />
     <ClInclude Include="helpers\stringlist.h" />
     <ClInclude Include="helpers\strstri.h" />
+    <ClInclude Include="helpers\titlecase.h" />
     <ClInclude Include="helpers\wcsstri.h" />
+    <ClInclude Include="Interpreter_Class.h" />
     <ClInclude Include="Proxy_Class.h" />
     <ClInclude Include="Visitor_Element_Classes.h" />
     <ClInclude Include="Visitor_Shop.h" />
