@@ -30,4 +30,4 @@ its kind.
 - @ref observer_pattern
 - @ref private_pattern
 - @ref state_pattern
--@ref template_pattern
+- @ref template_pattern
