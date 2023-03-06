@@ -178,6 +178,7 @@
     <ClCompile Include="helpers\sleep.cpp" />
     <ClCompile Include="helpers\split.cpp" />
     <ClCompile Include="helpers\splitw.cpp" />
+    <ClCompile Include="helpers\stricmp.cpp" />
     <ClCompile Include="helpers\strstri.cpp" />
     <ClCompile Include="helpers\titlecase.cpp" />
     <ClCompile Include="helpers\wcsstri.cpp" />
@@ -208,6 +209,7 @@
     <ClInclude Include="HandlerChain_Class.h" />
     <ClInclude Include="HandlerChain_Message_Class.h" />
     <ClInclude Include="helpers\argumentnull_error.h" />
+    <ClInclude Include="helpers\argumentinvalid_error.h" />
     <ClInclude Include="helpers\checkforkey.h" />
     <ClInclude Include="helpers\cursor.h" />
     <ClInclude Include="helpers\DateTime.h" />
@@ -218,12 +220,16 @@
     <ClInclude Include="helpers\replace.h" />
     <ClInclude Include="helpers\sleep.h" />
     <ClInclude Include="helpers\split.h" />
+    <ClInclude Include="helpers\stricmp.h" />
     <ClInclude Include="helpers\stringlist.h" />
     <ClInclude Include="helpers\strstri.h" />
     <ClInclude Include="helpers\titlecase.h" />
     <ClInclude Include="helpers\wcsstri.h" />
     <ClInclude Include="Interpreter_Class.h" />
     <ClInclude Include="Iterator_Class.h" />
+    <ClInclude Include="Mediator_Class.h" />
+    <ClInclude Include="Mediator_Group_Classes.h" />
+    <ClInclude Include="Mediator_User_Classes.h" />
     <ClInclude Include="Proxy_Class.h" />
     <ClInclude Include="Visitor_Element_Classes.h" />
     <ClInclude Include="Visitor_Shop.h" />

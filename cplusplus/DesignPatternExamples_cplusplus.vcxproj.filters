@@ -114,6 +114,9 @@
     <ClCompile Include="Iterator_Class.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="helpers\stricmp.cpp">
+      <Filter>Helper Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="helpers\replace.h">
@@ -235,6 +238,21 @@
     </ClInclude>
     <ClInclude Include="Iterator_Class.h">
       <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Mediator_Class.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Mediator_User_Classes.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Mediator_Group_Classes.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="helpers\argumentinvalid_error.h">
+      <Filter>Helper Files</Filter>
+    </ClInclude>
+    <ClInclude Include="helpers\stricmp.h">
+      <Filter>Helper Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
