@@ -1,6 +1,6 @@
 /// @file
 /// @brief
-/// Declaration of the @ref Helpers::argumentnull_error "argumentnull_error()"
+/// Implementation of the @ref Helpers::argumentnull_error "argumentnull_error"
 /// exception.
 
 #pragma once
