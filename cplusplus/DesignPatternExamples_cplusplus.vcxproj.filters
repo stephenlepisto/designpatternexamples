@@ -111,6 +111,9 @@
     <ClCompile Include="helpers\titlecase.cpp">
       <Filter>Helper Files</Filter>
     </ClCompile>
+    <ClCompile Include="Iterator_Class.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="helpers\replace.h">
@@ -229,6 +232,9 @@
     </ClInclude>
     <ClInclude Include="helpers\titlecase.h">
       <Filter>Helper Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Iterator_Class.h">
+      <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

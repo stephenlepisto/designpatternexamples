@@ -1,5 +1,7 @@
 # Iterator Pattern {#iterator_pattern}
 
+@image html iterator_diagram.png "Diagram of the Iterator pattern"
+
 The Iterator pattern is used in situations where a collection of items
 needs to be iterated over.  That is, where each item needs to be accessed
 in some sequence, one at a time.
@@ -44,15 +46,23 @@ accessed in any order.
 
 # How to Use
 
+Links to the Iterator class and interface descriptions:
+- @ref DesignPatternExamples_cpp::IteratorContainer_Class "IteratorContainer_Class" (C++)
+- @ref DesignPatternExamples_csharp.IteratorContainer_Class "IteratorContainer_Class" (C#)
+- @ref DesignPatternExamples_cpp::Iterator "IIterator" interface (C++)
+- @ref DesignPatternExamples_csharp.Iterator "IIterator" interface (C#)
+- @ref DesignPatternExamples_cpp::Iterator "Iterator" class (C++)
+- @ref DesignPatternExamples_csharp.Iterator "Iterator" class (C#)
+
 Having said all that, here is an example of how an object-oriented iterator
-can be implemented.  In this case, the example uses the interface IIterator
-to represent an iterator to the caller.  A custom container class provides
-an instance of this interface to allow the caller to iterate forward
-over the container.  In this example, the container can expose multiple
-iterators, each independent of the others.  The use of multiple iterators
-on the same container is normally used only when the container is a
-read-only type; that is, the contents will not be changing.  Once the
-contents are changed (added or removed), all iterators are considered
+can be implemented.  In this case, the example uses the interface, `IIterator`,
+to represent an iterator to the caller.  A custom container class,
+`IteratorContainer_Class`, provides an instance of this interface to allow the
+caller to iterate forward over the container.  This custom container can
+expose multiple iterators, each independent of the others.  The use of
+multiple iterators on the same container is normally used only when the
+container is a read-only type; that is, the contents will not be changing.
+Once the contents are changed (added or removed), all iterators are considered
 invalid.
 
 __C++__
