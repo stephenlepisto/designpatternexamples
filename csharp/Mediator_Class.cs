@@ -219,7 +219,7 @@ namespace DesignPatternExamples_csharp
             User foundUser = _userGroupsContainer.Users.FindUser(userName);
             if (foundUser == null)
             {
-                string message = String.Format("User '{0}' does not exist.  Cannot get groups containiner user!", userName);
+                string message = String.Format("User '{0}' does not exist.  Cannot get groups container user!", userName);
                 throw new ArgumentException(message);
             }
 

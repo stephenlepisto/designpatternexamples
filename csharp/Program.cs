@@ -1086,7 +1086,7 @@ namespace DesignPatternExamples_csharp
         /// list in a single string.
         /// </summary>
         /// <param name="items">The list of strings to convert.</param>
-        /// <returns>A string contaiing a comma-delimited format of strings.</returns>
+        /// <returns>A string containing a comma-delimited format of strings.</returns>
         string _StringListToCommaArray(string[] items)
         {
             StringBuilder output = new StringBuilder();
@@ -1142,7 +1142,7 @@ namespace DesignPatternExamples_csharp
         /// A series of operations are then performed through the mediator.
         /// The output shows the results of each operation.  Note that all
         /// operations are done using user and group names, with no knowledge
-        /// of the actual lists of users and groups.  The medaitor hides all
+        /// of the actual lists of users and groups.  The mediator hides all
         /// the details.
         /// </summary>
         //! [Using Mediator in C#]
