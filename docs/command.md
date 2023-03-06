@@ -26,7 +26,7 @@ passed to another entity for invocation.
 
 # How to Use
 
-Links to the Facade interface description:
+Links to the Command classes descriptions:
 - (high level) @ref DesignPatternExamples_cpp::Command "Command class" for operations to do/undo (C++)
 - (high level) @ref DesignPatternExamples_csharp.Command "Command class" for operations to do/undo (C#)
 - (high level) @ref DesignPatternExamples_cpp::Command_TextObject "Command_TextObject class" representing what is being changed (C++)
