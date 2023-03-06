@@ -1,6 +1,6 @@
 # Facade Pattern {#facade_pattern}
 
-@image html facade_diagram.png "Diagram of the facade pattern"
+@image html facade_diagram.png "Diagram of the Facade pattern"
 
 The Facade design pattern is basically a simplified interface to a
 complicated sub-system.  Using facades is one more step in creating loose
