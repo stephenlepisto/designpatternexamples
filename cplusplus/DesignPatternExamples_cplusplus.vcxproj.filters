@@ -254,5 +254,8 @@
     <ClInclude Include="helpers\stricmp.h">
       <Filter>Helper Files</Filter>
     </ClInclude>
+    <ClInclude Include="Memento.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
