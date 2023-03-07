@@ -257,5 +257,8 @@
     <ClInclude Include="Memento.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="Null_Object.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

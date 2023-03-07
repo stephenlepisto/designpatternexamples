@@ -46,6 +46,7 @@
 #include "Iterator_Class.h"
 #include "Mediator_Class.h"
 #include "Memento.h"
+#include "Null_Object.h"
 
 
 namespace DesignPatternExamples_cpp
@@ -1686,14 +1687,26 @@ namespace DesignPatternExamples_cpp
         /// This example displays the commands after parsing and then
         /// "executes" commands, which consists of printing the commands out.
         /// 
-        /// This example highlights the Null Object pattern while utilizing
-        /// the Command and Interpreter patterns.
+        /// This example highlights the @ref nullobject_pattern while also
+        /// utilizing the @ref command_pattern and @ref interpreter_pattern.
         /// </summary>
         //! [Using NullObject in C++]
         void NullObject_Exercise()
         {
             std::cout << std::endl;
             std::cout << "NullObject Exercise" << std::endl;
+
+            MoveProcessor moveProcessor;
+
+            // A stream of recognized and unrecognized move commands.  The
+            // unrecognized commands do nothing.
+            std::string moveString = "ur#ld!lr";
+            std::cout << "  Showing the move commands:" << std::endl;
+            moveProcessor.ShowMoveList(moveString);
+
+            std::cout << "  Executing the move commands:" << std::endl;
+            std::cout << std::format("    {0} -> ", moveString);
+            moveProcessor.ExecuteMoveList(moveString);
 
             std::cout << "  Done." << std::endl;
         }

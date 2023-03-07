@@ -1,14 +1,28 @@
-﻿/// @file
+/// @file
 /// @brief
-/// The @ref DesignPatternExamples_csharp.MoveProcessor "MoveProcessor" class
+/// Implementation of the @ref DesignPatternExamples_csharp.MoveProcessor "MoveProcessor" class
 /// and the various MoveXX classes used in the
 /// @ref nullobject_pattern "Null Object pattern".
 
-using System;
-using System.Collections.Generic;
+#pragma once
+#ifndef __NULL_OBJECT_H__
+#define __NULL_OBJECT_H__
 
-namespace DesignPatternExamples_csharp
+// This test requires /Zc:__cplusplus to be specified on the build command line.
+#if !defined(__cplusplus) || __cplusplus < 202002L
+#error Requires C++ 20 or later to compile!
+#endif
+#include <format> // Requires C++20
+
+#include <iostream>
+#include <memory>
+#include <string>
+#include <vector>
+
+
+namespace DesignPatternExamples_cpp
 {
+
     /// <summary>
     /// Base class that represents a move command.  A move command has a name
     /// and the command character that represents the command in the initial
@@ -20,19 +34,48 @@ namespace DesignPatternExamples_csharp
     /// the current line.  When displayed, the move command shows the command
     /// character followed by the name of the command.
     /// </summary>
-    public abstract class MoveCommand
+    class MoveCommand
     {
+    public:
+        /// <summary>
+        /// Alias to make it easier to work with a shared pointer.
+        /// </summary>
+        using shared_ptr_t = std::shared_ptr<MoveCommand>;
+
+    private:
+        /// <summary>
+        /// Name of the command.
+        /// </summary>
+        std::string _name;
+
+        /// <summary>
+        /// The command for controlling movement.
+        /// </summary>
+        std::string _command;
+
+    public:
+        /// <summary>
+        /// Virtual destructor required for interfaces/base classes
+        /// </summary>
+        virtual ~MoveCommand() { }
+
         /// <summary>
         /// Name of the command (assigned in the class constructor).
         /// </summary>
-        public string Name { get; private set; }
+        std::string Name()
+        {
+            return _name;
+        }
 
         /// <summary>
         /// The command character from the original list of commands.
         /// Used when displaying the commands as opposed to when executing
         /// the commands (assigned in the class constructor).
         /// </summary>
-        public string Command { get; private set; }
+        std::string Command()
+        {
+            return _command;
+        }
 
 
         /// <summary>
@@ -40,27 +83,29 @@ namespace DesignPatternExamples_csharp
         /// </summary>
         /// <param name="command">The character that represents the command in the original move list.</param>
         /// <param name="commandName">The name of the command (for display purposes).</param>
-        public MoveCommand(string command, string commandName)
+        MoveCommand(std::string command, std::string commandName)
+            : _name(commandName)
+            , _command(command)
         {
-            Command = command;
-            Name = commandName;
         }
 
 
         /// <summary>
         /// Display the move command and its name followed by a newline.
         /// </summary>
-        public void Show()
+        virtual void Show()
         {
-            Console.WriteLine("    '{0}' -> {1}", Command, Name);
+            std::cout
+                << std::format("    '{0}' -> {1}", _command, _name)
+                << std::endl;
         }
 
 
         /// <summary>
         /// Execute the command.  Derived classes must implement this.
         /// </summary>
-        public abstract void Execute();
-    }
+        virtual void Execute() = 0;
+    };
 
 
     //########################################################################
@@ -70,14 +115,15 @@ namespace DesignPatternExamples_csharp
     /// <summary>
     /// Represents the Move Left command.
     /// </summary>
-    class MoveCommandLeft : MoveCommand
+    class MoveCommandLeft : public MoveCommand
     {
+    public:
         /// <summary>
         /// Constructor.
         /// </summary>
         /// <param name="command">The character representing the move in the
         /// original move list.</param>
-        public MoveCommandLeft(string command) : base(command, "Left")
+        MoveCommandLeft(std::string command) : MoveCommand(command, "Left")
         {
         }
 
@@ -85,11 +131,11 @@ namespace DesignPatternExamples_csharp
         /// <summary>
         /// Executes the move left command.
         /// </summary>
-        public override void Execute()
+        void Execute() override
         {
-            Console.Write("move left");
+            std::cout << "move left";
         }
-    }
+    };
 
 
     //########################################################################
@@ -99,14 +145,15 @@ namespace DesignPatternExamples_csharp
     /// <summary>
     /// Represents the Move Right command.
     /// </summary>
-    class MoveCommandRight : MoveCommand
+    class MoveCommandRight : public MoveCommand
     {
+    public:
         /// <summary>
         /// Constructor.
         /// </summary>
         /// <param name="command">The character representing the move in the
         /// original move list.</param>
-        public MoveCommandRight(string command) : base(command, "Right")
+        MoveCommandRight(std::string command) : MoveCommand(command, "Right")
         {
         }
 
@@ -114,11 +161,11 @@ namespace DesignPatternExamples_csharp
         /// <summary>
         /// Executes the move right command.
         /// </summary>
-        public override void Execute()
+        void Execute() override
         {
-            Console.Write("move right");
+            std::cout << "move right";
         }
-    }
+    };
 
 
     //########################################################################
@@ -128,14 +175,15 @@ namespace DesignPatternExamples_csharp
     /// <summary>
     /// Represents the Move Up command.
     /// </summary>
-    class MoveCommandUp : MoveCommand
+    class MoveCommandUp : public MoveCommand
     {
+    public:
         /// <summary>
         /// Constructor.
         /// </summary>
         /// <param name="command">The character representing the move in the
         /// original move list.</param>
-        public MoveCommandUp(string command) : base(command, "Up")
+        MoveCommandUp(std::string command) : MoveCommand(command, "Up")
         {
         }
 
@@ -143,11 +191,11 @@ namespace DesignPatternExamples_csharp
         /// <summary>
         /// Executes the move up command.
         /// </summary>
-        public override void Execute()
+        void Execute() override
         {
-            Console.Write("move up");
+            std::cout << "move up";
         }
-    }
+    };
 
 
     //########################################################################
@@ -157,14 +205,15 @@ namespace DesignPatternExamples_csharp
     /// <summary>
     /// Represents the Move Down command.
     /// </summary>
-    class MoveCommandDown : MoveCommand
+    class MoveCommandDown : public MoveCommand
     {
+    public:
         /// <summary>
         /// Constructor.
         /// </summary>
         /// <param name="command">The character representing the move in the
         /// original move list.</param>
-        public MoveCommandDown(string command) : base(command, "Down")
+        MoveCommandDown(std::string command) : MoveCommand(command, "Down")
         {
         }
 
@@ -172,11 +221,11 @@ namespace DesignPatternExamples_csharp
         /// <summary>
         /// Executes the move down command.
         /// </summary>
-        public override void Execute()
+        void Execute() override
         {
-            Console.Write("move down");
+            std::cout << "move down";
         }
-    }
+    };
 
 
     //########################################################################
@@ -187,14 +236,15 @@ namespace DesignPatternExamples_csharp
     /// Represents the Do Nothing command.  This is the Null Object for this
     /// exercise.
     /// </summary>
-    class MoveCommandNone : MoveCommand
+    class MoveCommandNone : public MoveCommand
     {
+    public:
         /// <summary>
         /// Constructor.
         /// </summary>
         /// <param name="command">The character representing the move in the
         /// original move list.</param>
-        public MoveCommandNone(string command) : base(command, "None")
+        MoveCommandNone(std::string command) : MoveCommand(command, "None")
         {
         }
 
@@ -202,10 +252,10 @@ namespace DesignPatternExamples_csharp
         /// <summary>
         /// Does nothing when executed (this is the Null Object, after all).
         /// </summary>
-        public override void Execute()
+        void Execute() override
         {
         }
-    }
+    };
 
 
     //########################################################################
@@ -225,8 +275,9 @@ namespace DesignPatternExamples_csharp
     /// the Interpreter pattern, where the actions are the tokens to be
     /// interpreted.
     /// </summary>
-    public class MoveProcessor
+    class MoveProcessor
     {
+    private:
         //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         // Private methods.
 
@@ -239,38 +290,39 @@ namespace DesignPatternExamples_csharp
         /// <param name="moveList">A string containing a list of single letter
         /// commands to be parsed.</param>
         /// <returns>Returns a list of MoveCommand objects.</returns>
-        private List<MoveCommand> _ParseMoves(string moveList)
+        std::vector<MoveCommand::shared_ptr_t> _ParseMoves(std::string moveList)
         {
-            List<MoveCommand> commands = new List<MoveCommand>();
-            foreach (char command in moveList)
+            std::vector<MoveCommand::shared_ptr_t> commands;
+            for (size_t index = 0; index < moveList.size(); index++)
             {
-                string testCommand = command.ToString().ToUpper();
-                MoveCommand moveCommand = null;
+                char commandChar = static_cast<char>(std::toupper(moveList[index]));
+                std::string command(1, commandChar);
+                MoveCommand::shared_ptr_t moveCommand;
 
-                switch (testCommand)
+                switch (commandChar)
                 {
-                    case "U":
-                        moveCommand = new MoveCommandUp(command.ToString());
+                    case 'U':
+                        moveCommand = std::make_shared<MoveCommandUp>(command);
                         break;
 
-                    case "D":
-                        moveCommand = new MoveCommandDown(command.ToString());
+                    case 'D':
+                        moveCommand = std::make_shared<MoveCommandDown>(command);
                         break;
 
-                    case "L":
-                        moveCommand = new MoveCommandLeft(command.ToString());
+                    case 'L':
+                        moveCommand = std::make_shared<MoveCommandLeft>(command);
                         break;
 
-                    case "R":
-                        moveCommand = new MoveCommandRight(command.ToString());
+                    case 'R':
+                        moveCommand = std::make_shared<MoveCommandRight>(command);
                         break;
 
                     default:
                         // Everything else is a "do nothing" command.
-                        moveCommand = new MoveCommandNone(command.ToString());
+                        moveCommand = std::make_shared<MoveCommandNone>(command);
                         break;
                 }
-                commands.Add(moveCommand);
+                commands.push_back(moveCommand);
             }
 
             return commands;
@@ -288,15 +340,15 @@ namespace DesignPatternExamples_csharp
         /// The "Do Nothing" command doesn't print anything, leaving only the
         /// empty &lt;&gt;.
         /// </remarks>
-        private void _ExecuteMoves(List<MoveCommand> commands)
+        void _ExecuteMoves(const std::vector<MoveCommand::shared_ptr_t>& commands)
         {
-            foreach(MoveCommand command in commands)
+            for(MoveCommand::shared_ptr_t command : commands)
             {
-                Console.Write("<");
-                command.Execute();
-                Console.Write("> ");
+                std::cout << "<";
+                command->Execute();
+                std::cout << "> ";
             }
-            Console.WriteLine();
+            std::cout << std::endl;
         }
 
 
@@ -305,14 +357,15 @@ namespace DesignPatternExamples_csharp
         /// command in the given list of commands.
         /// </summary>
         /// <param name="commands">The list of MoveCommand objects to display.</param>
-        private void _ShowMoves(List<MoveCommand> commands)
+        void _ShowMoves(const std::vector<MoveCommand::shared_ptr_t>& commands)
         {
-            foreach(MoveCommand command in commands)
+            for (MoveCommand::shared_ptr_t command : commands)
             {
-                command.Show();
+                command->Show();
             }
         }
 
+    public:
         //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         // Public methods.
 
@@ -323,9 +376,9 @@ namespace DesignPatternExamples_csharp
         /// assigned a "Do Nothing" command.
         /// </summary>
         /// <param name="moveList">A string of characters to parse and execute.</param>
-        public void ExecuteMoveList(string moveList)
+        void ExecuteMoveList(std::string moveList)
         {
-            List<MoveCommand> commands = _ParseMoves(moveList);
+            std::vector<MoveCommand::shared_ptr_t> commands = _ParseMoves(moveList);
             _ExecuteMoves(commands);
         }
 
@@ -337,10 +390,14 @@ namespace DesignPatternExamples_csharp
         /// assigned a "Do Nothing" command.
         /// </summary>
         /// <param name="moveList">A string of characters to parse and display.</param>
-        public void ShowMoveList(string moveList)
+        void ShowMoveList(std::string moveList)
         {
-            List<MoveCommand> commands = _ParseMoves(moveList);
+            std::vector<MoveCommand::shared_ptr_t> commands = _ParseMoves(moveList);
             _ShowMoves(commands);
         }
-    }
-}
+    };
+
+} // end namespace
+
+#endif // __NULL_OBJECT_H__
+
