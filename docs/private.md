@@ -1,4 +1,4 @@
-# Private Pattern {#private_pattern}
+# Private Class Data Pattern {#private_pattern}
 
 The Private Class Data pattern is used to prevent manipulation of its data
 properties after construction.  This is used in languages that do not have
