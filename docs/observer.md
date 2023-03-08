@@ -1,5 +1,7 @@
 # Observer Pattern {#observer_pattern}
 
+@image html observer_diagram.png "Diagram of the Observer pattern"
+
 The Observer pattern is used when one or more entities need to be told
 about a change in state of another entity (typically known as the Subject)
 and those entities, upon notification, pull data from the Subject to
@@ -57,6 +59,14 @@ called as part of the process of sending the event notifications.
 
 # How to Use
 
+Links to the Observer interface and class descriptions:
+- @ref DesignPatternExamples_cpp::IObserverNumberChanged "IObserverNumberChanged" interface (C++)
+- @ref DesignPatternExamples_csharp.IObserverNumberChanged "IObserverNumberChanged" interface (C#)
+- @ref DesignPatternExamples_cpp::INumberProducer "INumberProducer" interface (C++)
+- @ref DesignPatternExamples_csharp::INumberProducer "INumberProducer" interface (C#)
+- @ref DesignPatternExamples_cpp::ObserverSubject_NumberProducer "ObserverSubject_NumberProducer" class (C++)
+- @ref DesignPatternExamples_csharp::ObserverSubject_NumberProducer "ObserverSubject_NumberProducer" class (C#)
+
 In this example of the Observer pattern, a Subject contains a numerical
 value that can change.  There are three observers to the subject who are
 notified whenever the value changes.  Each observer pulls the number from
@@ -66,15 +76,15 @@ things readable, everything runs on the same thread.  The order of the
 output is dictated by the order of the observers subscribing to the
 Subject.
 
-Note: This example could be made simpler by having the Subject push the
+*Note: This example could be made simpler by having the Subject push the
 data to the observers.  I wanted to show the more complex form of the
-Observer pattern, however, so I went with a pull model.
+Observer pattern, however, so I went with a pull model.*
 
-The push model would have eliminated the need for the INumberProducer
+*The push model would have eliminated the need for the INumberProducer
 interface on the Subject as well as the need to take and store the
 INumberProducer object in each observer.  And that in turn would simplify
 each observer class down to a single method to support the
-IObserverNumberChanged interface.
+IObserverNumberChanged interface.*
 
 
 __C++__
