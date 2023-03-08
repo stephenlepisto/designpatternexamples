@@ -1,6 +1,6 @@
 /// @file
 /// @brief
-/// Implementation of the @ref DesignPatternExamples_csharp.MoveProcessor "MoveProcessor" class
+/// Implementation of the @ref DesignPatternExamples_cpp::MoveProcessor "MoveProcessor" class
 /// and the various MoveXX classes used in the
 /// @ref nullobject_pattern "Null Object pattern".
 

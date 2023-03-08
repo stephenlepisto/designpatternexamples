@@ -1,7 +1,7 @@
 /// @file
 /// @brief
-/// Implementation of the @ref DesignPatternExamples_csharp.User "User" and the
-/// @ref DesignPatternExamples_csharp.UserList "UserList" classes
+/// Implementation of the @ref DesignPatternExamples_cpp::User "User" and the
+/// @ref DesignPatternExamples_cpp::UserList "UserList" classes
 /// used in the @ref mediator_pattern "Mediator pattern".
 
 

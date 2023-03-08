@@ -1,7 +1,7 @@
 /// @file
 /// @brief
-/// Implementation of the @ref DesignPatternExamples_csharp.Group "Group" and the
-/// @ref DesignPatternExamples_csharp.GroupList "GroupList" classes
+/// Implementation of the @ref DesignPatternExamples_cpp::Group "Group" and the
+/// @ref DesignPatternExamples_cpp::GroupList "GroupList" classes
 /// used in the @ref mediator_pattern "Mediator pattern".
 
 #pragma once

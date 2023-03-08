@@ -1,6 +1,6 @@
 /// @file
 /// @brief
-/// Implementation of the @ref DesignPatternExamples_csharp.Memento_TextObject "Memento_TextObject"
+/// Implementation of the @ref DesignPatternExamples_cpp::Memento_TextObject "Memento_TextObject"
 /// class used in the @ref memento_pattern "Memento pattern".
 #pragma once
 #ifndef __MEMENTO_H__
