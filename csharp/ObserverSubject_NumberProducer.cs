@@ -173,7 +173,8 @@ namespace DesignPatternExamples_csharp
         {
             // In a multi-threaded environment, this would be protected by
             // a lock of some form.  This example doesn't use multiple threads
-            // so no lock is needed.
+            // so no lock is needed.  See HandlerChain_Class.cs for an example
+            // of how locks are used.
             if (!_observers.Contains(observer))
             {
                 _observers.Add(observer);
