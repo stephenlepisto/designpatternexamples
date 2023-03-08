@@ -1,5 +1,7 @@
 # Null Object Pattern {#nullobject_pattern}
 
+@image html nullobject_diagram.png "Diagram of the Null Object pattern"
+
 The Null Object pattern is used in those places where a default object of
 some kind is needed to do nothing.  A Null (or Default) Object is an actual
 object that can be called on but does not do anything.  This is not the
@@ -36,6 +38,22 @@ Bridge_NullLogger class that represents a logger that does nothing.  This is a
 classic case of a null object.
 
 # How to Use
+
+Links to the Null Object class descriptions:
+- @ref DesignPatternExamples_cpp::MoveProcessor "MoveProcessor" class (C++)
+- @ref DesignPatternExamples_csharp.MoveProcessor "MoveProcessor" class (C#)
+- @ref DesignPatternExamples_cpp::MoveCommand "MoveCommand" base class (of all Move actions) (C++)
+- @ref DesignPatternExamples_csharp::MoveCommand "MoveCommand" base class (of all Move actions) (C#)
+- @ref DesignPatternExamples_cpp::MoveCommandNone "MoveCommandNone" (Null Object) class (C++)
+- @ref DesignPatternExamples_csharp.MoveCommandNone "MoveCommandNone" (Null Object) class (C#)
+- @ref DesignPatternExamples_cpp::MoveCommandLeft "MoveCommandLeft" class (C++)
+- @ref DesignPatternExamples_csharp.MoveCommandLeft "MoveCommandLeft" class (C#)
+- @ref DesignPatternExamples_cpp::MoveCommandRight "MoveCommandRight" class (C++)
+- @ref DesignPatternExamples_csharp.MoveCommandRight "MoveCommandRight" class (C#)
+- @ref DesignPatternExamples_cpp::MoveCommandUp "MoveCommandUp" class (C++)
+- @ref DesignPatternExamples_csharp.MoveCommandUp "MoveCommandUp" class (C#)
+- @ref DesignPatternExamples_cpp::MoveCommandDown "MoveCommandDown" class (C++)
+- @ref DesignPatternExamples_csharp.MoveCommandDown "MoveCommandDown" class (C#)
 
 The somewhat contrived example here parses a string for single letter move
 commands, converting them into class objects for each command.  For all
