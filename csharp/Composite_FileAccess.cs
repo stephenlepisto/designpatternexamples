@@ -17,6 +17,10 @@ using System.IO;
 
 namespace DesignPatternExamples_csharp
 {
+    /// <summary>
+    /// Static class containing functions for accessing a hardcoded "file" and
+    /// "directory" hierarchy.
+    /// </summary>
     public static class Composite_FileAccess
     {
         // The hardcoded hierarchy representing a file/directory structure.

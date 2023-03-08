@@ -8,8 +8,14 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+/// <summary>
+/// The namespace containing all Design Pattern Examples implemented in C#.
+/// </summary>
 namespace DesignPatternExamples_csharp
 {
+    /// <summary>
+    /// Contains all the top-level Design Pattern Examples.
+    /// </summary>
     class Program
     {
         //########################################################################

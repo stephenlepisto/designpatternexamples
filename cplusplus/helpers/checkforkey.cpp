@@ -9,6 +9,9 @@
 
 #include "checkforkey.h"
 
+/// <summary>
+/// The namespace containing all the "helper" functions in the C++ code.
+/// </summary>
 namespace Helpers
 {
 

@@ -11,7 +11,7 @@ namespace DesignPatternExamples_csharp
     /// Represents the logger object to be used in the program.
     /// </summary>
     /// <remarks>This class wraps different implementations of loggers to show
-    /// the Bridge pattern.</remarks>
+    /// the @ref bridge_pattern.</remarks>
     internal class Logger : IDisposable
     {
         /// <summary>

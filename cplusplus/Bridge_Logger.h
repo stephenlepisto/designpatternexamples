@@ -14,6 +14,11 @@
 namespace DesignPatternExamples_cpp
 {
 
+    /// <summary>
+    /// Represents the logger object to be used in the program.
+    /// </summary>
+    /// <remarks>This class wraps different implementations of loggers to show
+    /// the @ref bridge_pattern.</remarks>
     class Logger
     {
     private:

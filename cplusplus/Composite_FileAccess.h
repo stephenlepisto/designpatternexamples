@@ -13,6 +13,12 @@
 namespace DesignPatternExamples_cpp
 {
 
+    /// <summary>
+    /// Class containing static functions for accessing a hardcoded "file" and
+    /// "directory" hierarchy.
+    /// </summary>
+    // Using a class here instead of a namespace because Doxygen seems to have
+    // trouble with nested namespaces.
     class Composite_FileAccess
     {
     private:

@@ -48,13 +48,18 @@
 #include "Memento.h"
 #include "Null_Object.h"
 
-
+/// <summary>
+/// The namespace containing all Design Pattern Examples implemented in C++.
+/// </summary>
 namespace DesignPatternExamples_cpp
 {
 
     //typedef void (*Action)(); // Represents a function to be called
     typedef std::function<void()> Action;
 
+    /// <summary>
+    /// Contains all the top-level Design Pattern Examples to match C#.
+    /// </summary>
     class Program
     {
     private:
