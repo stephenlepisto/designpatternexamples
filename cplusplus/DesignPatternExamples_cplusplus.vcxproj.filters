@@ -260,5 +260,11 @@
     <ClInclude Include="Null_Object.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="Observer_Class.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ObserverSubject_NumberProducer.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

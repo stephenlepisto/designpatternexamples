@@ -232,6 +232,8 @@
     <ClInclude Include="Mediator_User_Classes.h" />
     <ClInclude Include="Memento.h" />
     <ClInclude Include="Null_Object.h" />
+    <ClInclude Include="ObserverSubject_NumberProducer.h" />
+    <ClInclude Include="Observer_Class.h" />
     <ClInclude Include="Proxy_Class.h" />
     <ClInclude Include="Visitor_Element_Classes.h" />
     <ClInclude Include="Visitor_Shop.h" />

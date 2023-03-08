@@ -47,6 +47,7 @@
 #include "Mediator_Class.h"
 #include "Memento.h"
 #include "Null_Object.h"
+#include "Observer_Class.h"
 
 /// <summary>
 /// The namespace containing all Design Pattern Examples implemented in C++.
@@ -1747,6 +1748,46 @@ namespace DesignPatternExamples_cpp
         {
             std::cout << std::endl;
             std::cout << "Observer Exercise" << std::endl;
+
+            INumberProducer::shared_ptr_t numberProducer = std::make_shared<ObserverSubject_NumberProducer>();
+
+            // The number producer is passed to the observers so the observers
+            // can get the number to display.  The observers only see the
+            // INumberProducer interface, to minimize knowledge about the
+            // Subject.
+            IObserverNumberChanged::shared_ptr_t observerDecimal = std::make_shared<ObserverForDecimal>(numberProducer);
+            IObserverNumberChanged::shared_ptr_t observerHexadecimal = std::make_shared<ObserverForHexaDecimal>(numberProducer);
+            IObserverNumberChanged::shared_ptr_t observerBinary = std::make_shared<ObserverForBinary>(numberProducer);
+
+            // Tell the number producer about the observers who are notified
+            // whenever the value changes.
+            IEventNotifications* eventNotifier = dynamic_cast<IEventNotifications*>(numberProducer.get());
+            if (eventNotifier != nullptr)
+            {
+                eventNotifier->SubscribeToNumberChanged(observerDecimal);
+                eventNotifier->SubscribeToNumberChanged(observerHexadecimal);
+                eventNotifier->SubscribeToNumberChanged(observerBinary);
+            }
+
+            // Call the number producer's Update() method a number of times.
+            // The observers automatically print out the current value in
+            // different bases.
+            for (int index = 0; index < 10; ++index)
+            {
+                std::cout
+                    << std::format("  Update {0} on number producer.  Results from observers:", index)
+                    << std::endl;
+                numberProducer->Update();
+            }
+
+            if (eventNotifier != nullptr)
+            {
+                // When done, remove the observers from the number producer.
+                // It's always good to clean up after ourselves.
+                eventNotifier->UnsubscribeFromNumberChanged(observerDecimal);
+                eventNotifier->UnsubscribeFromNumberChanged(observerHexadecimal);
+                eventNotifier->UnsubscribeFromNumberChanged(observerBinary);
+            }
 
             std::cout << "  Done." << std::endl;
         }
