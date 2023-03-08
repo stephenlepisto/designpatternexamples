@@ -249,12 +249,14 @@ namespace DesignPatternExamples_cpp
         /// given observer is already subscribed.
         /// </summary>
         /// <param name="observer">An observer represented by the IObserverNumberChanged interface.</param>
+        /// <remarks>In a multi-threaded environment, this method would use a
+        /// lock of some form.  This example doesn't use multiple threads so no
+        /// lock is needed.  See the
+        /// @ref DesignPatternExamples_cpp::HandlerChain::SendMessage() "HandlerChain::SendMessage()"
+        /// method in HandlerChain_Class.cpp for an example of such a lock.
+        /// </remarks>
         void SubscribeToNumberChanged(IObserverNumberChanged::shared_ptr_t observer)
         {
-            // In a multi-threaded environment, this would be protected by
-            // a lock of some form.  This example doesn't use multiple threads
-            // so no lock is needed.  See HandlerChain_class.h for an example
-            // of such a lock.
             if (!_ContainsObserver(observer))
             {
                 _observers.push_back(observer);
@@ -268,13 +270,14 @@ namespace DesignPatternExamples_cpp
         /// if the given observer was not subscribed.
         /// </summary>
         /// <param name="observer">An observer represented by the IObserverNumberChanged interface.</param>
+        /// <remarks>In a multi-threaded environment, this method would use a
+        /// lock of some form.  This example doesn't use multiple threads so no
+        /// lock is needed.  See the
+        /// @ref DesignPatternExamples_cpp::HandlerChain::SendMessage() "HandlerChain::SendMessage()"
+        /// method in HandlerChain_Class.cpp for an example of such a lock.
+        /// </remarks>
         void UnsubscribeFromNumberChanged(IObserverNumberChanged::shared_ptr_t observer)
         {
-            // In a multi-threaded environment, this would be protected by
-            // a lock of some form.  This example doesn't use multiple threads
-            // so no lock is needed.  See HandlerChain_class.h for an example
-            // of such a lock.
-
             ObserversList::iterator foundIter;
             foundIter = _FindObserver(observer);
             if (foundIter != std::end(_observers))

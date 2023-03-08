@@ -67,7 +67,8 @@ namespace DesignPatternExamples_csharp
 
 
         /// <summary>
-        /// Send a message to each of the handlers in the list.
+        /// Send a message to each of the handlers in the list, protected by
+        /// a multi-threading lock.
         /// </summary>
         /// <param name="message">The Message object to send to each handler.</param>
         public void SendMessage(Message message)
@@ -93,8 +94,10 @@ namespace DesignPatternExamples_csharp
 
         /// <summary>
         /// Add an instance of the IMessageHandler interface to end of the
-        /// list of handlers.  If a message handler is already in the list, it
-        /// is not added again.
+        /// list of handlers, protected by
+        /// a multi-threading lock.
+        /// 
+        /// If a message handler is already in the list, it is not added again.
         /// </summary>
         /// <param name="window">The IMessageHandler object to add.</param>
         public void AddHandler(IMessageHandler window)
@@ -111,7 +114,9 @@ namespace DesignPatternExamples_csharp
 
 
         /// <summary>
-        /// Remove an instance of the IMessageHandler interface from the list.
+        /// Remove an instance of the IMessageHandler interface from the list,
+        /// protected by a multi-threading lock.
+        /// 
         /// If the message handler is not in the list, the request to remove
         /// is ignored.
         /// </summary>
@@ -130,7 +135,8 @@ namespace DesignPatternExamples_csharp
 
 
         /// <summary>
-        /// Convert this HandlerChain to a string.
+        /// Convert this HandlerChain to a string, protected by a multi-threading
+        /// lock.
         /// </summary>
         /// <returns>Returns a string representation of this HandlerChain and all
         /// the handlers it contains.</returns>

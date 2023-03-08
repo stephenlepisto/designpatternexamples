@@ -169,12 +169,14 @@ namespace DesignPatternExamples_csharp
         /// given observer is already subscribed.
         /// </summary>
         /// <param name="observer">An observer represented by the IObserverNumberChanged interface.</param>
+        /// <remarks>In a multi-threaded environment, this method would use a
+        /// lock of some form.  This example doesn't use multiple threads so no
+        /// lock is needed.  See the
+        /// @ref DesignPatternExamples_csharp.HandlerChain.SendMessage() "HandlerChain.SendMessage()"
+        /// method in HandlerChain_Class.cs for an example of such a lock.
+        /// </remarks>
         void IEventNotifications.SubscribeToNumberChanged(IObserverNumberChanged observer)
         {
-            // In a multi-threaded environment, this would be protected by
-            // a lock of some form.  This example doesn't use multiple threads
-            // so no lock is needed.  See HandlerChain_Class.cs for an example
-            // of how locks are used.
             if (!_observers.Contains(observer))
             {
                 _observers.Add(observer);
@@ -188,11 +190,13 @@ namespace DesignPatternExamples_csharp
         /// if the given observer was not subscribed.
         /// </summary>
         /// <param name="observer">An observer represented by the IObserverNumberChanged interface.</param>
+        /// <remarks>In a multi-threaded environment, this method would use a
+        /// lock is needed.  See the
+        /// @ref DesignPatternExamples_csharp.HandlerChain.SendMessage() "HandlerChain.SendMessage()"
+        /// method in HandlerChain_Class.cs for an example of such a lock.
+        /// </remarks>
         void IEventNotifications.UnsubscribeFromNumberChanged(IObserverNumberChanged observer)
         {
-            // In a multi-threaded environment, this would be protected by
-            // a lock of some form.  This example doesn't use multiple threads
-            // so no lock is needed.
             if (_observers.Contains(observer))
             {
                 _observers.Remove(observer);
