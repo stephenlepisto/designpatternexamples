@@ -27,7 +27,9 @@ its kind.
 - @ref iterator_pattern
 - @ref mediator_pattern
 - @ref memento_pattern
+- @ref nullobject_pattern
 - @ref observer_pattern
 - @ref private_pattern
 - @ref state_pattern
 - @ref template_pattern
+ 

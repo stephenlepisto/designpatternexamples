@@ -283,9 +283,10 @@ namespace DesignPatternExamples_cpp
 
         /// <summary>
         /// Helper method to convert a list of single letter commands into a
-        /// list of MoveCommand objects.  This method recognizes 'L', 'R',
-        /// 'U', and 'D' (case-insensitive).  All other characters default to
-        /// the "Do Nothing" command.
+        /// list of MoveCommand objects.
+        /// 
+        /// This method recognizes 'L', 'R', 'U', and 'D' (case-insensitive).
+        /// All other characters default to the "Do Nothing" (Null Object) command.
         /// </summary>
         /// <param name="moveList">A string containing a list of single letter
         /// commands to be parsed.</param>
@@ -335,10 +336,10 @@ namespace DesignPatternExamples_cpp
         /// <param name="commands">A list of MoveCommand objects to "execute".</param>
         /// <remarks>
         /// In this implementation, the MoveCommand prints the command as
-        /// "&lt;move xxx&gt; " on the current line.  When all commands have
+        /// "<move xxx> " on the current line.  When all commands have
         /// been printed, a new line is printed to move to the next line.
         /// The "Do Nothing" command doesn't print anything, leaving only the
-        /// empty &lt;&gt;.
+        /// empty <>.
         /// </remarks>
         void _ExecuteMoves(const std::vector<MoveCommand::shared_ptr_t>& commands)
         {
@@ -371,9 +372,10 @@ namespace DesignPatternExamples_cpp
 
         /// <summary>
         /// Parse and execute the given list of move commands, where each
-        /// command is represents by a single character.  Recognizes 'U', 'D',
-        /// 'L', and 'R' (case-insensitive).  All other characters are
-        /// assigned a "Do Nothing" command.
+        /// command is represents by a single character.
+        /// 
+        /// Recognizes 'U', 'D', 'L', and 'R' (case-insensitive).  All other
+        /// characters are assigned a "Do Nothing" (Null Object) command.
         /// </summary>
         /// <param name="moveList">A string of characters to parse and execute.</param>
         void ExecuteMoveList(std::string moveList)
@@ -385,9 +387,10 @@ namespace DesignPatternExamples_cpp
 
         /// <summary>
         /// Parse and display the given list of move commands, where each
-        /// command is represents by a single character.  Recognizes 'U', 'D',
-        /// 'L', and 'R' (case-insensitive).  All other characters are
-        /// assigned a "Do Nothing" command.
+        /// command is represents by a single character.
+        /// 
+        /// Recognizes 'U', 'D', 'L', and 'R' (case-insensitive).  All other
+        /// characters are assigned a "Do Nothing" (Null Object) command.
         /// </summary>
         /// <param name="moveList">A string of characters to parse and display.</param>
         void ShowMoveList(std::string moveList)

@@ -232,9 +232,10 @@ namespace DesignPatternExamples_csharp
 
         /// <summary>
         /// Helper method to convert a list of single letter commands into a
-        /// list of MoveCommand objects.  This method recognizes 'L', 'R',
-        /// 'U', and 'D' (case-insensitive).  All other characters default to
-        /// the "Do Nothing" command.
+        /// list of MoveCommand objects.
+        /// 
+        /// This method recognizes 'L', 'R', 'U', and 'D' (case-insensitive).
+        /// All other characters default to the "Do Nothing" (Null Object) command.
         /// </summary>
         /// <param name="moveList">A string containing a list of single letter
         /// commands to be parsed.</param>
@@ -283,10 +284,10 @@ namespace DesignPatternExamples_csharp
         /// <param name="commands">A list of MoveCommand objects to "execute".</param>
         /// <remarks>
         /// In this implementation, the MoveCommand prints the command as
-        /// "&lt;move xxx&gt; " on the current line.  When all commands have
+        /// "<move xxx> " on the current line.  When all commands have
         /// been printed, a new line is printed to move to the next line.
         /// The "Do Nothing" command doesn't print anything, leaving only the
-        /// empty &lt;&gt;.
+        /// empty <>.
         /// </remarks>
         private void _ExecuteMoves(List<MoveCommand> commands)
         {
@@ -318,9 +319,10 @@ namespace DesignPatternExamples_csharp
 
         /// <summary>
         /// Parse and execute the given list of move commands, where each
-        /// command is represents by a single character.  Recognizes 'U', 'D',
-        /// 'L', and 'R' (case-insensitive).  All other characters are
-        /// assigned a "Do Nothing" command.
+        /// command is represents by a single character.
+        /// 
+        /// Recognizes 'U', 'D', 'L', and 'R' (case-insensitive).  All other
+        /// characters are assigned a "Do Nothing" (Null Object) command.
         /// </summary>
         /// <param name="moveList">A string of characters to parse and execute.</param>
         public void ExecuteMoveList(string moveList)
@@ -332,9 +334,10 @@ namespace DesignPatternExamples_csharp
 
         /// <summary>
         /// Parse and display the given list of move commands, where each
-        /// command is represents by a single character.  Recognizes 'U', 'D',
-        /// 'L', and 'R' (case-insensitive).  All other characters are
-        /// assigned a "Do Nothing" command.
+        /// command is represents by a single character.
+        /// 
+        /// Recognizes 'U', 'D', 'L', and 'R' (case-insensitive).  All other
+        /// characters are assigned a "Do Nothing" (Null Object) command.
         /// </summary>
         /// <param name="moveList">A string of characters to parse and display.</param>
         public void ShowMoveList(string moveList)
