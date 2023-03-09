@@ -117,6 +117,9 @@
     <ClCompile Include="helpers\stricmp.cpp">
       <Filter>Helper Files</Filter>
     </ClCompile>
+    <ClCompile Include="State_Class.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="helpers\replace.h">
@@ -264,6 +267,9 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="ObserverSubject_NumberProducer.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="State_Class.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

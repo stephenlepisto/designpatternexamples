@@ -1,5 +1,7 @@
 # State Pattern {#state_pattern}
 
+@image html state_diagram.png "Diagram of the State pattern"
+
 The State pattern is used when a finite state machine needs to be expressed
 in an object-oriented form.
 
@@ -98,6 +100,14 @@ The second approach is better so that only one entity (the context class)
 knows about the instances of the state classes.
 
 # How to Use
+
+Links to the State interface and class descriptions:
+- @ref DesignPatternExamples_cpp::IStateContext "IStateContext" interface (C++)
+- @ref DesignPatternExamples_csharp::IStateContext "IStateContext" interface (C#)
+- @ref DesignPatternExamples_cpp::IStateBehavior "IStateBehavior" interface (implemented by state classes) (C++)
+- @ref DesignPatternExamples_csharp::IStateBehavior "IStateBehavior" interface (implemented by state classes) (C#)
+- @ref DesignPatternExamples_cpp::StateContext_Class "StateContext_Class" class (C++)
+- @ref DesignPatternExamples_csharp.StateContext_Class "StateContext_Class" class (C#)
 
 The demonstration example parses a block of C++ or C# code to remove all
 comments.  It ignores comments inside of quotes.  The context maintains an

@@ -1553,20 +1553,21 @@ namespace DesignPatternExamples_csharp
             Console.WriteLine("State Exercise");
 
             StateContext_Class filterContext = new StateContext_Class();
-            string textToFilter = "//########################################################################\n" +
-                                  "//########################################################################\n" +
-                                  "// A comment.  /* A nested comment */\n" + 
-                                  "\n" +
-                                  "void State_Exercise() // An exercise in state machines\n" +
-                                  "{\n" +
-                                  "    char character = '\\\"';\n" +
-                                  "    Console.WriteLine();\n" +
-                                  "    Console.WriteLine(\"\\\"State\\\" /*Exercise*/\");\n" +
-                                  "\n" +
-                                  "    StateContext_Class filterContext = new StateContext_Class();\n" +
-                                  "\n" +
-                                  "    Console.WriteLine(\"\\t\\tDone. //(No, really)//\");\n" +
-                                  "}";
+            string textToFilter = 
+                "//########################################################################\n" +
+                "//########################################################################\n" +
+                "// A comment.  /* A nested comment */\n" + 
+                "\n" +
+                "void State_Exercise() // An exercise in state machines\n" +
+                "{\n" +
+                "    char character = '\\\"';\n" +
+                "    Console.WriteLine();\n" +
+                "    Console.WriteLine(\"\\\"State\\\" /*Exercise*/\");\n" +
+                "\n" +
+                "    StateContext_Class filterContext = new StateContext_Class();\n" +
+                "\n" +
+                "    Console.WriteLine(\"\\t\\tDone. //(No, really)//\");\n" +
+                "}";
 
             Console.WriteLine("  Text to filter:");
             _State_DisplayText(textToFilter);
