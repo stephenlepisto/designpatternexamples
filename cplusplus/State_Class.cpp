@@ -662,7 +662,7 @@ namespace // Anonymous
             {
                 std::string msg = std::format("Unknown state: {0}.  Cannot create a state class.",
                     _CurrentStateToString(state));
-                throw std::exception(msg.c_str());
+                throw std::runtime_error(msg.c_str());
             }
             }
 

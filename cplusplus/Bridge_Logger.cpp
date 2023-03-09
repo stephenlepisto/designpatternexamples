@@ -38,13 +38,13 @@ Logger::Logger(LoggerTypes loggerType)
         break;
 
     case LoggerTypes::ToFile:
-        throw std::exception("A filename must be specified for the Logger.ToFile logger type.  Please use Logger::Logger(const std::string&) constructor instead.");
+        throw std::runtime_error("A filename must be specified for the Logger.ToFile logger type.  Please use Logger::Logger(const std::string&) constructor instead.");
 
     default:
         {
             std::ostringstream msg;
             msg << "The logger type '" << loggerType << "' is not recognized.  Cannot construct a Logger.";
-            throw std::exception(msg.str().c_str());
+            throw std::runtime_error(msg.str().c_str());
         }
     }
 }
