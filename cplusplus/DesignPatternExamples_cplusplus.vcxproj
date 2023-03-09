@@ -187,6 +187,7 @@
     <ClCompile Include="program.cpp" />
     <ClCompile Include="Proxy_Class.cpp" />
     <ClCompile Include="State_Class.cpp" />
+    <ClCompile Include="Strategy_SortEntries_Classes.cpp" />
     <ClCompile Include="Visitor_Element_Classes.cpp" />
     <ClCompile Include="Visitor_Village.cpp" />
   </ItemGroup>
@@ -237,6 +238,10 @@
     <ClInclude Include="Observer_Class.h" />
     <ClInclude Include="Proxy_Class.h" />
     <ClInclude Include="State_Class.h" />
+    <ClInclude Include="Strategy_EntryInformation.h" />
+    <ClInclude Include="Strategy_ISortEntries.h" />
+    <ClInclude Include="Strategy_ShowEntries_Class.h" />
+    <ClInclude Include="Strategy_SortEntries_Classes.h" />
     <ClInclude Include="Visitor_Element_Classes.h" />
     <ClInclude Include="Visitor_Shop.h" />
     <ClInclude Include="Visitor_Village.h" />

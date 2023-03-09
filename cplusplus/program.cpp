@@ -50,6 +50,8 @@
 #include "Null_Object.h"
 #include "Observer_Class.h"
 #include "State_Class.h"
+#include "Strategy_ShowEntries_Class.h"
+#include "Strategy_SortEntries_Classes.h"
 
 /// <summary>
 /// The namespace containing all Design Pattern Examples implemented in C++.
@@ -1872,6 +1874,19 @@ namespace DesignPatternExamples_cpp
 
 
         /// <summary>
+        /// List of individuals to play around with in the Strategy exercise.
+        /// </summary>
+        std::vector<EntryInformation> entries =
+        {
+            // Name, age, height (in inches)
+            EntryInformation("Ronnie", 19, 84),
+            EntryInformation("Elaine", 29, 78),
+            EntryInformation("Jack", 20, 81),
+            EntryInformation("Myra", 35, 71),
+            EntryInformation("Fred", 18, 88),
+        };
+
+        /// <summary>
         /// Example of using the Strategy design pattern.
         /// 
         /// The Strategy pattern provides a way to easily assign different
@@ -1888,6 +1903,15 @@ namespace DesignPatternExamples_cpp
         {
             std::cout << std::endl;
             std::cout << "Strategy Exercise" << std::endl;
+
+            Strategy_ShowEntries_Class displaySortedByNameAscending(SortOptions::ByName, false);
+            displaySortedByNameAscending.ShowEntries(entries);
+
+            Strategy_ShowEntries_Class displaySortedByAgeAscending(SortOptions::ByAge, false);
+            displaySortedByAgeAscending.ShowEntries(entries);
+
+            Strategy_ShowEntries_Class displaySortedByHeightDescending(SortOptions::ByHeight, true);
+            displaySortedByHeightDescending.ShowEntries(entries);
 
             std::cout << "  Done." << std::endl;
         }

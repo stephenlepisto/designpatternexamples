@@ -1,16 +1,18 @@
 # Strategy Pattern {#strategy_pattern}
 
+@image html strategy_diagram.png "Diagram of the Strategy pattern"
+
 The Strategy pattern is used when a choice of multiple different but
 related algorithms can be made at run time.  The implementation of each
 related algorithm exposes the same interface so as to hide the details of
-implementation from the calling program.
+implementation from the calling program and the algorithm.
 
 In a more general form, a "Strategy" is nothing more than a class
 implementation hidden behind an abstract interface.  This allows the
 implementation to be changed without affecting the caller.  The Strategy
 pattern takes this one step further to allow entire algorithms to be
 hidden behind the interface and then swap in different instances of the
-interface to change the algorithm being used at run time.
+interface at run time to change the algorithm being used.
 
 Typically a Strategy pattern implementation specifies the algorithm at the
 time the program starts up or is configured.  It can also be configured at
@@ -35,13 +37,13 @@ the algorithm provide to the caller to allow the caller to get work done
 then defining an interface that provides that functionality.  Then create
 the implementation of algorithms that satisfies the required functionality.
 
-For example, a program such as dir or ls can list files and folders in a
+For example, a program such as `dir` or `ls` can list files and folders in a
 variety of formats.  This program has one feature: display information
 about files and folders.  This feature can be broken down into two
 components:
 
 1. Fetch information about files/folders
-2. Display the fetched in information about the files/folders
+2. Display the fetched information about the files/folders
 
 To fetch the information about files and folders, there are several
 options:
@@ -67,18 +69,19 @@ that takes a list of information about files/folders and display all or
 some of the information in the given order. 
 
 The "in sorted order" suggests a third strategy is needed: How to sort the
-list of files/folders.  For example, sort by name, length, type, date, with
+list of files/folders.  For example, sort by name, length, type, or date, with
 an option to reverse the order.
 
-So the ls program works like this (based on input parameters, including
-default parameters):
+The `ls` program works (in general) like this (based on input parameters,
+including default parameters):
   1. Select and use a strategy to read in information about files/folders.
   2. Select and use a strategy to sort the list of information about
      files/folders
   3. Select and use a strategy to display the sorted list of information
      about files/folders.
 
-With this approach, the pseudo-code for the ls program can look like this:
+With this approach, the pseudo-code for an object-oriented implementation of
+the `ls` program might look like this:
   1. Create instance of file fetch interface based on input parameters
   2. Create instance of sorting interface based on input parameters
   3. Create instance of display interface based on input parameters
@@ -93,14 +96,27 @@ later on without affecting the above pseudo-code.
 
 # How to Use
 
+Links to the Strategy interfaces and classes descriptions:
+- @ref DesignPatternExamples_cpp::ISortEntries "ISortEntries" interface (C++)
+- @ref DesignPatternExamples_csharp.ISortEntries "ISortEntries" interface (C#)
+- @ref DesignPatternExamples_cpp::Strategy_SortEntries_ClassFactory "Strategy_SortEntries_ClassFactory" class (C++)
+- @ref DesignPatternExamples_csharp.Strategy_SortEntries_ClassFactory "Strategy_SortEntries_ClassFactory" class (C#)
+- @ref DesignPatternExamples_cpp::Strategy_SortEntries_ByName "Strategy_SortEntries_ByName" class (C++)
+- @ref DesignPatternExamples_csharp.Strategy_SortEntries_ByName "Strategy_SortEntries_ByName" class (C#)
+- @ref DesignPatternExamples_cpp::Strategy_SortEntries_ByAge "Strategy_SortEntries_ByAge" class (C++)
+- @ref DesignPatternExamples_csharp.Strategy_SortEntries_ByAge "Strategy_SortEntries_ByAge" class (C#)
+- @ref DesignPatternExamples_cpp::Strategy_SortEntries_ByHeight "Strategy_SortEntries_ByHeight" class (C++)
+- @ref DesignPatternExamples_csharp.Strategy_SortEntries_ByHeight "Strategy_SortEntries_ByHeight" class (C#)
+- @ref DesignPatternExamples_cpp::Strategy_ShowEntries_Class "Strategy_ShowEntries_Class" class (C++)
+- @ref DesignPatternExamples_csharp.Strategy_ShowEntries_Class "Strategy_ShowEntries_Class" class (C#)
+
 
 As interesting as the above file lister example would be, it would be just
 a bit too long as an example (like a 1000 lines long).  So in a
-considerably simpler example with only one strategy, a list of individuals
-with Name, Age, and Height are sorted in some order based on a selected
-strategy.  The list of individuals is then shown in the sorted order.
-The sort has a modification where the order can be reversed from ascending
-to descending.
+considerably simpler example with only one strategy, a list of people with
+Name, Age, and Height are sorted in some order based on a selected strategy.
+The list of individuals is then shown in the sorted order.  The sort has a
+modification where the order can be reversed from ascending to descending.
 
 Note: It is strongly advised not to use the word "Strategy" when naming the
 interfaces.  That name is too generic.  Name the interfaces based on what
