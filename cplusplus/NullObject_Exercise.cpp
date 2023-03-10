@@ -38,7 +38,7 @@ namespace DesignPatternExamples_cpp
     /// This example highlights the @ref nullobject_pattern while also
     /// utilizing the @ref command_pattern and @ref interpreter_pattern.
     /// </summary>
-    //! [Using NullObject in C++]
+    // ! [Using NullObject in C++]
     void NullObject_Exercise()
     {
         std::cout << std::endl;
@@ -58,6 +58,6 @@ namespace DesignPatternExamples_cpp
 
         std::cout << "  Done." << std::endl;
     }
-    //! [Using NullObject in C++]
+    // ! [Using NullObject in C++]
 
 } // end namespace

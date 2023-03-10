@@ -35,7 +35,7 @@ namespace DesignPatternExamples_cpp
     /// first call showing the real class being instantiated.  The subsequent
     /// calls do not show this line.
     /// </summary>
-    //! [Using Proxy in C++]
+    // ! [Using Proxy in C++]
     void Proxy_Exercise()
     {
         std::cout << std::endl;
@@ -58,6 +58,6 @@ namespace DesignPatternExamples_cpp
 
         std::cout << "  Done." << std::endl;
     }
-    //! [Using Proxy in C++]
+    // ! [Using Proxy in C++]
 
 } // end namespace

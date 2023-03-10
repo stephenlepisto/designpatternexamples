@@ -29,7 +29,7 @@ namespace DesignPatternExamples_csharp
         /// that throws exceptions, which is more fitting of an object-oriented
         /// language.
         /// </summary>
-        //! [Using Adapter in C#]
+        // ! [Using Adapter in C#]
         void Adapter_Exercise()
         {
             Console.WriteLine();
@@ -73,7 +73,7 @@ namespace DesignPatternExamples_csharp
             }
             Console.WriteLine("  Done.");
         }
-        //! [Using Adapter in C#]
+        // ! [Using Adapter in C#]
 
 
         //########################################################################
@@ -106,7 +106,7 @@ namespace DesignPatternExamples_csharp
         /// In this exercise, note how the calls into the logger are the
         /// same regardless of the logger used.
         /// </summary>
-        //! [Using Bridge in C#]
+        // ! [Using Bridge in C#]
         void Bridge_Exercise()
         {
             Console.WriteLine();
@@ -131,7 +131,7 @@ namespace DesignPatternExamples_csharp
             }
             Console.WriteLine("  Done.");
         }
-        //! [Using Bridge in C#]
+        // ! [Using Bridge in C#]
 
 
         //########################################################################
@@ -200,7 +200,7 @@ namespace DesignPatternExamples_csharp
         /// This example uses a file structure of file and directories to
         /// represent each object type.
         /// </summary>
-        //! [Using Composite in C#]
+        // ! [Using Composite in C#]
         void Composite_Exercise()
         {
             Console.WriteLine();
@@ -223,7 +223,7 @@ namespace DesignPatternExamples_csharp
             }
             Console.WriteLine("  Done.");
         }
-        //! [Using Composite in C#]
+        // ! [Using Composite in C#]
 
 
         //########################################################################
@@ -241,7 +241,7 @@ namespace DesignPatternExamples_csharp
         /// decorators must ultimately wrap a non-decorator class to be of any
         /// use.
         /// </summary>
-        //! [Using Decorator in C#]
+        // ! [Using Decorator in C#]
         void Decorator_Exercise()
         {
             Console.WriteLine();
@@ -259,7 +259,7 @@ namespace DesignPatternExamples_csharp
             Console.WriteLine("  Decorated element: \"{0}\"", wrappedElement.Render());
             Console.WriteLine("  Done.");
         }
-        //! [Using Decorator in C#]
+        // ! [Using Decorator in C#]
 
 
         //########################################################################
@@ -298,7 +298,7 @@ namespace DesignPatternExamples_csharp
         /// the scan chains and selecting a device to appear in the scan
         /// chain.
         /// </summary>
-        //! [Using Facade in C#]
+        // ! [Using Facade in C#]
         void Facade_Exercise()
         {
             Console.WriteLine();
@@ -323,7 +323,7 @@ namespace DesignPatternExamples_csharp
             }
             Console.WriteLine("  Done.");
         }
-        //! [Using Facade in C#]
+        // ! [Using Facade in C#]
 
         //########################################################################
         //########################################################################
@@ -568,7 +568,7 @@ namespace DesignPatternExamples_csharp
         /// edges of the display area 60 times a second.  This continues for
         /// 1000 iterations or until a key is pressed.
         /// </summary>
-        //! [Using Flyweight in C#]
+        // ! [Using Flyweight in C#]
         void Flyweight_Exercise()
         {
             Console.WriteLine();
@@ -623,7 +623,7 @@ namespace DesignPatternExamples_csharp
             }
             Console.WriteLine("  Done.");
         }
-        //! [Using Flyweight in C#]
+        // ! [Using Flyweight in C#]
 
         //########################################################################
         //########################################################################
@@ -645,7 +645,7 @@ namespace DesignPatternExamples_csharp
         /// first call showing the real class being instantiated.  The subsequent
         /// calls do not show this line.
         /// </summary>
-        //! [Using Proxy in C#]
+        // ! [Using Proxy in C#]
         void Proxy_Exercise()
         {
             Console.WriteLine();
@@ -667,7 +667,7 @@ namespace DesignPatternExamples_csharp
             Console.WriteLine("  Output from proxy = \"{0}\"", output);
             Console.WriteLine("  Done.");
         }
-        //! [Using Proxy in C#]
+        // ! [Using Proxy in C#]
 
 
         //########################################################################
@@ -689,7 +689,7 @@ namespace DesignPatternExamples_csharp
         /// other shops.  This approach assumes no two shops sell the same
         /// thing.
         /// </summary>
-        //! [Using Visitor in C#]
+        // ! [Using Visitor in C#]
         void Visitor_Exercise()
         {
             Console.WriteLine();
@@ -718,7 +718,7 @@ namespace DesignPatternExamples_csharp
 
             Console.WriteLine("  Done.");
         }
-        //! [Using Visitor in C#]
+        // ! [Using Visitor in C#]
 
 
         //########################################################################
@@ -837,7 +837,7 @@ namespace DesignPatternExamples_csharp
         /// commands are applied to the text object in succession then
         /// effectively undone.
         /// </summary>
-        //! [Using Command in C#]
+        // ! [Using Command in C#]
         void Command_Exercise()
         {
             Console.WriteLine();
@@ -869,7 +869,7 @@ namespace DesignPatternExamples_csharp
 
             Console.WriteLine("  Done.");
         }
-        //! [Using Command in C#]
+        // ! [Using Command in C#]
 
         //########################################################################
         //########################################################################
@@ -907,7 +907,7 @@ namespace DesignPatternExamples_csharp
         /// passes message objects to each MessageWindow until the message is
         /// handled.
         /// </summary>
-        //! [Using HandlerChain in C#]
+        // ! [Using HandlerChain in C#]
         void HandlerChain_Exercise()
         {
             Console.WriteLine();
@@ -949,7 +949,7 @@ namespace DesignPatternExamples_csharp
 
             Console.WriteLine("  Done.");
         }
-        //! [Using HandlerChain in C#]
+        // ! [Using HandlerChain in C#]
 
 
         //########################################################################
@@ -1010,7 +1010,7 @@ namespace DesignPatternExamples_csharp
         /// The output shows the token list followed by the sentence produced
         /// from the tokens.
         /// </summary>
-        //! [Using Interpreter in C#]
+        // ! [Using Interpreter in C#]
         void Interpreter_Exercise()
         {
             Console.WriteLine();
@@ -1033,7 +1033,7 @@ namespace DesignPatternExamples_csharp
             }
             Console.WriteLine("  Done.");
         }
-        //! [Using Interpreter in C#]
+        // ! [Using Interpreter in C#]
 
         //########################################################################
         //########################################################################
@@ -1048,7 +1048,7 @@ namespace DesignPatternExamples_csharp
         /// 
         /// The output shows the output from each iterator.
         /// </summary>
-        //! [Using Iterator in C#]
+        // ! [Using Iterator in C#]
         void Iterator_Exercise()
         {
             Console.WriteLine();
@@ -1081,7 +1081,7 @@ namespace DesignPatternExamples_csharp
 
             Console.WriteLine("  Done.");
         }
-        //! [Using Iterator in C#]
+        // ! [Using Iterator in C#]
 
 
         //########################################################################
@@ -1154,7 +1154,7 @@ namespace DesignPatternExamples_csharp
         /// of the actual lists of users and groups.  The mediator hides all
         /// the details.
         /// </summary>
-        //! [Using Mediator in C#]
+        // ! [Using Mediator in C#]
         void Mediator_Exercise()
         {
             Console.WriteLine();
@@ -1244,7 +1244,7 @@ namespace DesignPatternExamples_csharp
 
             Console.WriteLine("  Done.");
         }
-        //! [Using Mediator in C#]
+        // ! [Using Mediator in C#]
 
 
         //########################################################################
@@ -1368,7 +1368,7 @@ namespace DesignPatternExamples_csharp
         /// differences in the "Memento_ApplyXXOperation()" methods, which
         /// more cleanly separate the save from the operation.
         /// </summary>
-        //! [Using Memento in C#]
+        // ! [Using Memento in C#]
         void Memento_Exercise()
         {
             Console.WriteLine();
@@ -1400,7 +1400,7 @@ namespace DesignPatternExamples_csharp
 
             Console.WriteLine("  Done.");
         }
-        //! [Using Memento in C#]
+        // ! [Using Memento in C#]
 
         //########################################################################
         //########################################################################
@@ -1424,7 +1424,7 @@ namespace DesignPatternExamples_csharp
         /// This example highlights the Null Object pattern while utilizing
         /// the Command and Interpreter patterns.
         /// </summary>
-        //! [Using NullObject in C#]
+        // ! [Using NullObject in C#]
         void NullObject_Exercise()
         {
             Console.WriteLine();
@@ -1444,7 +1444,7 @@ namespace DesignPatternExamples_csharp
 
             Console.WriteLine("  Done.");
         }
-        //! [Using NullObject in C#]
+        // ! [Using NullObject in C#]
 
         //########################################################################
         //########################################################################
@@ -1470,7 +1470,7 @@ namespace DesignPatternExamples_csharp
         /// implement a "pull" style observer without having too much knowledge
         /// about the Subject.
         /// </summary>
-        //! [Using Observer in C#]
+        // ! [Using Observer in C#]
         void Observer_Exercise()
         {
             Console.WriteLine();
@@ -1510,7 +1510,7 @@ namespace DesignPatternExamples_csharp
 
             Console.WriteLine("  Done.");
         }
-        //! [Using Observer in C#]
+        // ! [Using Observer in C#]
 
 
         //########################################################################
@@ -1546,7 +1546,7 @@ namespace DesignPatternExamples_csharp
         /// The filtering process starts with creating the context that drives
         /// the state machine.  Internal classes are provided for each state.
         /// </summary>
-        //! [Using State in C#]
+        // ! [Using State in C#]
         void State_Exercise()
         {
             Console.WriteLine();
@@ -1580,7 +1580,7 @@ namespace DesignPatternExamples_csharp
 
             Console.WriteLine("  Done.");
         }
-        //! [Using State in C#]
+        // ! [Using State in C#]
 
 
         //########################################################################
@@ -1611,7 +1611,7 @@ namespace DesignPatternExamples_csharp
         /// sorting strategies are provided (Name, Age, Height) and an option
         /// to reverse the normal order of the sort.
         /// </summary>
-        //! [Using Strategy in C#]
+        // ! [Using Strategy in C#]
         void Strategy_Exercise()
         {
             Console.WriteLine();
@@ -1631,7 +1631,7 @@ namespace DesignPatternExamples_csharp
 
             Console.WriteLine("  Done.");
         }
-        //! [Using Strategy in C#]
+        // ! [Using Strategy in C#]
 
         //########################################################################
         //########################################################################

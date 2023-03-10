@@ -36,7 +36,7 @@ namespace DesignPatternExamples_cpp
     /// other shops.  This approach assumes no two shops sell the same
     /// thing.
     /// </summary>
-    //! [Using Visitor in C++]
+    // ! [Using Visitor in C++]
     void Visitor_Exercise()
     {
         std::cout << std::endl;
@@ -70,6 +70,6 @@ namespace DesignPatternExamples_cpp
 
         std::cout << "  Done." << std::endl;
     }
-    //! [Using Visitor in C++]
+    // ! [Using Visitor in C++]
 
 } // end namespace

@@ -138,7 +138,7 @@ namespace DesignPatternExamples_cpp
     /// commands are applied to the text object in succession then
     /// effectively undone.
     /// </summary>
-    //! [Using Command in C++]
+    // ! [Using Command in C++]
     void Command_Exercise()
     {
         std::cout << std::endl;
@@ -167,7 +167,7 @@ namespace DesignPatternExamples_cpp
 
         std::cout << "  Done." << std::endl;
     }
-    //! [Using Command in C++]
+    // ! [Using Command in C++]
 
 
 } // end namespace

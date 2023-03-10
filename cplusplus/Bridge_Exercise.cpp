@@ -57,7 +57,7 @@ namespace DesignPatternExamples_cpp
     /// In this exercise, note how the calls into the logger are the
     /// same regardless of the logger used.
     /// </summary>
-    //! [Using Bridge in C++]
+    // ! [Using Bridge in C++]
     void Bridge_Exercise()
     {
         std::cout << std::endl;
@@ -87,6 +87,6 @@ namespace DesignPatternExamples_cpp
 
         std::cout << "  Done." << std::endl;
     }
-    //! [Using Bridge in C++]
+    // ! [Using Bridge in C++]
 
 } // end namespace

@@ -154,7 +154,7 @@ namespace DesignPatternExamples_cpp
     /// differences in the "Memento_ApplyXXOperation()" methods, which
     /// more cleanly separate the save from the operation.
     /// </summary>
-    //! [Using Memento in C++]
+    // ! [Using Memento in C++]
     void Memento_Exercise()
     {
         std::cout << std::endl;
@@ -190,6 +190,6 @@ namespace DesignPatternExamples_cpp
 
         std::cout << "  Done." << std::endl;
     }
-    //! [Using Memento in C++]
+    // ! [Using Memento in C++]
 
 } // end namespace

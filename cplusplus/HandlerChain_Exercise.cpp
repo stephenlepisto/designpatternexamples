@@ -60,7 +60,7 @@ namespace DesignPatternExamples_cpp
     /// passes message objects to each MessageWindow until the message is
     /// handled.
     /// </summary>
-    //! [Using HandlerChain in C++]
+    // ! [Using HandlerChain in C++]
     void HandlerChain_Exercise()
     {
         std::cout << std::endl;
@@ -102,6 +102,6 @@ namespace DesignPatternExamples_cpp
 
         std::cout << "  Done." << std::endl;
     }
-    //! [Using HandlerChain in C++]
+    // ! [Using HandlerChain in C++]
 
 } // end namespace

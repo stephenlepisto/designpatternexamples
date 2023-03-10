@@ -93,7 +93,7 @@ namespace DesignPatternExamples_cpp
     /// of the actual lists of users and groups.  The mediator hides all
     /// the details.
     /// </summary>
-    //! [Using Mediator in C++]
+    // ! [Using Mediator in C++]
     void Mediator_Exercise()
     {
         std::cout << std::endl;
@@ -206,6 +206,6 @@ namespace DesignPatternExamples_cpp
 
         std::cout << "  Done." << std::endl;
     }
-    //! [Using Mediator in C++]
+    // ! [Using Mediator in C++]
 
 } // end namespace

@@ -28,7 +28,7 @@ namespace DesignPatternExamples_cpp
     /// 
     /// The output shows the output from each iterator.
     /// </summary>
-    //! [Using Iterator in C++]
+    // ! [Using Iterator in C++]
     void Iterator_Exercise()
     {
         std::cout << std::endl;
@@ -64,6 +64,6 @@ namespace DesignPatternExamples_cpp
 
         std::cout << "  Done." << std::endl;
     }
-    //! [Using Iterator in C++]
+    // ! [Using Iterator in C++]
 
 } // end namespace

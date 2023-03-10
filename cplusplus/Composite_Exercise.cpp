@@ -89,7 +89,7 @@ namespace DesignPatternExamples_cpp
     /// This example uses a file structure of file and directories to
     /// represent each object type.
     /// </summary>
-    //! [Using Composite in C++]
+    // ! [Using Composite in C++]
     void Composite_Exercise()
     {
         std::cout << std::endl;
@@ -114,6 +114,6 @@ namespace DesignPatternExamples_cpp
 
         std::cout << "  Done." << std::endl;
     }
-    //! [Using Composite in C++]
+    // ! [Using Composite in C++]
 
 } // end namespace

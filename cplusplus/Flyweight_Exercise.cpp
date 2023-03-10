@@ -278,7 +278,7 @@ namespace DesignPatternExamples_cpp
     /// edges of the display area 60 times a second.  This continues for
     /// 1000 iterations or until a key is pressed.
     /// </summary>
-    //! [Using Flyweight in C++]
+    // ! [Using Flyweight in C++]
     void Flyweight_Exercise()
     {
         std::cout << std::endl;
@@ -344,6 +344,6 @@ namespace DesignPatternExamples_cpp
 
         std::cout << "  Done." << std::endl;
     }
-    //! [Using Flyweight in C++]
+    // ! [Using Flyweight in C++]
 
 } // end namespace

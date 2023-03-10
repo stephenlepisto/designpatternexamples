@@ -19,7 +19,7 @@ namespace DesignPatternExamples_cpp
     /// object that throws exceptions, which is more fitting of an object-
     /// oriented language.
     /// </summary>
-    //! [Using Adapter in C++]
+    // ! [Using Adapter in C++]
     void Adapter_Exercise()
     {
         std::cout << std::endl;
@@ -66,7 +66,7 @@ namespace DesignPatternExamples_cpp
 
         std::cout << "  Done." << std::endl;
     }
-    //! [Using Adapter in C++]
+    // ! [Using Adapter in C++]
 
 
 } // end namespace

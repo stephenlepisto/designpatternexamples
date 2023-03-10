@@ -30,7 +30,7 @@ namespace DesignPatternExamples_cpp
     /// decorators must ultimately wrap a non-decorator class to be of any
     /// use.
     /// </summary>
-    //! [Using Decorator in C++]
+    // ! [Using Decorator in C++]
     void Decorator_Exercise()
     {
         std::cout << std::endl;
@@ -55,7 +55,7 @@ namespace DesignPatternExamples_cpp
 
         std::cout << "  Done." << std::endl;
     }
-    //! [Using Decorator in C++]
+    // ! [Using Decorator in C++]
 
 
 } // end namespace

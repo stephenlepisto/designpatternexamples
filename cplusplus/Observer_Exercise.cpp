@@ -38,7 +38,7 @@ namespace DesignPatternExamples_cpp
     /// implement a "pull" style observer without having too much knowledge
     /// about the Subject.
     /// </summary>
-    //! [Using Observer in C++]
+    // ! [Using Observer in C++]
     void Observer_Exercise()
     {
         std::cout << std::endl;
@@ -86,6 +86,6 @@ namespace DesignPatternExamples_cpp
 
         std::cout << "  Done." << std::endl;
     }
-    //! [Using Observer in C++]
+    // ! [Using Observer in C++]
 
 } // end namespace

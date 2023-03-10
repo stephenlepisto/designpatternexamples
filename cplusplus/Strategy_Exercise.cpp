@@ -52,7 +52,7 @@ namespace DesignPatternExamples_cpp
     /// sorting strategies are provided (Name, Age, Height) and an option
     /// to reverse the normal order of the sort.
     /// </summary>
-    //! [Using Strategy in C++]
+    // ! [Using Strategy in C++]
     void Strategy_Exercise()
     {
         std::cout << std::endl;
@@ -69,6 +69,6 @@ namespace DesignPatternExamples_cpp
 
         std::cout << "  Done." << std::endl;
     }
-    //! [Using Strategy in C++]
+    // ! [Using Strategy in C++]
 
 } // end namespace

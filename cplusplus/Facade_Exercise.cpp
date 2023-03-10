@@ -58,7 +58,7 @@ namespace DesignPatternExamples_cpp
     /// the scan chains and selecting a device to appear in the scan
     /// chain.
     /// </summary>
-    //! [Using Facade in C++]
+    // ! [Using Facade in C++]
     void Facade_Exercise()
     {
         std::cout << std::endl;
@@ -87,6 +87,6 @@ namespace DesignPatternExamples_cpp
 
         std::cout << "  Done." << std::endl;
     }
-    //! [Using Facade in C++]
+    // ! [Using Facade in C++]
 
 } // end namespace

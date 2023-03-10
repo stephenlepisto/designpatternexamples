@@ -81,7 +81,7 @@ namespace DesignPatternExamples_cpp
     /// The output shows the token list followed by the sentence produced
     /// from the tokens.
     /// </summary>
-    //! [Using Interpreter in C++]
+    // ! [Using Interpreter in C++]
     void Interpreter_Exercise()
     {
         std::cout << std::endl;
@@ -107,6 +107,6 @@ namespace DesignPatternExamples_cpp
 
         std::cout << "  Done." << std::endl;
     }
-    //! [Using Interpreter in C++]
+    // ! [Using Interpreter in C++]
 
 } // end namespace

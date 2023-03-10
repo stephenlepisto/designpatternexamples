@@ -58,7 +58,7 @@ namespace DesignPatternExamples_cpp
     /// The filtering process starts with creating the context that drives
     /// the state machine.  Internal classes are provided for each state.
     /// </summary>
-    //! [Using State in C++]
+    // ! [Using State in C++]
     void State_Exercise()
     {
         std::cout << std::endl;
@@ -92,6 +92,6 @@ namespace DesignPatternExamples_cpp
 
         std::cout << "  Done." << std::endl;
     }
-    //! [Using State in C++]
+    // ! [Using State in C++]
 
 } // end namespace
