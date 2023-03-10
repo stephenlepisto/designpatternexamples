@@ -139,6 +139,9 @@ __C#__
 
 @snippet csharp/program.cs Using Mediator in C#
 
+__Python__
+
+@snippet python/DesignPatternExamples_python/mediator/mediator_exercise.py Using Mediator in Python
 
 ### See Also
 - @ref mainpage "Main page"

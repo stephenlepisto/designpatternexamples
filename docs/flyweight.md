@@ -46,6 +46,9 @@ __C#__
 
 @snippet csharp/program.cs Using Flyweight in C#
 
+__Python__
+
+@snippet python/DesignPatternExamples_python/flyweight/flyweight_exercise.py Using Flyweight in Python
 
 ### See Also
 - @ref mainpage "Main page"

@@ -58,6 +58,9 @@ __C#__
 
 @snippet csharp/program.cs Using Interpreter in C#
 
+__Python__
+
+@snippet python/DesignPatternExamples_python/interpreter/interpreter_exercise.py Using Interpreter in Python
 
 ### See Also
 - @ref mainpage "Main page"

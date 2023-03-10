@@ -95,6 +95,9 @@ __C#__
 
 @snippet csharp/program.cs Using Observer in C#
 
+__Python__
+
+@snippet python/DesignPatternExamples_python/observer/observer_exercise.py Using Observer in Python
 
 ### See Also
 - @ref mainpage "Main page"

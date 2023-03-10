@@ -67,7 +67,7 @@ __C#__
 
 __Python__
 
-@snippet python/DesignPatternExamples_python/program.py Using Bridge in Python
+@snippet python/DesignPatternExamples_python/bridge/bridge_exercise.py Using Bridge in Python
 
 
 ### See Also

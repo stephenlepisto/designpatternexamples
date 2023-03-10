@@ -110,6 +110,9 @@ __C#__
 
 @snippet csharp/program.cs Using Visitor in C#
 
+__Python__
+
+@snippet python/DesignPatternExamples_python/visitor/visitor_exercise.py Using Visitor in Python
 
 ### See Also
 - @ref mainpage "Main page"

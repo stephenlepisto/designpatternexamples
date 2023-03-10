@@ -44,6 +44,9 @@ __C#__
 
 @snippet csharp/program.cs Using Decorator in C#
 
+__Python__
+
+@snippet python/DesignPatternExamples_python/decorator/decorator_exercise.py Using Decorator in Python
 
 ### See Also
 - @ref mainpage "Main page"

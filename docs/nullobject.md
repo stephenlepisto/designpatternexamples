@@ -72,6 +72,9 @@ __C#__
 
 @snippet csharp/program.cs Using NullObject in C#
 
+__Python__
+
+@snippet python/DesignPatternExamples_python/nullobject/nullobject_exercise.py Using NullObject in Python
 
 ### See Also
 - @ref mainpage "Main page"

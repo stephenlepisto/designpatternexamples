@@ -110,6 +110,9 @@ __C#__
 
 @snippet csharp/program.cs Using HandlerChain in C#
 
+__Python__
+
+@snippet python/DesignPatternExamples_python/handlerchain/handlerchain_exercise.py Using HandlerChain in Python
 
 ### See Also
 - @ref mainpage "Main page"

@@ -58,6 +58,9 @@ __C#__
 
 @snippet csharp/program.cs Using Composite in C#
 
+__Python__
+
+@snippet python/DesignPatternExamples_python/composite/composite_exercise.py Using Composite in Python
 
 ### See Also
 - @ref mainpage "Main page"

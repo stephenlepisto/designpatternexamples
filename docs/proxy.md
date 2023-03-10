@@ -60,6 +60,9 @@ __C#__
 
 @snippet csharp/program.cs Using Proxy in C#
 
+__Python__
+
+@snippet python/DesignPatternExamples_python/proxy/proxy_exercise.py Using Proxy in Python
 
 ### See Also
 - @ref mainpage "Main page"

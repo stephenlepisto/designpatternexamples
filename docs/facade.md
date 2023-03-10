@@ -65,6 +65,9 @@ __C#__
 
 @snippet csharp/program.cs Using Facade in C#
 
+__Python__
+
+@snippet python/DesignPatternExamples_python/facade/facade_exercise.py Using Facade in Python
 
 ### See Also
 - @ref mainpage "Main page"

@@ -132,6 +132,9 @@ __C#__
 
 @snippet csharp/program.cs Using Strategy in C#
 
+__Python__
+
+@snippet python/DesignPatternExamples_python/strategy/strategy_exercise.py Using Strategy in Python
 
 ### See Also
 - @ref mainpage "Main page"

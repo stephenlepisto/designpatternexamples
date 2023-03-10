@@ -62,6 +62,9 @@ __C#__
 
 @snippet csharp/program.cs Using Memento in C#
 
+__Python__
+
+@snippet python/DesignPatternExamples_python/memento/memento_exercise.py Using Memento in Python
 
 ### See Also
 - @ref mainpage "Main page"

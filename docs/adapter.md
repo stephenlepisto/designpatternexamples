@@ -37,7 +37,7 @@ __C#__
 
 __Python__
 
-@snippet python/DesignPatternExamples_python/program.py Using Adapter in Python
+@snippet python/DesignPatternExamples_python/adapter/adapter_exercise.py Using Adapter in Python
 
 
 ### See Also

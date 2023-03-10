@@ -73,6 +73,9 @@ __C#__
 
 @snippet csharp/program.cs Using Iterator in C#
 
+__Python__
+
+@snippet python/DesignPatternExamples_python/iterator/iterator_exercise.py Using Iterator in Python
 
 ### See Also
 - @ref mainpage "Main page"

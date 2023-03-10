@@ -135,6 +135,9 @@ __C#__
 
 @snippet csharp/program.cs Using State in C#
 
+__Python__
+
+@snippet python/DesignPatternExamples_python/state/state_exercise.py Using State in Python
 
 ### See Also
 - @ref mainpage "Main page"

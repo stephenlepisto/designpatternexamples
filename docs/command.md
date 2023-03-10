@@ -67,6 +67,9 @@ __C#__
 
 @snippet csharp/program.cs Using Command in C#
 
+__Python__
+
+@snippet python/DesignPatternExamples_python/command/command_exercise.py Using Command in Python
 
 ### See Also
 - @ref mainpage "Main page"

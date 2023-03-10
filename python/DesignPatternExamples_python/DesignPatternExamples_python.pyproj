@@ -21,9 +21,65 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="adapter\adapter_exercise.py" />
+    <Compile Include="adapter\__init__.py" />
+    <Compile Include="bridge\bridge_exercise.py" />
+    <Compile Include="bridge\__init__.py" />
+    <Compile Include="command\command_exercise.py" />
+    <Compile Include="command\__init__.py" />
+    <Compile Include="composite\composite_exercise.py" />
+    <Compile Include="composite\__init__.py" />
+    <Compile Include="decorator\decorator_exercise.py" />
+    <Compile Include="decorator\__init__.py" />
+    <Compile Include="facade\facade_exercise.py" />
+    <Compile Include="facade\__init__.py" />
+    <Compile Include="flyweight\flyweight_exercise.py" />
+    <Compile Include="flyweight\__init__.py" />
+    <Compile Include="handlerchain\handlerchain_exercise.py" />
+    <Compile Include="handlerchain\__init__.py" />
+    <Compile Include="interpreter\interpreter_exercise.py" />
+    <Compile Include="interpreter\__init__.py" />
+    <Compile Include="iterator\iterator_exercise.py" />
+    <Compile Include="iterator\__init__.py" />
+    <Compile Include="mediator\mediator_exercise.py" />
+    <Compile Include="mediator\__init__.py" />
+    <Compile Include="memento\memento_exercise.py" />
+    <Compile Include="memento\__init__.py" />
+    <Compile Include="nullobject\nullobject_exercise.py" />
+    <Compile Include="nullobject\__init__.py" />
+    <Compile Include="observer\observer_exercise.py" />
+    <Compile Include="observer\__init__.py" />
     <Compile Include="program.py" />
+    <Compile Include="proxy\proxy_exercise.py" />
+    <Compile Include="proxy\__init__.py" />
+    <Compile Include="state\state_exercise.py" />
+    <Compile Include="state\__init__.py" />
+    <Compile Include="strategy\strategy_exercise.py" />
+    <Compile Include="strategy\__init__.py" />
+    <Compile Include="visitor\visitor_exercise.py" />
+    <Compile Include="visitor\__init__.py" />
     <Compile Include="__init__.py" />
     <Compile Include="__main__.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="adapter\" />
+    <Folder Include="bridge\" />
+    <Folder Include="command\" />
+    <Folder Include="composite\" />
+    <Folder Include="decorator\" />
+    <Folder Include="facade\" />
+    <Folder Include="flyweight\" />
+    <Folder Include="handlerchain\" />
+    <Folder Include="interpreter\" />
+    <Folder Include="iterator\" />
+    <Folder Include="mediator\" />
+    <Folder Include="memento\" />
+    <Folder Include="nullobject\" />
+    <Folder Include="observer\" />
+    <Folder Include="proxy\" />
+    <Folder Include="state\" />
+    <Folder Include="strategy\" />
+    <Folder Include="visitor\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
