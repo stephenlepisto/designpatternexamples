@@ -15,10 +15,10 @@
 #  commands are applied to the text object in succession then
 #  effectively undone.
 
-# ! [Using Command in Python]1
+# ! [Using Command in Python]
 def Command_Exercise():
     print()
     print("Command Exercise")
 
     print("  Done.")
-# ! [Using Command in Python]2
+# ! [Using Command in Python]
