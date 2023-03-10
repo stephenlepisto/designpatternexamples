@@ -35,7 +35,9 @@
 namespace DesignPatternExamples_cpp
 {
 
-    //typedef void (*Action)(); // Represents a function to be called
+    /// <summary>
+    /// Alias for a function pointer, using C# as inspiration for the name.
+    /// </summary>
     typedef std::function<void()> Action;
 
     /// <summary>
@@ -43,8 +45,6 @@ namespace DesignPatternExamples_cpp
     /// </summary>
     class Program
     {
-    private:
-
     private:
         /// <summary>
         /// Represents a single exercise or example for a design pattern.
@@ -74,6 +74,9 @@ namespace DesignPatternExamples_cpp
             }
         };
 
+        /// <summary>
+        /// Alias for a list of Exercise instances.
+        /// </summary>
         typedef std::vector<Exercise> ExerciseList;
 
         /// <summary>
@@ -82,7 +85,7 @@ namespace DesignPatternExamples_cpp
         struct Options
         {
             /// <summary>
-            /// List of exercise names to run.  If this list is empty, run all
+            /// List of names of exercise to run.  If this list is empty, run all
             /// exercises.
             /// </summary>
             StringList exercise_names;
