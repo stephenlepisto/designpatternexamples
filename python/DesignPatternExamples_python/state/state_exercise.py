@@ -15,10 +15,11 @@
 #  
 #  The filtering process starts with creating the context that drives
 #  the state machine.  Internal classes are provided for each state.
-##! [Using State in Python]
+
+# ! [Using State in Python]
 def State_Exercise():
     print()
     print("State Exercise")
 
     print("  Done.")
-##! [Using State in Python]
+# ! [Using State in Python]

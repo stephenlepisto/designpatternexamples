@@ -21,10 +21,11 @@
 #  
 #  This example highlights the Null Object pattern while utilizing
 #  the Command and Interpreter patterns.
-##! [Using NullObject in Python]
+
+# ! [Using NullObject in Python]
 def NullObject_Exercise():
     print()
     print("Null Object Exercise")
 
     print("  Done.")
-##! [Using NullObject in Python]
+# ! [Using NullObject in Python]

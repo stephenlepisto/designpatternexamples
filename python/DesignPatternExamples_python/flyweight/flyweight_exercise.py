@@ -19,10 +19,11 @@
 #  class instances then have their positions updated, bouncing off the
 #  edges of the display area 60 times a second.  This continues for
 #  1000 iterations or until a key is pressed.
-##! [Using Flyweight in Python]
+
+# ! [Using Flyweight in Python]
 def Flyweight_Exercise():
     print()
     print("Flyweight Exercise")
 
     print("  Done.")
-##! [Using Flyweight in Python]
+# ! [Using Flyweight in Python]

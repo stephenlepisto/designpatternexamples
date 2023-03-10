@@ -14,10 +14,11 @@
 #  associate commands defined in this file with a text object.  The
 #  commands are applied to the text object in succession then
 #  effectively undone.
-##! [Using Command in Python]
+
+# ! [Using Command in Python]1
 def Command_Exercise():
     print()
     print("Command Exercise")
 
     print("  Done.")
-##! [Using Command in Python]
+# ! [Using Command in Python]2

@@ -19,10 +19,11 @@
 #  The only difference in output here is one additional line for the
 #  first call showing the real class being instantiated.  The subsequent
 #  calls do not show this line.
-##! [Using Proxy in Python]
+
+# ! [Using Proxy in Python]
 def Proxy_Exercise():
     print()
     print("Proxy Exercise")
 
     print("  Done.")
-##! [Using Proxy in Python]
+# ! [Using Proxy in Python]

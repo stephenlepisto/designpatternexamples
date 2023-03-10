@@ -26,10 +26,11 @@
 #  compare Command_Undo() with Memento_Undo().  Also note the
 #  differences in the "Memento_ApplyXXOperation()" methods, which
 #  more cleanly separate the save from the operation.
-##! [Using Memento in Python]
+
+# ! [Using Memento in Python]
 def Memento_Exercise():
     print()
     print("Memento Exercise")
 
     print("  Done.")
-##! [Using Memento in Python]
+# ! [Using Memento in Python]

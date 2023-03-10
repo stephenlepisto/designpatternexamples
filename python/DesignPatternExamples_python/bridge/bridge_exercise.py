@@ -11,10 +11,11 @@
 #
 # In this exercise, note how the calls into the logger are the
 # same regardless of the logger used.
-##! [Using Bridge in Python]
+
+# ! [Using Bridge in Python]
 def Bridge_Exercise():
     print()
     print("Bridge Exercise")
 
     print("  Done.")
-##! [Using Bridge in Python]
+# ! [Using Bridge in Python]

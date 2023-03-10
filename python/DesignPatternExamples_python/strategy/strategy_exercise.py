@@ -14,10 +14,11 @@
 #  and displays a list of EntryInformation elements.  Three different
 #  sorting strategies are provided (Name, Age, Height) and an option
 #  to reverse the normal order of the sort.
-#! [Using Strategy in Python]
+
+# ! [Using Strategy in Python]
 def Strategy_Exercise():
     print()
     print("Strategy Exercise")
 
     print("  Done.")
-##! [Using Strategy in Python]
+# ! [Using Strategy in Python]

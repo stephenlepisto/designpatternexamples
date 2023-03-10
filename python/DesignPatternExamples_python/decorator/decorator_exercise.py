@@ -13,10 +13,11 @@
 #  wrap other decorators.  The base element never wraps anything and
 #  decorators must ultimately wrap a non-decorator class to be of any
 #  use.
-##! [Using Decorator in Python]
+
+# ! [Using Decorator in Python]
 def Decorator_Exercise():
     print()
     print("Decorator Exercise")
 
     print("  Done.")
-##! [Using Decorator in Python]
+# ! [Using Decorator in Python]

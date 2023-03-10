@@ -9,10 +9,11 @@
 # This example adapts functions that return error codes into a class object
 # that throws exceptions, which is more fitting of an object-oriented
 # language.
-##! [Using Adapter in Python]
+
+# ! [Using Adapter in Python]
 def Adapter_Exercise():
     print()
     print("Adapter Exercise")
 
     print("  Done.")
-##! [Using Adapter in Python]
+# ! [Using Adapter in Python]

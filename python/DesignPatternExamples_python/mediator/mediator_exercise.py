@@ -14,10 +14,11 @@
 #  operations are done using user and group names, with no knowledge
 #  of the actual lists of users and groups.  The mediator hides all
 #  the details.
-##! [Using Mediator in Python]
+
+# ! [Using Mediator in Python]
 def Mediator_Exercise():
     print()
     print("Mediator Exercise")
 
     print("  Done.")
-##! [Using Mediator in Python]
+# ! [Using Mediator in Python]

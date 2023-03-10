@@ -22,10 +22,11 @@
 #  IObserverNumberChanged interface.  This highlights a common way to
 #  implement a "pull" style observer without having too much knowledge
 #  about the Subject.
-##! [Using Observer in Python]
+
+# ! [Using Observer in Python]
 def Observer_Exercise():
     print()
     print("Observer Exercise")
 
     print("  Done.")
-##! [Using Observer in Python]
+# ! [Using Observer in Python]

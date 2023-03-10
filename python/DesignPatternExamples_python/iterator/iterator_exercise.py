@@ -11,10 +11,11 @@
 #  iterators, each providing a different aspect of the hard-coded data.
 #  
 #  The output shows the output from each iterator.
-##! [Using Iterator in Python]
+
+# ! [Using Iterator in Python]
 def Iterator_Exercise():
     print()
     print("Iterator Exercise")
 
     print("  Done.")
-##! [Using Iterator in Python]
+# ! [Using Iterator in Python]

@@ -18,10 +18,11 @@
 #  ingredients use another order visitor to order ingredients from
 #  other shops.  This approach assumes no two shops sell the same
 #  thing.
-##! [Using Visitor in Python]
+
+# ! [Using Visitor in Python]
 def Visitor_Exercise():
     print()
     print("Visitor Exercise")
 
     print("  Done.")
-##! [Using Visitor in Python]
+# ! [Using Visitor in Python]

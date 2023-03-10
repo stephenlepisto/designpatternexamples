@@ -13,10 +13,11 @@
 # 
 #  This example uses a file structure of file and directories to
 #  represent each object type.
-##! [Using Composite in Python]
+
+# ! [Using Composite in Python]
 def Composite_Exercise():
     print()
     print("Composite Exercise")
 
     print("  Done.")
-##! [Using Composite in Python]
+# ! [Using Composite in Python]

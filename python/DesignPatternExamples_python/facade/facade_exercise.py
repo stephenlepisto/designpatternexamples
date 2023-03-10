@@ -18,10 +18,11 @@
 #  device idcodes based on an index into those scan chains, resetting
 #  the scan chains and selecting a device to appear in the scan
 #  chain.
-##! [Using Facade in Python]
+
+# ! [Using Facade in Python]
 def Facade_Exercise():
     print()
     print("Facade Exercise")
 
     print("  Done.")
-##! [Using Facade in Python]
+# ! [Using Facade in Python]

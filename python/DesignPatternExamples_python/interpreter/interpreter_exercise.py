@@ -19,10 +19,11 @@
 #  
 #  The output shows the token list followed by the sentence produced
 #  from the tokens.
-##! [Using Interpreter in Python]
+
+# ! [Using Interpreter in Python]
 def Interpreter_Exercise():
     print()
     print("Interpreter Exercise")
 
     print("  Done.")
-##! [Using Interpreter in Python]
+# ! [Using Interpreter in Python]

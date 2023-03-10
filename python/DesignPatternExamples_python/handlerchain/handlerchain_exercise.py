@@ -17,10 +17,11 @@
 #  MessageWindows embody the handlers and the HandlerChain object
 #  passes message objects to each MessageWindow until the message is
 #  handled.
-##! [Using HandlerChain in Python]
+
+# ! [Using HandlerChain in Python]
 def HandlerChain_Exercise():
     print()
     print("Handler Chain Exercise")
 
     print("  Done.")
-##! [Using HandlerChain in Python]
+# ! [Using HandlerChain in Python]
