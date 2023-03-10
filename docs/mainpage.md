@@ -15,13 +15,11 @@ its kind.
 ### See Also
 - @ref adapter_pattern
 - @ref bridge_pattern
+- @ref command_pattern
 - @ref composite_pattern
 - @ref decorator_pattern
 - @ref facade_pattern
 - @ref flyweight_pattern
-- @ref proxy_pattern
-- @ref visitor_pattern
-- @ref command_pattern
 - @ref handlerchain_pattern
 - @ref interpreter_pattern
 - @ref iterator_pattern
@@ -30,6 +28,9 @@ its kind.
 - @ref nullobject_pattern
 - @ref observer_pattern
 - @ref private_pattern
+- @ref proxy_pattern
 - @ref state_pattern
+- @ref strategy_pattern
 - @ref template_pattern
+- @ref visitor_pattern
  
