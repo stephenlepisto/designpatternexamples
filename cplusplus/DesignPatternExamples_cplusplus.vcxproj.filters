@@ -191,41 +191,11 @@
     <ClInclude Include="helpers\wcsstri.h">
       <Filter>Helper Files</Filter>
     </ClInclude>
-    <ClInclude Include="Adapter_BackEndFunctions.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Bridge_LoggerInterface.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Bridge_Logger.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Bridge_NullLogger.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Bridge_ConsoleLogger.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Bridge_LoggerHelpers.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Bridge_FileLogger.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="helpers\makelocaltime.h">
       <Filter>Helper Files</Filter>
     </ClInclude>
-    <ClInclude Include="Adapter_FrontEndClass.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="helpers\DateTime.h">
       <Filter>Helper Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Composite_FileDirEntry.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Composite_FileAccess.h">
-      <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="helpers\split.h">
       <Filter>Helper Files</Filter>
@@ -233,17 +203,8 @@
     <ClInclude Include="helpers\argumentnull_error.h">
       <Filter>Helper Files</Filter>
     </ClInclude>
-    <ClInclude Include="Decorator_Classes.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="helpers\enablevtmode.h">
       <Filter>Helper Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Facade_Interface.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="FacadeSubsystem_Interface.h">
-      <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="helpers\sleep.h">
       <Filter>Helper Files</Filter>
@@ -257,56 +218,11 @@
     <ClInclude Include="helpers\readkey.h">
       <Filter>Helper Files</Filter>
     </ClInclude>
-    <ClInclude Include="Flyweight_Classes.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Proxy_Class.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Visitor_Element_Classes.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Visitor_Visitor_Class.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Visitor_Village.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Visitor_Shop.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="helpers\mapofstrings.h">
       <Filter>Helper Files</Filter>
     </ClInclude>
-    <ClInclude Include="Command_Classes.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="HandlerChain_Class.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="HandlerChain_Message_Class.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="HandlerChain_MessageWindow_Class.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Interpreter_Class.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="helpers\titlecase.h">
       <Filter>Helper Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Iterator_Class.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Mediator_Class.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Mediator_User_Classes.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Mediator_Group_Classes.h">
-      <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="helpers\argumentinvalid_error.h">
       <Filter>Helper Files</Filter>
@@ -314,86 +230,170 @@
     <ClInclude Include="helpers\stricmp.h">
       <Filter>Helper Files</Filter>
     </ClInclude>
-    <ClInclude Include="Memento.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Null_Object.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Observer_Class.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ObserverSubject_NumberProducer.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="State_Class.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Strategy_SortEntries_Classes.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Strategy_ShowEntries_Class.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Strategy_ISortEntries.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Strategy_EntryInformation.h">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="Adapter_BackEndFunctions.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Adapter_Exercise.h">
-      <Filter>Source Files</Filter>
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Adapter_FrontEndClass.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Bridge_ConsoleLogger.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Bridge_Exercise.h">
-      <Filter>Source Files</Filter>
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Bridge_FileLogger.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Bridge_Logger.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Bridge_LoggerHelpers.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Bridge_LoggerInterface.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Bridge_NullLogger.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Command_Classes.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Command_Exercise.h">
-      <Filter>Source Files</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Composite_Exercise.h">
-      <Filter>Source Files</Filter>
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Composite_FileAccess.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Composite_FileDirEntry.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Decorator_Classes.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Decorator_Exercise.h">
-      <Filter>Source Files</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Facade_Exercise.h">
-      <Filter>Source Files</Filter>
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Facade_Interface.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FacadeSubsystem_Interface.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Flyweight_Classes.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Flyweight_Exercise.h">
-      <Filter>Source Files</Filter>
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HandlerChain_Class.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="HandlerChain_Exercise.h">
-      <Filter>Source Files</Filter>
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HandlerChain_Message_Class.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HandlerChain_MessageWindow_Class.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Interpreter_Class.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Interpreter_Exercise.h">
-      <Filter>Source Files</Filter>
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Iterator_Class.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Iterator_Exercise.h">
-      <Filter>Source Files</Filter>
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Mediator_Class.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Mediator_Exercise.h">
-      <Filter>Source Files</Filter>
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Mediator_User_Classes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Memento.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Memento_Exercise.h">
-      <Filter>Source Files</Filter>
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Null_Object.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="NullObject_Exercise.h">
-      <Filter>Source Files</Filter>
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Observer_Class.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Observer_Exercise.h">
-      <Filter>Source Files</Filter>
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ObserverSubject_NumberProducer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Proxy_Class.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Proxy_Exercise.h">
-      <Filter>Source Files</Filter>
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="State_Class.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="State_Exercise.h">
-      <Filter>Source Files</Filter>
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Strategy_EntryInformation.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Strategy_Exercise.h">
-      <Filter>Source Files</Filter>
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Strategy_ISortEntries.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Strategy_ShowEntries_Class.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Strategy_SortEntries_Classes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Visitor_Element_Classes.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Visitor_Exercise.h">
-      <Filter>Source Files</Filter>
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Visitor_Shop.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Visitor_Village.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Visitor_Visitor_Class.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Mediator_Group_Classes.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
