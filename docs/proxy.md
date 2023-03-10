@@ -54,7 +54,7 @@ Links to the Facade interface description:
 
 __C++__
 
-@snippet cplusplus/program.cpp Using Proxy in C++
+@snippet cplusplus/Proxy_Exercise.cpp Using Proxy in C++
 
 __C#__
 

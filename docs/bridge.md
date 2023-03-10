@@ -59,7 +59,7 @@ idea of a base class or interface.
 
 __C++__
 
-@snippet cplusplus/program.cpp Using Bridge in C++
+@snippet cplusplus/Bridge_Exercise.cpp Using Bridge in C++
 
 __C#__
 

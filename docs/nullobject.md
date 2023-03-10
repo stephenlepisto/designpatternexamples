@@ -66,7 +66,7 @@ and the @ref interpreter_pattern "Interpreter pattern".
 
 __C++__
 
-@snippet cplusplus/program.cpp Using NullObject in C++
+@snippet cplusplus/NullObject_Exercise.cpp Using NullObject in C++
 
 __C#__
 

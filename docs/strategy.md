@@ -126,7 +126,7 @@ to help group the public classes into the patterns being demonstrated.
 
 __C++__
 
-@snippet cplusplus/program.cpp Using Strategy in C++
+@snippet cplusplus/Strategy_Exercise.cpp Using Strategy in C++
 
 __C#__
 

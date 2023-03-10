@@ -38,7 +38,7 @@ interface.
 
 __C++__
 
-@snippet cplusplus/program.cpp Using Decorator in C++
+@snippet cplusplus/Decorator_Exercise.cpp Using Decorator in C++
 
 __C#__
 

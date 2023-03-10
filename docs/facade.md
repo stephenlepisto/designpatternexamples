@@ -59,7 +59,7 @@ a simplified set of functions for most common operations.
 
 __C++__
 
-@snippet cplusplus/program.cpp Using Facade in C++
+@snippet cplusplus/Facade_Exercise.cpp Using Facade in C++
 
 __C#__
 

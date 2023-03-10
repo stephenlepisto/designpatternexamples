@@ -29,7 +29,7 @@ DataReaderWriter class to read the data back.
 
 __C++__
 
-@snippet cplusplus/program.cpp Using Adapter in C++
+@snippet cplusplus/Adapter_Exercise.cpp Using Adapter in C++
 
 __C#__
 

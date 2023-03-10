@@ -52,7 +52,7 @@ system with a hierarchical file structure.
 
 __C++__
 
-@snippet cplusplus/program.cpp Using Composite in C++
+@snippet cplusplus/Composite_Exercise.cpp Using Composite in C++
 
 __C#__
 

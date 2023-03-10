@@ -67,7 +67,7 @@ invalid.
 
 __C++__
 
-@snippet cplusplus/program.cpp Using Iterator in C++
+@snippet cplusplus/Iterator_Exercise.cpp Using Iterator in C++
 
 __C#__
 

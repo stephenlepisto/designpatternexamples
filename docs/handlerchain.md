@@ -104,7 +104,7 @@ longer receives messages.
 
 __C++__
 
-@snippet cplusplus/program.cpp Using HandlerChain in C++
+@snippet cplusplus/HandlerChain_Exercise.cpp Using HandlerChain in C++
 
 __C#__
 

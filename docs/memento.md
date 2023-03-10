@@ -56,7 +56,7 @@ efficient than commands for creating an undo stack.
 
 __C++__
 
-@snippet cplusplus/program.cpp Using Memento in C++
+@snippet cplusplus/Memento_Exercise.cpp Using Memento in C++
 
 __C#__
 

@@ -40,7 +40,7 @@ that counts.
 
 __C++__
 
-@snippet cplusplus/program.cpp Using Flyweight in C++
+@snippet cplusplus/Flyweight_Exercise.cpp Using Flyweight in C++
 
 __C#__
 

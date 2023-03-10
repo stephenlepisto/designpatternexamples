@@ -104,7 +104,7 @@ pattern.
 
 __C++__
 
-@snippet cplusplus/program.cpp Using Visitor in C++
+@snippet cplusplus/Visitor_Exercise.cpp Using Visitor in C++
 
 __C#__
 

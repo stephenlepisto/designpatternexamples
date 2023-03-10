@@ -129,7 +129,7 @@ each with a small class.
 
 __C++__
 
-@snippet cplusplus/program.cpp Using State in C++
+@snippet cplusplus/State_Exercise.cpp Using State in C++
 
 __C#__
 

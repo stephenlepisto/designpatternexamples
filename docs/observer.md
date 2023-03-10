@@ -89,7 +89,7 @@ IObserverNumberChanged interface.*
 
 __C++__
 
-@snippet cplusplus/program.cpp Using Observer in C++
+@snippet cplusplus/Observer_Exercise.cpp Using Observer in C++
 
 __C#__
 

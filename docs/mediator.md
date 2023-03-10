@@ -133,7 +133,7 @@ that invoked the caller.
 
 __C++__
 
-@snippet cplusplus/program.cpp Using Mediator in C++
+@snippet cplusplus/Mediator_Exercise.cpp Using Mediator in C++
 
 __C#__
 

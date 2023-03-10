@@ -61,7 +61,7 @@ is no way to iterate over the contents of a stack.*
 
 __C++__
 
-@snippet cplusplus/program.cpp Using Command in C++
+@snippet cplusplus/Command_Exercise.cpp Using Command in C++
 
 __C#__
 
