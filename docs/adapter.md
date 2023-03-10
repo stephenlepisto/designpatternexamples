@@ -35,6 +35,10 @@ __C#__
 
 @snippet csharp/program.cs Using Adapter in C#
 
+__Python__
+
+@snippet python/DesignPatternExamples_python/program.py Using Adapter in Python
+
 
 ### See Also
 - @ref mainpage "Main page"

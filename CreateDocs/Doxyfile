@@ -920,6 +920,7 @@ WARN_LOGFILE           = DoxyLog.err
 INPUT                  = ../cplusplus \
                          ../cplusplus/helpers \
                          ../csharp \
+                         ../python/DesignPatternExamples_python \
                          ../Docs
 
 # This tag can be used to specify the character encoding of the source files

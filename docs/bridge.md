@@ -65,6 +65,10 @@ __C#__
 
 @snippet csharp/program.cs Using Bridge in C#
 
+__Python__
+
+@snippet python/DesignPatternExamples_python/program.py Using Bridge in Python
+
 
 ### See Also
 - @ref mainpage "Main Page"
