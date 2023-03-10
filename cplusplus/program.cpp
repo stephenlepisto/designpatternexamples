@@ -124,7 +124,7 @@ namespace DesignPatternExamples_cpp
                 "{0} by Stephen P. Lepisto\n"
                 "usage: {0} [options] [exercise_name][[ exercise_name][...]]\n"
                 "\n"
-                "Runs through a series of exercises showing off design patterns.  If no"
+                "Runs through a series of exercises showing off design patterns.  If no\n"
                 "exercise_name is given, then run through all exercises.\n"
                 "\n"
                 "Options:\n"
