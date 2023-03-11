@@ -4,13 +4,23 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>dcfea88a-4108-44cd-88ab-70103972520f</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>program.py</StartupFile>
+    <StartupFile>__main__.py</StartupFile>
     <SearchPath>
     </SearchPath>
-    <WorkingDirectory>.</WorkingDirectory>
+    <WorkingDirectory>../../</WorkingDirectory>
     <OutputPath>.</OutputPath>
     <Name>DesignPatternExamples_python</Name>
     <RootNamespace>DesignPatternExamples_python</RootNamespace>
+    <LaunchProvider>Standard Python launcher</LaunchProvider>
+    <CommandLineArguments>Adapter</CommandLineArguments>
+    <EnableNativeCodeDebugging>False</EnableNativeCodeDebugging>
+    <InterpreterArguments>
+    </InterpreterArguments>
+    <IsWindowsApplication>False</IsWindowsApplication>
+    <InterpreterPath>
+    </InterpreterPath>
+    <Environment>
+    </Environment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -21,7 +31,9 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="adapter\adapter_backendfunctions.py" />
     <Compile Include="adapter\adapter_exercise.py" />
+    <Compile Include="adapter\adapter_frontendclass.py" />
     <Compile Include="adapter\__init__.py" />
     <Compile Include="bridge\bridge_exercise.py" />
     <Compile Include="bridge\__init__.py" />
