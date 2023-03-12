@@ -31,13 +31,13 @@ namespace // Anonymous
         Logger& logger, std::string loggerType)
     {
         std::string output;
-        output = std::format("Starting \"log to {}\" example", loggerType);
+        output = std::format("Starting log to {} example", loggerType);
         logger.LogTrace(output);
 
         logger.LogInfo("An example of an informational line");
         logger.LogError("An example of an error log entry");
 
-        output = std::format("Done with \"log to {}\" example", loggerType);
+        output = std::format("Done with log to {} example", loggerType);
         logger.LogTrace(output);
     }
 
