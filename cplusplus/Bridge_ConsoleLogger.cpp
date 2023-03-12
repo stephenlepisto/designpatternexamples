@@ -10,7 +10,7 @@
 namespace // Anonymous
 {
     /// <summary>
-    /// Represents a logger that throws away anything sent its way.
+    /// Represents a logger that writes logging to the standard output.
     /// </summary>
     class ConsoleLoggerImpl : public DesignPatternExamples_cpp::ILogger
     {

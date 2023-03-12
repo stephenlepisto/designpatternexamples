@@ -20,7 +20,7 @@ namespace DesignPatternExamples_cpp
     {
     public:
         /// <summary>
-        /// Create an instance of a console logger, which writes to a file.
+        /// Create an instance of a file logger, which writes to a file.
         /// </summary>
         /// <returns>An instance of an ILogger object.</returns>
         static std::unique_ptr<ILogger> CreateLogger(const std::string& filename);

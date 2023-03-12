@@ -12,7 +12,7 @@
 namespace // Anonymous
 {
     /// <summary>
-    /// Represents a logger that throws away anything sent its way.
+    /// Represents a logger that writes its output to a file.
     /// </summary>
     class FileLoggerImpl : public DesignPatternExamples_cpp::ILogger
     {
