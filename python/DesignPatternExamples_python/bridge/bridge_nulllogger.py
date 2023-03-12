@@ -32,12 +32,12 @@ class NullLogger(ILogger):
     def LogInfo(self, msg : str) -> None:
         pass
 
-    ###  Log error messages to the configured output.
-    ##
-    ##  @param msg
-    ##         The message to log.
-    #def LogError(self, msg : str) -> None:
-    #    pass
+    ##  Log error messages to the configured output.
+    #
+    #  @param msg
+    #         The message to log.
+    def LogError(self, msg : str) -> None:
+        pass
 
 
     #--------------------------------------------------------------------------
