@@ -1,10 +1,11 @@
 ## @file
 # @brief
-# Implementation of the Decorator_Exercise() function as used in the 
-# @ref decorator_pattern "Decorator pattern".
+# Implementation of the
+# @ref DesignPatternExamples_python.decorator.decorator_exercise.Decorator_Exercise "Decorator_Exercise"()
+# function as used in the @ref decorator_pattern.
 
 
-## Example of using the @ref decorator_pattern "Decorator" design pattern.
+## Example of using the @ref decorator_pattern.
 #  
 #  The Decorator pattern is used when a class instance at run time needs
 #  to have its behavior altered.  This is supported by providing wrapper

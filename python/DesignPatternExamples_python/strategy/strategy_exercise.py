@@ -1,10 +1,11 @@
 ## @file
 # @brief
-# Implementation of the Strategy_Exercise() function as used in the 
-# @ref strategy_pattern "Strategy pattern".
+# Implementation of the
+# @ref DesignPatternExamples_python.strategy.strategy_exercise.Strategy_Exercise "Strategy_Exercise"()
+# function as used in the @ref strategy_pattern.
 
 
-##  Example of using the @ref strategy_pattern "Strategy" design pattern.
+##  Example of using the @ref strategy_pattern.
 #  
 #  The Strategy pattern provides a way to easily assign different
 #  algorithms to a class instance that can be changed at the time the

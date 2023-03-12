@@ -1,11 +1,12 @@
 ## @file
 # @brief
-# Implementation of the Adapter_Exercise() function as used in the 
-# @ref adapter_pattern "Adapter pattern".
+# Implementation of the
+# @ref DesignPatternExamples_python.adapter.adapter_exercise.Adapter_Exercise "Adapter_Exercise"()
+# function as used in the @ref adapter_pattern.
 
 from .adapter_frontendclass import DataReaderWriter, DataReaderWriterException, DataReaderWriterInitException
 
-## Example of using the @ref adapter_pattern "Adapter" design pattern.
+## Example of using the @ref adapter_pattern.
 # 
 # This example adapts functions that return error codes into a class object
 # that throws exceptions, which is more fitting of an object-oriented

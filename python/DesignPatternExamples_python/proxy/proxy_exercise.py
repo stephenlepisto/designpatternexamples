@@ -1,10 +1,11 @@
 ## @file
 # @brief
-# Implementation of the Proxy_Exercise() function as used in the 
-# @ref proxy_pattern "Proxy pattern".
+# Implementation of the
+# @ref DesignPatternExamples_python.proxy.proxy_exercise.Proxy_Exercise "Proxy_Exercise"()
+# function as used in the @ref proxy_pattern.
 
 
-##  Example of using the @ref proxy_pattern "Proxy" design pattern.
+##  Example of using the @ref proxy_pattern "Proxy".
 #  
 #  The Proxy pattern is used when a large or expensive object cannot be
 #  represented directly in the program, typically because the object is

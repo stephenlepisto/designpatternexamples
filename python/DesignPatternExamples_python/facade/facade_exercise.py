@@ -1,10 +1,11 @@
 ## @file
 # @brief
-# Implementation of the Facade_Exercise() function as used in the 
-# @ref facade_pattern "Facade pattern".
+# Implementation of the
+# @ref DesignPatternExamples_python.facade.facade_exercise.Facade_Exercise "Facade_Exercise"()
+# function as used in the @ref facade_pattern.
 
 
-##  Example of using the @ref facade_pattern "Facade" design pattern.
+##  Example of using the @ref facade_pattern.
 #  
 #  The Facade pattern is used when a simplified version of an
 #  interface on a complicated sub-system is needed in situations

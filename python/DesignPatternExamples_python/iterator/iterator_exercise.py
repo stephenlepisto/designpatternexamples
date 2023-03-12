@@ -1,10 +1,11 @@
 ## @file
 # @brief
-# Implementation of the Iterator_Exercise() function as used in the 
-# @ref iterator_pattern "Iterator pattern".
+# Implementation of the
+# @ref DesignPatternExamples_python.iterator.iterator_exercise.Iterator_Exercise "Iterator_Exercise"()
+# function as used in the @ref iterator_pattern.
 
 
-##  Example of using the @ref iterator_pattern "Iterator" design pattern.
+##  Example of using the @ref iterator_pattern.
 #  
 #  A custom container is instantiated (it already contains hard-coded data
 #  to iterate over).  The custom container can then deliver three

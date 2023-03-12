@@ -1,10 +1,11 @@
 ## @file
 # @brief
-# Implementation of the Observer_Exercise() function as used in the 
-# @ref observer_pattern "Observer pattern".
+# Implementation of the
+# @ref DesignPatternExamples_python.observer.observer_exercise.Observer_Exercise "Observer_Exercise"()
+# function as used in the @ref observer_pattern.
 
 
-##  Example of using the @ref observer_pattern "Observer" design pattern.
+##  Example of using the @ref observer_pattern.
 #  
 #  The Observer pattern allows for one or more observers to react to
 #  changes in a Subject entity.

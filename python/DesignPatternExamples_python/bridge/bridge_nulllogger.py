@@ -1,7 +1,7 @@
 ##  @file
 #  @brief
 #  The @ref DesignPatternExamples_python.bridge.bridge_nulllogger.NullLogger "NullLogger"
-#  class as used in the @ref bridge_pattern "Bridge pattern".
+#  class as used in the @ref bridge_pattern.
 
 from .bridge_loggerinterface import ILogger
 

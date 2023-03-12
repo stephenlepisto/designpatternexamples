@@ -1,5 +1,5 @@
 ## The @ref DesignPatternExamples_python.adapter.adapter_backendfunctions.DataReadWriteFunctions "DataReadWriteFunctions"
-#  class used in the @ref adapter_pattern "Adapter pattern".
+#  class used in the @ref adapter_pattern.
 
 from enum import Enum
 

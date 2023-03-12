@@ -43,6 +43,7 @@
     <Compile Include="bridge\bridge_logger.py" />
     <Compile Include="bridge\bridge_nulllogger.py" />
     <Compile Include="bridge\__init__.py" />
+    <Compile Include="command\command_classes.py" />
     <Compile Include="command\command_exercise.py" />
     <Compile Include="command\__init__.py" />
     <Compile Include="composite\composite_exercise.py" />

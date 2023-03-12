@@ -1,7 +1,7 @@
 ##  @file
 #  @brief
 #  The @ref DesignPatternExamples_python.bridge.bridge_loggerinterface.ILogger "ILogger"
-#  interface as used in the @ref bridge_pattern "Bridge pattern".
+#  interface as used in the @ref bridge_pattern.
 
 from abc import ABC, abstractmethod
 

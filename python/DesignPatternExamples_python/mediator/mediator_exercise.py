@@ -1,10 +1,11 @@
 ## @file
 # @brief
-# Implementation of the Mediator_Exercise() function as used in the 
-# @ref mediator_pattern "Mediator pattern".
+# Implementation of the
+# @ref DesignPatternExamples_python.mediator.mediator_exercise.Mediator_Exercise "Mediator_Exercise"()
+# function as used in the @ref mediator_pattern.
 
 
-##  Example of using the @ref mediator_pattern "Mediator" design pattern.
+##  Example of using the @ref mediator_pattern.
 #  
 #  A mediator is instantiated then populated with users and groups.
 #  Users are added to some of the groups.

@@ -1,10 +1,11 @@
 ## @file
 # @brief
-# Implementation of the Flyweight_Exercise() function as used in the 
-# @ref flyweight_pattern "Flyweight pattern".
+# Implementation of the
+# @ref DesignPatternExamples_python.flyweight.flyweight_exercise.Flyweight_Exercise "Flyweight_Exercise"()
+# function as used in the @ref flyweight_pattern.
 
 
-##  Example of using the @ref flyweight_pattern "Flyweight" design pattern.
+##  Example of using the @ref flyweight_pattern.
 #  
 #  The Flyweight pattern is used when a large object needs to be
 #  represented by a much lighter weight class, possibly multiple

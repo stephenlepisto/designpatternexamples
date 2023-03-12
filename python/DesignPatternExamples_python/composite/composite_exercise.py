@@ -1,10 +1,11 @@
 ## @file
 # @brief
-# Implementation of the Composite_Exercise() function as used in the 
-# @ref composite_pattern "Composite pattern".
+# Implementation of the
+# @ref DesignPatternExamples_python.composite.composite_exercise.Composite_Exercise "Composite_Exercise"()
+# function as used in the @ref composite_pattern.
 
 
-## Example of using the @ref composite_pattern "Composite" design pattern.
+## Example of using the @ref composite_pattern.
 # 
 #  The Composite pattern is used when a collection of objects is to
 #  be formed in a hierarchical form where each object needs to be

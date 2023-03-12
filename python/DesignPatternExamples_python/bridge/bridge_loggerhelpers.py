@@ -1,7 +1,7 @@
 ## @file
 #  @brief
 #  Implementation of the @ref DesignPatternExamples_python.bridge.bridge_loggerhelpers.LoggerHelpers.FormatLogLine "FormatLogLine"
-#  function used in the @ref bridge_pattern "Bridge pattern".
+#  function used in the @ref bridge_pattern.
 
 from datetime import datetime
 

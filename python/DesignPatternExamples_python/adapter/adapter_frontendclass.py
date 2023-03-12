@@ -1,6 +1,6 @@
 ## @package adapter
 #  The @ref DesignPatternExamples_python.adapter.adapter_frontendclass.DataReaderWriter "DataReaderWriter"
-#  class used in the @ref adapter_pattern "Adapter pattern".
+#  class used in the @ref adapter_pattern.
 
 from io import StringIO
 

@@ -1,10 +1,11 @@
 ## @file
 # @brief
-# Implementation of the Memento_Exercise() function as used in the 
-# @ref memento_pattern "Memento pattern".
+# Implementation of the
+# @ref DesignPatternExamples_python.memento.memento_exercise.Memento_Exercise "Memento_Exercise"()
+# function as used in the @ref memento_pattern.
 
 
-##  Example of using the @ref memento_pattern "Memento" design pattern.
+##  Example of using the @ref memento_pattern.
 #  
 #  In this exercise, the Memento pattern is used to take snapshots of
 #  a text object so as to form an undo list of changes to the text

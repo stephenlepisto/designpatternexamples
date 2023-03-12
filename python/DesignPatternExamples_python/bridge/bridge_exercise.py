@@ -1,7 +1,7 @@
 ## @file
 # @brief
-# Implementation of the Bridge_Exercise() function as used in the 
-# @ref bridge_pattern "Bridge pattern".
+# Implementation of the DesignPatternExamples_python.bridge.bridge_exercise.Bridge_Exercise "Bridge_Exercise"()
+# function as used in the @ref bridge_pattern.
 
 from .bridge_logger import Logger
 
@@ -21,7 +21,7 @@ def _Bridge_Exercise_Demonstrate_Logging(logger : Logger, loggerType : str) -> N
     logger.LogTrace("Done with log to {0} example".format(loggerType))
 
 
-## Example of using the @ref bridge_pattern "Bridge" design pattern.
+## Example of using the @ref bridge_pattern.
 # 
 # The Bridge pattern is used to allow a program to offer multiple
 # ways to perform logging without changing how the logging is

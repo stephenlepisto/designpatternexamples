@@ -1,11 +1,12 @@
 ## @file
 # @brief
-# Implementation of the HandlerChain_Exercise() function as used in the 
-# @ref handlerchain_pattern "HandlerChain pattern".
+# Implementation of the
+# @ref DesignPatternExamples_python.handlerchain.handlerchain_exercise.HandlerChain_Exercise "HandlerChain_Exercise"()
+# function as used in the @ref handlerchain_pattern.
 
 
-##  Example of using the @ref handlerchain_pattern "Handle Chain" or Chain of
-#   Responsibility design pattern.
+## Example of using the @ref handlerchain_pattern or Chain of
+#  Responsibility Pattern.
 #  
 #  The Handler Chain pattern is used to support a dynamic list of
 #  handlers that are passed the same arguments.  It is kind of the

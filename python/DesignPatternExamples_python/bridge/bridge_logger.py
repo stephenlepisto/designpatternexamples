@@ -1,7 +1,7 @@
 ##  @file
 #  @brief
 #  The @ref DesignPatternExamples_python.bridge.bridge_logger.Logger "Logger"
-#  bridge class as used in the @ref bridge_pattern "Bridge pattern".
+#  bridge class as used in the @ref bridge_pattern.
 
 from enum import Enum
 from .bridge_loggerinterface import ILogger

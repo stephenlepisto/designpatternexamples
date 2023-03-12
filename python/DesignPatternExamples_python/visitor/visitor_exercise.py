@@ -1,10 +1,11 @@
 ## @file
 # @brief
-# Implementation of the Visitor_Exercise() function as used in the 
-# @ref visitor_pattern "Visitor pattern".
+# Implementation of the
+# @ref DesignPatternExamples_python.visitor.visitor_exercise.Visitor_Exercise "Visitor_Exercise"()
+# function as used in the @ref visitor_pattern.
 
 
-##  Example of using the @ref visitor_pattern "Visitor" design pattern.
+##  Example of using the @ref visitor_pattern.
 #  
 #  The Visitor pattern is used to add functionality to a list of
 #  otherwise unchanging element objects by passing a visitor object to

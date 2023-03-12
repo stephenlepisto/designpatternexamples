@@ -1,10 +1,11 @@
 ## @file
 # @brief
-# Implementation of the NullObject_Exercise() function as used in the 
-# @ref nullobject_pattern "NullObject pattern".
+# Implementation of the
+# @ref DesignPatternExamples_python.nullobject.nullobject_exercise.NullObject_Exercise "NullObject_Exercise"()
+# function as used in the @ref nullobject_pattern.
 
 
-##  Example of using the @ref nullobject_pattern "Null Object" design pattern.
+##  Example of using the @ref nullobject_pattern.
 #  
 #  The Null Object pattern is where an object or function acts as a
 #  stand-in for real commands but otherwise does nothing.
