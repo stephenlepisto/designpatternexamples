@@ -27,6 +27,38 @@ decorators are applied to the concrete class by wrapping the concrete class).
 
 # How to Use
 
+<table>
+<caption>Links to the Decorator classes</caption>
+<tr>
+  <th>C++
+  <th>C#
+  <th>Python
+<tr>
+  <td>@ref DesignPatternExamples_cpp::IRenderElement "IRenderElement" interface
+  <td>@ref DesignPatternExamples_csharp.IRenderElement "IRenderElement" interface
+  <td>@ref DesignPatternExamples_python.decorator.decorator_classes.IRenderElement "IRenderElement" interface
+<tr>
+  <td>@ref DesignPatternExamples_cpp::TextElement "TextElement" class
+  <td>@ref DesignPatternExamples_csharp.TextElement "TextElement" class
+  <td>@ref DesignPatternExamples_python.decorator.decorator_classes.TextElement "TextElement" class
+<tr>
+  <td>@ref DesignPatternExamples_cpp::Decorator "Decorator" base class
+  <td>@ref DesignPatternExamples_csharp.Decorator "Decorator" base class
+  <td>@ref DesignPatternExamples_python.decorator.decorator_classes.Decorator "Decorator" base class
+<tr>
+  <td>@ref DesignPatternExamples_cpp::WhiteBackgroundDecorator "WhiteBackgroundDecorator" derived class
+  <td>@ref DesignPatternExamples_csharp.WhiteBackgroundDecorator "WhiteBackgroundDecorator" derived class
+  <td>@ref DesignPatternExamples_python.decorator.decorator_classes.WhiteBackgroundDecorator "WhiteBackgroundDecorator" derived class
+<tr>
+  <td>@ref DesignPatternExamples_cpp::UnderlineDecorator "UnderlineDecorator" derived class
+  <td>@ref DesignPatternExamples_csharp.UnderlineDecorator "UnderlineDecorator" derived class
+  <td>@ref DesignPatternExamples_python.decorator.decorator_classes.UnderlineDecorator "UnderlineDecorator" derived class
+<tr>
+  <td>@ref DesignPatternExamples_cpp::RedForegroundDecorator "RedForegroundDecorator" derived class
+  <td>@ref DesignPatternExamples_csharp.RedForegroundDecorator "RedForegroundDecorator" derived class
+  <td>@ref DesignPatternExamples_python.decorator.decorator_classes.RedForegroundDecorator "RedForegroundDecorator" derived class
+</table>
+
 In this example, the concrete class is called TextElement and up to three
 decorators can be applied (WhiteBackgroundDecorator, UnderlineDecorator, and
 ReadForegroundDecorator).  Decorators should ideally be designed to be applied

@@ -4,6 +4,8 @@
 # @ref DesignPatternExamples_python.decorator.decorator_exercise.Decorator_Exercise "Decorator_Exercise"()
 # function as used in the @ref decorator_pattern.
 
+from .decorator_classes import WhiteBackgroundDecorator, UnderlineDecorator, RedForegroundDecorator, TextElement
+
 
 ## Example of using the @ref decorator_pattern.
 #  
@@ -19,6 +21,20 @@
 def Decorator_Exercise():
     print()
     print("Decorator Exercise")
+
+    baseElement = TextElement("This is raw text")
+
+    # Wrap the base element in three decorators.
+    wrappedElement = \
+        WhiteBackgroundDecorator(
+            UnderlineDecorator(
+                RedForegroundDecorator(baseElement)
+            )
+        )
+
+    # Now render the elements to the console.
+    print("  base Text element: \"{0}\"".format(baseElement.Render()))
+    print("  Decorated element: \"{0}\"".format(wrappedElement.Render()))
 
     print("  Done.")
 # ! [Using Decorator in Python]

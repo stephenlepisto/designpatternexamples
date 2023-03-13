@@ -9,5 +9,6 @@ __package__ = "python.DesignPatternExamples_python" if not __package__ else __pa
 
 import sys
 from . import main
+from .enablevtmode import EnableVTMode
 
-sys.exit(main())
+sys.exit(EnableVTMode(main))
