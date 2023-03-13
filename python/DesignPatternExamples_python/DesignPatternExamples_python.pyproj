@@ -12,7 +12,7 @@
     <Name>DesignPatternExamples_python</Name>
     <RootNamespace>DesignPatternExamples_python</RootNamespace>
     <LaunchProvider>Standard Python launcher</LaunchProvider>
-    <CommandLineArguments>Adapter</CommandLineArguments>
+    <CommandLineArguments>Composite</CommandLineArguments>
     <EnableNativeCodeDebugging>False</EnableNativeCodeDebugging>
     <InterpreterArguments>
     </InterpreterArguments>
@@ -47,6 +47,8 @@
     <Compile Include="command\command_exercise.py" />
     <Compile Include="command\__init__.py" />
     <Compile Include="composite\composite_exercise.py" />
+    <Compile Include="composite\composite_fileaccess.py" />
+    <Compile Include="composite\composite_filedirentry.py" />
     <Compile Include="composite\__init__.py" />
     <Compile Include="decorator\decorator_exercise.py" />
     <Compile Include="decorator\__init__.py" />
