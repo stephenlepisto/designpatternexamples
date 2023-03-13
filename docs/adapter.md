@@ -17,15 +17,23 @@ the C library as it appears on different operating systems.
 
 ## How to Use
 
-Links to the DataReaderWriter class description:
-- @ref DesignPatternExamples_cpp::DataReaderWriter "DataReaderWriter class" (C++)
-- @ref DesignPatternExamples_csharp.DataReaderWriter "DataReaderWriter class" (C#)
+<table>
+<caption>Links to the DataReaderWriter class</caption>
+<tr>
+  <th>C++
+  <th>C#
+  <th>Python
+<tr>
+  <td>@ref DesignPatternExamples_cpp::DataReaderWriter "DataReaderWriter" class
+  <td>@ref DesignPatternExamples_csharp.DataReaderWriter "DataReaderWriter" class
+  <td>@ref DesignPatternExamples_python.adapter.adapter_frontendclass.DataReaderWriter "DataReaderWriter" class
+</table>
 
-In the Adapter pattern example, the DataReaderWriter class is the adapter
-class.  It hides the details of getting data into and out of some external
-entity.  In this example, some data is created, the DataReaderWriter class is
-used to write the data out (to the external component), followed by using the
-DataReaderWriter class to read the data back.
+In the Adapter pattern example, the DataReaderWriter class is the Adapter.  It
+hides the details of getting data into and out of some external entity.  In
+this example, some data is created, the DataReaderWriter class is used to write
+the data out (to the external component), followed by using the DataReaderWriter
+class to read the data back.
 
 __C++__
 

@@ -26,11 +26,21 @@ passed to another entity for invocation.
 
 # How to Use
 
-Links to the Command classes descriptions:
-- (high level) @ref DesignPatternExamples_cpp::Command "Command class" for operations to do/undo (C++)
-- (high level) @ref DesignPatternExamples_csharp.Command "Command class" for operations to do/undo (C#)
-- (high level) @ref DesignPatternExamples_cpp::Command_TextObject "Command_TextObject class" representing what is being changed (C++)
-- (high level) @ref DesignPatternExamples_csharp.Command_TextObject "Command_TextObject class" representing what is being changed (C#)
+<table>
+<caption>Links to the Command classes</caption>
+<tr>
+  <th>C++
+  <th>C#
+  <th>Python
+<tr>
+  <td>@ref DesignPatternExamples_cpp::Command_TextObject "Command_TextObject" class
+  <td>@ref DesignPatternExamples_csharp.Command_TextObject "Command_TextObject" class
+  <td>@ref DesignPatternExamples_python.command.command_classes.Command_TextObject "Command_TextObject" class
+<tr>
+  <td>@ref DesignPatternExamples_cpp::Command "Command" class
+  <td>@ref DesignPatternExamples_csharp.Command "Command" class
+  <td>@ref DesignPatternExamples_python.command.command_classes.Command "Command" class
+</table>
 
 For example, a program that supports undo would work like this (this is
 a simplistic undo):
@@ -50,9 +60,9 @@ a simplistic undo):
         in order (oldest to newest) on the receiver.  This puts the receiver
         back into the state it was in before the last command was applied.
 
-This example implements the above algorithm.  A Command_TextObject instance
+This example implements the above algorithm.  A __Command_TextObject__ instance
 representing the target of the commands.  The commands themselves are stored in
-a Command instance.  A simple stack is used to remember the commands in the
+a __Command__ instance.  A simple stack is used to remember the commands in the
 order in which they are applied.  After several commands are applied, the
 commands are undone in reverse order.
 

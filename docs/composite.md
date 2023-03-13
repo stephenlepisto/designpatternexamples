@@ -14,16 +14,25 @@ is a directory.
 
 ## How to Use
 
-Links to the FileDirEntry, FileEntry, and DirEntry class descriptions:
-- C++
-  - @ref DesignPatternExamples_cpp::FileDirEntry "FileDirEntry base class" (C++)
-  - @ref DesignPatternExamples_cpp::FileEntry "FileEntry derived class" (C++)
-  - @ref DesignPatternExamples_cpp::DirEntry "DirEntry derived class" (C++)
-- C#
-  - @ref DesignPatternExamples_csharp.FileDirEntry "FileDirEntry base class" (C#)
-  - @ref DesignPatternExamples_csharp.FileEntry "FileEntry derived class" (C#)
-  - @ref DesignPatternExamples_csharp.DirEntry "DirEntry derived class" (C#)
-
+<table>
+<caption>Links to the Composite classes</caption>
+<tr>
+  <th>C++
+  <th>C#
+  <th>Python
+<tr>
+  <td>@ref DesignPatternExamples_cpp::FileDirEntry "FileDirEntry" base class
+  <td>@ref DesignPatternExamples_csharp.FileDirEntry "FileDirEntry" base class
+  <td>@ref DesignPatternExamples_python.composite.composite_filedirentry.FileDirEntry "FileDirEntry" base class
+<tr>
+  <td>@ref DesignPatternExamples_cpp::FileEntry "FileEntry" derived class
+  <td>@ref DesignPatternExamples_csharp.FileEntry "FileEntry" derived class
+  <td>@ref DesignPatternExamples_python.composite.composite_filedirentry.FileEntry "FileEntry" derived class
+<tr>
+  <td>@ref DesignPatternExamples_cpp::DirEntry "DirEntry" derived class
+  <td>@ref DesignPatternExamples_csharp.DirEntry "DirEntry" derived class
+  <td>@ref DesignPatternExamples_python.composite.composite_filedirentry.DirEntry "DirEntry" derived class
+</table>
 
 This example uses a file/directory approach, although the files and directories
 are hardcoded examples.  Each entry, be it a file or a directory, is represented

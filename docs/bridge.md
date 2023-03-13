@@ -26,10 +26,17 @@ reference to the underlying implementation.
 
 ## How to Use
 
-Links to the DataReaderWriter class description:
-
-- @ref DesignPatternExamples_cpp::Logger "Logger class" (C++)
-- @ref DesignPatternExamples_csharp.Logger "Logger class" (C#)
+<table>
+<caption>Links to the Logger class</caption>
+<tr>
+  <th>C++
+  <th>C#
+  <th>Python
+<tr>
+  <td>@ref DesignPatternExamples_cpp::Logger "Logger" class
+  <td>@ref DesignPatternExamples_csharp.Logger "Logger" class
+  <td>@ref DesignPatternExamples_python.bridge.bridge_logger.Logger "Logger" class
+</table>
 
 In this example, the Logger class is what the program uses for all logging.
 The program logs information at various levels of granularity to some
