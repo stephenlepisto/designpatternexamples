@@ -46,11 +46,29 @@ handles from the sub-system to facility access to the sub-system.
 
 # How to Use
 
-Links to the Facade interface description:
-- (high level) @ref DesignPatternExamples_cpp::IDeviceNetworkHighLevel "Facade interface" (C++)
-- (high level) @ref DesignPatternExamples_csharp.IDeviceNetworkHighLevel "Facade interface" (C#)
-- (low level) @ref DesignPatternExamples_cpp::IDeviceNetworkLowLevel "Advanced user interface" (C++)
-- (low level) @ref DesignPatternExamples_csharp.IDeviceNetworkLowLevel "Advanced user interface" (C#)
+<table>
+<caption>Links to the Facade classes and interfaces</caption>
+<tr>
+  <th>C++
+  <th>C#
+  <th>Python
+<tr>
+  <td>@ref DesignPatternExamples_cpp::IDeviceNetworkHighLevel "IDeviceNetworkHighLevel" interface
+  <td>@ref DesignPatternExamples_csharp.IDeviceNetworkHighLevel "IDeviceNetworkHighLevel" interface
+  <td>@ref DesignPatternExamples_python.facade.facade_interface.IDeviceNetworkHighLevel "IDeviceNetworkHighLevel" interface
+<tr>
+  <td>@ref DesignPatternExamples_cpp::IDeviceNetworkLowLevel "IDeviceNetworkLowLevel" interface
+  <td>@ref DesignPatternExamples_csharp.IDeviceNetworkLowLevel "IDeviceNetworkLowLevel" interface
+  <td>@ref DesignPatternExamples_python.facade.facadesubsystem_interface.IDeviceNetworkLowLevel "IDeviceNetworkLowLevel" interface
+<tr>
+  <td>(Hidden in C++)
+  <td>@ref DesignPatternExamples_csharp.Facade_ComplicatedSubSystem "Facade_ComplicatedSubSystem" class
+  <td>@ref DesignPatternExamples_python.facade.facade_highlevelsystem.DeviceNetworkHighLevel "DeviceNetworkHighLevel" class
+<tr>
+  <td>(Hidden in C++)
+  <td>@ref DesignPatternExamples_csharp.Facade_ComplicatedSubSystem "Facade_ComplicatedSubSystem" class
+  <td>@ref DesignPatternExamples_python.facade.facade_complicatedsubsystem.Facade_ComplicatedSubSystem "Facade_ComplicatedSubSystem"
+</table>
 
 The example provided is a complicated sub-system with many different low-
 level functions.  This functionality is exposed through a low level

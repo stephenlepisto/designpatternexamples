@@ -54,7 +54,11 @@
     <Compile Include="decorator\decorator_exercise.py" />
     <Compile Include="decorator\__init__.py" />
     <Compile Include="enablevtmode.py" />
+    <Compile Include="facade\facadesubsystem_interface.py" />
+    <Compile Include="facade\facade_complicatedsubsystem.py" />
     <Compile Include="facade\facade_exercise.py" />
+    <Compile Include="facade\facade_highlevelsystem.py" />
+    <Compile Include="facade\facade_interface.py" />
     <Compile Include="facade\__init__.py" />
     <Compile Include="flyweight\flyweight_exercise.py" />
     <Compile Include="flyweight\__init__.py" />
