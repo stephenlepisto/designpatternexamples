@@ -72,6 +72,7 @@
     <Compile Include="interpreter\interpreter_class.py" />
     <Compile Include="interpreter\interpreter_exercise.py" />
     <Compile Include="interpreter\__init__.py" />
+    <Compile Include="iterator\iterator_class.py" />
     <Compile Include="iterator\iterator_exercise.py" />
     <Compile Include="iterator\__init__.py" />
     <Compile Include="mediator\mediator_exercise.py" />

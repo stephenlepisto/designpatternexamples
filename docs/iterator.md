@@ -13,12 +13,11 @@ are well-tested and can have any number of pre-defined algorithms applied,
 including the ability to easily iterate over the contents of the
 containers.
 
-Other programming languages such as C# have varying degrees of built-in
-support for iterators over containers.  For example, in C#, all containers
-can provide an iterator over the contents of the container.  Again, in
-general you should use the built-in containers provided by the language
-whenever possible to take advantage of well-tested code, including the
-iterators.
+Other programming languages have varying degrees of built-in support for
+iterators over containers.  For example, in C# or Python, all containers can
+provide an iterator over the contents of the container.  Again, in general,
+you should use the built-in containers provided by the language whenever
+possible to take advantage of well-tested code, including the iterators.
 
 A non-object-oriented kind of iterator uses an opaque token to represent
 the index into the data.  A function retrieves this token pointing to the
@@ -46,13 +45,25 @@ accessed in any order.
 
 # How to Use
 
-Links to the Iterator class and interface descriptions:
-- @ref DesignPatternExamples_cpp::IteratorContainer_Class "IteratorContainer_Class" (C++)
-- @ref DesignPatternExamples_csharp.IteratorContainer_Class "IteratorContainer_Class" (C#)
-- @ref DesignPatternExamples_cpp::Iterator "IIterator" interface (C++)
-- @ref DesignPatternExamples_csharp.Iterator "IIterator" interface (C#)
-- @ref DesignPatternExamples_cpp::Iterator "Iterator" class (C++)
-- @ref DesignPatternExamples_csharp.Iterator "Iterator" class (C#)
+<table>
+<caption>Links to the Iterator classes and interface</caption>
+<tr>
+  <th>C++
+  <th>C#
+  <th>Python
+<tr>
+  <td>@ref DesignPatternExamples_cpp::IteratorContainer_Class "IteratorContainer_Class" class
+  <td>@ref DesignPatternExamples_csharp.IteratorContainer_Class "IteratorContainer_Class" class
+  <td>@ref DesignPatternExamples_python.iterator.iterator_class.IteratorContainer_Class "IteratorContainer_Class" class
+<tr>
+  <td>@ref DesignPatternExamples_cpp::Iterator "IIterator" interface
+  <td>@ref DesignPatternExamples_csharp.Iterator "IIterator" interface
+  <td>@ref DesignPatternExamples_python.iterator.iterator_class.IIterator "IIterator" interface
+<tr>
+  <td>@ref DesignPatternExamples_cpp::Iterator "Iterator" class
+  <td>@ref DesignPatternExamples_csharp.Iterator "Iterator" class
+  <td>@ref DesignPatternExamples_python.iterator.iterator_class.Iterator "Iterator" class
+</table>
 
 Having said all that, here is an example of how an object-oriented iterator
 can be implemented.  In this case, the example uses the interface, `IIterator`,
