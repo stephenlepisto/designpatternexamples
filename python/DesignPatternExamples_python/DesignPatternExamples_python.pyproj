@@ -12,7 +12,7 @@
     <Name>DesignPatternExamples_python</Name>
     <RootNamespace>DesignPatternExamples_python</RootNamespace>
     <LaunchProvider>Standard Python launcher</LaunchProvider>
-    <CommandLineArguments>Flyweight</CommandLineArguments>
+    <CommandLineArguments>HandlerChain</CommandLineArguments>
     <EnableNativeCodeDebugging>False</EnableNativeCodeDebugging>
     <InterpreterArguments>
     </InterpreterArguments>
@@ -64,7 +64,10 @@
     <Compile Include="flyweight\flyweight_exercise.py" />
     <Compile Include="flyweight\flyweight_helpers.py" />
     <Compile Include="flyweight\__init__.py" />
+    <Compile Include="handlerchain\handlerchain_class.py" />
     <Compile Include="handlerchain\handlerchain_exercise.py" />
+    <Compile Include="handlerchain\handlerchain_messagewindow_class.py" />
+    <Compile Include="handlerchain\handlerchain_message_class.py" />
     <Compile Include="handlerchain\__init__.py" />
     <Compile Include="interpreter\interpreter_exercise.py" />
     <Compile Include="interpreter\__init__.py" />

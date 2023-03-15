@@ -74,13 +74,29 @@ handlers.
 
 # How to Use
 
-Links to the Handler Chain classes description:
-- @ref DesignPatternExamples_cpp::HandlerChain "HandlerChain class" that controls the handlers (C++)
-- @ref DesignPatternExamples_csharp.HandlerChain "HandlerChain class" that controls the handlers (C#)
-- @ref DesignPatternExamples_cpp::MessageWindow "MessageWindow class" that participates in the handler chain (C++)
-- @ref DesignPatternExamples_csharp::MessageWindow "MessageWindow class" that participates in the handler chain (C#)
-- @ref DesignPatternExamples_cpp::IMessageHandler "IMessageHandler interface" (C++)
-- @ref DesignPatternExamples_csharp::IMessageHandler "IMessageHandler interface" (C#)
+<table>
+<caption>Links to the Handler Chain classes</caption>
+<tr>
+  <th>C++
+  <th>C#
+  <th>Python
+<tr>
+  <td>@ref DesignPatternExamples_cpp::HandlerChain "HandlerChain" class
+  <td>@ref DesignPatternExamples_csharp.HandlerChain "HandlerChain" class
+  <td>@ref DesignPatternExamples_python.handlerchain.handlerchain_class.HandlerChain "HandlerChain" class
+<tr>
+  <td>@ref DesignPatternExamples_cpp::MessageWindow "MessageWindow" class
+  <td>@ref DesignPatternExamples_cpp::MessageWindow "MessageWindow" class
+  <td>@ref DesignPatternExamples_python.handlerchain.handlerchain_messagewindow_class.MessageWindow "MessageWindow" class
+<tr>
+  <td>@ref DesignPatternExamples_cpp::IMessageHandler "IMessageHandler" interface
+  <td>@ref DesignPatternExamples_csharp::IMessageHandler "IMessageHandler" interface
+  <td>@ref DesignPatternExamples_python.handlerchain.handlerchain_class.IMessageHandler "IMessageHandler" interface
+<tr>
+  <td>@ref DesignPatternExamples_cpp::WindowRectangle "WindowRectangle" class
+  <td>@ref DesignPatternExamples_csharp.WindowRectangle "WindowRectangle" class
+  <td>@ref DesignPatternExamples_python.handlerchain.handlerchain_messagewindow_class.WindowRectangle "WindowRectangle" class
+</table>
 
 The example presented here is a collection of "windows" represented by the
 MessageWindow class.  Each window has a common message handler as
