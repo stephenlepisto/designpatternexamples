@@ -41,9 +41,17 @@ in the @ref nullobject_pattern example.
 
 # How to Use
 
-Links to the Interpreter class description:
-- @ref DesignPatternExamples_cpp::Interpreter_Class "Interpreter_Class" class (C++)
-- @ref DesignPatternExamples_csharp.Interpreter_Class "Interpreter_Class" class (C#)
+<table>
+<caption>Links to the Interpreter class</caption>
+<tr>
+  <th>C++
+  <th>C#
+  <th>Python
+<tr>
+  <td>@ref DesignPatternExamples_cpp::Interpreter_Class "Interpreter_Class" class
+  <td>@ref DesignPatternExamples_csharp.Interpreter_Class "Interpreter_Class" class
+  <td>@ref DesignPatternExamples_python.interpreter.interpreter_class.Interpreter_Class "Interpreter_Class" class
+</table>
 
 The example provided here takes an array of integers and converts each into
 a text word or punctuation mark separated by a space from the previous

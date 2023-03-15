@@ -69,6 +69,7 @@
     <Compile Include="handlerchain\handlerchain_messagewindow_class.py" />
     <Compile Include="handlerchain\handlerchain_message_class.py" />
     <Compile Include="handlerchain\__init__.py" />
+    <Compile Include="interpreter\interpreter_class.py" />
     <Compile Include="interpreter\interpreter_exercise.py" />
     <Compile Include="interpreter\__init__.py" />
     <Compile Include="iterator\iterator_exercise.py" />
