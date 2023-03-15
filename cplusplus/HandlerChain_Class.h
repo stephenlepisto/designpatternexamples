@@ -158,6 +158,20 @@ namespace DesignPatternExamples_cpp
             _messageHandlers.remove_if([window](IMessageHandler::shared_ptr_t w) { return w->ID() == window->ID(); });
         }
 
+        /// <summary>
+        /// Remove an instance of the IMessageHandler interface from the list,
+        /// protected by a multi-threading lock.
+        /// 
+        /// If the message handler is not in the list, the request to remove
+        /// is ignored.
+        /// </summary>
+        /// <param name="window">The window to remove</param>
+        void RemoveHandler(IMessageHandler* window)
+        {
+            std::lock_guard<std::mutex> guard(_messageHandlersLock);
+            _messageHandlers.remove_if([window](IMessageHandler::shared_ptr_t w) { return w->ID() == window->ID(); });
+        }
+
 
         /// <summary>
         /// Convert this HandlerChain to a string, protected by a multi-threading
