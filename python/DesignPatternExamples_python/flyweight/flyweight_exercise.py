@@ -83,7 +83,9 @@ def _Flyweight_ShowDisplay(display : list[bytearray]) -> None:
 #  The display size and image size are provided here
 #
 #  @param flyweightInstances
-#         List of Flyweight_Class instances to move.
+#         List of
+#         @ref DesignPatternExamples_python.flyweight.flyweight_classes.Flyweight_Class "Flyweight_Class"
+#         instances to move.
 #  @param display_width
 #         Width of display.
 #  @param display_height
@@ -120,7 +122,9 @@ def _Flyweight_MoveFlyweights(flyweightInstances : list[Flyweight_Class], displa
 ## Render the image into the display, once for each flyweight instance.
 #
 #  @param flyweightInstances
-#         List of Flyweight_Class instances to render.
+#         List of
+#         @ref DesignPatternExamples_python.flyweight.flyweight_classes.Flyweight_Class "Flyweight_Class"
+#         instances to render.
 #  @param displayArea
 #         The "display" in which to render.
 def _Flyweight_RenderFlyweights(flyweightInstances : list[Flyweight_Class], displayArea : list[bytearray]) -> None:

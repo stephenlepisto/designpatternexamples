@@ -7,7 +7,8 @@
 #  @ref DesignPatternExamples_python.flyweight.flyweight_classes.BigResourceManager "BigResourceManager"
 #  classes as used in the @ref flyweight_pattern.
 
-## Represents the context for an instance of the Flyweight_Class.
+## Represents the context for an instance of the
+#  @ref DesignPatternExamples_python.flyweight.flyweight_classes.Flyweight_Class "Flyweight_Class".
 #  In this case, the context includes position and velocity.
 #  
 #  This context is manipulated outside the Flyweight_Class by the
@@ -54,8 +55,8 @@ class Flyweight_Class:
     #         advantage of the fact that Python classes are always passed by
     #         reference so no actual copying of the resource is done.
     #  @param context
-    #         A Flyweight_Context instance containing the context for this
-    #         Flyweight_Class instance.
+    #         A @ref DesignPatternExamples_python.flyweight.flyweight_classes.Flyweight_Context "Flyweight_Context"
+    #         instance containing the context for this Flyweight_Class instance.
     def __init__(self, resource = None, context = Flyweight_Context()) -> None:
         self._resource = resource
         self._context = context
@@ -128,10 +129,12 @@ class Flyweight_Class:
 #  This image is provided by the user.
 #   
 #  The resource is represented by an ID.  This ID is known by the user
-#  and is passed to the Flyweight_Class factory so the Flyweight_Class
-#  can get a reference to an instance of this BigResource class.
-#  Instances of this BigResource class are managed through the
-#  BigResourceManager class.
+#  and is passed to the
+#  @ref DesignPatternExamples_python.flyweight.flyweight_classes.Flyweight_Class "Flyweight_Class"
+#  factory so the Flyweight_Class can get a reference to an instance of this
+#  BigResource class.  Instances of this BigResource class are managed through
+#  the @ref DesignPatternExamples_python.flyweight.flyweight_classes.BigResourceManager "BigResourceManager"
+#  class.
 class BigResource:
     ## Constructor (accessibly only to the class factory).
     #
@@ -194,7 +197,8 @@ class BigResource:
             current_image_row = starting_row_in_image
             for row in range(0, image_render_height):
                 for col in range(0, image_render_width):
-                    display[current_display_row][starting_position_x + col] = self._resource[current_image_row][starting_col_in_image + col]
+                    display[current_display_row][starting_position_x + col] = \
+                        self._resource[current_image_row][starting_col_in_image + col]
                 current_display_row += 1
                 current_image_row += 1
 
@@ -218,14 +222,16 @@ class BigResource:
         return 0
 
 
-    ## Generate a Flyweight class that will represent this big resource
+    ## Generate a Flyweight instance that will represent this big resource
     #  in some context-dependent way.
     #
     #  @param context
-    #         A Flyweight_Context instance containing the context for the
-    #         desired Flyweight_Class instance.
+    #         A
+    #         @ref DesignPatternExamples_python.flyweight.flyweight_classes.Flyweight_Context "Flyweight_Context"
+    #         instance containing the context for the desired Flyweight_Class instance.
     #  @returns
-    #    A new instance of the Flyweight_Class.
+    #    A new instance of the
+    #    @ref DesignPatternExamples_python.flyweight.flyweight_classes.Flyweight_Class "Flyweight_Class".
     def CreateFlyweight(self, context : Flyweight_Context) -> Flyweight_Class:
         return Flyweight_Class(self, context)
 
@@ -237,12 +243,16 @@ class BigResource:
 
 
 ## Represents a manager for big resources.  Also provides the class
-#  factory for the Flyweight_Class instances that are associated with a
+#  factory for the
+#  @ref DesignPatternExamples_python.flyweight.flyweight_classes.Flyweight_Class "Flyweight_Class"
+#  instances that are associated with a
 #  particular big resource.
 #
 #  Note: The raw resource is provided by the caller and an ID is then
 #  associated with it.  The ID is returned to the caller who then passes
-#  that ID to the Flyweight_Class factory along with a context.
+#  that ID to the
+#  @ref DesignPatternExamples_python.flyweight.flyweight_classes.Flyweight_Class "Flyweight_Class"
+#  factory along with a context.
 #  
 #  In the exercise, only one big resource is ever created so this class
 #  is likely overkill for an example but it fully shows the architectural
@@ -294,14 +304,17 @@ class BigResourceManager:
         return newResourceId
 
 
-    ## Create a new instance of the Flyweight_Class associated with the
-    #  given big resource and a context, in this case an X,Y position.
+    ## Create a new instance of the
+    #  @ref DesignPatternExamples_python.flyweight.flyweight_classes.Flyweight_Class "Flyweight_Class"
+    #  associated with the given big resource and a context, in this case an
+    #  X,Y position.
     #
     #  @param bigResourceId
     #         ID of the big resource to associate with.
     #  @param context
-    #         A Flyweight_Context instance containing the context for the
-    #         desired Flyweight_Class instance.
+    #         A
+    #         @ref DesignPatternExamples_python.flyweight.flyweight_classes.Flyweight_Context "Flyweight_Context"
+    #         instance containing the context for the desired Flyweight_Class instance.
     #  @returns
     #     A new instance of the Flyweight_Class.  Returns None if the big
     #     resource was not found.

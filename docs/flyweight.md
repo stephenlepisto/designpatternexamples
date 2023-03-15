@@ -26,17 +26,64 @@ of the flyweight class.
 
 ## How to Use
 
-Links to the Flyweight_Class and BigResource class description:
-- @ref DesignPatternExamples_cpp::Flyweight_Class "Flyweight_Class class" (C++)
-- @ref DesignPatternExamples_csharp.Flyweight_Class "Flyweight_Class class" (C#)
-- @ref DesignPatternExamples_cpp::BigResource "BigResource class" (C++)
-- @ref DesignPatternExamples_csharp::BigResource "BigResource class" (C#)
+<table>
+<caption>Links to the Flyweight classes</caption>
+<tr>
+  <th>C++
+  <th>C#
+  <th>Python
+<tr>
+  <td>@ref DesignPatternExamples_cpp::Flyweight_Class "Flyweight_Class" class
+  <td>@ref DesignPatternExamples_csharp.Flyweight_Class "Flyweight_Class" class
+  <td>@ref DesignPatternExamples_python.flyweight.flyweight_classes.Flyweight_Class "Flyweight_Class" class
+<tr>
+  <td>@ref DesignPatternExamples_cpp::Flyweight_Context "Flyweight_Context" struct
+  <td>@ref DesignPatternExamples_csharp.Flyweight_Context "Flyweight_Context" struct
+  <td>@ref DesignPatternExamples_python.flyweight.flyweight_classes.Flyweight_Context "Flyweight_Context" class
+<tr>
+  <td>@ref DesignPatternExamples_cpp::BigResource "BigResource" class
+  <td>@ref DesignPatternExamples_csharp::BigResource "BigResource" class
+  <td>@ref DesignPatternExamples_python.flyweight.flyweight_classes.BigResource "BigResource" class
+<tr>
+  <td>@ref DesignPatternExamples_cpp::BigResourceManager "BigResourceManager" class
+  <td>@ref DesignPatternExamples_csharp.BigResourceManager "BigResourceManager" class
+  <td>@ref DesignPatternExamples_python.flyweight.flyweight_classes.BigResourceManager "BigResourceManager" class
+</table>
 
 This example uses an image as the "big" resource.  The flyweight class
 represents a position for that image as the context.  The flyweight class
 also contains velocity information for moving the flyweight instance
 around a display.  Of course, everything is in text but it's the thought
 that counts.
+
+Example output:
+
+```
+Flyweight Exercise
+  The image rendered 5 times:
+     31/1000 iterations [press a key to exit early]
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~+----------------------------+~~~~~~~~~~
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|0000000000000000000000000000|~~~~~~~~~~
+  ~+----------------------------+~~~~~~~~~|0000000000000000000000000000|~~~~~~~~~~
+  ~|0000000000000000000000000000|~~~~~~~~~|0000000000000000000000000000|~~~~~~~~~~
+  ~|0000000000000000+---------------------+----------------------------+~~~~~~~~~~
+  ~|0000000000000000|0000000000000000000000000000|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  ~+----------------|0000000000000000000000000000|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  ~~~~~~~~~~~~~~~~~~|0000000000000000000000000000|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  ~~~~~~~~~~~~~~~~~~+----------------------------+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  ~~~~~~~~+----------------------------+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  ~~~~~~~~|0000000000000000000000000000|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  ~~~~~~~~|0000000000000000000000000000|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  ~~~+----|0000000000000000000000000000|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  ~~~|0000+----------------------------+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  ~~~|0000000000000000000000000000|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  ~~~|0000000000000000000000000000|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  ~~~+----------------------------+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  Done.
+```
 
 __C++__
 
