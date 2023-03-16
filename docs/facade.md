@@ -67,7 +67,7 @@ handles from the sub-system to facility access to the sub-system.
 <tr>
   <td>(Hidden in C++)
   <td>@ref DesignPatternExamples_csharp.Facade_ComplicatedSubSystem "Facade_ComplicatedSubSystem" class
-  <td>@ref DesignPatternExamples_python.facade.facade_complicatedsubsystem.Facade_ComplicatedSubSystem "Facade_ComplicatedSubSystem"
+  <td>@ref DesignPatternExamples_python.facade.facade_complicatedsubsystem.Facade_ComplicatedSubSystem "Facade_ComplicatedSubSystem" class
 </table>
 
 The example provided is a complicated sub-system with many different low-
