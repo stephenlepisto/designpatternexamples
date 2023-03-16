@@ -60,15 +60,33 @@ to perform the requests.
 
 # How to Use
 
-Links to the Mediator classes descriptions:
-- @ref DesignPatternExamples_cpp::UserGroupMediator "UserGroupMediator" class (C++)
-- @ref DesignPatternExamples_csharp.UserGroupMediator "UserGroupMediator" class (C#)
-- @ref DesignPatternExamples_cpp::Group "Group" class (C++)
-- @ref DesignPatternExamples_csharp::Group "Group" class (C#)
-- @ref DesignPatternExamples_cpp::GroupList "GroupList" class (C++)
-- @ref DesignPatternExamples_csharp::GroupList "GroupList" class (C#)
-- @ref DesignPatternExamples_cpp::UserList "UserList" class (C++)
-- @ref DesignPatternExamples_csharp::UserList "UserList" class (C#)
+<table>
+<caption>Links to the Mediator classes</caption>
+<tr>
+  <th>C++
+  <th>C#
+  <th>Python
+<tr>
+  <td>@ref DesignPatternExamples_cpp::UserGroupMediator "UserGroupMediator" class
+  <td>@ref DesignPatternExamples_csharp.UserGroupMediator "UserGroupMediator" class
+  <td>@ref DesignPatternExamples_python.mediator.mediator_class.UserGroupMediator "UserGroupMediator" class
+<tr>
+  <td>@ref DesignPatternExamples_cpp::Group "Group" class
+  <td>@ref DesignPatternExamples_csharp::Group "Group" class
+  <td>@ref DesignPatternExamples_python.mediator.mediator_group_classes.Group "Group" class
+<tr>
+  <td>@ref DesignPatternExamples_cpp::GroupList "GroupList" class
+  <td>@ref DesignPatternExamples_csharp::GroupList "GroupList" class
+  <td>@ref DesignPatternExamples_python.mediator.mediator_group_classes.GroupList "GroupList" class
+<tr>
+  <td>@ref DesignPatternExamples_cpp::User "User" class
+  <td>@ref DesignPatternExamples_csharp::User "User" class
+  <td>@ref DesignPatternExamples_python.mediator.mediator_user_classes.User "User" class
+<tr>
+  <td>@ref DesignPatternExamples_cpp::UserList "UserList" class
+  <td>@ref DesignPatternExamples_csharp::UserList "UserList" class
+  <td>@ref DesignPatternExamples_python.mediator.mediator_user_classes.UserList "UserList" class
+</table>
 
 This example makes a further refinement by having the Users list and Groups
 list be objects themselves that can handle searching, adding, and removing

@@ -75,7 +75,10 @@
     <Compile Include="iterator\iterator_class.py" />
     <Compile Include="iterator\iterator_exercise.py" />
     <Compile Include="iterator\__init__.py" />
+    <Compile Include="mediator\mediator_class.py" />
     <Compile Include="mediator\mediator_exercise.py" />
+    <Compile Include="mediator\mediator_group_classes.py" />
+    <Compile Include="mediator\mediator_user_classes.py" />
     <Compile Include="mediator\__init__.py" />
     <Compile Include="memento\memento_exercise.py" />
     <Compile Include="memento\__init__.py" />
