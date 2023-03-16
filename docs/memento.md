@@ -43,11 +43,25 @@ commands to get to the next save state are remembered and replayed.
 
 # How to Use
 
-Links to the Memento interface and class descriptions:
-- @ref DesignPatternExamples_cpp::IMemento "IMemento" interface (C++)
-- @ref DesignPatternExamples_csharp.IMemento "IMemento" interface (C#)
-- @ref DesignPatternExamples_cpp::Memento_TextObject "Memento_TextObject" class (C++)
-- @ref DesignPatternExamples_csharp::Memento_TextObject "Memento_TextObject" class (C#)
+<table>
+<caption>Links to the Memento class and interface</caption>
+<tr>
+  <th>C++
+  <th>C#
+  <th>Python
+<tr>
+  <td>@ref DesignPatternExamples_cpp::IMemento "IMemento" interface
+  <td>@ref DesignPatternExamples_csharp.IMemento "IMemento" interface
+  <td>@ref DesignPatternExamples_python.memento.memento.IMemento "IMemento" interface
+<tr>
+  <td>@ref DesignPatternExamples_cpp::Memento_TextObject::Memento "Memento" class
+  <td>@ref DesignPatternExamples_csharp.Memento_TextObject.Memento "Memento" class
+  <td>@ref DesignPatternExamples_python.memento.memento.Memento_TextObject.Memento "Memento" class
+<tr>
+  <td>@ref DesignPatternExamples_cpp::Memento_TextObject "Memento_TextObject" class
+  <td>@ref DesignPatternExamples_csharp.Memento_TextObject "Memento_TextObject" class
+  <td>@ref DesignPatternExamples_python.memento.memento.Memento_TextObject "Memento_TextObject" class
+</table>
 
 The example used here is a snapshot of a text object.  This is then used
 to create an undo stack.  In fact, this is the same example as used for
