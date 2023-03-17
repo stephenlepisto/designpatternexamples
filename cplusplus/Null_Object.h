@@ -1,8 +1,8 @@
 /// @file
 /// @brief
 /// Implementation of the @ref DesignPatternExamples_cpp::MoveProcessor "MoveProcessor" class
-/// and the various MoveXX classes used in the
-/// @ref nullobject_pattern "Null Object pattern".
+/// and the @ref DesignPatternExamples_cpp::MoveCommand "MoveCommand" base class,
+/// along with the various MoveXX classes used in the @ref nullobject_pattern.
 
 #pragma once
 #ifndef __NULL_OBJECT_H__
@@ -28,7 +28,7 @@ namespace DesignPatternExamples_cpp
     /// and the command character that represents the command in the initial
     /// string of movement commands.
     /// 
-    /// Yes, this is a variation of the Command pattern.
+    /// Yes, this is a variation of the @ref command_pattern.
     /// 
     /// In this example, a move command, when executed, prints "move xxx" on
     /// the current line.  When displayed, the move command shows the command
@@ -267,12 +267,12 @@ namespace DesignPatternExamples_cpp
     /// MoveCommand objects then either displays them or executes them.
     /// 
     /// This classes uses a parser to convert the single letter characters in
-    /// a string into a list of actions (instances of the MoveCommand).  This
-    /// list of actions is then executed to perform the operations.
+    /// a string into a list of actions (instances of the MoveCommand class).
+    /// This list of actions is then executed to perform the operations.
     /// 
     /// This process of executing the list of operations is an example of the
-    /// Command pattern.  However, this can also be considered an example of
-    /// the Interpreter pattern, where the actions are the tokens to be
+    /// @ref command_pattern.  This is also an example of the
+    /// @ref interpreter_pattern, where the actions are the tokens to be
     /// interpreted.
     /// </summary>
     class MoveProcessor
@@ -335,7 +335,7 @@ namespace DesignPatternExamples_cpp
         /// </summary>
         /// <param name="commands">A list of MoveCommand objects to "execute".</param>
         /// <remarks>
-        /// In this implementation, the MoveCommand prints the command as
+        /// In this implementation, the MoveCommand object prints the command as
         /// "<move xxx> " on the current line.  When all commands have
         /// been printed, a new line is printed to move to the next line.
         /// The "Do Nothing" command doesn't print anything, leaving only the

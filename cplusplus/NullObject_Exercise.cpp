@@ -1,8 +1,8 @@
 
 /// @file
 /// @brief
-/// Implementation of the NullObject_Exercise() function as used in the 
-/// @ref nullobject_pattern "NullObject pattern".
+/// Implementation of the @ref DesignPatternExamples_cpp::NullObject_Exercise "NullObject_Exercise"()
+/// function as used in the @ref nullobject_pattern.
 
 // This test requires /Zc:__cplusplus to be specified on the build command line.
 #if !defined(__cplusplus) || __cplusplus < 202002L

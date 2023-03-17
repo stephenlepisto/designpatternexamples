@@ -1,8 +1,9 @@
 ﻿/// @file
 /// @brief
 /// The @ref DesignPatternExamples_csharp.MoveProcessor "MoveProcessor" class
-/// and the various MoveXX classes used in the
-/// @ref nullobject_pattern "Null Object pattern".
+/// and the @ref DesignPatternExamples_csharp.MoveCommand "MoveCommand" base class,
+/// along with the various MoveXX classes used in the
+/// @ref nullobject_pattern.
 
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,7 @@ namespace DesignPatternExamples_csharp
     /// and the command character that represents the command in the initial
     /// string of movement commands.
     /// 
-    /// Yes, this is a variation of the Command pattern.
+    /// Yes, this is a variation of the @ref command_pattern.
     /// 
     /// In this example, a move command, when executed, prints "move xxx" on
     /// the current line.  When displayed, the move command shows the command
@@ -214,15 +215,17 @@ namespace DesignPatternExamples_csharp
 
     /// <summary>
     /// Represents the processor that translates the move list into a list of
-    /// MoveCommand objects then either displays them or executes them.
+    /// @ref DesignPatternExamples_csharp.MoveCommand "MoveCommand" objects
+    /// then either displays them or executes them.
     /// 
     /// This classes uses a parser to convert the single letter characters in
-    /// a string into a list of actions (instances of the MoveCommand).  This
-    /// list of actions is then executed to perform the operations.
+    /// a string into a list of actions (instances of the
+    /// @ref DesignPatternExamples_csharp.MoveCommand "MoveCommand" class). 
+    /// This list of actions is then executed to perform the operations.
     /// 
     /// This process of executing the list of operations is an example of the
-    /// Command pattern.  However, this can also be considered an example of
-    /// the Interpreter pattern, where the actions are the tokens to be
+    /// @ref command_pattern.  This is also an example of the
+    /// @ref interpreter_pattern, where the actions are the tokens to be
     /// interpreted.
     /// </summary>
     public class MoveProcessor
@@ -232,14 +235,17 @@ namespace DesignPatternExamples_csharp
 
         /// <summary>
         /// Helper method to convert a list of single letter commands into a
-        /// list of MoveCommand objects.
+        /// list of @ref DesignPatternExamples_csharp.MoveCommand "MoveCommand"
+        /// objects.
         /// 
         /// This method recognizes 'L', 'R', 'U', and 'D' (case-insensitive).
         /// All other characters default to the "Do Nothing" (Null Object) command.
         /// </summary>
         /// <param name="moveList">A string containing a list of single letter
         /// commands to be parsed.</param>
-        /// <returns>Returns a list of MoveCommand objects.</returns>
+        /// <returns>Returns a list of
+        /// @ref DesignPatternExamples_csharp.MoveCommand "MoveCommand"
+        /// objects.</returns>
         private List<MoveCommand> _ParseMoves(string moveList)
         {
             List<MoveCommand> commands = new List<MoveCommand>();
@@ -281,13 +287,16 @@ namespace DesignPatternExamples_csharp
         /// <summary>
         /// Helper method to execute all the given commands.
         /// </summary>
-        /// <param name="commands">A list of MoveCommand objects to "execute".</param>
+        /// <param name="commands">A list of
+        /// @ref DesignPatternExamples_csharp.MoveCommand "MoveCommand" objects
+        /// to "execute".</param>
         /// <remarks>
-        /// In this implementation, the MoveCommand prints the command as
-        /// "<move xxx> " on the current line.  When all commands have
-        /// been printed, a new line is printed to move to the next line.
-        /// The "Do Nothing" command doesn't print anything, leaving only the
-        /// empty <>.
+        /// In this implementation, the
+        /// @ref DesignPatternExamples_csharp.MoveCommand "MoveCommand" object
+        /// prints the command as "<move xxx> " on the current line.  When all
+        /// commands have been printed, a new line is printed to move to the
+        /// next line.  The "Do Nothing" command doesn't print anything,
+        /// leaving only the empty <>.
         /// </remarks>
         private void _ExecuteMoves(List<MoveCommand> commands)
         {
@@ -305,7 +314,9 @@ namespace DesignPatternExamples_csharp
         /// Display the command character and name of the command for each
         /// command in the given list of commands.
         /// </summary>
-        /// <param name="commands">The list of MoveCommand objects to display.</param>
+        /// <param name="commands">The list of
+        /// @ref DesignPatternExamples_csharp.MoveCommand "MoveCommand" objects
+        /// to display.</param>
         private void _ShowMoves(List<MoveCommand> commands)
         {
             foreach(MoveCommand command in commands)
