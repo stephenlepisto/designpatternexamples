@@ -1,9 +1,10 @@
 ## @file
-# @brief
-# Implementation of the
-# @ref DesignPatternExamples_python.nullobject.nullobject_exercise.NullObject_Exercise "NullObject_Exercise"()
-# function as used in the @ref nullobject_pattern.
+#  @brief
+#  Implementation of the
+#  @ref DesignPatternExamples_python.nullobject.nullobject_exercise.NullObject_Exercise "NullObject_Exercise"()
+#  function as used in the @ref nullobject_pattern.
 
+from .null_object import MoveProcessor
 
 ##  Example of using the @ref nullobject_pattern.
 #  
@@ -21,12 +22,24 @@
 #  "executes" commands, which consists of printing the commands out.
 #  
 #  This example highlights the Null Object pattern while utilizing
-#  the Command and Interpreter patterns.
+#  the @ref command_pattern and @ref interpreter_pattern.
 
 # ! [Using NullObject in Python]
 def NullObject_Exercise():
     print()
     print("Null Object Exercise")
+
+    moveProcessor = MoveProcessor()
+
+    # A stream of recognized and unrecognized move commands.  The
+    # unrecognized commands do nothing.
+    moveString = "ur#ld!lr";
+    print("  Showing the move commands:")
+    moveProcessor.ShowMoveList(moveString)
+
+    print("  Executing the move commands:")
+    print("    {0} -> ".format(moveString), end="")
+    moveProcessor.ExecuteMoveList(moveString)
 
     print("  Done.")
 # ! [Using NullObject in Python]

@@ -39,21 +39,41 @@ classic case of a null object.
 
 # How to Use
 
-Links to the Null Object class descriptions:
-- @ref DesignPatternExamples_cpp::MoveProcessor "MoveProcessor" class (C++)
-- @ref DesignPatternExamples_csharp.MoveProcessor "MoveProcessor" class (C#)
-- @ref DesignPatternExamples_cpp::MoveCommand "MoveCommand" base class (of all Move actions) (C++)
-- @ref DesignPatternExamples_csharp::MoveCommand "MoveCommand" base class (of all Move actions) (C#)
-- @ref DesignPatternExamples_cpp::MoveCommandNone "MoveCommandNone" (Null Object) class (C++)
-- @ref DesignPatternExamples_csharp.MoveCommandNone "MoveCommandNone" (Null Object) class (C#)
-- @ref DesignPatternExamples_cpp::MoveCommandLeft "MoveCommandLeft" class (C++)
-- @ref DesignPatternExamples_csharp.MoveCommandLeft "MoveCommandLeft" class (C#)
-- @ref DesignPatternExamples_cpp::MoveCommandRight "MoveCommandRight" class (C++)
-- @ref DesignPatternExamples_csharp.MoveCommandRight "MoveCommandRight" class (C#)
-- @ref DesignPatternExamples_cpp::MoveCommandUp "MoveCommandUp" class (C++)
-- @ref DesignPatternExamples_csharp.MoveCommandUp "MoveCommandUp" class (C#)
-- @ref DesignPatternExamples_cpp::MoveCommandDown "MoveCommandDown" class (C++)
-- @ref DesignPatternExamples_csharp.MoveCommandDown "MoveCommandDown" class (C#)
+<table>
+<caption>Links to the Null Object classes</caption>
+<tr>
+  <th>C++
+  <th>C#
+  <th>Python
+<tr>
+  <td>@ref DesignPatternExamples_cpp::MoveProcessor "MoveProcessor" class
+  <td>@ref DesignPatternExamples_csharp.MoveProcessor "MoveProcessor" class
+  <td>@ref DesignPatternExamples_python.nullobject.null_object.MoveProcessor "MoveProcessor" class
+<tr>
+  <td>@ref DesignPatternExamples_cpp::MoveCommand "MoveCommand" base class
+  <td>@ref DesignPatternExamples_csharp::MoveCommand "MoveCommand" base class
+  <td>@ref DesignPatternExamples_python.nullobject.null_object.MoveCommand "MoveCommand" base class
+<tr>
+  <td>@ref DesignPatternExamples_cpp::MoveCommandNone "MoveCommandNone" (Null Object) class
+  <td>@ref DesignPatternExamples_csharp.MoveCommandNone "MoveCommandNone" (Null Object) class
+  <td>@ref DesignPatternExamples_python.nullobject.null_object.MoveCommandNone "MoveCommandNone" (Null Object) class
+<tr>
+  <td>@ref DesignPatternExamples_cpp::MoveCommandLeft "MoveCommandLeft" class
+  <td>@ref DesignPatternExamples_csharp.MoveCommandLeft "MoveCommandLeft" class
+  <td>@ref DesignPatternExamples_python.nullobject.null_object.MoveCommandLeft "MoveCommandLeft" class
+<tr>
+  <td>@ref DesignPatternExamples_cpp::MoveCommandRight "MoveCommandRight" class
+  <td>@ref DesignPatternExamples_csharp.MoveCommandRight "MoveCommandRight" class
+  <td>@ref DesignPatternExamples_python.nullobject.null_object.MoveCommandRight "MoveCommandRight" class
+<tr>
+  <td>@ref DesignPatternExamples_cpp::MoveCommandUp "MoveCommandUp" class
+  <td>@ref DesignPatternExamples_csharp.MoveCommandUp "MoveCommandUp" class
+  <td>@ref DesignPatternExamples_python.nullobject.null_object.MoveCommandUp "MoveCommandUp" class
+<tr>
+  <td>@ref DesignPatternExamples_csharp.MoveCommandDown "MoveCommandDown"
+  <td>@ref DesignPatternExamples_csharp.MoveCommandDown "MoveCommandDown" class
+  <td>@ref DesignPatternExamples_python.nullobject.null_object.MoveCommandDown "MoveCommandDown" class
+</table>
 
 The somewhat contrived example here parses a string for single letter move
 commands, converting them into class objects for each command.  For all
