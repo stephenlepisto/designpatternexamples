@@ -23,7 +23,7 @@ namespace DesignPatternExamples_csharp
 
 
         /// <summary>
-        /// Example of using the Adapter design pattern.
+        /// Example of using the @ref adapter_pattern.
         /// 
         /// This example adapts functions that return error codes into a class object
         /// that throws exceptions, which is more fitting of an object-oriented
@@ -97,7 +97,7 @@ namespace DesignPatternExamples_csharp
         }
 
         /// <summary>
-        /// Example of using the Bridge design pattern.
+        /// Example of using the @ref bridge_pattern.
         /// 
         /// The Bridge pattern is used to allow a program to offer multiple
         /// ways to perform logging without changing how the logging is
@@ -190,7 +190,7 @@ namespace DesignPatternExamples_csharp
 
 
         /// <summary>
-        /// Example of using the Composite design pattern.
+        /// Example of using the @ref composite_pattern.
         /// 
         /// The Composite pattern is used when a collection of objects is to
         /// be formed in a hierarchical form where each object needs to be
@@ -231,7 +231,7 @@ namespace DesignPatternExamples_csharp
 
 
         /// <summary>
-        /// Example of using the Decorator design pattern.
+        /// Example of using the @ref decorator_pattern.
         /// 
         /// The Decorator pattern is used when a class instance at run time needs
         /// to have its behavior altered.  This is supported by providing wrapper
@@ -283,7 +283,7 @@ namespace DesignPatternExamples_csharp
 
 
         /// <summary>
-        /// Example of using the Facade design pattern.
+        /// Example of using the @ref facade_pattern.
         /// 
         /// The Facade pattern is used when a simplified version of an
         /// interface on a complicated sub-system is needed in situations
@@ -552,7 +552,7 @@ namespace DesignPatternExamples_csharp
         }
 
         /// <summary>
-        /// Example of using the Flyweight design pattern.
+        /// Example of using the @ref flyweight_pattern.
         /// 
         /// The Flyweight pattern is used when a large object needs to be
         /// represented by a much lighter weight class, possibly multiple
@@ -629,7 +629,7 @@ namespace DesignPatternExamples_csharp
         //########################################################################
 
         /// <summary>
-        /// Example of using the Proxy design pattern.
+        /// Example of using the @ref proxy_pattern.
         /// 
         /// The Proxy pattern is used when a large or expensive object cannot be
         /// represented directly in the program, typically because the object is
@@ -674,7 +674,7 @@ namespace DesignPatternExamples_csharp
         //########################################################################
 
         /// <summary>
-        /// Example of using the Visitor design pattern.
+        /// Example of using the @ref visitor_pattern.
         /// 
         /// The Visitor pattern is used to add functionality to a list of
         /// otherwise unchanging element objects by passing a visitor object to
@@ -826,7 +826,7 @@ namespace DesignPatternExamples_csharp
 
 
         /// <summary>
-        /// Example of using the Command design pattern.
+        /// Example of using the @ref command_pattern.
         /// 
         /// The Command pattern is used to encapsulate an operation or command
         /// associated with an object so that the command can be applied to
@@ -893,7 +893,7 @@ namespace DesignPatternExamples_csharp
         }
 
         /// <summary>
-        /// Example of using the Handle Chain or Chain of Responsibility design
+        /// Example of using the @ref handlerchain_pattern or Chain of Responsibility
         /// pattern.
         /// 
         /// The Handler Chain pattern is used to support a dynamic list of
@@ -994,7 +994,7 @@ namespace DesignPatternExamples_csharp
         };
 
         /// <summary>
-        /// Example of using the Interpreter design pattern.
+        /// Example of using the @ref interpreter_pattern.
         /// 
         /// The interpreter is instantiated then fed a series of arrays 
         /// containing integer tokens.  Each token represents a single word or
@@ -1040,7 +1040,7 @@ namespace DesignPatternExamples_csharp
 
 
         /// <summary>
-        /// Example of using the Iterator design pattern.
+        /// Example of using the @ref iterator_pattern.
         /// 
         /// A custom container is instantiated (it already contains harcoded data
         /// to iterate over).  The custom container can then deliver three
@@ -1143,7 +1143,7 @@ namespace DesignPatternExamples_csharp
         }
 
         /// <summary>
-        /// Example of using the Mediator design pattern.
+        /// Example of using the @ref mediator_pattern.
         /// 
         /// A mediator is instantiated then populated with users and groups.
         /// Users are added to some of the groups.
@@ -1345,7 +1345,7 @@ namespace DesignPatternExamples_csharp
         }
 
         /// <summary>
-        /// Example of using the Memento design pattern.
+        /// Example of using the @ref memento_pattern.
         /// 
         /// In this exercise, the Memento pattern is used to take snapshots of
         /// a text object so as to form an undo list of changes to the text
@@ -1406,7 +1406,7 @@ namespace DesignPatternExamples_csharp
         //########################################################################
 
         /// <summary>
-        /// Example of using the Null Object design pattern.
+        /// Example of using the @ref nullobject_pattern.
         /// 
         /// The Null Object pattern is where an object or function acts as a
         /// stand-in for real commands but otherwise does nothing.
@@ -1451,7 +1451,7 @@ namespace DesignPatternExamples_csharp
 
 
         /// <summary>
-        /// Example of using the Observer design pattern.
+        /// Example of using the @ref observer_pattern.
         /// 
         /// The Observer pattern allows for one or more observers to react to
         /// changes in a Subject entity.
@@ -1534,7 +1534,7 @@ namespace DesignPatternExamples_csharp
 
 
         /// <summary>
-        /// Example of using the State design pattern.
+        /// Example of using the @ref state_pattern.
         /// 
         /// The State pattern alters the behavior of the class hierarchy based
         /// on some state.  This is the basis of a Finite State Machine.
@@ -1600,7 +1600,7 @@ namespace DesignPatternExamples_csharp
         };
 
         /// <summary>
-        /// Example of using the Strategy design pattern.
+        /// Example of using the @ref strategy_pattern.
         /// 
         /// The Strategy pattern provides a way to easily assign different
         /// algorithms to a class instance that can be changed at the time the
