@@ -59,13 +59,41 @@ called as part of the process of sending the event notifications.
 
 # How to Use
 
-Links to the Observer interface and class descriptions:
-- @ref DesignPatternExamples_cpp::IObserverNumberChanged "IObserverNumberChanged" interface (C++)
-- @ref DesignPatternExamples_csharp.IObserverNumberChanged "IObserverNumberChanged" interface (C#)
-- @ref DesignPatternExamples_cpp::INumberProducer "INumberProducer" interface (C++)
-- @ref DesignPatternExamples_csharp::INumberProducer "INumberProducer" interface (C#)
-- @ref DesignPatternExamples_cpp::ObserverSubject_NumberProducer "ObserverSubject_NumberProducer" class (C++)
-- @ref DesignPatternExamples_csharp::ObserverSubject_NumberProducer "ObserverSubject_NumberProducer" class (C#)
+<table>
+<caption>Links to the Observer classes and interfaces</caption>
+<tr>
+  <th>C++
+  <th>C#
+  <th>Python
+<tr>
+  <td>@ref DesignPatternExamples_cpp::IObserverNumberChanged "IObserverNumberChanged" interface
+  <td>@ref DesignPatternExamples_csharp.IObserverNumberChanged "IObserverNumberChanged" interface
+  <td>@ref DesignPatternExamples_python.observer.observersubject_numberproducer.IObserverNumberChanged "IObserverNumberChanged" interface
+<tr>
+  <td> @ref DesignPatternExamples_cpp::INumberProducer "INumberProducer" interface
+  <td>@ref DesignPatternExamples_csharp::INumberProducer "INumberProducer" interface
+  <td>@ref DesignPatternExamples_python.observer.observersubject_numberproducer.INumberProducer "INumberProducer" interface
+<tr>
+  <td>@ref DesignPatternExamples_cpp::IEventNotifications "IEventNotifications" interface
+  <td>@ref DesignPatternExamples_csharp.IEventNotifications "IEventNotifications" interface
+  <td>@ref DesignPatternExamples_python.observer.observersubject_numberproducer.IEventNotifications "IEventNotifications" interface
+<tr>
+  <td>@ref DesignPatternExamples_cpp::ObserverSubject_NumberProducer "ObserverSubject_NumberProducer" class
+  <td>@ref DesignPatternExamples_csharp::ObserverSubject_NumberProducer "ObserverSubject_NumberProducer" class
+  <td>@ref DesignPatternExamples_python.observer.observersubject_numberproducer.ObserverSubject_NumberProducer "ObserverSubject_NumberProducer" class
+<tr>
+  <td>@ref DesignPatternExamples_cpp::ObserverForDecimal "ObserverForDecimal" class
+  <td>@ref DesignPatternExamples_csharp.ObserverForDecimal "ObserverForDecimal" class
+  <td>@ref DesignPatternExamples_python.observer.observer_class.ObserverForDecimal "ObserverForDecimal" class
+<tr>
+  <td>@ref DesignPatternExamples_cpp::ObserverForHexaDecimal "ObserverForHexaDecimal" class
+  <td>@ref DesignPatternExamples_csharp.ObserverForHexaDecimal "ObserverForHexaDecimal" class
+  <td>@ref DesignPatternExamples_python.observer.observer_class.ObserverForHexaDecimal "ObserverForHexaDecimal" class
+<tr>
+  <td>@ref DesignPatternExamples_cpp::ObserverForBinary "ObserverForBinary" class
+  <td>@ref DesignPatternExamples_csharp.ObserverForBinary "ObserverForBinary" class
+  <td>@ref DesignPatternExamples_python.observer.observer_class.ObserverForBinary "ObserverForBinary" class
+</table>
 
 In this example of the Observer pattern, a Subject contains a numerical
 value that can change.  There are three observers to the subject who are

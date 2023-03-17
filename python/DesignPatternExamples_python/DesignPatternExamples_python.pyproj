@@ -86,6 +86,8 @@
     <Compile Include="nullobject\nullobject_exercise.py" />
     <Compile Include="nullobject\null_object.py" />
     <Compile Include="nullobject\__init__.py" />
+    <Compile Include="observer\observersubject_numberproducer.py" />
+    <Compile Include="observer\observer_class.py" />
     <Compile Include="observer\observer_exercise.py" />
     <Compile Include="observer\__init__.py" />
     <Compile Include="program.py" />
