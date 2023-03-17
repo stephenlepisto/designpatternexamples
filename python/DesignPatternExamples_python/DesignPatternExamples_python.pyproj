@@ -91,6 +91,9 @@
     <Compile Include="observer\observer_exercise.py" />
     <Compile Include="observer\__init__.py" />
     <Compile Include="program.py" />
+    <Compile Include="proxy\proxy_interface.py" />
+    <Compile Include="proxy\proxy_class.py" />
+    <Compile Include="proxy\proxy_class_real.py" />
     <Compile Include="proxy\proxy_exercise.py" />
     <Compile Include="proxy\__init__.py" />
     <Compile Include="state\state_exercise.py" />

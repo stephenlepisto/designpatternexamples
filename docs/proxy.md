@@ -44,13 +44,31 @@ easier to maintain.
 
 # How to Use
 
-Links to the Facade interface description:
-- @ref DesignPatternExamples_cpp::IWorkByProxy "IWorkByProxy interface" (C++)
-- @ref Proxy_Class_Private::Proxy_Class "Proxy_Class class" (C++)
-- @ref Proxy_Class_Private::Real_Class "Real_Class class" (C++)
-- @ref DesignPatternExamples_csharp.IWorkByProxy "IWorkByProxy interface" (C#)
-- @ref DesignPatternExamples_csharp.Proxy_Classes_Container.Proxy_Class "Proxy_Class class" (C#)
-- @ref DesignPatternExamples_csharp.Proxy_Classes_Container.Real_Class "Real_Class class" (C#)
+<table>
+<caption>Links to the Proxy classes and interfaces</caption>
+<tr>
+  <th>C++
+  <th>C#
+  <th>Python
+<tr>
+  <td>@ref DesignPatternExamples_cpp::IWorkByProxy "IWorkByProxy" interface
+  <td>@ref DesignPatternExamples_csharp.IWorkByProxy "IWorkByProxy" interface
+  <td>@ref DesignPatternExamples_python.proxy.proxy_interface.IWorkByProxy "IWorkByProxy" interface
+<tr>
+  <td>@ref Proxy_Class_Private::Proxy_Class "Proxy_Class" class
+  <td>@ref DesignPatternExamples_csharp.Proxy_Classes_Container.Proxy_Class "Proxy_Class" class
+  <td>@ref DesignPatternExamples_python.proxy.proxy_class.Proxy_Class "Proxy_Class" class
+<tr>
+  <td>@ref Proxy_Class_Private::Real_Class "Real_Class" class
+  <td>@ref DesignPatternExamples_csharp.Proxy_Classes_Container.Real_Class "Real_Class" class
+  <td>@ref DesignPatternExamples_python.proxy.proxy_class_real.Real_Class "Real_Class" class
+</table>
+
+This example is really simple: An interface called `IWorkByProxy` is implemented
+on both the Proxy class and the Real class so they match.  When the proxy is
+first called through the IWorkByProxy.DoWork() method, the proxy creates the
+Real class and forwards the call to the Real class.  All subsequent calls to
+the DoWork() method on the proxy are forwarded to the existing Real class.
 
 __C++__
 
