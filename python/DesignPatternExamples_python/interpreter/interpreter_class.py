@@ -97,7 +97,7 @@ class Interpreter_Class:
             elif token == Interpreter_Class.QUESTION:
                 tokenAsString = "?"
             else:
-                # Rule 1: Invalid tokens returned in a std::string.
+                # Rule 1: Invalid tokens returned in a string.
                 tokenAsString = "<UNKNOWN TOKEN {0}>".format(token)
 
         return tokenAsString;
