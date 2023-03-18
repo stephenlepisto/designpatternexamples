@@ -96,20 +96,37 @@ later on without affecting the above pseudo-code.
 
 # How to Use
 
-Links to the Strategy interfaces and classes descriptions:
-- @ref DesignPatternExamples_cpp::ISortEntries "ISortEntries" interface (C++)
-- @ref DesignPatternExamples_csharp.ISortEntries "ISortEntries" interface (C#)
-- @ref DesignPatternExamples_cpp::Strategy_SortEntries_ClassFactory "Strategy_SortEntries_ClassFactory" class (C++)
-- @ref DesignPatternExamples_csharp.Strategy_SortEntries_ClassFactory "Strategy_SortEntries_ClassFactory" class (C#)
-- @ref DesignPatternExamples_cpp::Strategy_SortEntries_ByName "Strategy_SortEntries_ByName" class (C++)
-- @ref DesignPatternExamples_csharp.Strategy_SortEntries_ByName "Strategy_SortEntries_ByName" class (C#)
-- @ref DesignPatternExamples_cpp::Strategy_SortEntries_ByAge "Strategy_SortEntries_ByAge" class (C++)
-- @ref DesignPatternExamples_csharp.Strategy_SortEntries_ByAge "Strategy_SortEntries_ByAge" class (C#)
-- @ref DesignPatternExamples_cpp::Strategy_SortEntries_ByHeight "Strategy_SortEntries_ByHeight" class (C++)
-- @ref DesignPatternExamples_csharp.Strategy_SortEntries_ByHeight "Strategy_SortEntries_ByHeight" class (C#)
-- @ref DesignPatternExamples_cpp::Strategy_ShowEntries_Class "Strategy_ShowEntries_Class" class (C++)
-- @ref DesignPatternExamples_csharp.Strategy_ShowEntries_Class "Strategy_ShowEntries_Class" class (C#)
-
+<table>
+<caption>Links to the Strategy classes and interfaces</caption>
+<tr>
+  <th>C++
+  <th>C#
+  <th>Python
+<tr>
+  <td>@ref DesignPatternExamples_cpp::ISortEntries "ISortEntries" interface
+  <td>@ref DesignPatternExamples_csharp.ISortEntries "ISortEntries" interface
+  <td>@ref DesignPatternExamples_python.strategy.strategy_sortentries_class.Strategy_SortEntries_ClassFactory "Strategy_SortEntries_ClassFactory" interface
+<tr>
+  <td>@ref DesignPatternExamples_cpp::Strategy_SortEntries_ClassFactory "Strategy_SortEntries_ClassFactory" class
+  <td>@ref DesignPatternExamples_csharp.ISortEntries "ISortEntries" interface
+  <td>@ref DesignPatternExamples_python.strategy.strategy_sortentries_class.Strategy_SortEntries_ClassFactory "Strategy_SortEntries_ClassFactory" class
+<tr>
+  <td>@ref DesignPatternExamples_cpp::Strategy_SortEntries_ByName "Strategy_SortEntries_ByName" class
+  <td>@ref DesignPatternExamples_csharp.Strategy_SortEntries_ByName "Strategy_SortEntries_ByName" class
+  <td>@ref DesignPatternExamples_python.strategy.strategy_sortentries_class.Strategy_SortEntries_ByName "Strategy_SortEntries_ByName" class
+<tr>
+  <td>@ref DesignPatternExamples_cpp::Strategy_SortEntries_ByAge "Strategy_SortEntries_ByAge" class
+  <td>@ref DesignPatternExamples_csharp.Strategy_SortEntries_ByAge "Strategy_SortEntries_ByAge" class
+  <td>@ref DesignPatternExamples_python.strategy.strategy_sortentries_class.Strategy_SortEntries_ByAge "Strategy_SortEntries_ByAge" class
+<tr>
+  <td>@ref DesignPatternExamples_cpp::Strategy_SortEntries_ByHeight "Strategy_SortEntries_ByHeight" class
+  <td>@ref DesignPatternExamples_csharp.Strategy_SortEntries_ByHeight "Strategy_SortEntries_ByHeight" class
+  <td>@ref DesignPatternExamples_python.strategy.strategy_sortentries_class.Strategy_SortEntries_ByHeight "Strategy_SortEntries_ByHeight" class
+<tr>
+  <td>@ref DesignPatternExamples_cpp::Strategy_ShowEntries_Class "Strategy_ShowEntries_Class"
+  <td>@ref DesignPatternExamples_csharp.Strategy_ShowEntries_Class "Strategy_ShowEntries_Class" class
+  <td>@ref DesignPatternExamples_python.strategy.strategy_showentries_class.Strategy_ShowEntries_Class "Strategy_ShowEntries_Class" class
+</table>
 
 As interesting as the above file lister example would be, it would be just
 a bit too long as an example (like a 1000 lines long).  So in a

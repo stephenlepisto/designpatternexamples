@@ -101,7 +101,11 @@
     <Compile Include="state\_state_class_private.py" />
     <Compile Include="state\state_exercise.py" />
     <Compile Include="state\__init__.py" />
+    <Compile Include="strategy\strategy_entryinformation.py" />
     <Compile Include="strategy\strategy_exercise.py" />
+    <Compile Include="strategy\strategy_isortentries.py" />
+    <Compile Include="strategy\strategy_showentries_class.py" />
+    <Compile Include="strategy\strategy_sortentries_class.py" />
     <Compile Include="strategy\__init__.py" />
     <Compile Include="visitor\visitor_exercise.py" />
     <Compile Include="visitor\__init__.py" />
