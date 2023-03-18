@@ -244,7 +244,7 @@ namespace DesignPatternExamples_csharp
         /// the next state to which the state machine should transition to.</returns>
         CurrentState IStateBehavior.GoNext(IStateContext context)
         {
-            CurrentState nextState = CurrentState.DoubleQuotedText;
+            CurrentState nextState = CurrentState.SingleQuotedText;
 
             char character = context.GetNextCharacter();
 

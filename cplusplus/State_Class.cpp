@@ -238,7 +238,7 @@ namespace // Anonymous
         /// the next state to which the state machine should transition to.</returns>
         CurrentState GoNext(IStateContext* context)
         {
-            CurrentState nextState = CurrentState::DoubleQuotedText;
+            CurrentState nextState = CurrentState::SingleQuotedText;
 
             char character = context->GetNextCharacter();
 
