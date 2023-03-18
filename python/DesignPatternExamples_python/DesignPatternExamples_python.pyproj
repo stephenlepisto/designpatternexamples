@@ -12,7 +12,7 @@
     <Name>DesignPatternExamples_python</Name>
     <RootNamespace>DesignPatternExamples_python</RootNamespace>
     <LaunchProvider>Standard Python launcher</LaunchProvider>
-    <CommandLineArguments>HandlerChain</CommandLineArguments>
+    <CommandLineArguments>State</CommandLineArguments>
     <EnableNativeCodeDebugging>False</EnableNativeCodeDebugging>
     <InterpreterArguments>
     </InterpreterArguments>
@@ -96,6 +96,9 @@
     <Compile Include="proxy\proxy_class_real.py" />
     <Compile Include="proxy\proxy_exercise.py" />
     <Compile Include="proxy\__init__.py" />
+    <Compile Include="state\state_class.py" />
+    <Compile Include="state\state_interface.py" />
+    <Compile Include="state\_state_class_private.py" />
     <Compile Include="state\state_exercise.py" />
     <Compile Include="state\__init__.py" />
     <Compile Include="strategy\strategy_exercise.py" />

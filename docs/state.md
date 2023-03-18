@@ -101,15 +101,32 @@ knows about the instances of the state classes.
 
 # How to Use
 
-Links to the State interface and class descriptions:
-- @ref DesignPatternExamples_cpp::IStateContext "IStateContext" interface (C++)
-- @ref DesignPatternExamples_csharp::IStateContext "IStateContext" interface (C#)
-- @ref DesignPatternExamples_cpp::IStateBehavior "IStateBehavior" interface (implemented by state classes) (C++)
-- @ref DesignPatternExamples_csharp::IStateBehavior "IStateBehavior" interface (implemented by state classes) (C#)
-- @ref DesignPatternExamples_cpp::StateContext_Class "StateContext_Class" class (C++)
-- @ref DesignPatternExamples_csharp.StateContext_Class "StateContext_Class" class (C#)
+<table>
+<caption>Links to the State classes and interfaces</caption>
+<tr>
+  <th>C++
+  <th>C#
+  <th>Python
+<tr>
+  <td>@ref DesignPatternExamples_cpp::IStateContext "IStateContext" interface
+  <td>@ref DesignPatternExamples_csharp::IStateContext "IStateContext" interface
+  <td>@ref DesignPatternExamples_python.state.state_interface.IStateContext "IStateContext" interface
+<tr>
+  <td>@ref DesignPatternExamples_cpp::IStateBehavior "IStateBehavior" interface
+  <td>@ref DesignPatternExamples_cpp::IStateBehavior "IStateBehavior" interface
+  <td>@ref DesignPatternExamples_python.state.state_interface.IStateBehavior "IStateBehavior" interface
+<tr>
+  <td>@ref DesignPatternExamples_cpp::StateContext_Class "StateContext_Class" class
+  <td>@ref DesignPatternExamples_csharp.StateContext_Class "StateContext_Class" class
+  <td>@ref DesignPatternExamples_python.state.state_class.StateContext_Class "StateContext_Class"
+<tr>
+  <td>(Hidden in C++)
+  <td>&lt;Not Applicable&gt;
+  <td>@ref DesignPatternExamples_python.state._state_class_private.StateContext_ClassImpl "StateContext_ClassImpl" class
+</table>
 
-The demonstration example parses a block of C++ or C# code to remove all
+The demonstration example parses a block of C++ or C# code (Python parses C++
+code since Python does not have nested comments to show off) to remove all
 comments.  It ignores comments inside of quotes.  The context maintains an
 iterator through the text and an accumulator of comment-free text.  The
 context also maintains the current state.  The changes in state are
