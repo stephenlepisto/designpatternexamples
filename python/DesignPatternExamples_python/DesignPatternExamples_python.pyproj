@@ -12,7 +12,7 @@
     <Name>DesignPatternExamples_python</Name>
     <RootNamespace>DesignPatternExamples_python</RootNamespace>
     <LaunchProvider>Standard Python launcher</LaunchProvider>
-    <CommandLineArguments>State</CommandLineArguments>
+    <CommandLineArguments>Visitor</CommandLineArguments>
     <EnableNativeCodeDebugging>False</EnableNativeCodeDebugging>
     <InterpreterArguments>
     </InterpreterArguments>
@@ -107,7 +107,12 @@
     <Compile Include="strategy\strategy_showentries_class.py" />
     <Compile Include="strategy\strategy_sortentries_class.py" />
     <Compile Include="strategy\__init__.py" />
+    <Compile Include="visitor\visitor_class.py" />
+    <Compile Include="visitor\visitor_element_classes.py" />
     <Compile Include="visitor\visitor_exercise.py" />
+    <Compile Include="visitor\visitor_village.py" />
+    <Compile Include="visitor\visitor_visitor_shop.py" />
+    <Compile Include="visitor\visitor_ordervisitor.py" />
     <Compile Include="visitor\__init__.py" />
     <Compile Include="__init__.py" />
     <Compile Include="__main__.py" />

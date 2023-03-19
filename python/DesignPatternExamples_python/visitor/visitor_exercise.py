@@ -1,9 +1,11 @@
 ## @file
-# @brief
-# Implementation of the
-# @ref DesignPatternExamples_python.visitor.visitor_exercise.Visitor_Exercise "Visitor_Exercise"()
-# function as used in the @ref visitor_pattern.
+#  @brief
+#  Implementation of the
+#  @ref DesignPatternExamples_python.visitor.visitor_exercise.Visitor_Exercise "Visitor_Exercise"()
+#  function as used in the @ref visitor_pattern.
 
+from .visitor_village import Visitor_Village
+from .visitor_ordervisitor import OrderVisitor
 
 ##  Example of using the @ref visitor_pattern.
 #  
@@ -24,6 +26,23 @@
 def Visitor_Exercise():
     print()
     print("Visitor Exercise")
+
+    print("  Creating Village")
+    village = Visitor_Village()
+    village.LoadVillage()
+
+    visitor = OrderVisitor([ "hamburger" ])
+    print("  Ordering a hamburger from a shop in the {0}".format(village.Name))
+
+    # Visit all shops and place an order for a hamburger at the shop
+    # that sells them.  We don't know which shop it is and we don't
+    # need to know until we receive the order.
+    village.Accept(visitor)
+    if visitor.ItemsReceived:
+        # We are expecting only a single item
+        print("  We received a {0} from {1}.".format(visitor.ItemsReceived[0], visitor.ShopNameReceivedFrom))
+    else:
+        print("  Failed to receive a {0}".format(visitor.ItemsToOrder[0]))
 
     print("  Done.")
 # ! [Using Visitor in Python]

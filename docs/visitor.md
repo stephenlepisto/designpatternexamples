@@ -85,21 +85,35 @@ the data types are going to change infrequently.
 
 # How to Use
 
-Links to the key Visitor classes and interfaces:
+<table>
+<caption>Links to the key Visitor classes and interfaces</caption>
+<tr>
+  <th>C++
+  <th>C#
+  <th>Python
+<tr>
+<td colspan="3">__Visitors that Visit Elements__
+<tr>
+  <td>@ref DesignPatternExamples_cpp::Visitor "Visitor" base class
+  <td>@ref DesignPatternExamples_csharp.Visitor "Visitor" base class
+  <td>@ref DesignPatternExamples_python.visitor.visitor_class.Visitor "Visitor" base class
+<tr>
+  <td>@ref DesignPatternExamples_cpp::OrderVisitor "OrderVisitor" class
+  <td>@ref DesignPatternExamples_csharp.OrderVisitor "OrderVisitor" class
+  <td>@ref DesignPatternExamples_python.visitor.visitor_ordervisitor.OrderVisitor "OrderVisitor" class
+<tr>
+<td colspan="3">__Elements to be Visited__
+<tr>
+  <td>@ref DesignPatternExamples_cpp::Visitor_Shop "Visitor_Shop" base class
+  <td>@ref DesignPatternExamples_csharp.Visitor_Shop "Visitor_Shop" base class
+  <td>@ref DesignPatternExamples_python.visitor.visitor_visitor_shop.Visitor_Shop "Visitor_Shop" base class
+<tr>
+  <td>@ref DesignPatternExamples_cpp::Visitor_Restaurant "Visitor_Restaurant" example class
+  <td>@ref DesignPatternExamples_csharp.Visitor_Restaurant "Visitor_Restaurant" example class
+  <td>@ref DesignPatternExamples_python.visitor.visitor_element_classes.Visitor_Restaurant "Visitor_Restaurant"
+</table>
 
-## Visitors that Visit Elements
-- @ref DesignPatternExamples_cpp::Visitor "Visitor base class" for visitors (C++)
-- @ref DesignPatternExamples_csharp.Visitor "Visitor base class" for visitors (C#)
-- @ref DesignPatternExamples_cpp::OrderVisitor "OrderVisitor class" as an example visitor (C++)
-- @ref DesignPatternExamples_csharp.OrderVisitor "OrderVisitor class" as an example visitor (C#)
-
-## Elements to be Visited
-- @ref DesignPatternExamples_cpp::Visitor_Shop "Visitor_Shop base class" for all elements (C++)
-- @ref DesignPatternExamples_csharp.Visitor_Shop "Visitor_Shop base class" for all elements (C#)
-- @ref DesignPatternExamples_cpp::Visitor_Restaurant "Visitor_Restaurant class" example of an element class to be visited (C++)
-- @ref DesignPatternExamples_csharp.Visitor_Restaurant "Visitor_Restaurant class" example of an element class to be visited (C#)
-
-The example provided here shows a C++ and a C# version of the same visitor
+The example provided here shows a C++, a C#, and a Python version of the same visitor
 pattern.
 
 __C++__
