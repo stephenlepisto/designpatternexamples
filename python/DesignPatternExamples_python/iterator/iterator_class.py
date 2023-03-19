@@ -13,8 +13,14 @@
 from abc import ABC, abstractmethod
 from typing import TypeVar, Generic, Sequence
 
-## Represents a generic type
+## Represents a generic type for IIterator class
 T = TypeVar('T')
+## Represents a generic type for Iterator class
+T2 = TypeVar('T2')
+
+## Alias for Generic to be used in the Iterator class to dance around a problem
+#  with Doxygen thinking there is a recursive relationship with IIterator class.
+Generic2 = Generic
 
 ## Represents a key/value pair where the key and value are strings.
 class ItemPair:
@@ -104,7 +110,7 @@ class IIterator(ABC, Generic[T]):
 #  
 #  Another alternative is for this iterator class to have a way to access
 #  the source container's data so the data doesn't have to be copied.
-class Iterator(IIterator, Generic[T]):
+class Iterator(IIterator, Generic2[T2]):
 
     ##  Constructor.
     #
@@ -112,7 +118,7 @@ class Iterator(IIterator, Generic[T]):
     #         The items to iterate over.
     #  @param numItems
     #         Number of items in the array.
-    def __init__(self, items : Sequence[T], numItems: int) -> None:
+    def __init__(self, items : Sequence[T2], numItems: int) -> None:
         self._items = items.copy()
         self._numItems = numItems
         self._index = 0
@@ -129,7 +135,7 @@ class Iterator(IIterator, Generic[T]):
     #  @returns
     #     Returns the next item in the iterator.  Returns None if there are no
     #     more items to return
-    def Next(self) -> T:
+    def Next(self) -> T2:
         retrieved_item = None
         if self._index < self._numItems:
             retrieved_item = self._items[self._index]
