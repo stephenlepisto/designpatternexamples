@@ -11,16 +11,7 @@
 #  classes as used in the @ref iterator_pattern.
 
 from abc import ABC, abstractmethod
-from typing import TypeVar, Generic, Sequence
-
-## Represents a generic type for IIterator class
-T = TypeVar('T')
-## Represents a generic type for Iterator class
-T2 = TypeVar('T2')
-
-## Alias for Generic to be used in the Iterator class to dance around a problem
-#  with Doxygen thinking there is a recursive relationship with IIterator class.
-Generic2 = Generic
+from typing import Any
 
 ## Represents a key/value pair where the key and value are strings.
 class ItemPair:
@@ -62,16 +53,7 @@ class ItemPair:
 #  pretty much generic through duck-typing.  However, I am using two different
 #  types of IIterator (ItemPair and str), so I might as well make it explicit
 #  that IIterator handles different types.
-#
-#  Note: The Generic[T] base class is inherited by the
-#  @ref DesignPatternExamples_python.iterator.iterator_class.Iterator "Iterator"
-#  class, and that goes for the T type as well.  So, unlike C++ or C#, the
-#  class implementing the interface does not need to be explicitly declared to
-#  have a generic type.
-#
-#  Also, in Python, these are type hints and do not affect how the program
-#  executes, only how it reads.
-class IIterator(ABC, Generic[T]):
+class IIterator(ABC):
 
     ## Start iteration from beginning of container.
     @abstractmethod
@@ -81,9 +63,9 @@ class IIterator(ABC, Generic[T]):
     ## Retrieve the next item from the container.
     #
     #  @returns
-    #      Returns a `T` object or null, if there are no more items in
+    #      Returns an object or None, if there are no more items in
     #      the iteration.
-    def Next(self) -> T:
+    def Next(self) -> Any:
         pass
 
 
@@ -110,7 +92,7 @@ class IIterator(ABC, Generic[T]):
 #  
 #  Another alternative is for this iterator class to have a way to access
 #  the source container's data so the data doesn't have to be copied.
-class Iterator(IIterator, Generic2[T2]):
+class Iterator(IIterator):
 
     ##  Constructor.
     #
@@ -118,7 +100,7 @@ class Iterator(IIterator, Generic2[T2]):
     #         The items to iterate over.
     #  @param numItems
     #         Number of items in the array.
-    def __init__(self, items : Sequence[T2], numItems: int) -> None:
+    def __init__(self, items : list, numItems: int) -> None:
         self._items = items.copy()
         self._numItems = numItems
         self._index = 0
@@ -135,7 +117,7 @@ class Iterator(IIterator, Generic2[T2]):
     #  @returns
     #     Returns the next item in the iterator.  Returns None if there are no
     #     more items to return
-    def Next(self) -> T2:
+    def Next(self) -> Any:
         retrieved_item = None
         if self._index < self._numItems:
             retrieved_item = self._items[self._index]
@@ -152,7 +134,9 @@ class Iterator(IIterator, Generic2[T2]):
 
 
 ## Represents a container that offers up two kinds of iterators for the
-#  hardcoded contents, ItemPair and string.
+#  hardcoded contents,
+#  @ref DesignPatternExamples_python.iterator.iterator_class.ItemPair "ItemPair"
+#  and string.
 #  
 #  This container is not a dictionary despite the use of keys and values but
 #  it was the simplest form of data I could come up with that only used the
@@ -175,7 +159,7 @@ class IteratorContainer_Class:
     #     An
     #     @ref DesignPatternExamples_python.iterator.iterator_class.IIterator "IIterator"
     #     object for getting ItemPair objects.
-    def GetItems(self) -> IIterator[ItemPair]:
+    def GetItems(self) -> IIterator:
         items = [] # type:list[ItemPair]
 
         numItems = len(IteratorContainer_Class._keys)
@@ -183,8 +167,8 @@ class IteratorContainer_Class:
             items.append(ItemPair(IteratorContainer_Class._keys[index],
                                   IteratorContainer_Class._values[index]))
 
-        return Iterator[ItemPair](items, len(items))
-        #return Iterator(items, len(items))
+        return Iterator(items, len(items))
+
 
     ## Retrieve an iterator over the "key" part of the data, where the
     #  data returned from the iterator is a string type.
@@ -193,8 +177,9 @@ class IteratorContainer_Class:
     #     An
     #     @ref DesignPatternExamples_python.iterator.iterator_class.IIterator "IIterator"
     #     object for getting strings.
-    def GetKeys(self) -> IIterator[str]:
-        return Iterator[str](IteratorContainer_Class._keys, len(IteratorContainer_Class._keys))
+    def GetKeys(self) -> IIterator:
+        return Iterator(IteratorContainer_Class._keys, len(IteratorContainer_Class._keys))
+
 
     ## Retrieve an iterator over the "value" part of the data, where the
     #  data returned from the iterator is a string type.
@@ -203,5 +188,5 @@ class IteratorContainer_Class:
     #     An
     #     @ref DesignPatternExamples_python.iterator.iterator_class.IIterator "IIterator"
     #     object for getting strings.
-    def GetValues(self) -> IIterator[str]:
-        return Iterator[str](IteratorContainer_Class._values, len(IteratorContainer_Class._values))
+    def GetValues(self) -> IIterator:
+        return Iterator(IteratorContainer_Class._values, len(IteratorContainer_Class._values))
