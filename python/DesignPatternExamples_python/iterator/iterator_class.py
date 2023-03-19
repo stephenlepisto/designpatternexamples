@@ -104,7 +104,7 @@ class IIterator(ABC, Generic[T]):
 #  
 #  Another alternative is for this iterator class to have a way to access
 #  the source container's data so the data doesn't have to be copied.
-class Iterator(IIterator):
+class Iterator(IIterator, Generic[T]):
 
     ##  Constructor.
     #
