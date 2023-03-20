@@ -8,9 +8,25 @@
 ## Container for a string.  Need to use a class that allows the text to
 #  be changed while the container (this class) remains constant.  This
 #  way, operations can be applied to the text and the container's contents
-#  change but not the container (strings are immutable in Python this dances
+#  change but not the container (strings are immutable in Python so this dances
 #  around that problem).
 class Command_TextObject:
+
+    ## @name Properties
+    #  @{
+
+    ## Property getter for the text in this TextObject: `value = o.Text`
+    @property
+    def Text(self) -> str:
+        return self._text
+
+    ## Property setter for the text in this TextObject: `o.Text = value`
+    @Text.setter
+    def Text(self, value : str):
+        self._text = value
+    
+    ## @}
+
 
     ## Constructs a text object with an initial string.
     #
@@ -25,17 +41,6 @@ class Command_TextObject:
     ## @var _text
     #       The text that can change.
 
-
-    ## Gets the text in this TextObject.
-    @property
-    def Text(self) -> str:
-        return self._text
-
-    ## Sets the text in this TextObject.
-    @Text.setter
-    def Text(self, value : str):
-        self._text = value
-
     ## Resets the TextObject to the starting string.
     def Reset(self):
         self._text = self._startingText
@@ -46,7 +51,6 @@ class Command_TextObject:
     #     Returns the text stored in the text object.
     def ToString(self) -> str:
         return self._text
-
 
 
 ## Represents an operation that can be applied to a TextObject.
