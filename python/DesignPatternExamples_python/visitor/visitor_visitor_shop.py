@@ -19,73 +19,94 @@ from .visitor_class import Visitor
 #  to differentiate between different shop types for the visitors.
 class Visitor_Shop(ABC):
 
-    ## Default Constructor
-    def __init__(self) -> None:
-        self.shopName = ""
-        self.shopAddress = ""
-        self.village = None # type: Visitor_Village
-        self.ingredientsForItems = {} # type: dict[str, list[str]]
-        self.Inventory = {} # type: dict[str, int]
+    ## @name Properties
+    #  @{
 
-    ## @var shopName
-    #       Name of this shop
-    #  @var shopAddress
-    #       address of this shop
-    #  @var village
-    #       The Visitor_Village object this shop is in
-    #  @var ingredientsForItems
-    #       Map of ingredients required for inventory items.
-    #  @var Inventory
-    #       Inventory for this shop, keyed by ingredient name and holding the
-    #       the count of each ingredient
-
-    ## Get the name of the shop.
+    ## Property getter for the name of the shop: `value = o.Name`
     #
     #  @returns
     #     A string containing the name of this shop.
+    @property
     def Name(self) -> str:
-        return self.shopName
+        return self._shopName
 
-    ## Set the name of the shop.
-    def SetName(self, name : str) -> None:
-        self.shopName = name
+    ## Property setter for the name of the shop: `o.Name = value`
+    @Name.setter
+    def Name(self, name : str) -> None:
+        self._shopName = name
 
-    ## Address of the shop (could be a structure but a simple string is
-    #  sufficient for this example).
+    ## Property getter for the address of the shop: `value = o.Address`.
+    #  This could be a structure but a simple string is sufficient for this
+    #  example.
     #
     #  @returns
     #     A string containing the address of this shop.
+    @property
     def Address(self) -> str:
-        return self.shopAddress
+        return self._shopAddress
 
-    ## Set the address of this shop
-    def SetAddress(self, address : str) -> None:
-        self.shopAddress = address
+    ## Property setter for the address of this shop: `o.Address = value`.
+    @Address.setter
+    def Address(self, address : str) -> None:
+        self._shopAddress = address
 
-    ## Get the Village that contains this shop.
+    ## Property getter for the Village that contains this shop: `value = o.Village`
     #
     #  @returns
     #     The Visitor_Village representing the village this shop is in.
+    @property
     def Village(self)  -> Visitor_Village:
-        return self.village
+        return self._village
 
-    ## Set the village that contains this shop
-    def SetVillage(self, v : Visitor_Village) -> None:
-        self.village = v
+    ## Property setter for the village that contains this shop: `o.Village = value`
+    @Village.setter
+    def Village(self, v : Visitor_Village) -> None:
+        self._village = v
 
-    ## Get the ingredients needed for each item sold by the shop.
+    ## Property getter for the ingredients needed for each item sold by the shop:
+    #  `value = o.IngredientsForItems`
     #
     #  @returns
     #     A list of inventory items mapped to a list of ingredients needed for
     #     each item.
+    @property
     def IngredientsForItems(self) -> dict[str, list[str]]:
-        return self.ingredientsForItems
+        return self._ingredientsForItems
 
-    ## Set the ingredients needed for each item sold by the shop.
+    ## Property setter for the ingredients needed for each item sold by the shop:
+    #  `o.IngredientsForItems = value`.
     #  Also, the keys are what the shop sells.  The ingredient list could
     #  be empty if this shop is the origin of the item used as the key.
-    def SetIngredientsForItems(self, ingredients : dict[str, list[str]]) -> None:
-        self.ingredientsForItems = ingredients
+    @IngredientsForItems.setter
+    def IngredientsForItems(self, ingredients : dict[str, list[str]]) -> None:
+        self._ingredientsForItems = ingredients
+
+    ## Property getter for the inventory maintained by the shop: `value = o.Inventory`
+    @property
+    def Inventory(self) -> dict[str, int]:
+        return self._inventory
+    ## @}
+
+
+    ## Default Constructor
+    def __init__(self) -> None:
+        self._shopName = ""
+        self._shopAddress = ""
+        self._village = None # type: Visitor_Village
+        self._ingredientsForItems = {} # type: dict[str, list[str]]
+        self._inventory = {} # type: dict[str, int]
+
+    ## @var _shopName
+    #       Name of this shop
+    #  @var _shopAddress
+    #       address of this shop
+    #  @var _village
+    #       The Visitor_Village object this shop is in
+    #  @var _ingredientsForItems
+    #       Map of ingredients required for inventory items.
+    #  @var _inventory
+    #       Inventory for this shop, keyed by ingredient name and holding the
+    #       the count of each ingredient
 
     #-------------------------------------------------------------------
 
@@ -96,7 +117,7 @@ class Visitor_Shop(ABC):
     #  @returns
     #     Returns true if this shop sells the item; otherwise false.
     def DoesShopSellItem(self, item : str) -> bool:
-        return item in self.ingredientsForItems
+        return item in self._ingredientsForItems
 
     ## Determine if this shop has the specified item in stock.
     #
@@ -154,21 +175,21 @@ class Visitor_Shop(ABC):
 
         if itemsInThisShop:
             print("  {0}: Received an order for {1}.".format(
-                    self.Name(), self.StringizeList(itemsInThisShop)))
+                    self.Name, self.StringizeList(itemsInThisShop)))
             orderPlaced = True
 
         if outOfStockItems:
             for itemToOrder in outOfStockItems:
-                if self.ingredientsForItems[itemToOrder]:
+                if self._ingredientsForItems[itemToOrder]:
                     print("  {0}:   {1} out of stock, ordering ingredients to make more...".format(
-                            self.Name(), itemToOrder))
-                    visitor = OrderVisitor(self.ingredientsForItems[itemToOrder])
-                    self.village.Accept(visitor)
+                            self.Name, itemToOrder))
+                    visitor = OrderVisitor(self._ingredientsForItems[itemToOrder])
+                    self._village.Accept(visitor)
                 else:
                     # The ordered item has no ingredients so the
                     # ordered item will be magically added to inventory
                     print("  {0}:   {1} out of stock, making...".format(
-                            self.Name(), itemToOrder))
+                            self.Name, itemToOrder))
                 self.AddItemToInventory(itemToOrder)
         return orderPlaced
 
@@ -190,14 +211,14 @@ class Visitor_Shop(ABC):
                     itemsToBePickedUp.append(item)
                 else:
                     print("  Error!  {0}: Item {1} is not in the inventory when it should be.".format(
-                            self.Name(), item))
+                            self.Name, item))
 
         if itemsToBePickedUp:
             # Reduce inventory for the ordered items
             output = self.StringizeList(itemsToBePickedUp)
             for itemToBePickedUp in itemsToBePickedUp:
                 self.Inventory[itemToBePickedUp] -= 1
-            print("  {0}: Order picked up for {1}.".format(self.Name(), output))
+            print("  {0}: Order picked up for {1}.".format(self.Name, output))
 
 
     ## The visitor will call this method on each element it wants to visit.

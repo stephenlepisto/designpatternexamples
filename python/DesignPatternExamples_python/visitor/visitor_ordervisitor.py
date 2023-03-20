@@ -45,7 +45,7 @@ class OrderVisitor(Visitor):
             if hasattr(shop, "PlaceOrder") and shop.PlaceOrder(self.ItemsToOrder):
                 if hasattr(shop, "PickupOrder"):
                     shop.PickupOrder(self.ItemsToOrder, self.ItemsReceived)
-                    self.ShopNameReceivedFrom = shop.Name()
+                    self.ShopNameReceivedFrom = shop.Name
 
     def VisitBaker(self, shop) -> None:
         self._HandleVisitor(shop)

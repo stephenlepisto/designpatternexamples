@@ -13,16 +13,32 @@ from .visitor_element_classes import *
 #  All visits start in this container.
 class Visitor_Village:
 
+    ## @name Properties
+    #  @{
+
+    ## Property getter for the name of this village: `value = o.Name`
+    @property
+    def Name(self) -> str:
+        return self._name
+
+    ## Property setter for the name of this village: `o.Name = value`
+    @Name.setter
+    def Name(self, value) -> None:
+        self._name = value
+
+    ## @}
+
+
     ## Constructor
     def __init__(self) -> None:
-        self.shops = [] # type: list[Visitor_Shop]
-        self.Name = ""
+        self._shops = [] # type: list[Visitor_Shop]
+        self._name = ""
     
-    ## @var shops
+    ## @var _shops
     #       List of shops in this village (filled in by the
     #       @ref DesignPatternExamples_python.visitor.visitor_village.Visitor_Village.LoadVillage "LoadVillage()"
     #       method)
-    #  @var Name
+    #  @var _name
     #       Name of this village (set by the
     #       @ref DesignPatternExamples_python.visitor.visitor_village.Visitor_Village.LoadVillage "LoadVillage()"
     #       method)
@@ -30,114 +46,114 @@ class Visitor_Village:
     ## Load the village.  Defines all the shops that can be visited, what each
     #  shop sells, and what each shop needs to make what it sells.
     def LoadVillage(self) -> None:
-        self.Name = "Village of Self-Sufficiency"
+        self._name = "Village of Self-Sufficiency"
 
-        self.shops.append(Visitor_Restaurant())
-        shop = self.shops[-1]
-        shop.SetName("Joe's Burger Joint")
-        shop.SetAddress("47 Millings Rd.")
-        shop.SetVillage(self)
-        shop.SetIngredientsForItems({
+        self._shops.append(Visitor_Restaurant())
+        shop = self._shops[-1]
+        shop.Name = "Joe's Burger Joint"
+        shop.Address = "47 Millings Rd."
+        shop.Village = self
+        shop.IngredientsForItems = {
                 "hamburger": [ "ground beef", "hamburger buns", "ketchup", "mustard", "mayonnaise", "lettuce", "tomato", "onion", "pickles" ]
-            })
+            }
 
-        self.shops.append(Visitor_Butcher())
-        shop = self.shops[-1]
-        shop.SetName("Amelia's Butcher Shop")
-        shop.SetAddress("12 Klaxon Ave.")
-        shop.SetVillage(self)
-        shop.SetIngredientsForItems({
+        self._shops.append(Visitor_Butcher())
+        shop = self._shops[-1]
+        shop.Name = "Amelia's Butcher Shop"
+        shop.Address = "12 Klaxon Ave."
+        shop.Village = self
+        shop.IngredientsForItems = {
                 "ground beef" : []
-            })
+            }
 
-        self.shops.append(Visitor_Baker())
-        shop = self.shops[-1]
-        shop.SetName("Oxel's Breads and Buns Bakery")
-        shop.SetAddress("131 Worthington Dr.")
-        shop.SetVillage(self)
-        shop.SetIngredientsForItems({
+        self._shops.append(Visitor_Baker())
+        shop = self._shops[-1]
+        shop.Name = "Oxel's Breads and Buns Bakery"
+        shop.Address = "131 Worthington Dr."
+        shop.Village = self
+        shop.IngredientsForItems = {
                 "hamburger buns" : []
-            })
+            }
 
-        self.shops.append(Visitor_CondimentGrocer())
-        shop = self.shops[-1]
-        shop.SetName("Connie's Condiments")
-        shop.SetAddress("83 Millings Rd.")
-        shop.SetVillage(self)
-        shop.SetIngredientsForItems({
+        self._shops.append(Visitor_CondimentGrocer())
+        shop = self._shops[-1]
+        shop.Name = "Connie's Condiments"
+        shop.Address = "83 Millings Rd."
+        shop.Village = self
+        shop.IngredientsForItems = {
                 "ketchup" : [ "fresh ketchup" ],
                 "mustard" : [ "fresh mustard" ],
                 "mayonnaise" : [ "fresh mayonnaise" ]
-            })
+            }
 
-        self.shops.append(Visitor_VegetableGrocer())
-        shop = self.shops[-1]
-        shop.SetName("Florence's Vegetables")
-        shop.SetAddress("32 Main St.")
-        shop.SetVillage(self)
-        shop.SetIngredientsForItems({
+        self._shops.append(Visitor_VegetableGrocer())
+        shop = self._shops[-1]
+        shop.Name = "Florence's Vegetables"
+        shop.Address = "32 Main St."
+        shop.Village = self
+        shop.IngredientsForItems = {
                 "lettuce" : [],
                 "tomato" : [],
                 "onion" : [],
                 "cucumber" : [],
                 "mustard seed" : []
-            })
+            }
 
-        self.shops.append(Visitor_PickleGrocer())
-        shop = self.shops[-1]
-        shop.SetName("Larry's Pickle Emporium")
-        shop.SetAddress("34 Main St.")
-        shop.SetVillage(self)
-        shop.SetIngredientsForItems({
+        self._shops.append(Visitor_PickleGrocer())
+        shop = self._shops[-1]
+        shop.Name = "Larry's Pickle Emporium"
+        shop.Address = "34 Main St."
+        shop.Village = self
+        shop.IngredientsForItems = {
                 "pickles" : [ "vinegar", "cucumber", "salt" ]
-            })
+            }
 
-        self.shops.append(Visitor_Maker())
-        shop = self.shops[-1]
-        shop.SetName("Klyde and Sons Ketchup Makers")
-        shop.SetAddress("800 Overtown Rd.")
-        shop.SetVillage(self)
-        shop.SetIngredientsForItems({
+        self._shops.append(Visitor_Maker())
+        shop = self._shops[-1]
+        shop.Name = "Klyde and Sons Ketchup Makers"
+        shop.Address = "800 Overtown Rd."
+        shop.Village = self
+        shop.IngredientsForItems = {
                 "fresh ketchup" : []
-            })
+            }
 
-        self.shops.append(Visitor_Maker())
-        shop = self.shops[-1]
-        shop.SetName("Molly's Mustard Mart")
-        shop.SetAddress("810 Overtown Rd.")
-        shop.SetVillage(self)
-        shop.SetIngredientsForItems({
+        self._shops.append(Visitor_Maker())
+        shop = self._shops[-1]
+        shop.Name = "Molly's Mustard Mart"
+        shop.Address = "810 Overtown Rd."
+        shop.Village = self
+        shop.IngredientsForItems = {
                 "fresh mustard" : [ "vinegar", "mustard seed" ]
-            })
+            }
 
-        self.shops.append(Visitor_Maker())
-        shop = self.shops[-1]
-        shop.SetName("Turk's Mayo Supply")
-        shop.SetAddress("820 Overtown Rd.")
-        shop.SetVillage(self)
-        shop.SetIngredientsForItems({
+        self._shops.append(Visitor_Maker())
+        shop = self._shops[-1]
+        shop.Name = "Turk's Mayo Supply"
+        shop.Address = "820 Overtown Rd."
+        shop.Village = self
+        shop.IngredientsForItems = {
                 "fresh mayonnaise" : []
-            })
+            }
 
-        self.shops.append(Visitor_Maker())
-        shop = self.shops[-1]
-        shop.SetName("Vinnies' Sour Flavors")
-        shop.SetAddress("830 Overtown Rd.")
-        shop.SetVillage(self)
-        shop.SetIngredientsForItems({
+        self._shops.append(Visitor_Maker())
+        shop = self._shops[-1]
+        shop.Name = "Vinnies' Sour Flavors"
+        shop.Address = "830 Overtown Rd."
+        shop.Village = self
+        shop.IngredientsForItems = {
                 "vinegar" : []
-            })
+            }
 
-        self.shops.append(Visitor_Maker())
-        shop = self.shops[-1]
-        shop.SetName("Jessie's Salt Works")
-        shop.SetAddress("920 Overtown Rd.")
-        shop.SetVillage(self)
-        shop.SetIngredientsForItems({
+        self._shops.append(Visitor_Maker())
+        shop = self._shops[-1]
+        shop.Name = "Jessie's Salt Works"
+        shop.Address = "920 Overtown Rd."
+        shop.Village = self
+        shop.IngredientsForItems = {
                 "salt" : []
-            })
+            }
 
     ## Accept a visitor and send them around to all the shops.
     def Accept(self, visitor : Visitor) -> None:
-        for shop in self.shops:
+        for shop in self._shops:
             shop.Accept(visitor)
