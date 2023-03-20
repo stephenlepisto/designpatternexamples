@@ -34,7 +34,7 @@ def Memento_SaveForUndo(text : Memento_TextObject, operation : str) -> None:
 #  @param replaceText
 #         What to replace the searchPattern with.
 def Memento_Operation_Replace(source : Memento_TextObject, searchPattern : str, replaceText : str) -> None:
-    source.SetText(source.Text().replace(searchPattern, replaceText))
+    source.SetText = source.Text.replace(searchPattern, replaceText)
 
 
 ## An operation to reverse the characters in the given Memento_TextObject.
@@ -43,11 +43,11 @@ def Memento_Operation_Replace(source : Memento_TextObject, searchPattern : str, 
 #         The Memento_TextObject to affect.
 def Memento_Operation_Reverse(source : Memento_TextObject) -> None:
     output = StringIO()
-    text = source.Text()
+    text = source.Text
     textLength = len(text)
     for index in range(0, textLength):
         output.write(text[textLength - 1 - index])
-    source.SetText(output.getvalue())
+    source.SetText = output.getvalue()
 
 
 ## Perform an undo on the given Command_TextObject, using the mementos in the
@@ -61,7 +61,7 @@ def Memento_Undo(text : Memento_TextObject) -> None:
         text.RestoreMemento(lastMemento)
 
         # Show off what we (un)did.
-        print("    undoing operation {0:<31}: \"{1}\"".format(lastMemento.Name(), text.ToString()))
+        print("    undoing operation {0:<31}: \"{1}\"".format(lastMemento.Name, text.ToString()))
 
 
 ## Helper function to replace a pattern with another string in the

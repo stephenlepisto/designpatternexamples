@@ -16,11 +16,12 @@ from abc import ABC, abstractmethod
 #  class as represented by the private class,
 #  @ref DesignPatternExamples_python.memento.memento.Memento_TextObject.Memento "Memento".
 class IMemento(ABC):
-    ## The name of the memento (snapshot).  Useful for displaying a list
-    #  of mementos in an undo list.  In this case, the name of each
-    #  memento is the operation that triggered the creation of the
-    #  memento.
+    ## Property getter for the name of the memento (snapshot): `value = o.Name`.
+    #  Useful for displaying a list of mementos in an undo list.  In this case,
+    #  the name of each memento is the operation that triggered the creation of
+    #  the memento.
     @abstractmethod
+    @property
     def Name(self) -> str:
         pass
 
@@ -61,15 +62,19 @@ class Memento_TextObject:
         #       class instance.
 
 
-        ## The saved text in this memento.  This is accessible only by the
+        ## Property getter for the saved text in this memento: `value = o.Text`.
+        #  This is accessible only by the
         #  @ref DesignPatternExamples_python.memento.memento.Memento_TextObject "Memento_TextObject"
         #  class since it is the only entity that knows what to do with the
         #  text during an undo.
+        @property
         def Text(self) -> str:
             return self._text
 
-        ## The name of this memento.  This is seen as the operation that
-        #  triggered the need for the memento.
+        ## Property getter for the name of this memento: `value = o.Name`.
+        #  This is seen as the operation that triggered the need for the
+        #  memento.
+        @property
         def Name(self) -> str:
             return self._name
 
@@ -77,6 +82,22 @@ class Memento_TextObject:
     #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+
+    ## @name Properties
+    #  @{
+
+    ## Property getter for the text in this TextObject: `value = o.Text`.
+    @property
+    def Text(self) -> str:
+        return self._text
+
+
+    ## Property setter for the text in this TextObject: `o.Text = value`
+    @Text.setter
+    def Text(self, value : str) -> None:
+        self._text = value;
+
+    ## @}
 
     ## Constructs a text object with an initial string.
     #
@@ -89,17 +110,6 @@ class Memento_TextObject:
     #       The text that can change in this
     #       @ref DesignPatternExamples_python.memento.memento.Memento_TextObject "Memento_TextObject"
     #       class.
-
-
-    ## Gets the text in this TextObject.
-    def Text(self) -> str:
-        return self._text
-
-
-    ## Sets the text in this TextObject.
-    def SetText(self, value : str) -> None:
-        self._text = value;
-
 
     ## Returns an
     #  @ref DesignPatternExamples_python.memento.memento.IMemento "IMemento"
@@ -118,7 +128,7 @@ class Memento_TextObject:
     #         The IMemento object to restore to.
     def RestoreMemento(self, memento : IMemento) -> None:
         if memento:
-            self._text = memento.Text()
+            self._text = memento.Text
 
 
     ## Converts the Memento_TextObject to a string (makes it easier to
