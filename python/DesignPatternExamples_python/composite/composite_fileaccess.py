@@ -50,7 +50,7 @@ class Composite_FileAccess:
         numComponents = len(pathComponents)
         for index in range(0, numComponents):
             found = False
-            if root.Name() != pathComponents[index]:
+            if root.Name != pathComponents[index]:
                 # Mismatch in path to this entry, bad path
                 root = None
                 break
@@ -63,7 +63,7 @@ class Composite_FileAccess:
             # Still haven't reached end of specified path, look at
             # the current root for children.
 
-            children = root.Children() # type: FileDirEntryList
+            children = root.Children
             if not children:
                 # Path included leaf in the middle, bad path
                 found = False
@@ -73,7 +73,7 @@ class Composite_FileAccess:
             # Look ahead in the path for a matching child.
             childComponent = pathComponents[index + 1] # type: str
             for child in children:
-                if childComponent == child.Name():
+                if childComponent == child.Name:
                     root = child
                     found = True
                     break

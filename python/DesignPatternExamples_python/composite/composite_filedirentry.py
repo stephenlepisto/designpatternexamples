@@ -32,6 +32,43 @@ class FileDirEntryList(list):
 
 ##  Base class representing a File or Directory entry.
 class FileDirEntry:
+
+    ## @name Properties
+    #  @{
+
+    ## Property getter for the type of this entry as represented by a value
+    #  from the
+    #  @ref DesignPatternExamples_python.composite.composite_filedirentry.FileDirTypes "FileDirTypes"
+    #  enumeration: `value = o.FileDirType`
+    @property
+    def  FileDirType(self) -> FileDirTypes:
+        return self._fileDirType
+
+    ## Property getter for the name of this entry: `value = o.Name`
+    @property
+    def Name(self) -> str:
+        return self._name
+
+    ## Property getter for the length in bytes of this entry: `value = o.Length`.
+    #  Directory entries are the sum of the length of all children.
+    @property
+    def Length(self) -> int:
+       return self._length
+
+    ## Property getter for when this entry was last modified: `value = o.WhenModified`
+    @property
+    def WhenModified(self) -> datetime:
+       return self._whenModified
+
+    ## Property getter for the children of this entry: `value = o.Children`.
+    #  Is `None` if the entry can never have any children (that is, it isn't a
+    #  container of other entries).
+    @property
+    def Children(self) -> FileDirEntryList:
+       return None
+    
+    ## @}
+
     ## Constructor
     #  @param type
     #         Value from the
@@ -64,30 +101,6 @@ class FileDirEntry:
     #       For the @ref composite_pattern example, this is the time the object
     #       was created.
 
-    ## The type of this entry as represented by a value from the
-    #  @ref DesignPatternExamples_python.composite.composite_filedirentry.FileDirTypes "FileDirTypes"
-    #  enumeration.
-    def  FileDirType(self) -> FileDirTypes:
-        return self._fileDirType
-
-    ## The name of this entry.
-    def Name(self) -> str:
-        return self._name
-
-    ## The length in bytes of this entry.  Directory entries are the sum of
-    #  the length of all children.
-    def Length(self) -> int:
-       return self._length
-
-    ## When this entry was last modified.
-    def WhenModified(self) -> datetime:
-       return self._whenModified
-
-    ## The children of this entry.  Is None if the entry can never have
-    #  any children (that is, it isn't a container of other entries).
-    def Children(self) -> None:
-       return None
-
 
 #########################################################################
 #########################################################################
@@ -119,6 +132,35 @@ class FileEntry(FileDirEntry):
 #  
 #  A Directory's size is the sum of all children sizes.
 class DirEntry(FileDirEntry):
+
+    ## @name Properties
+    #  @{
+
+    ## Property getter for the size of all children of this directory: `value = o.Length`.
+    #  The length is calculated on the first call and cached for subsequent
+    #  calls.
+    #  
+    #  This is an override of the base class to provide different behavior.
+    @property
+    def Length(self):
+        if not self._lengthSet:
+            # Recurse over all children, accumulating their size.
+            for child in self._children:
+                self._length += child.Length
+            self._lengthSet = True
+        return self._length
+
+    ## Property getter for the children of this node: `value = o.Children`.
+    #  
+    #  This is an override of the base class and uses a collection of
+    #  children entries stored in the DirEntry class so the base
+    #  class doesn't need to store it.
+    @property
+    def Children(self) -> FileDirEntryList:
+        return self._children
+
+
+    ## @}
     ## Construct a DirEntry instance.
     #
     #  @param entryName
@@ -137,25 +179,3 @@ class DirEntry(FileDirEntry):
     ## @var _lengthSet
     #       True if the length has already been computed for this directory;
     #       otherwise, False.
-
-
-    ## Retrieve the size of all children of this directory.  The length
-    #  is calculated on the first call and cached for subsequent calls.
-    #  
-    #  This is an override of the base class to provide different behavior.
-    def Length(self):
-        if not self._lengthSet:
-            # Recurse over all children, accumulating their size.
-            for child in self._children:
-                self._length += child.Length()
-            self._lengthSet = True
-        return self._length
-
-
-    ## Retrieve the children of this node.
-    #  
-    #  This is an override of the base class and uses a collection of
-    #  children entries stored in the DirEntry class so the base
-    #  class doesn't need to store it.
-    def Children(self) -> FileDirEntryList:
-        return self._children

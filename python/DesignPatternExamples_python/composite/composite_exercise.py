@@ -23,17 +23,17 @@ def Composite_Exercise_FormatEntry(entry : FileDirEntry, depth : int) -> str:
     NAME_PADDING_SIZE = 20
     output = StringIO()
     spaces = ' ' * (depth * 2)
-    output.write("{0}{1}".format(spaces, entry.Name()))
-    padding = NAME_PADDING_SIZE - len(entry.Name()) - (depth * 2)
-    if entry.FileDirType() == FileDirTypes.Directory:
+    output.write("{0}{1}".format(spaces, entry.Name))
+    padding = NAME_PADDING_SIZE - len(entry.Name) - (depth * 2)
+    if entry.FileDirType == FileDirTypes.Directory:
         output.write("/")
         padding -= 1
     output.write(' ' * padding)
-    output.write("{0:4}".format(entry.Length()))
-    output.write("  {0}".format(entry.WhenModified().strftime("%m/%d/%Y %I:%M:%S %p")))
+    output.write("{0:4}".format(entry.Length))
+    output.write("  {0}".format(entry.WhenModified.strftime("%m/%d/%Y %I:%M:%S %p")))
     output.write("\n")
 
-    children = entry.Children()  # type: FileDirEntryList
+    children = entry.Children
     if children:
         for index in range(0, len(children)):
             output.write(Composite_Exercise_FormatEntry(children[index], depth + 1))
