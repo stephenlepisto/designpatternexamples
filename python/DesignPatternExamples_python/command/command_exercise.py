@@ -1,7 +1,7 @@
 ## @file
-# @brief
-# Implementation of the @ref DesignPatternExamples_python.command.command_exercise.Command_Exercise "Command_Exercise"()
-# function as used in the @ref command_pattern.
+#  @brief
+#  Implementation of the @ref DesignPatternExamples_python.command.command_exercise.Command_Exercise "Command_Exercise"()
+#  function as used in the @ref command_pattern.
 
 from .command_classes import Command_TextObject, Command
 
@@ -32,8 +32,7 @@ def Command_Save_And_Execute(text : Command_TextObject, command : Command):
 #  @param replaceText
 #         What to replace the searchPattern with.
 def Command_Operation_Replace(source : Command_TextObject, searchPattern : str, replaceText : str) -> None:
-    newText = source.Text().replace(searchPattern, replaceText)
-    source.SetText(newText)
+    source.Text = source.Text.replace(searchPattern, replaceText)
 
 
 ## An operation to reverse the characters in the given
@@ -43,10 +42,10 @@ def Command_Operation_Replace(source : Command_TextObject, searchPattern : str, 
 #         The @ref DesignPatternExamples_python.command.command_classes.Command_TextObject "Command_TextObject"
 #         to affect.
 def Command_Operation_Reverse(source : Command_TextObject):
-    text_in_list = [c for c in source.Text()]
+    text_in_list = [c for c in source.Text]
     text_in_list.reverse()
     output = "".join(text_in_list)
-    source.SetText(output)
+    source.Text = output
 
 
 ## Perform an undo on the given

@@ -27,11 +27,13 @@ class Command_TextObject:
 
 
     ## Gets the text in this TextObject.
+    @property
     def Text(self) -> str:
         return self._text
 
     ## Sets the text in this TextObject.
-    def SetText(self, value : str):
+    @Text.setter
+    def Text(self, value : str):
         self._text = value
 
     ## Resets the TextObject to the starting string.
