@@ -20,17 +20,6 @@ from abc import ABC, abstractmethod
 #  character followed by the name of the command.
 class MoveCommand(ABC):
 
-    ## Name of the command (assigned in the class constructor).
-    def Name(self) -> str:
-        return self._name
-
-    ## The command character from the original list of commands.
-    #  Used when displaying the commands as opposed to when executing
-    #  the commands (assigned in the class constructor).
-    def Command(self) -> str:
-        return self._command
-
-
     ## Constructor
     #
     #  @param command
