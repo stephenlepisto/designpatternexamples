@@ -20,8 +20,8 @@ class IMemento(ABC):
     #  Useful for displaying a list of mementos in an undo list.  In this case,
     #  the name of each memento is the operation that triggered the creation of
     #  the memento.
-    @abstractmethod
     @property
+    @abstractmethod
     def Name(self) -> str:
         pass
 

@@ -18,8 +18,8 @@ class IMessageHandler(ABC):
 
     ## Property getter for the ID of the window: `value = o.ID`.
     #  This is used to uniquely identify a window in the  collection.
-    @abstractmethod
     @property
+    @abstractmethod
     def ID(self) -> int:
         pass
 
