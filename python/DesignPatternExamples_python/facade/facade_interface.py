@@ -24,7 +24,7 @@ from abc import ABC, abstractmethod
 class IDeviceNetworkHighLevel(ABC):
     ## The number of device chains available from the sub-system.
     @abstractmethod
-    def NumChains(self) -> int:
+    def GetNumChains(self) -> int:
         pass
 
     ## Returns a list of all idcodes from all selected devices in the

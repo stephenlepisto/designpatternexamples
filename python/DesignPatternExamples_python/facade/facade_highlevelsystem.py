@@ -36,8 +36,8 @@ class DeviceNetworkHighLevel(IDeviceNetworkHighLevel):
     # IDeviceNetworkHighLevel methods
     #====================================================================
 
-    #  @copydoc IDeviceNetworkHighLevel.NumChains()
-    def NumChains(self) -> int:
+    #  @copydoc IDeviceNetworkHighLevel.GetNumChains()
+    def GetNumChains(self) -> int:
         return self._lowLevelSystem.GetNumChains()
 
 

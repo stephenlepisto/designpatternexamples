@@ -48,7 +48,7 @@ def Facade_Exercise():
     print("Facade Exercise")
 
     deviceChainFacade = CreateHighLevelInstance()
-    numChains = deviceChainFacade.NumChains()
+    numChains = deviceChainFacade.GetNumChains()
     print("  Showing idcodes of devices after a device reset (expect one device on each chain)...")
     for chainIndex in range(0, numChains):
         deviceChainFacade.DisableDevicesInDeviceChain(chainIndex)
