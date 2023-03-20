@@ -171,7 +171,8 @@ class MessageWindow(IMessageHandler):
     # Implementation of the IMessageHandler interface.
     #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-    ## Returns the ID of the message handler.
+    ## Property getter for the ID of the message handler: `value = o.ID`
+    @property
     def ID(self) -> int:
         return self._windowId;
 
@@ -201,7 +202,7 @@ class MessageWindow(IMessageHandler):
     #     Returns a string representation of the message handler.
     def ToString(self) -> str:
         return "[id={0:2}] \"{1}\" ({2}), selected={3}".format(
-            self.ID(), self._title, self._windowBox.ToString(), self._selected)
+            self.ID, self._title, self._windowBox.ToString(), self._selected)
 
 
 ##############################################################################

@@ -15,8 +15,11 @@ from .handlerchain_message_class import Message
 ## Represents a handler in a chain of handlers.  All objects that participate
 #  in the HandlerChain class must implement this interface.
 class IMessageHandler(ABC):
-    ## ID of the window.  This is used to uniquely identify a #  window in the
-    #  collection.
+
+    ## Property getter for the ID of the window: `value = o.ID`.
+    #  This is used to uniquely identify a window in the  collection.
+    @abstractmethod
+    @property
     def ID(self) -> int:
         pass
 
@@ -28,6 +31,7 @@ class IMessageHandler(ABC):
     #     Returns True if the message was processed and the message should not
     #     be passed to subsequent windows.  Returns False to indicate the
     #     message should be passed to subsequent windows.
+    @abstractmethod
     def ProcessMessage(self, message : Message) -> bool:
         pass
 
@@ -35,6 +39,7 @@ class IMessageHandler(ABC):
     #
     #  @returns
     #     Returns a representation of the handler.
+    @abstractmethod
     def ToString(self) -> str:
         pass
 
@@ -90,7 +95,7 @@ class HandlerChain:
         with self._messageHandlersLock:
             existsInList = False
             for handler in self._messageHandlers:
-                if window.ID() == handler.ID():
+                if window.ID == handler.ID:
                     existsInList = True
                     break
             if not existsInList:
@@ -109,7 +114,7 @@ class HandlerChain:
         with self._messageHandlersLock:
             foundWindow = None
             for handler in self._messageHandlers:
-                if window.ID() == handler.ID():
+                if window.ID == handler.ID:
                     foundWindow = window
                     break
             if foundWindow:
