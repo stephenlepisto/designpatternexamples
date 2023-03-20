@@ -48,6 +48,38 @@ class Flyweight_Context:
 
 ## Associates a context with a big resource.
 class Flyweight_Class:
+
+    ## @name Properties
+    #  @{
+
+    ## Property getter for the context for this class instance: `value = o.Context`
+    @property
+    def Context(self) -> Flyweight_Context:
+        return self._context
+
+    ## Property setter for th context for this class instance: `o.Context = value`
+    @Context.setter
+    def Context(self, context : Flyweight_Context) -> None:
+        self._context = context
+
+
+    ## Property getter for the "image" width from underlying big resource: `value = o.ImageWidth`
+    @property
+    def ImageWidth(self) -> int:
+        if self._resource:
+            return self._resource.ImageWidth
+        return 0
+
+
+    ## Property getter for the "image" height from underlying big resource: `value = o.ImageHeight`
+    @property
+    def ImageHeight(self) -> int:
+        if self._resource:
+            return self._resource.ImageHeight
+        return 0
+    
+    ## @}
+
     ## Constructor
     #
     #  @param resource
@@ -70,30 +102,6 @@ class Flyweight_Class:
     #  @var _context
     #       The context associated with this class.  The calling entity uses
     #       this context to manipulate the flyweight class.
-
-
-    ## Retrieve the context for this class instance.
-    def Context(self) -> Flyweight_Context:
-        return self._context
-
-
-    ## Set the context for this class instance.
-    def SetContext(self, context : Flyweight_Context) -> None:
-        self._context = context
-
-
-    ## Retrieve the "image" width from underlying big resource.
-    def ImageWidth(self) -> int:
-        if self._resource:
-            return self._resource.ImageWidth()
-        return 0
-
-
-    ## Retrieve the "image" height from underlying big resource.
-    def ImageHeight(self) -> int:
-        if self._resource:
-            return self._resource.ImageHeight()
-        return 0
 
 
     ## Render the image associated with this flyweight instance into the given
@@ -136,6 +144,33 @@ class Flyweight_Class:
 #  the @ref DesignPatternExamples_python.flyweight.flyweight_classes.BigResourceManager "BigResourceManager"
 #  class.
 class BigResource:
+
+    ## @name Properties
+    #  @{
+
+    ## Property getter for the resource ID for this resource: `value = o.ResourceId`
+    @property
+    def ResourceId(self) -> int:
+        return self._resourceId
+
+    
+    ## Property getter for the "image" width of the resource: `value = o.ImageWidth`
+    @property
+    def ImageWidth(self) -> int:
+        if self._resource:
+            return len(self._resource[0])
+        return 0
+
+    
+    ## Property getter for the "image" height of the resource: `value = o.ImageHeight`
+    @property
+    def ImageHeight(self) -> int:
+        if self._resource:
+            return len(self._resource)
+        return 0
+
+    ## @}
+
     ## Constructor (accessibly only to the class factory).
     #
     #  @param resource
@@ -202,25 +237,6 @@ class BigResource:
                 current_display_row += 1
                 current_image_row += 1
 
-    
-    ## Retrieve the resource ID for this resource.
-    def ResourceId(self) -> int:
-        return self._resourceId
-
-    
-    ## Retrieve the "image" width of the resource.
-    def ImageWidth(self) -> int:
-        if self._resource:
-            return len(self._resource[0])
-        return 0
-
-    
-    ## Retrieve the "image" height of the resource.
-    def ImageHeight(self) -> int:
-        if self._resource:
-            return len(self._resource)
-        return 0
-
 
     ## Generate a Flyweight instance that will represent this big resource
     #  in some context-dependent way.
@@ -285,7 +301,7 @@ class BigResourceManager:
         foundResource = None # type: BigResource
         
         for resource in BigResourceManager._resources:
-            if resource.ResourceId() == resourceId:
+            if resource.ResourceId == resourceId:
                 foundResource = resource
                 break
 

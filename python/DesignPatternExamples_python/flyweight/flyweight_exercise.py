@@ -92,9 +92,9 @@ def _Flyweight_ShowDisplay(display : list[bytearray]) -> None:
 #         Height of display.
 def _Flyweight_MoveFlyweights(flyweightInstances : list[Flyweight_Class], display_width : int, display_height : int) -> None:
     for flyweight in flyweightInstances:
-        context = flyweight.Context()
-        image_width = flyweight.ImageWidth()
-        image_height = flyweight.ImageHeight()
+        context = flyweight.Context
+        image_width = flyweight.ImageWidth
+        image_height = flyweight.ImageHeight
         newx = context.Position_X + context.Velocity_X
         newy = context.Position_Y + context.Velocity_Y
 
@@ -116,7 +116,7 @@ def _Flyweight_MoveFlyweights(flyweightInstances : list[Flyweight_Class], displa
 
         context.Position_X = newx
         context.Position_Y = newy
-        flyweight.SetContext(context)
+        flyweight.Context = context
 
 
 ## Render the image into the display, once for each flyweight instance.
@@ -131,7 +131,7 @@ def _Flyweight_RenderFlyweights(flyweightInstances : list[Flyweight_Class], disp
     # Render the image into the "display", one image for each instance
     # of the Flyweight class.
     for flyweight in flyweightInstances:
-        context = flyweight.Context()
+        context = flyweight.Context
         flyweight.Render(displayArea, int(context.Position_X), int(context.Position_Y))
 
 
