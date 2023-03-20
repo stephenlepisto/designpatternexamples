@@ -10,6 +10,22 @@
 #  Users are tracked by name
 class Group:
 
+    ## @name Properties
+    #  @{
+
+    ## Property gettef for the name of the group: `value = o.Name`
+    @property
+    def Name(self) -> str:
+        return self._groupName
+
+
+    ## Property getter for the names of users in this group: `value = o.Users`
+    @property
+    def Users(self) -> list[str]:
+        return self._users.copy()
+
+    ## @}
+
     ## Constructor.
     #
     #  @param name
@@ -22,17 +38,6 @@ class Group:
     #       Name of this group.
     #  @var _users
     #       The list of users in this group.
-
-
-    ## The name of the group.
-    def Name(self) -> str:
-        return self._groupName
-
-
-    ## The names of users in this group.
-    def Users(self) -> list[str]:
-        return self._users.copy()
-
 
     ## Determine if the specified user is in this group.  This is a case-
     #  sensitive search.
@@ -100,6 +105,28 @@ class Group:
 #  This is a simple implementation using a simple list.  It is NOT thread-safe.
 class GroupList:
 
+    ## @name Properties
+    #  @{
+
+    ## Property getter for the names of all groups contained in this list: `value = o.GroupNames`.
+    #  The list is always sorted.
+    #
+    # @returns
+    #   A list of string containing the names of all groups.
+    @property
+    def GroupNames(self) -> list[str]:
+        groupNames = []
+
+        for group in self._groups:
+            groupNames.append(group.Name)
+
+        # Case-insensitive sort
+        groupNames.sort(key=str.lower)
+        return groupNames
+
+    ## @}
+
+    ## Constructor
     def __init__(self) -> None:
         self._groups = [] # type list[Group]
 
@@ -125,23 +152,6 @@ class GroupList:
             # name was not found in the list
             pass
         return foundIndex
-
-
-    ## The names of all groups contained in this list.
-    #  The list is always sorted.
-    #
-    # @returns
-    #   A list of string containing the names of all groups.
-    def GroupNames(self) -> list[str]:
-        groupNames = []
-
-        for group in self._groups:
-            groupNames.append(group.Name())
-
-        # Case-insensitive sort
-        groupNames.sort(key=str.lower)
-        return groupNames
-
 
     ## Retrieve the Group instance for the specified group name.  The found
     #  group may be altered so it must point to the one in the list.

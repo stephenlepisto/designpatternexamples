@@ -9,6 +9,16 @@
 ## Represents a user with a name.
 class User:
 
+    ## @name Properties
+    #  @{
+
+    ##  Property getter for the name of the user: `value = o.Name`
+    @property
+    def Name(self) -> str:
+        return self._name
+
+    ## @}
+
     ## Constructor.
     #
     #  @param name
@@ -18,11 +28,6 @@ class User:
 
     ## @var _name
     #       Name of the user
-
-    
-    ##  The name of the user.
-    def Name(self) -> str:
-        return self._name
 
 
     ## Determine if the name or the specified User matches this User's name.
@@ -54,6 +59,27 @@ class User:
 #  This is a simple implementation using a simple list.  It is NOT thread-safe.
 class UserList:
 
+    ## @name Properties
+    #  @{
+
+    ## Property getter for the user names contained in this list: `value = o.UserNames`
+    #  The list is always sorted.
+    #
+    #  @returns
+    #     A list of string containing the names of all groups.
+    @property
+    def UserNames(self) -> list[str]:
+        userNames = []
+
+        for user in self._users:
+            userNames.append(user.Name)
+
+        # Case-insensitive sort
+        userNames.sort(key=str.lower)
+        return userNames
+
+    ## @}
+
     ## Constructor
     def __init__(self) -> None:
         self._users = [] # type: list[User]
@@ -80,23 +106,6 @@ class UserList:
             # name was not found in the list
             pass
         return foundIndex
-
-
-    ## The user names contained in this list.
-    #  The list is always sorted.
-    #
-    # @returns
-    #   A list of string containing the names of all groups.
-    def UserNames(self) -> list[str]:
-        userNames = []
-
-        for user in self._users:
-            userNames.append(user.Name())
-
-        # Case-insensitive sort
-        userNames.sort(key=str.lower)
-        return userNames
-
 
     ## Retrieve the User instance for the specified user name.  The found
     #  user may be altered so it must point to the one in the list.

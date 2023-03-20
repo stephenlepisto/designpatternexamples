@@ -154,7 +154,7 @@ class UserGroupMediator:
             message = "User '{0}' does not exist.  Cannot remove from all groups'!".format(userName)
             raise ValueError(message)
 
-        for groupName in self._userGroupsContainer.Groups.GroupNames():
+        for groupName in self._userGroupsContainer.Groups.GroupNames:
             group = self._userGroupsContainer.Groups.FindGroup(groupName)
             if group:
                 if group.ContainsUser(userName):
@@ -205,7 +205,7 @@ class UserGroupMediator:
             raise ValueError(message)
 
         groupNames = []
-        for groupName in self._userGroupsContainer.Groups.GroupNames():
+        for groupName in self._userGroupsContainer.Groups.GroupNames:
             group = self._userGroupsContainer.Groups.FindGroup(groupName)
             if group:
                 if group.ContainsUser(userName):
@@ -230,7 +230,7 @@ class UserGroupMediator:
             message = "Cannot determine get users in group '{0}' as that group does not exist!".format(groupName)
             raise ValueError(message)
 
-        return foundGroup.Users()
+        return foundGroup.Users
 
 
     ## Retrieve a list of all known groups.
@@ -238,7 +238,7 @@ class UserGroupMediator:
     #  @returns
     #     An array of group names.
     def GetAllGroups(self) -> list[str]:
-        return self._userGroupsContainer.Groups.GroupNames()
+        return self._userGroupsContainer.Groups.GroupNames
 
 
     ## Retrieve a list of all known users.
@@ -246,4 +246,4 @@ class UserGroupMediator:
     #  @returns
     #     An array of user names.
     def GetAllUsers(self) -> list[str]:
-        return self._userGroupsContainer.Users.UserNames()
+        return self._userGroupsContainer.Users.UserNames
