@@ -12,7 +12,7 @@
     <Name>DesignPatternExamples_python</Name>
     <RootNamespace>DesignPatternExamples_python</RootNamespace>
     <LaunchProvider>Standard Python launcher</LaunchProvider>
-    <CommandLineArguments>Visitor</CommandLineArguments>
+    <CommandLineArguments>Flyweight</CommandLineArguments>
     <EnableNativeCodeDebugging>False</EnableNativeCodeDebugging>
     <InterpreterArguments>
     </InterpreterArguments>

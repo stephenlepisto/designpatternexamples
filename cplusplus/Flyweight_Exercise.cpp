@@ -26,16 +26,30 @@ namespace // Anonymous
     using namespace DesignPatternExamples_cpp;
     
     /// <summary>
-    /// Generate a big resource, in this case, a text "image" of the specified
-    /// width and height.  The image is a box.
+    /// Generate a big resource, in this case, a text master "image" of the
+    /// specified height, containing the specified number of smaller images
+    /// laid out horizontally, using the given width for each image.
+    /// 
+    /// If there are 5 images requested, then create a single image that is
+    /// `5 * width` wide and `1 * height` tall.
     /// </summary>
+    /// <param name="numImages">Number of images to images to store in the
+    /// single big resource (horizontally), between 1 and 9.</param>
     /// <param name="width">Width of the "text" image, in characters.  Minimum
     /// width is 3.</param>
     /// <param name="height">Height of the "text" image, in characters.  Minimum
     /// height is 3.</param>
     /// <returns>An index to the generated index in the BigResourceManager.</returns>
-    int _Flyweight_GenerateBigResource(int width, int height)
+    int _Flyweight_GenerateBigResource(int numImages, int width, int height)
     {
+        if (numImages < 1)
+        {
+            numImages = 1;
+        }
+        else if (numImages > 9)
+        {
+            numImages = 9;
+        }
         if (width < 3)
         {
             width = 3;
@@ -48,16 +62,22 @@ namespace // Anonymous
         std::vector<std::string> image;
         for (int row = 0; row < height; ++row)
         {
-            std::string image_row;
-            if (row == 0 || (row + 1) == height)
+            std::string image_row("");
+            for (int imageIndex = 0; imageIndex < numImages; imageIndex++)
             {
-                // top and bottom row are the same.
-                image_row = std::format("+{0}+", std::string((size_t)width - 2, '-'));
-            }
-            else
-            {
-                // All other rows are each the same.
-                image_row = std::format("|{0}|", std::string((size_t)width - 2, '0'));
+                if (row == 0 || (row + 1) == height)
+                {
+                    // top and bottom row are the same.
+                    image_row += std::format("+{0}+", std::string((size_t)width - 2, '-'));
+                }
+                else
+                {
+                    // All other rows are each the same -- except that
+                    // each image is "numbered" where the background of the
+                    // image reflects the number of the image (0, 1, 2, etc.).
+                    char c = std::format("{}", imageIndex)[0];
+                    image_row += std::format("|{0}|", std::string((size_t)width - 2, c));
+                }
             }
             image.push_back(image_row);
         }
@@ -195,8 +215,12 @@ namespace // Anonymous
             flyweightIter != std::end(flyweightInstances);
             flyweightIter++)
         {
-            Flyweight_Context context = (*flyweightIter)->Context();
-            (*flyweightIter)->Render(displayArea,
+            Flyweight_Class* flyweight = (*flyweightIter).get();
+            Flyweight_Context context = flyweight->Context();
+            flyweight->Render(displayArea,
+                context.OffsetXToImage,
+                flyweight->ImageWidth(),
+                flyweight->ImageHeight(),
                 (int)context.Position_X,
                 (int)context.Position_Y);
         }
@@ -241,6 +265,9 @@ namespace // Anonymous
         for (int index = 0; index < numFlyweights; ++index)
         {
             Flyweight_Context context;
+            context.OffsetXToImage = index * image_width;
+            context.ImageWidth = image_width;
+            context.ImageHeight = image_height;
             // Make sure the entire image can be rendered at each position
             context.Position_X = rand() % (display_width - image_width);
             context.Position_Y = rand() % (display_height - image_height);
@@ -269,14 +296,16 @@ namespace DesignPatternExamples_cpp
     /// instances of said light-weight class.
     /// 
     /// In this example, a large object is represented by a so-called "big
-    /// resource" or image (a two-dimensional array of text characters).
-    /// Flyweight classes that represent position and velocity are
-    /// attached to the big resource image so they all share the same image
-    /// but have different positions and velocities.  The image is rendered
-    /// to a display area through the Flyweight class.  The Flyweight
-    /// class instances then have their positions updated, bouncing off the
-    /// edges of the display area 60 times a second.  This continues for
-    /// 1000 iterations or until a key is pressed.
+    /// resource" (a two-dimensional array of text characters) containing
+    /// multiple images, one associated with each flyweight class.
+    /// Flyweight classes that represent offset into the big resource,
+    /// along with position and velocity, are attached to the big resource
+    /// image so they all share the same image but have different positions
+    /// and velocities.  The image is rendered to a display area through
+    /// the Flyweight class.  The Flyweight class instances then have their
+    /// positions updated, bouncing off the edges of the display area 60
+    /// times a second.  This continues for 1000 iterations or until a key
+    /// is pressed.
     /// </summary>
     // ! [Using Flyweight in C++]
     void Flyweight_Exercise()
@@ -292,7 +321,7 @@ namespace DesignPatternExamples_cpp
         const int NUMFLYWEIGHTS = 5;
         const int NUM_ITERATIONS = 1000;
 
-        int bigResourceId = _Flyweight_GenerateBigResource(IMAGE_WIDTH, IMAGE_HEIGHT);
+        int bigResourceId = _Flyweight_GenerateBigResource(NUMFLYWEIGHTS, IMAGE_WIDTH, IMAGE_HEIGHT);
         FlyweightClassList flyweightInstances;
         flyweightInstances = _Flyweight_GenerateFlyweightClasses(bigResourceId, NUMFLYWEIGHTS,
             IMAGE_WIDTH, IMAGE_HEIGHT, DISPLAY_WIDTH, DISPLAY_HEIGHT);

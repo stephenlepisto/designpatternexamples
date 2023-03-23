@@ -23,9 +23,6 @@ namespace DesignPatternExamples_cpp
     {
     }
 
-    /// <summary>
-    /// Retrieve or set the context for this class instance.
-    /// </summary>
     Flyweight_Context Flyweight_Class::Context()
     {
         return _context;
@@ -37,53 +34,31 @@ namespace DesignPatternExamples_cpp
     }
 
 
-    /// <summary>
-    /// Retrieve the "image" width from underlying big resource.
-    /// </summary>
     int Flyweight_Class::ImageWidth()
     {
         if (_resource != nullptr)
         {
-            return _resource->ImageWidth();
+            return _context.ImageWidth;
         }
         return 0;
     }
 
 
-    /// <summary>
-    /// Retrieve the "image" height from underlying big resource.
-    /// </summary>
     int Flyweight_Class::ImageHeight()
     {
         if (_resource != nullptr)
         {
-            return _resource->ImageHeight();
+            return _context.ImageHeight;
         }
         return 0;
     }
 
-    /// <summary>
-    /// Render the image associated with this flyweight instance into the given
-    /// display at the given position.
-    /// </summary>
-    /// <param name="display">A list of character arrays representing the display.</param>
-    /// <param name="position_x">leftmost position within the display to place
-    /// the upper left corner of the image,</param>
-    /// <param name="position_y">topmost position within the display to place
-    /// the upper left corner of the image.</param>
-    /// <remarks>
-    /// Note that although this class has access to the context, it really
-    /// shouldn't so as to keep a loose coupling between the context and
-    /// this class.  Therefore, the entity calling Render() will pass the
-    /// position in as parameters even though that position is likely
-    /// coming from the context.
-    /// </remarks>
-    void Flyweight_Class::Render(std::vector<std::vector<char>>& display, int position_x, int position_y)
+    void Flyweight_Class::Render(std::vector<std::vector<char>>& display, int offset_x, int image_width, int image_height, int position_x, int position_y)
     {
         if (_resource != nullptr)
         {
             // Let the big resource handle the rendering at the given position.
-            _resource->Render(display, position_x, position_y);
+            _resource->Render(display, offset_x, image_width, image_height, position_x, position_y);
         }
     }
 
@@ -92,7 +67,7 @@ namespace DesignPatternExamples_cpp
     ///////////////////////////////////////////////////////////////////////////
 
 
-    void BigResource::Render(std::vector<std::vector<char>>& display, int position_x, int position_y)
+    void BigResource::Render(std::vector<std::vector<char>>& display, int offset_x, int image_width, int image_height, int position_x, int position_y)
     {
         size_t display_width = display[0].size();
         size_t display_height = display.size();
@@ -101,13 +76,13 @@ namespace DesignPatternExamples_cpp
 
         // Size of image to render (can be smaller than actual image if image
         // lies partially of right or bottom of display).
-        size_t image_render_width = _resource[0].length();
-        size_t image_render_height = _resource.size();
+        size_t image_render_width = image_width;
+        size_t image_render_height = image_height;
 
         // Position into image to start rendering from (non-zero if
         // image is off the left or top edge of display).
         int starting_row_in_image = 0;
-        int starting_col_in_image = 0;
+        int starting_col_in_image = offset_x;
 
         // Clip the image to the display.
         if (starting_position_x < 0)

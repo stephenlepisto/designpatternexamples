@@ -20,6 +20,9 @@ namespace DesignPatternExamples_csharp
     /// </summary>
     public struct Flyweight_Context
     {
+        public int OffsetXToImage;
+        public int ImageWidth;
+        public int ImageHeight;
         public double Position_X;
         public double Position_Y;
         public double Velocity_X;
@@ -28,12 +31,19 @@ namespace DesignPatternExamples_csharp
         /// <summary>
         /// Constructor
         /// </summary>
+        /// <param name="offset_x">Offset from left edge of big resource image
+        /// to the left edge of the image for this context.</param>
+        /// <param name="image_width">Width of image for this context.</param>
+        /// <param name="image_height">Height of image for this context.</param>
         /// <param name="position_x">X position of the top left corner of the big resource.</param>
         /// <param name="position_y">Y position of the top left corner of the big resource.</param>
         /// <param name="velocity_x">Initial X velocity.</param>
         /// <param name="velocity_y">Initial Y velocity.</param>
-        public Flyweight_Context(double position_x, double position_y, double velocity_x, double velocity_y)
+        public Flyweight_Context(int offset_x, int image_width, int image_height, double position_x, double position_y, double velocity_x, double velocity_y)
         {
+            OffsetXToImage = offset_x;
+            ImageWidth = image_width;
+            ImageHeight = image_height;
             Position_X = position_x;
             Position_Y = position_y;
             Velocity_X = velocity_x;
@@ -110,7 +120,7 @@ namespace DesignPatternExamples_csharp
             {
                 if (_resource != null)
                 {
-                    return _resource.ImageWidth;
+                    return _context.ImageWidth;
                 }
                 return 0;
             }
@@ -126,7 +136,7 @@ namespace DesignPatternExamples_csharp
             {
                 if (_resource != null)
                 {
-                    return _resource.ImageHeight;
+                    return _context.ImageHeight;
                 }
                 return 0;
             }
@@ -137,6 +147,10 @@ namespace DesignPatternExamples_csharp
         /// display at the given position.
         /// </summary>
         /// <param name="display">A list of character arrays representing the display.</param>
+        /// <param name="offset_x">Offset from left edge of big resource to the
+        /// left edge of the image to render.</param>
+        /// <param name="image_width">Width of image to render.</param>
+        /// <param name="image_height">Height of image to render.</param>
         /// <param name="position_x">leftmost position within the display to place
         /// the upper left corner of the image,</param>
         /// <param name="position_y">topmost position within the display to place
@@ -148,10 +162,10 @@ namespace DesignPatternExamples_csharp
         /// position in as parameters even though that position is likely
         /// coming from the context.
         /// </remarks>
-        public void Render(List<char[]> display, int position_x, int position_y)
+        public void Render(List<char[]> display, int offset_x, int image_width, int image_height, int position_x, int position_y)
         {
             // Let the big resource handle the rendering at the given position.
-            _resource.Render(display, position_x, position_y);
+            _resource.Render(display, offset_x, image_width, image_height, position_x, position_y);
         }
     }
 
@@ -195,9 +209,13 @@ namespace DesignPatternExamples_csharp
         /// Render the big resource into the given display at the given position.
         /// </summary>
         /// <param name="display">The display in which to render.</param>
+        /// <param name="offset_x">Offset from left edge of big resource to the
+        /// left edge of the image to render.</param>
+        /// <param name="image_width">Width of image to render.</param>
+        /// <param name="image_height">Height of image to render.</param>
         /// <param name="position_x">X position where to put upper left corner of resource.</param>
         /// <param name="position_y">Y position where to put upper left corner of resource.</param>
-        internal void Render(List<char[]> display, int position_x, int position_y)
+        internal void Render(List<char[]> display, int offset_x, int image_width, int image_height, int position_x, int position_y)
         {
             int display_width = display[0].Length;
             int display_height = display.Count;
@@ -205,14 +223,14 @@ namespace DesignPatternExamples_csharp
             int starting_position_y = position_y;
 
             // Size of image to render (can be smaller than actual image if image
-            // lies partially of right or bottom of display).
-            int image_render_width = _resource[0].Length;
-            int image_render_height = _resource.Count;
+            // lies partially off right or bottom of display).
+            int image_render_width = image_width;
+            int image_render_height = image_height;
 
             // Position into image to start rendering from (non-zero if
             // image is off the left or top edge of display).
             int starting_row_in_image = 0;
-            int starting_col_in_image = 0;
+            int starting_col_in_image = offset_x;
 
             // Clip the image to the display.
             if (starting_position_x < 0)

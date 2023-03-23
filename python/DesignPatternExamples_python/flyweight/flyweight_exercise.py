@@ -10,28 +10,39 @@ import random
 from .flyweight_helpers import Helpers
 from .flyweight_classes import BigResourceManager, Flyweight_Class, Flyweight_Context
 
-## Generate a big resource, in this case, a text "image" of the specified
-#  width and height.  The image is a box.
+## Generate a big resource, in this case, a text master "image" of the
+#  specified height, containing the specified number of smaller images
+#  laid out horizontally, using the given width for each image.
+#  
+#  If there are 5 images requested, then create a single image that is
+#  `5 * width` wide and `1 * height` tall.
 #
+# @param numImages
+#        Number of images to images to store in the single big resource
+#        (horizontally), between 1 and 9.
 #  @param width
 #         Width of the "text" image, in characters.  Minimum width is 3.
 #  @param height
 #         Height of the "text" image, in characters.  Minimum height is 3.
 #  @returns
 #     An index to the generated index in the BigResourceManager.
-def _Flyweight_GenerateBigResource(width : int, height : int) -> int:
+def _Flyweight_GenerateBigResource(numImages : int, width : int, height : int) -> int:
+    numImages = 3 if numImages < 3 else numImages
+    numImages = 9 if numImages > 9 else numImages
     width = max(3, width)
     height = max(3, height)
 
     image = [] # type: list[bytearray]
     for row in range(0, height):
-        image_row = None
-        if row == 0 or ((row + 1) == height):
-            # top and bottom row are the same.
-            image_row = bytearray("+{0}+".format('-' * (width - 2)).encode())
-        else:
-            # All other rows are each the same.
-            image_row = bytearray("|{0}|".format('0' * (width - 2)).encode())
+        image_row = bytearray()
+        for imageIndex in range(0, numImages):
+            if row == 0 or ((row + 1) == height):
+                # top and bottom row are the same.
+                image_row.extend(bytearray("+{0}+".format('-' * (width - 2)).encode()))
+            else:
+                # All other rows are each the same.
+                c = str(imageIndex)
+                image_row.extend(bytearray("|{0}|".format(c * (width - 2)).encode()))
         image.append(image_row)
 
     resourceId = BigResourceManager.AddResource(image)
@@ -132,7 +143,7 @@ def _Flyweight_RenderFlyweights(flyweightInstances : list[Flyweight_Class], disp
     # of the Flyweight class.
     for flyweight in flyweightInstances:
         context = flyweight.Context
-        flyweight.Render(displayArea, int(context.Position_X), int(context.Position_Y))
+        flyweight.Render(displayArea, context.OffsetXToImage, context.ImageWidth, context.ImageHeight, int(context.Position_X), int(context.Position_Y))
 
 
 ## Generate a random velocity, which includes a speed and a direction.
@@ -155,7 +166,7 @@ def GenerateVelocity() -> float:
 #  position of each flyweight within the display.
 #
 #  @param bigResourceId
-#         ID of the big resource to use.
+#         ID of the big resource to use.`
 #  @param numFlyweights
 #         Number of flyweight instances to create.
 #  @param image_width
@@ -177,6 +188,9 @@ def _Flyweight_GenerateFlyweightClasses(bigResourceId : int, numFlyweights : int
     # of each flyweight within the display.
     for index in range(0, numFlyweights):
         context = Flyweight_Context()
+        context.OffsetXToImage = index * image_width
+        context.ImageWidth = image_width
+        context.ImageHeight = image_height
         # Make sure the entire image can be rendered at each position
         context.Position_X = random.random() * (display_width - image_width)
         context.Position_Y = random.random() * (display_height - image_height)
@@ -197,14 +211,16 @@ def _Flyweight_GenerateFlyweightClasses(bigResourceId : int, numFlyweights : int
 #  instances of said light-weight class.
 #  
 #  In this example, a large object is represented by a so-called "big
-#  resource" or image (a two-dimensional array of text characters).
-#  Flyweight classes that represent position and velocity are
-#  attached to the big resource image so they all share the same image
-#  but have different positions and velocities.  The image is rendered
-#  to a display area through the Flyweight class.  The Flyweight
-#  class instances then have their positions updated, bouncing off the
-#  edges of the display area 60 times a second.  This continues for
-#  1000 iterations or until a key is pressed.
+#  resource" (a two-dimensional array of text characters) containing
+#  multiple images, one associated with each flyweight class.
+#  Flyweight classes that represent offset into the big resource,
+#  along with position and velocity, are attached to the big resource
+#  image so they all share the same image but have different positions
+#  and velocities.  The image is rendered to a display area through
+#  the Flyweight class.  The Flyweight class instances then have their
+#  positions updated, bouncing off the edges of the display area 60
+#  times a second.  This continues for 1000 iterations or until a key
+#  is pressed.
 
 # ! [Using Flyweight in Python]
 def Flyweight_Exercise():
@@ -219,7 +235,7 @@ def Flyweight_Exercise():
     NUMFLYWEIGHTS = 5
     NUM_ITERATIONS = 1000
 
-    bigResourceId = _Flyweight_GenerateBigResource(IMAGE_WIDTH, IMAGE_HEIGHT)
+    bigResourceId = _Flyweight_GenerateBigResource(NUMFLYWEIGHTS, IMAGE_WIDTH, IMAGE_HEIGHT)
     flyweightInstances = _Flyweight_GenerateFlyweightClasses(bigResourceId, NUMFLYWEIGHTS,
         IMAGE_WIDTH, IMAGE_HEIGHT, DISPLAY_WIDTH, DISPLAY_HEIGHT)
 

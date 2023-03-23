@@ -18,6 +18,13 @@ class Flyweight_Context:
 
     ## Constructor
     #
+    #  @param offset_x
+    #         Offset from left edge of big resource image to the left edge of
+    #         the image for this context.
+    #  @param image_width
+    #         Width of image for this context.
+    #  @param image_height
+    #         Height of image for this context.
     #  @param position_x
     #         X position of the top left corner of the big resource.
     #  @param position_y
@@ -26,13 +33,23 @@ class Flyweight_Context:
     #         Initial X velocity.
     #  @param velocity_y
     #         Initial Y velocity.
-    def __init__(self, position_x = 0.0, position_y = 0.0, velocity_x = 0.0, velocity_y = 0.0) -> None:
+    def __init__(self, offset_x = 0, image_width = 0, image_height = 0, position_x = 0.0, position_y = 0.0, velocity_x = 0.0, velocity_y = 0.0) -> None:
+        self.OffsetXToImage = offset_x
+        self.ImageWidth = image_width
+        self.ImageHeight = image_height
         self.Position_X = position_x
         self.Position_Y = position_y
         self.Velocity_X = velocity_x
         self.Velocity_Y = velocity_y
 
-    ## @var Position_X
+    ## @var OffsetXToImage
+    #       Offset from left edge of big resource image to the left edge of the
+    #       image for this context.
+    #  @var ImageWidth
+    #       Width of image for this context.
+    #  @var ImageHeight
+    #       Height of image for this context.
+    #  @var Position_X
     #       X position of the top left corner of the big resource.
     #  @var Position_Y
     #       Y position of the top left corner of the big resource.
@@ -67,7 +84,7 @@ class Flyweight_Class:
     @property
     def ImageWidth(self) -> int:
         if self._resource:
-            return self._resource.ImageWidth
+            return self._context.ImageWidth
         return 0
 
 
@@ -75,7 +92,7 @@ class Flyweight_Class:
     @property
     def ImageHeight(self) -> int:
         if self._resource:
-            return self._resource.ImageHeight
+            return self._context.ImageHeight
         return 0
     
     ## @}
@@ -115,15 +132,22 @@ class Flyweight_Class:
     #
     #  @param display
     #         A list of character arrays representing the display.
+    #  @param offset_x
+    #         Offset from left edge of big resource image to the left edge of
+    #         the image for this context.
+    #  @param image_width
+    #         Width of image to render.
+    #  @param image_height
+    #         Height of image to render.
     #  @param position_x
     #         leftmost position within the display to place the upper left
     #         corner of the image,
     #  @param position_y
     #         topmost position within the display to place the upper left
     #         corner of the image.
-    def Render(self, display : list[bytearray], position_x : int, position_y : int) -> None:
+    def Render(self, display : list[bytearray], offset_x : int, image_width : int, image_height : int, position_x : int, position_y : int) -> None:
         if self._resource:
-            self._resource.Render(display, position_x, position_y)
+            self._resource.Render(display, offset_x, image_width, image_height, position_x, position_y)
 
 
 #========================================================================
@@ -191,11 +215,18 @@ class BigResource:
     #
     #  @param display
     #         The display in which to render.
+    #  @param offset_x
+    #         Offset from left edge of big resource image to the left edge of
+    #         the image for this context.
+    #  @param image_width
+    #         Width of image to render.
+    #  @param image_height
+    #         Height of image to render.
     #  @param position_x
     #         X position where to put upper left corner of resource.
     #  @param position_y
     #         Y position where to put upper left corner of resource.
-    def Render(self, display : list[bytearray], position_x : int, position_y : int) -> None:
+    def Render(self, display : list[bytearray], offset_x : int, image_width : int, image_height : int, position_x : int, position_y : int) -> None:
         display_width = len(display[0])
         display_height = len(display)
         starting_position_x = position_x
@@ -203,13 +234,13 @@ class BigResource:
 
         # Size of image to render (can be smaller than actual image if image
         # lies partially of right or bottom of display).
-        image_render_width = len(self._resource[0])
-        image_render_height = len(self._resource)
+        image_render_width = image_width
+        image_render_height = image_height
 
         # Position into image to start rendering from (non-zero if
         # image is off the left or top edge of display).
         starting_row_in_image = 0
-        starting_col_in_image = 0
+        starting_col_in_image = offset_x
 
         # Clip the image to the display.
         if starting_position_x < 0:

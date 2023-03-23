@@ -27,6 +27,9 @@ namespace DesignPatternExamples_cpp
     /// </summary>
     struct Flyweight_Context
     {
+        int OffsetXToImage;
+        int ImageWidth;
+        int ImageHeight;
         double Position_X;
         double Position_Y;
         double Velocity_X;
@@ -36,7 +39,10 @@ namespace DesignPatternExamples_cpp
         /// Default constructor
         /// </summary>
         Flyweight_Context()
-            : Position_X(0.0)
+            : OffsetXToImage(0)
+            , ImageWidth(0)
+            , ImageHeight(0)
+            , Position_X(0.0)
             , Position_Y(0.0)
             , Velocity_X(0.0)
             , Velocity_Y(0.0)
@@ -46,12 +52,19 @@ namespace DesignPatternExamples_cpp
         /// <summary>
         /// Constructor
         /// </summary>
+        /// <param name="offset_x">Offset from left edge of big resource image
+        /// to the left edge of the image for this context.</param>
+        /// <param name="image_width">Width of image for this context.</param>
+        /// <param name="image_height">Height of image for this context.</param>
         /// <param name="position_x">X position of the top left corner of the big resource.</param>
         /// <param name="position_y">Y position of the top left corner of the big resource.</param>
         /// <param name="velocity_x">Initial X velocity.</param>
         /// <param name="velocity_y">Initial Y velocity.</param>
-        Flyweight_Context(double position_x, double position_y, double velocity_x, double velocity_y)
+        Flyweight_Context(int offset_x, int image_width, int image_height, double position_x, double position_y, double velocity_x, double velocity_y)
         {
+            OffsetXToImage = offset_x;
+            ImageWidth = image_width;
+            ImageHeight = image_height;
             Position_X = position_x;
             Position_Y = position_y;
             Velocity_X = velocity_x;
@@ -143,6 +156,10 @@ namespace DesignPatternExamples_cpp
         /// display at the given position.
         /// </summary>
         /// <param name="display">A list of character arrays representing the display.</param>
+        /// <param name="offset_x">Offset from left edge of big resource to the
+        /// left edge of the image to render.</param>
+        /// <param name="image_width">Width of image to render.</param>
+        /// <param name="image_height">Height of image to render.</param>
         /// <param name="position_x">leftmost position within the display to place
         /// the upper left corner of the image,</param>
         /// <param name="position_y">topmost position within the display to place
@@ -154,7 +171,7 @@ namespace DesignPatternExamples_cpp
         /// position in as parameters even though that position is likely
         /// coming from the context.
         /// </remarks>
-        void Render(std::vector<std::vector<char>>& display, int position_x, int position_y);
+        void Render(std::vector<std::vector<char>>& display, int offset_x, int image_width, int image_height, int position_x, int position_y);
     };
 
     using FlyweightClassList = std::vector<Flyweight_Class::unique_ptr_t>;
@@ -206,9 +223,13 @@ namespace DesignPatternExamples_cpp
         /// Render the big resource into the given display at the given position.
         /// </summary>
         /// <param name="display">The display in which to render.</param>
+        /// <param name="offset_x">Offset from left edge of big resource to the
+        /// left edge of the image to render.</param>
+        /// <param name="image_width">Width of image to render.</param>
+        /// <param name="image_height">Height of image to render.</param>
         /// <param name="position_x">X position where to put upper left corner of resource.</param>
         /// <param name="position_y">Y position where to put upper left corner of resource.</param>
-        void Render(std::vector<std::vector<char>>& display, int position_x, int position_y);
+        void Render(std::vector<std::vector<char>>& display, int offset_x, int image_width, int image_height, int position_x, int position_y);
 
         /// <summary>
         /// Retrieve the resource ID for this resource.
