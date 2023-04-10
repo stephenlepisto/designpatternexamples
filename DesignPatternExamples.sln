@@ -13,6 +13,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CreateDocs", "CreateDocs\Cr
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "DesignPatternExamples_python", "python\DesignPatternExamples_python\DesignPatternExamples_python.pyproj", "{DCFEA88A-4108-44CD-88AB-70103972520F}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DesignPatternExamples_c", "c\DesignPatternExamples_c.vcxproj", "{E5564270-1A88-4395-86C8-FDC6954FFD80}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -77,6 +79,18 @@ Global
 		{DCFEA88A-4108-44CD-88AB-70103972520F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DCFEA88A-4108-44CD-88AB-70103972520F}.Release|x64.ActiveCfg = Release|Any CPU
 		{DCFEA88A-4108-44CD-88AB-70103972520F}.Release|x86.ActiveCfg = Release|Any CPU
+		{E5564270-1A88-4395-86C8-FDC6954FFD80}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{E5564270-1A88-4395-86C8-FDC6954FFD80}.Debug|Any CPU.Build.0 = Debug|x64
+		{E5564270-1A88-4395-86C8-FDC6954FFD80}.Debug|x64.ActiveCfg = Debug|x64
+		{E5564270-1A88-4395-86C8-FDC6954FFD80}.Debug|x64.Build.0 = Debug|x64
+		{E5564270-1A88-4395-86C8-FDC6954FFD80}.Debug|x86.ActiveCfg = Debug|Win32
+		{E5564270-1A88-4395-86C8-FDC6954FFD80}.Debug|x86.Build.0 = Debug|Win32
+		{E5564270-1A88-4395-86C8-FDC6954FFD80}.Release|Any CPU.ActiveCfg = Release|x64
+		{E5564270-1A88-4395-86C8-FDC6954FFD80}.Release|Any CPU.Build.0 = Release|x64
+		{E5564270-1A88-4395-86C8-FDC6954FFD80}.Release|x64.ActiveCfg = Release|x64
+		{E5564270-1A88-4395-86C8-FDC6954FFD80}.Release|x64.Build.0 = Release|x64
+		{E5564270-1A88-4395-86C8-FDC6954FFD80}.Release|x86.ActiveCfg = Release|Win32
+		{E5564270-1A88-4395-86C8-FDC6954FFD80}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
