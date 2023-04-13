@@ -81,6 +81,9 @@
     <ClCompile Include="Adapter_BackEndFunctions.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Adapter_Functions.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="helpers\stringlist.h">
@@ -141,6 +144,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Adapter_BackEndFunctions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Adapter_Functions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

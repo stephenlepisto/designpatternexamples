@@ -149,6 +149,7 @@
   <ItemGroup>
     <ClCompile Include="Adapter_BackEndFunctions.c" />
     <ClCompile Include="Adapter_Exercise.c" />
+    <ClCompile Include="Adapter_Functions.c" />
     <ClCompile Include="Bridge_Exercise.c" />
     <ClCompile Include="Command_Exercise.c" />
     <ClCompile Include="Composite_Exercise.c" />
@@ -172,6 +173,7 @@
   <ItemGroup>
     <ClInclude Include="Adapter_BackEndFunctions.h" />
     <ClInclude Include="Adapter_Exercise.h" />
+    <ClInclude Include="Adapter_Functions.h" />
     <ClInclude Include="Bridge_Exercise.h" />
     <ClInclude Include="Command_Exercise.h" />
     <ClInclude Include="Composite_Exercise.h" />

@@ -18,15 +18,22 @@ the C library as it appears on different operating systems.
 ## How to Use
 
 <table>
-<caption>Links to the DataReaderWriter class</caption>
+<caption>Links to the DataReaderWriter class (or functions)</caption>
 <tr>
   <th>C++
   <th>C#
   <th>Python
+  <th>C
 <tr>
   <td>@ref DesignPatternExamples_cpp::DataReaderWriter "DataReaderWriter" class
   <td>@ref DesignPatternExamples_csharp.DataReaderWriter "DataReaderWriter" class
   <td>@ref DesignPatternExamples_python.adapter.adapter_frontendclass.DataReaderWriter "DataReaderWriter" class
+  <td>Adapter_OpenMemory()<br>
+  Adapter_CloseMemory()<br>
+  Adapter_ReadMemory()<br>
+  Adapter_WriteMemory()<br>
+  Adapter_BufferToString()<br>
+  Adapter_GetLastErrorMessage()
 </table>
 
 In the Adapter pattern example, the DataReaderWriter class is the Adapter.  It
@@ -46,6 +53,9 @@ __C#__
 __Python__
 
 @snippet python/DesignPatternExamples_python/adapter/adapter_exercise.py Using Adapter in Python
+
+__C__
+@snippet c/Adapter_Exercise.c Using Adapter in C
 
 
 ### See Also

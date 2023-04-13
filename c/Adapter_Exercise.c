@@ -8,14 +8,17 @@
 
 #include "Adapter_Exercise.h"
 
-#include "Adapter_BackEndFunctions.h"
+#include "Adapter_Functions.h"
 
 /// <summary>
-/// Example of using the @ref adapter_pattern "Adapter" design pattern.
+/// Example of using the @ref adapter_pattern "Adapter" design pattern in C.
 /// 
-/// This example adapts functions that return error codes into a class
-/// object that throws exceptions, which is more fitting of an object-
-/// oriented language.
+/// This example adapts functions that:
+/// 1. Accesses memory in 32-bit chunks instead of bytes
+/// 2. Returns error codes but no human-readable error messages
+/// 
+/// The Adapter functions translate the 32-bit chunk access into arrays of bytes.
+/// The Adapter functions also provide human-readable messages for error codes.
 /// </summary>
 // ! [Using Adapter in C]
 void Adapter_Exercise()
@@ -23,46 +26,67 @@ void Adapter_Exercise()
     printf("\nAdapter_Exercise\n");
 
     int dataHandle = -1;
-    int error = DDR_Startup("my init string", &dataHandle);
-    if (error == 0)
+    if (Adapter_OpenMemory(Memory_Block_0, &dataHandle))
     {
-        uint8_t data[16] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 };
-        uint32_t dataSize = sizeof(data);
-        error = DDR_WriteData(dataHandle, data, dataSize);
-        if (error == 0)
+        uint8_t writeData[128] = { 0 };
+        uint32_t dataSize = _countof(writeData);
+        uint32_t bytesWritten = 0;
+        uint32_t bytesRead = 0;
+        // Create the data to be written
+        for (uint32_t index = 0; index < dataSize; index++)
         {
-            uint8_t newData[16] = { 0 };
-            uint32_t dataSize = sizeof(newData);
-            uint32_t availableDataSize = 0;
-            error = DDR_ReadData(dataHandle, dataSize, newData, &availableDataSize);
-            if (error == 0)
-            {
-                for (uint32_t index = 0; index < dataSize; index++)
-                {
-                    printf("0x%0x ", newData[index]);
-                }
-                printf("\n");
-            }
-            else
-            {
-                const char* msg = DDR_GetLastErrorMessage();
-                printf("DDR_ReadData() returned code %d (%s)\n", error, msg);
-            }
+            writeData[index] = (uint8_t)index;
+        }
+
+        // Display the data to be written
+        const char* hexdump = Adapter_BufferToString(writeData, dataSize, 2);
+        if (hexdump == NULL)
+        {
+            printf("  %s\n", Adapter_GetLastErrorMessage());
         }
         else
         {
-            const char* msg = DDR_GetLastErrorMessage();
-            printf("DDR_WriteData() returned code %d (%s)\n", error, msg);
+            printf("  Data written:\n");
+            printf("%s\n", hexdump);
+
+            if (Adapter_WriteMemory(dataHandle, 0, writeData, dataSize, &bytesWritten))
+            {
+                uint8_t readData[128] = { 0 };
+                if (Adapter_ReadMemory(dataHandle, 0, readData, bytesWritten, &bytesRead))
+                {
+                    hexdump = Adapter_BufferToString(readData, bytesRead, 2);
+                    if (hexdump == NULL)
+                    {
+                        printf("  %s\n", Adapter_GetLastErrorMessage());
+                    }
+                    else
+                    {
+                        printf("  Data read:\n");
+                        printf("%s\n", hexdump);
+                    }
+                }
+                else
+                {
+                    printf("  %s\n", Adapter_GetLastErrorMessage());
+                }
+            }
+            else
+            {
+                printf("  %s\n", Adapter_GetLastErrorMessage());
+            }
+        }
+
+        if (!Adapter_CloseMemory(dataHandle))
+        {
+            printf("  %s\n", Adapter_GetLastErrorMessage());
         }
     }
-    error = DDR_Shutdown(dataHandle);
-    if (error != 0)
+    else
     {
-        const char* msg = DDR_GetLastErrorMessage();
-        printf("DDR_Shutdown() returned code %d (%s)\n", error, msg);
+        printf("  %s\n", Adapter_GetLastErrorMessage());
     }
 
     printf("  Done.\n");
 }
-// ! [Using Adapter in C++]
+// ! [Using Adapter in C]
 
