@@ -1,7 +1,7 @@
 /// @file
 /// @brief
 /// Implementation of the Adapter functions used
-/// in the @ref adapter_pattern "Adapter pattern".
+/// in the @ref adapter_pattern.
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -141,6 +141,7 @@ static void _ReportDDRError(DDR_ErrorCode errorCode, const char* prompt)
     {
         prompt = "";
     }
+    _ReportErrorMessage(message, prompt);
 }
 
 /// <summary>

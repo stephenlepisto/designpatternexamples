@@ -1,7 +1,7 @@
 /// @file
 /// @brief
 /// Declaration of the memory read/write functions
-/// as used in the @ref adapter_pattern "Adapter pattern".
+/// as used in the @ref adapter_pattern.
 
 #pragma once
 #ifndef __ADAPTER_BACKENDFUNCTIONS_H__

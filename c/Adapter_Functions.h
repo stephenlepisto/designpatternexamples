@@ -1,7 +1,7 @@
 /// @file
 /// @brief
 /// Declaration of the Adapter functions used
-/// in the @ref adapter_pattern "Adapter pattern".
+/// in the @ref adapter_pattern.
 
 #pragma once
 #ifndef __ADAPTER_FUNCTIONS_H__

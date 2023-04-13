@@ -1,7 +1,7 @@
 /// @file
 /// @brief
 /// Implementation of the memory read/write functions
-/// as used in the @ref adapter_pattern "Adapter pattern".
+/// as used in the @ref adapter_pattern.
 
 #include <stdbool.h>
 #include <stdlib.h>

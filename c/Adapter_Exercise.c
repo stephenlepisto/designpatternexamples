@@ -1,7 +1,7 @@
 /// @file
 /// @brief
 /// Implementation of the Adapter_Exercise() function as used in the 
-/// @ref adapter_pattern "Adapter pattern".
+/// @ref adapter_pattern.
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -30,8 +30,8 @@ void Adapter_Exercise()
     {
         uint8_t writeData[128] = { 0 };
         uint32_t dataSize = _countof(writeData);
-        uint32_t bytesWritten = 0;
-        uint32_t bytesRead = 0;
+        int bytesWritten = 0;
+        int bytesRead = 0;
         // Create the data to be written
         for (uint32_t index = 0; index < dataSize; index++)
         {
