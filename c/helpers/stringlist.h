@@ -1,8 +1,8 @@
 /// @file
 /// @brief
 /// Declaration of the @ref StringList structure and supporting functions to
-/// work with a list of strings: StringList_Create(), StringList_Destroy(), and
-/// StringList_AddString().
+/// work with a list of strings: StringList_Initialize(), StringList_Clear(),
+/// StringList_AddString(), and StringList_Find().
 
 #pragma once
 #ifndef __STRINGLIST_H__
@@ -36,11 +36,11 @@ typedef struct _StringList
 void StringList_Initialize(StringList* stringList);
 
 /// <summary>
-/// Destroy a string list.  All strings are released as is the given string list.
-/// The string list is not valid after this call.
+/// Clear the specified string list.  All strings in the list are released.
+/// The string list can then be used to add new strings.
 /// </summary>
-/// <param name="stringList">The StringList to destroy.</param>
-void StringList_Destroy(StringList* stringList);
+/// <param name="stringList">The StringList to clear.</param>
+void StringList_Clear(StringList* stringList);
 
 /// <summary>
 /// Add a string to the given string list.

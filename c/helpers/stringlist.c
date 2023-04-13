@@ -1,8 +1,8 @@
 /// @file
 /// @brief
 /// Implementation of the @ref StringList structure and supporting functions to
-/// work with a list of strings: StringList_Create(), StringList_Destroy(), and
-/// StringList_AddString().
+/// work with a list of strings: StringList_Initialize(), StringList_Clear(),
+/// StringList_AddString(), and StringList_Find().
 
 #include <stdlib.h>
 #include <string.h>
@@ -10,9 +10,9 @@
 
 #include "stringlist.h"
 
-//-----------------------------------------------------------------------------
-//-----------------------------------------------------------------------------
-
+///////////////////////////////////////////////////////////////////////////////
+// StringList_Initialize()
+///////////////////////////////////////////////////////////////////////////////
 void StringList_Initialize(StringList* stringList)
 {
     if (stringList != NULL)
@@ -22,10 +22,10 @@ void StringList_Initialize(StringList* stringList)
     }
 }
 
-//-----------------------------------------------------------------------------
-//-----------------------------------------------------------------------------
-
-void StringList_Destroy(StringList* stringList)
+///////////////////////////////////////////////////////////////////////////////
+// StringList_Clear()
+///////////////////////////////////////////////////////////////////////////////
+void StringList_Clear(StringList* stringList)
 {
     if (stringList != NULL)
     {
@@ -42,9 +42,9 @@ void StringList_Destroy(StringList* stringList)
     }
 }
 
-//-----------------------------------------------------------------------------
-//-----------------------------------------------------------------------------
-
+///////////////////////////////////////////////////////////////////////////////
+// StringList_AddString()
+///////////////////////////////////////////////////////////////////////////////
 bool StringList_AddString(StringList* stringList, const char* string)
 {
     bool stringAdded = false;
@@ -73,9 +73,9 @@ bool StringList_AddString(StringList* stringList, const char* string)
     return stringAdded;
 }
 
-//-----------------------------------------------------------------------------
-//-----------------------------------------------------------------------------
-
+///////////////////////////////////////////////////////////////////////////////
+// StringList_Find()
+///////////////////////////////////////////////////////////////////////////////
 int StringList_Find(StringList* stringList, const char* string)
 {
     int foundIndex = -1;
