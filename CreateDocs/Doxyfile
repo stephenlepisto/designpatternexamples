@@ -920,6 +920,7 @@ WARN_LOGFILE           = DoxyLog.err
 INPUT                  = ../cplusplus \
                          ../csharp \
                          ../python/DesignPatternExamples_python \
+                         ../c \
                          ../Docs
 
 # This tag can be used to specify the character encoding of the source files
@@ -1022,6 +1023,7 @@ RECURSIVE              = YES
 
 EXCLUDE                = ../cplusplus/obj \
                          ../python/DesignPatternExamples_python/__pycache__ \
+                         ../c/obj \
                          ../docs/rawimages \
                          ../csharp/archive
 
