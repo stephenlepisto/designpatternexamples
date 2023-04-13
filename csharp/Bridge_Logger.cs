@@ -15,7 +15,7 @@ namespace DesignPatternExamples_csharp
     internal class Logger : IDisposable
     {
         /// <summary>
-        /// A value passed to LoggerClassFactory.CreateLogger() to specify the type of
+        /// A value passed to Logger.Logger() constructor to specify the type of
         /// logger to create.
         /// </summary>
         public enum LoggerTypes

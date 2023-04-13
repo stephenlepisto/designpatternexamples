@@ -27,7 +27,7 @@ namespace DesignPatternExamples_cpp
 
     public:
         /// <summary>
-        /// A value passed to LoggerClassFactory.CreateLogger() to specify the type of
+        /// A value passed to Logger.Logger() constructor to specify the type of
         /// logger to create.
         /// </summary>
         enum LoggerTypes
