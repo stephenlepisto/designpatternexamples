@@ -204,7 +204,7 @@ int main(int argc, char** argv)
             }
         }
     }
-    StringList_Destroy(&options.exercise_names);
+    StringList_Clear(&options.exercise_names);
 
     return EXIT_SUCCESS;
 }
