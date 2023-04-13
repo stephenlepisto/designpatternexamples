@@ -9,7 +9,7 @@ Object-Oriented Software*, by Gamma, Helm, Johnson, and Vlissides.
 
 These patterns appeared over and over in the many years that object-oriented
 programming grew and matured.  In 1995, Erich Gamma, Richard Helm, Ralph
-Johnson, and JOhn Vlissides formalized 23 patterns into a book, the first of
+Johnson, and John Vlissides formalized 23 patterns into a book, the first of
 its kind.
 
 ### See Also
