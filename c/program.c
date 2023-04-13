@@ -104,7 +104,10 @@ static void Help(ExerciseList exercises)
 /// the given Options structure.  Displays help if requested and
 /// returns false.
 /// </summary>
-/// <param name="args">List of arguments passed on the command line.</param>
+/// <param name="argc">Number of command line arguments + 1 (the first argument
+/// is the name of the program).</param>
+/// <param name="argv">Pointer to a list of zero-terminated strings containing
+/// the command line arguments.</param>
 /// <param name="options">An Options structure to be filled in by command
 /// line parameters.</param>
 /// <param name="exercises">List of Exercise objects to display if
