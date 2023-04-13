@@ -27,15 +27,19 @@ reference to the underlying implementation.
 ## How to Use
 
 <table>
-<caption>Links to the Logger class</caption>
+<caption>Links to the Logger classes (interfaces, functions)</caption>
 <tr>
   <th>C++
   <th>C#
   <th>Python
+  <th>C
 <tr>
   <td>@ref DesignPatternExamples_cpp::Logger "Logger" class
   <td>@ref DesignPatternExamples_csharp.Logger "Logger" class
   <td>@ref DesignPatternExamples_python.bridge.bridge_logger.Logger "Logger" class
+  <td>ILogger interface<br>
+  CreateLogger()<br>
+  DestroyLogger()<br>
 </table>
 
 In this example, the Logger class is what the program uses for all logging.
@@ -75,6 +79,10 @@ __C#__
 __Python__
 
 @snippet python/DesignPatternExamples_python/bridge/bridge_exercise.py Using Bridge in Python
+
+__C__
+
+@snippet c/bridge_exercise.c Using Bridge in C
 
 
 ### See Also

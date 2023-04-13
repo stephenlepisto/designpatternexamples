@@ -15,6 +15,7 @@
     </Filter>
     <Filter Include="Helper files">
       <UniqueIdentifier>{a7adf6ed-f831-4e22-896b-5bdb12945525}</UniqueIdentifier>
+      <Extensions>*.c;*.h</Extensions>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -84,6 +85,24 @@
     <ClCompile Include="Adapter_Functions.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Bridge_ILogger.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Bridge_ConsoleLogger.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Bridge_LogHelper.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="helpers\makelocaltime.c">
+      <Filter>Helper files</Filter>
+    </ClCompile>
+    <ClCompile Include="Bridge_NullLogger.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Bridge_FileLogger.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="helpers\stringlist.h">
@@ -147,6 +166,24 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Adapter_Functions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Bridge_ILogger.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Bridge_LogHelper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="helpers\makelocaltime.h">
+      <Filter>Helper files</Filter>
+    </ClInclude>
+    <ClInclude Include="Bridge_ConsoleLogger.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Bridge_NullLogger.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Bridge_FileLogger.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -88,11 +88,12 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
+      <WarningLevel>Level4</WarningLevel>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
+      <TreatWarningAsError>true</TreatWarningAsError>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -101,13 +102,14 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
+      <WarningLevel>Level4</WarningLevel>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
+      <TreatWarningAsError>true</TreatWarningAsError>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -118,11 +120,12 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
+      <WarningLevel>Level4</WarningLevel>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
+      <TreatWarningAsError>true</TreatWarningAsError>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -131,13 +134,14 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
+      <WarningLevel>Level4</WarningLevel>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
+      <TreatWarningAsError>true</TreatWarningAsError>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -150,13 +154,19 @@
     <ClCompile Include="Adapter_BackEndFunctions.c" />
     <ClCompile Include="Adapter_Exercise.c" />
     <ClCompile Include="Adapter_Functions.c" />
+    <ClCompile Include="Bridge_ConsoleLogger.c" />
     <ClCompile Include="Bridge_Exercise.c" />
+    <ClCompile Include="Bridge_FileLogger.c" />
+    <ClCompile Include="Bridge_ILogger.c" />
+    <ClCompile Include="Bridge_LogHelper.c" />
+    <ClCompile Include="Bridge_NullLogger.c" />
     <ClCompile Include="Command_Exercise.c" />
     <ClCompile Include="Composite_Exercise.c" />
     <ClCompile Include="Decorator_Exercise.c" />
     <ClCompile Include="Facade_Exercise.c" />
     <ClCompile Include="Flyweight_Exercise.c" />
     <ClCompile Include="HandlerChain_Exercise.c" />
+    <ClCompile Include="helpers\makelocaltime.c" />
     <ClCompile Include="helpers\stringlist.c" />
     <ClCompile Include="Interpreter_Exercise.c" />
     <ClCompile Include="Iterator_Exercise.c" />
@@ -174,13 +184,19 @@
     <ClInclude Include="Adapter_BackEndFunctions.h" />
     <ClInclude Include="Adapter_Exercise.h" />
     <ClInclude Include="Adapter_Functions.h" />
+    <ClInclude Include="Bridge_ConsoleLogger.h" />
     <ClInclude Include="Bridge_Exercise.h" />
+    <ClInclude Include="Bridge_FileLogger.h" />
+    <ClInclude Include="Bridge_ILogger.h" />
+    <ClInclude Include="Bridge_LogHelper.h" />
+    <ClInclude Include="Bridge_NullLogger.h" />
     <ClInclude Include="Command_Exercise.h" />
     <ClInclude Include="Composite_Exercise.h" />
     <ClInclude Include="Decorator_Exercise.h" />
     <ClInclude Include="Facade_Exercise.h" />
     <ClInclude Include="Flyweight_Exercise.h" />
     <ClInclude Include="HandlerChain_Exercise.h" />
+    <ClInclude Include="helpers\makelocaltime.h" />
     <ClInclude Include="helpers\stringlist.h" />
     <ClInclude Include="Interpreter_Exercise.h" />
     <ClInclude Include="Iterator_Exercise.h" />
