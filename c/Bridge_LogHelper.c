@@ -1,3 +1,8 @@
+/// @file
+/// @brief
+/// Implementation of the LogHelper_FormatLogLine() function,
+/// used in the @ref bridge_pattern.
+
 #include "Bridge_LogHelper.h"
 
 #include <stdlib.h>

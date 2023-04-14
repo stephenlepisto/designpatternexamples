@@ -1,6 +1,6 @@
 /// @file
 /// @brief
-/// Declaration of the logging helper functions
+/// Declaration of the LogHelper_FormatLogLine() function,
 /// used in the @ref bridge_pattern.
 
 #pragma once
