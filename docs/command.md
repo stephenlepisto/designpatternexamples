@@ -32,14 +32,17 @@ passed to another entity for invocation.
   <th>C++
   <th>C#
   <th>Python
+  <th>C
 <tr>
   <td>@ref DesignPatternExamples_cpp::Command_TextObject "Command_TextObject" class
   <td>@ref DesignPatternExamples_csharp.Command_TextObject "Command_TextObject" class
   <td>@ref DesignPatternExamples_python.command.command_classes.Command_TextObject "Command_TextObject" class
+  <td>Command_TextObject class
 <tr>
   <td>@ref DesignPatternExamples_cpp::Command "Command" class
   <td>@ref DesignPatternExamples_csharp.Command "Command" class
   <td>@ref DesignPatternExamples_python.command.command_classes.Command "Command" class
+  <td>@ref Command class
 </table>
 
 For example, a program that supports undo would work like this (this is
@@ -80,6 +83,10 @@ __C#__
 __Python__
 
 @snippet python/DesignPatternExamples_python/command/command_exercise.py Using Command in Python
+
+__C__
+
+@snippet c/command_exercise.c Using Command in C
 
 ### See Also
 - @ref mainpage "Main page"

@@ -15,7 +15,7 @@
     </Filter>
     <Filter Include="Helper files">
       <UniqueIdentifier>{a7adf6ed-f831-4e22-896b-5bdb12945525}</UniqueIdentifier>
-      <Extensions>*.c;*.h</Extensions>
+      <Extensions>c;h</Extensions>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -103,6 +103,21 @@
     <ClCompile Include="Bridge_FileLogger.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Command_TextObject.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Command_Command.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="helpers\replace.c">
+      <Filter>Helper files</Filter>
+    </ClCompile>
+    <ClCompile Include="helpers\strstri.c">
+      <Filter>Helper files</Filter>
+    </ClCompile>
+    <ClCompile Include="helpers\stack.c">
+      <Filter>Helper files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="helpers\stringlist.h">
@@ -185,6 +200,21 @@
     </ClInclude>
     <ClInclude Include="Bridge_FileLogger.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Command_Command.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Command_TextObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="helpers\replace.h">
+      <Filter>Helper files</Filter>
+    </ClInclude>
+    <ClInclude Include="helpers\strstri.h">
+      <Filter>Helper files</Filter>
+    </ClInclude>
+    <ClInclude Include="helpers\stack.h">
+      <Filter>Helper files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
