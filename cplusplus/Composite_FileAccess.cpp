@@ -42,7 +42,6 @@ namespace DesignPatternExamples_cpp
         FileDirEntry* Composite_FileAccess::_FindEntry(std::string filepath)
         {
             FileDirEntry* root = rootEntry.get();
-            bool found = true;
 
             std::vector<std::string> pathComponents = Helpers::split(filepath, "/");
             size_t numComponents = pathComponents.size();
@@ -67,7 +66,6 @@ namespace DesignPatternExamples_cpp
                 if (children.empty())
                 {
                     // Path included leaf in the middle, bad path
-                    found = false;
                     break;
                 }
 
@@ -84,7 +82,7 @@ namespace DesignPatternExamples_cpp
                         break;
                     }
                 }
-                if (!found)
+                if (root == nullptr)
                 {
                     // Couldn't find matching child, bad path
                     break;
