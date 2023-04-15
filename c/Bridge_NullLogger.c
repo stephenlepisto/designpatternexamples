@@ -56,7 +56,7 @@ static void _Null_LogError(const char* message, void *data)
 ///////////////////////////////////////////////////////////////////////////////
 ILogger* CreateNullLogger()
 {
-    ILogger* logger = (ILogger*)malloc(sizeof(ILogger));
+    ILogger* logger = calloc(1, sizeof(ILogger));
     if (logger != NULL)
     {
         logger->LogTrace = _Null_LogTrace;

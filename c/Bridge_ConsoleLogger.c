@@ -75,7 +75,7 @@ static void _Console_LogError(const char* message, void* data)
 ///////////////////////////////////////////////////////////////////////////////
 ILogger* CreateConsoleLogger()
 {
-    ILogger* logger = (ILogger*)malloc(sizeof(ILogger));
+    ILogger* logger = calloc(1, sizeof(ILogger));
     if (logger != NULL)
     {
         logger->LogTrace = _Console_LogTrace;

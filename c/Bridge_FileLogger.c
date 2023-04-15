@@ -103,7 +103,7 @@ static void _File_LogError(const char* message, void* data)
 ///////////////////////////////////////////////////////////////////////////////
 ILogger* CreateFileLogger(const char* filename)
 {
-    ILogger* logger = (ILogger*)malloc(sizeof(ILogger));
+    ILogger* logger = calloc(1, sizeof(ILogger));
     if (logger != NULL && filename != NULL)
     {
         logger->LogTrace = _File_LogTrace;
