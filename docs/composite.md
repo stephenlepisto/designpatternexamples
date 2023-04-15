@@ -20,18 +20,22 @@ is a directory.
   <th>C++
   <th>C#
   <th>Python
+  <th>C
 <tr>
   <td>@ref DesignPatternExamples_cpp::FileDirEntry "FileDirEntry" base class
   <td>@ref DesignPatternExamples_csharp.FileDirEntry "FileDirEntry" base class
   <td>@ref DesignPatternExamples_python.composite.composite_filedirentry.FileDirEntry "FileDirEntry" base class
+  <td>FileDirEntry structure
 <tr>
   <td>@ref DesignPatternExamples_cpp::FileEntry "FileEntry" derived class
   <td>@ref DesignPatternExamples_csharp.FileEntry "FileEntry" derived class
   <td>@ref DesignPatternExamples_python.composite.composite_filedirentry.FileEntry "FileEntry" derived class
+  <td>FileEntry structure
 <tr>
   <td>@ref DesignPatternExamples_cpp::DirEntry "DirEntry" derived class
   <td>@ref DesignPatternExamples_csharp.DirEntry "DirEntry" derived class
   <td>@ref DesignPatternExamples_python.composite.composite_filedirentry.DirEntry "DirEntry" derived class
+  <td>DirEntry structure
 </table>
 
 This example uses a file/directory approach, although the files and directories
@@ -70,6 +74,11 @@ __C#__
 __Python__
 
 @snippet python/DesignPatternExamples_python/composite/composite_exercise.py Using Composite in Python
+
+__C__
+
+@snippet c/Composite_Exercise.c Using Composite in C
+
 
 ### See Also
 - @ref mainpage "Main page"

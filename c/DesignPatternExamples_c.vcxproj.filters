@@ -118,6 +118,21 @@
     <ClCompile Include="helpers\stack.c">
       <Filter>Helper files</Filter>
     </ClCompile>
+    <ClCompile Include="Composite_FileDirEntry.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Composite_FileAccess.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="helpers\split.c">
+      <Filter>Helper files</Filter>
+    </ClCompile>
+    <ClCompile Include="helpers\dynamicstring.c">
+      <Filter>Helper files</Filter>
+    </ClCompile>
+    <ClCompile Include="helpers\datetime.c">
+      <Filter>Helper files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="helpers\stringlist.h">
@@ -214,6 +229,21 @@
       <Filter>Helper files</Filter>
     </ClInclude>
     <ClInclude Include="helpers\stack.h">
+      <Filter>Helper files</Filter>
+    </ClInclude>
+    <ClInclude Include="Composite_FileDirEntry.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Composite_FileAccess.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="helpers\split.h">
+      <Filter>Helper files</Filter>
+    </ClInclude>
+    <ClInclude Include="helpers\dynamicstring.h">
+      <Filter>Helper files</Filter>
+    </ClInclude>
+    <ClInclude Include="helpers\datetime.h">
       <Filter>Helper files</Filter>
     </ClInclude>
   </ItemGroup>
