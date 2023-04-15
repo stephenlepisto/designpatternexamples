@@ -33,30 +33,37 @@ decorators are applied to the concrete class by wrapping the concrete class).
   <th>C++
   <th>C#
   <th>Python
+  <th>C
 <tr>
   <td>@ref DesignPatternExamples_cpp::IRenderElement "IRenderElement" interface
   <td>@ref DesignPatternExamples_csharp.IRenderElement "IRenderElement" interface
   <td>@ref DesignPatternExamples_python.decorator.decorator_classes.IRenderElement "IRenderElement" interface
+  <td>Not Applicable
 <tr>
   <td>@ref DesignPatternExamples_cpp::TextElement "TextElement" class
   <td>@ref DesignPatternExamples_csharp.TextElement "TextElement" class
   <td>@ref DesignPatternExamples_python.decorator.decorator_classes.TextElement "TextElement" class
+  <td>DynamicString structure
 <tr>
   <td>@ref DesignPatternExamples_cpp::Decorator "Decorator" base class
   <td>@ref DesignPatternExamples_csharp.Decorator "Decorator" base class
   <td>@ref DesignPatternExamples_python.decorator.decorator_classes.Decorator "Decorator" base class
+  <td>_Decorate() function
 <tr>
   <td>@ref DesignPatternExamples_cpp::WhiteBackgroundDecorator "WhiteBackgroundDecorator" derived class
   <td>@ref DesignPatternExamples_csharp.WhiteBackgroundDecorator "WhiteBackgroundDecorator" derived class
   <td>@ref DesignPatternExamples_python.decorator.decorator_classes.WhiteBackgroundDecorator "WhiteBackgroundDecorator" derived class
+  <td>WhiteBackgroundDecorator() function
 <tr>
   <td>@ref DesignPatternExamples_cpp::UnderlineDecorator "UnderlineDecorator" derived class
   <td>@ref DesignPatternExamples_csharp.UnderlineDecorator "UnderlineDecorator" derived class
   <td>@ref DesignPatternExamples_python.decorator.decorator_classes.UnderlineDecorator "UnderlineDecorator" derived class
+  <td>UnderlineDecorator() function
 <tr>
   <td>@ref DesignPatternExamples_cpp::RedForegroundDecorator "RedForegroundDecorator" derived class
   <td>@ref DesignPatternExamples_csharp.RedForegroundDecorator "RedForegroundDecorator" derived class
   <td>@ref DesignPatternExamples_python.decorator.decorator_classes.RedForegroundDecorator "RedForegroundDecorator" derived class
+  <td>RedForegroundDecorator() function
 </table>
 
 In this example, the concrete class is called TextElement and up to three
@@ -79,6 +86,11 @@ __C#__
 __Python__
 
 @snippet python/DesignPatternExamples_python/decorator/decorator_exercise.py Using Decorator in Python
+
+__C__
+
+@snippet c/decorator_exercise.c Using Decorator in C
+
 
 ### See Also
 - @ref mainpage "Main page"

@@ -8,6 +8,7 @@
 #include <stdio.h>
 #include <string.h>
 
+#include "helpers/enablevtmode.h"
 #include "helpers/stringlist.h"
 
 #include "Adapter_Exercise.h"
@@ -186,6 +187,7 @@ ExerciseList exercises =
 /// the command line arguments.</param>
 int main(int argc, char** argv)
 {
+    enableVTMode();
     Options options = { 0 };
     StringList_Initialize(&options.exercise_names);
 

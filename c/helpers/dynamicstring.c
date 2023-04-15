@@ -10,57 +10,56 @@
 #include "dynamicstring.h"
 
 
-/// <summary>
-/// Initialize a DynamicString object.
-/// </summary>
-/// <param name="string">The DynamicString object to initialize.</param>
+///////////////////////////////////////////////////////////////////////////////
+// DynamicString_Initialize()
+///////////////////////////////////////////////////////////////////////////////
 void DynamicString_Initialize(DynamicString* string)
 {
     if (string != NULL)
     {
-        string->string = NULL;
+        string->string = calloc(1, 1);  // An empty string
         string->length = 0;
     }
 }
 
-/// <summary>
-/// Clear a DynamicString object, releasing any allocated memory.
-/// </summary>
-/// <param name="string">The DynamicString object to clear.</param>
+///////////////////////////////////////////////////////////////////////////////
+// DynamicString_Clear()
+///////////////////////////////////////////////////////////////////////////////
 void DynamicString_Clear(DynamicString* string)
 {
     if (string != NULL)
     {
         free(string->string);
-        string->string = NULL;
-        string->length = 0;
+        DynamicString_Initialize(string);
     }
 }
 
-/// <summary>
-/// Append the specified string to the DynamicString object.
-/// </summary>
-/// <param name="string">The DynamicString object to append to.</param>
-/// <param name="s">The string to append.</param>
+///////////////////////////////////////////////////////////////////////////////
+// DynamicString_Append()
+///////////////////////////////////////////////////////////////////////////////
 void DynamicString_Append(DynamicString* string, const char* s)
 {
     if (string != NULL)
     {
-        if (string->string == NULL)
+        size_t newSize = string->length + strlen(s) + 1;
+        char* newText = realloc(string->string, newSize);
+        if (newText != NULL)
         {
-            string->string = _strdup(s);
+            string->string = newText;
+            strcat_s(string->string, newSize, s);
             string->length = strlen(string->string);
         }
-        else
-        {
-            size_t newSize = string->length + strlen(s) + 1;
-            char* newText = realloc(string->string, newSize);
-            if (newText != NULL)
-            {
-                string->string = newText;
-                strcat_s(string->string, newSize, s);
-                string->length = strlen(string->string);
-            }
-        }
+    }
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// DynamicString_Set()
+///////////////////////////////////////////////////////////////////////////////
+void DynamicString_Set(DynamicString* string, const char* s)
+{
+    if (string != NULL)
+    {
+        DynamicString_Clear(string);
+        DynamicString_Append(string, s);
     }
 }

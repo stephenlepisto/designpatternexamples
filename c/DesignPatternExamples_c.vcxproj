@@ -172,6 +172,7 @@
     <ClCompile Include="HandlerChain_Exercise.c" />
     <ClCompile Include="helpers\datetime.c" />
     <ClCompile Include="helpers\dynamicstring.c" />
+    <ClCompile Include="helpers\enablevtmode.c" />
     <ClCompile Include="helpers\makelocaltime.c" />
     <ClCompile Include="helpers\replace.c" />
     <ClCompile Include="helpers\split.c" />
@@ -212,6 +213,7 @@
     <ClInclude Include="HandlerChain_Exercise.h" />
     <ClInclude Include="helpers\datetime.h" />
     <ClInclude Include="helpers\dynamicstring.h" />
+    <ClInclude Include="helpers\enablevtmode.h" />
     <ClInclude Include="helpers\makelocaltime.h" />
     <ClInclude Include="helpers\replace.h" />
     <ClInclude Include="helpers\split.h" />

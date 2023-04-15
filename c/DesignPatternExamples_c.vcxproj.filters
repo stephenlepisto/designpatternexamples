@@ -133,6 +133,9 @@
     <ClCompile Include="helpers\datetime.c">
       <Filter>Helper files</Filter>
     </ClCompile>
+    <ClCompile Include="helpers\enablevtmode.c">
+      <Filter>Helper files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="helpers\stringlist.h">
@@ -244,6 +247,9 @@
       <Filter>Helper files</Filter>
     </ClInclude>
     <ClInclude Include="helpers\datetime.h">
+      <Filter>Helper files</Filter>
+    </ClInclude>
+    <ClInclude Include="helpers\enablevtmode.h">
       <Filter>Helper files</Filter>
     </ClInclude>
   </ItemGroup>
