@@ -14,7 +14,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 Command* Command_Create_Two_Parameters(const char* commandName, Command_TextObject* receiver, two_parameter_operation operation, const char* arg1, const char* arg2)
 {
-    Command* commandObject = (Command*)calloc(1, sizeof(Command));
+    Command* commandObject = calloc(1, sizeof(Command));
     if (commandObject != NULL)
     {
         commandObject->commandName = commandName;
@@ -31,7 +31,7 @@ Command* Command_Create_Two_Parameters(const char* commandName, Command_TextObje
 ///////////////////////////////////////////////////////////////////////////////
 Command* Command_Create_No_Parameters(const char* commandName, Command_TextObject* receiver, no_parameter_operation operation)
 {
-    Command* commandObject = (Command*)calloc(1, sizeof(Command));
+    Command* commandObject = calloc(1, sizeof(Command));
     if (commandObject != NULL)
     {
         commandObject->commandName = commandName;

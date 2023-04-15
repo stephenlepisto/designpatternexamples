@@ -15,7 +15,7 @@
 /// NULL, indicating an out of memory error.</returns>
 static StackEntry* StackEntry_Create(void* item)
 {
-    StackEntry* entry = (StackEntry*)calloc(1, sizeof(StackEntry));
+    StackEntry* entry = calloc(1, sizeof(StackEntry));
     if (entry != NULL)
     {
         entry->item = item;

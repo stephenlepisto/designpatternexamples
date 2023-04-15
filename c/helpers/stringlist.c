@@ -59,7 +59,7 @@ bool StringList_AddString(StringList* stringList, const char* string)
         else
         {
             size_t newSize = (stringList->strings_count + 1) * sizeof(const char*);
-            new_list = (const char**)realloc(stringList->strings, newSize);
+            new_list = realloc(stringList->strings, newSize);
         }
 
         if (new_list != NULL)
