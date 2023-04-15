@@ -8,6 +8,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+#include "helpers/datetime.h"
 #include "helpers/makelocaltime.h"
 
 /// <summary>
@@ -17,16 +18,8 @@
 /// local time.  Valid until the next call to this function.</returns>
 static const char* _GetTimeStamp()
 {
-    static char str[128] = { '\0' };
-    time_t now = 0;
-    struct tm local_time = { 0 };
-    time(&now);
-    struct tm* timestruct = makelocaltime(&now, &local_time);
-    if (timestruct != NULL)
-    {
-        strftime(str, sizeof(str), "%m/%d/%Y %r", &local_time);
-    }
-    return str;
+    time_t now = datetime_now();
+    return datetime_to_string(now);
 }
 
 
