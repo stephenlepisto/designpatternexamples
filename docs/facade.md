@@ -42,7 +42,7 @@ One thing to keep in mind is the Facade does not add any functionality,
 it only simplifies what is available.  This means the Facade interface
 generally does not retain any state of its own, leaving that to the
 complicated sub-system.  The Facade might retain one or more tokens or
-handles from the sub-system to facility access to the sub-system.
+handles from the sub-system to facilitate access to the sub-system.
 
 # How to Use
 
