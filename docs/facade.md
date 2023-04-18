@@ -52,22 +52,27 @@ handles from the sub-system to facilitate access to the sub-system.
   <th>C++
   <th>C#
   <th>Python
+  <th>C
 <tr>
   <td>@ref DesignPatternExamples_cpp::IDeviceNetworkHighLevel "IDeviceNetworkHighLevel" interface
   <td>@ref DesignPatternExamples_csharp.IDeviceNetworkHighLevel "IDeviceNetworkHighLevel" interface
   <td>@ref DesignPatternExamples_python.facade.facade_interface.IDeviceNetworkHighLevel "IDeviceNetworkHighLevel" interface
+  <td>IDeviceNetworkHighLevel structure
 <tr>
   <td>@ref DesignPatternExamples_cpp::IDeviceNetworkLowLevel "IDeviceNetworkLowLevel" interface
   <td>@ref DesignPatternExamples_csharp.IDeviceNetworkLowLevel "IDeviceNetworkLowLevel" interface
   <td>@ref DesignPatternExamples_python.facade.facadesubsystem_interface.IDeviceNetworkLowLevel "IDeviceNetworkLowLevel" interface
+  <td>IDeviceNetworkLowLevel structure
 <tr>
   <td>(Hidden in C++)
   <td>@ref DesignPatternExamples_csharp.Facade_ComplicatedSubSystem "Facade_ComplicatedSubSystem" class
   <td>@ref DesignPatternExamples_python.facade.facade_highlevelsystem.DeviceNetworkHighLevel "DeviceNetworkHighLevel" class
+  <td>Not Applicable
 <tr>
   <td>(Hidden in C++)
   <td>@ref DesignPatternExamples_csharp.Facade_ComplicatedSubSystem "Facade_ComplicatedSubSystem" class
   <td>@ref DesignPatternExamples_python.facade.facade_complicatedsubsystem.Facade_ComplicatedSubSystem "Facade_ComplicatedSubSystem" class
+  <td>Not Applicable
 </table>
 
 The example provided is a complicated sub-system with many different low-
@@ -86,6 +91,10 @@ __C#__
 __Python__
 
 @snippet python/DesignPatternExamples_python/facade/facade_exercise.py Using Facade in Python
+
+__C__
+
+@snippet c/Facade_Exercise.c Using Facade in C
 
 ### See Also
 - @ref mainpage "Main page"

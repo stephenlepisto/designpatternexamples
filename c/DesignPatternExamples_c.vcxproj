@@ -167,7 +167,9 @@
     <ClCompile Include="Composite_FileAccess.c" />
     <ClCompile Include="Composite_FileDirEntry.c" />
     <ClCompile Include="Decorator_Exercise.c" />
+    <ClCompile Include="Facade_ComplexSystem.c" />
     <ClCompile Include="Facade_Exercise.c" />
+    <ClCompile Include="Facade_Interface.c" />
     <ClCompile Include="Flyweight_Exercise.c" />
     <ClCompile Include="HandlerChain_Exercise.c" />
     <ClCompile Include="helpers\datetime.c" />
@@ -179,6 +181,7 @@
     <ClCompile Include="helpers\stack.c" />
     <ClCompile Include="helpers\stringlist.c" />
     <ClCompile Include="helpers\strstri.c" />
+    <ClCompile Include="helpers\uintarray.c" />
     <ClCompile Include="Interpreter_Exercise.c" />
     <ClCompile Include="Iterator_Exercise.c" />
     <ClCompile Include="Mediator_Exercise.c" />
@@ -208,12 +211,15 @@
     <ClInclude Include="Composite_FileAccess.h" />
     <ClInclude Include="Composite_FileDirEntry.h" />
     <ClInclude Include="Decorator_Exercise.h" />
+    <ClInclude Include="Facade_ComplexSystem.h" />
     <ClInclude Include="Facade_Exercise.h" />
+    <ClInclude Include="Facade_Interface.h" />
     <ClInclude Include="Flyweight_Exercise.h" />
     <ClInclude Include="HandlerChain_Exercise.h" />
     <ClInclude Include="helpers\datetime.h" />
     <ClInclude Include="helpers\dynamicstring.h" />
     <ClInclude Include="helpers\enablevtmode.h" />
+    <ClInclude Include="helpers\uintarray.h" />
     <ClInclude Include="helpers\makelocaltime.h" />
     <ClInclude Include="helpers\replace.h" />
     <ClInclude Include="helpers\split.h" />

@@ -136,6 +136,15 @@
     <ClCompile Include="helpers\enablevtmode.c">
       <Filter>Helper files</Filter>
     </ClCompile>
+    <ClCompile Include="Facade_ComplexSystem.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="helpers\uintarray.c">
+      <Filter>Helper files</Filter>
+    </ClCompile>
+    <ClCompile Include="Facade_Interface.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="helpers\stringlist.h">
@@ -251,6 +260,15 @@
     </ClInclude>
     <ClInclude Include="helpers\enablevtmode.h">
       <Filter>Helper files</Filter>
+    </ClInclude>
+    <ClInclude Include="Facade_Interface.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="helpers\uintarray.h">
+      <Filter>Helper files</Filter>
+    </ClInclude>
+    <ClInclude Include="Facade_ComplexSystem.h">
+      <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
