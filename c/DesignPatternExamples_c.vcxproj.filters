@@ -145,6 +145,30 @@
     <ClCompile Include="Facade_Interface.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Flyweight_Image.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Flyweight_BigResourceManager.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Flyweight_Display.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Flyweight_BigResource.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="helpers\cursor.c">
+      <Filter>Helper files</Filter>
+    </ClCompile>
+    <ClCompile Include="helpers\sleep.c">
+      <Filter>Helper files</Filter>
+    </ClCompile>
+    <ClCompile Include="helpers\checkforkey.c">
+      <Filter>Helper files</Filter>
+    </ClCompile>
+    <ClCompile Include="helpers\readkey.c">
+      <Filter>Helper files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="helpers\stringlist.h">
@@ -269,6 +293,33 @@
     </ClInclude>
     <ClInclude Include="Facade_ComplexSystem.h">
       <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Flyweight_BigResourceManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Flyweight_Image.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Flyweight_Context.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Flyweight_BigResource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Flyweight_Display.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="helpers\cursor.h">
+      <Filter>Helper files</Filter>
+    </ClInclude>
+    <ClInclude Include="helpers\sleep.h">
+      <Filter>Helper files</Filter>
+    </ClInclude>
+    <ClInclude Include="helpers\checkforkey.h">
+      <Filter>Helper files</Filter>
+    </ClInclude>
+    <ClInclude Include="helpers\readkey.h">
+      <Filter>Helper files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

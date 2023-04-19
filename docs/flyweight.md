@@ -32,22 +32,32 @@ of the flyweight class.
   <th>C++
   <th>C#
   <th>Python
+  <th>C
 <tr>
   <td>@ref DesignPatternExamples_cpp::Flyweight_Class "Flyweight_Class" class
   <td>@ref DesignPatternExamples_csharp.Flyweight_Class "Flyweight_Class" class
   <td>@ref DesignPatternExamples_python.flyweight.flyweight_classes.Flyweight_Class "Flyweight_Class" class
+  <td>Flyweight_Image structure<br>
+      Flyweight_ImageList structure
 <tr>
   <td>@ref DesignPatternExamples_cpp::Flyweight_Context "Flyweight_Context" struct
   <td>@ref DesignPatternExamples_csharp.Flyweight_Context "Flyweight_Context" struct
   <td>@ref DesignPatternExamples_python.flyweight.flyweight_classes.Flyweight_Context "Flyweight_Context" class
+  <td>Flyweight_Context structure
 <tr>
   <td>@ref DesignPatternExamples_cpp::BigResource "BigResource" class
   <td>@ref DesignPatternExamples_csharp::BigResource "BigResource" class
   <td>@ref DesignPatternExamples_python.flyweight.flyweight_classes.BigResource "BigResource" class
+  <td>BigResource structure<br>
+      BigResourceList structure<br>
+      BigResource_Render()
 <tr>
   <td>@ref DesignPatternExamples_cpp::BigResourceManager "BigResourceManager" class
   <td>@ref DesignPatternExamples_csharp.BigResourceManager "BigResourceManager" class
   <td>@ref DesignPatternExamples_python.flyweight.flyweight_classes.BigResourceManager "BigResourceManager" class
+  <td>BigResourceManager_Clear()<br>
+      BigResourceManager_AddResource()<br>
+      BigResourceManager_GetResource()
 </table>
 
 This example uses an image as the "big" resource.  The image is composed of a
@@ -110,6 +120,10 @@ __C#__
 __Python__
 
 @snippet python/DesignPatternExamples_python/flyweight/flyweight_exercise.py Using Flyweight in Python
+
+__C__
+
+@snippet c/Flyweight_Exercise.c Using Flyweight in C
 
 ### See Also
 - @ref mainpage "Main page"

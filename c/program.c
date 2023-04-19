@@ -7,6 +7,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <time.h>
 
 #include "helpers/enablevtmode.h"
 #include "helpers/stringlist.h"
@@ -188,6 +189,7 @@ ExerciseList exercises =
 int main(int argc, char** argv)
 {
     enableVTMode();
+    srand((unsigned int)(time(NULL)));
     Options options = { 0 };
     StringList_Initialize(&options.exercise_names);
 
