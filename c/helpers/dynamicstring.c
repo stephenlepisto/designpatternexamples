@@ -39,12 +39,21 @@ void DynamicString_Clear(DynamicString* string)
 ///////////////////////////////////////////////////////////////////////////////
 void DynamicString_Append(DynamicString* string, const char* s)
 {
-    if (string != NULL)
+    if (string != NULL && s != NULL)
     {
+        char* newText = NULL;
         size_t newSize = string->length + strlen(s) + 1;
-        char* newText = realloc(string->string, newSize);
+        if (string->string == NULL)
+        {
+            newText = calloc(1, newSize);
+        }
+        else
+        {
+            newText = realloc(string->string, newSize);
+        }
         if (newText != NULL)
         {
+            newText[string->length] = '\0';
             string->string = newText;
             strcat_s(string->string, newSize, s);
             string->length = strlen(string->string);
