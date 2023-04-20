@@ -47,7 +47,8 @@ void enableVTMode()
         if (!GetConsoleMode(hOut, &dwOriginalOutMode))
         {
             dwOriginalOutMode = INVALID_MODE;
-            printf("Failed to get the Console output's original mode.\n");
+            DWORD lastError = GetLastError();
+            printf("Failed to get the Console output's original mode (code = 0x%x).\n", lastError);
         }
         else
         {
@@ -55,7 +56,8 @@ void enableVTMode()
             DWORD dwOutMode = dwOriginalOutMode | dwRequestedOutModes;
             if (!SetConsoleMode(hOut, dwOutMode))
             {
-                printf("Failed to enable the Console output's virtual terminal mode.\n");
+                DWORD lastError = GetLastError();
+                printf("Failed to enable the Console output's virtual terminal mode (code = 0x%x).\n", lastError);
             }
         }
     }
