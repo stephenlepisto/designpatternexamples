@@ -23,13 +23,13 @@ handler that handled the object should pass the object to the next handler
 instead of returning.
 
 Another variation is a list of handlers to be called at some point.  For
-example, the `atexit()` function in the C library takes a functon that is
-added to a list that is then called in reverse order.  Technically, the
+example, the `atexit()` function in the C library takes a function pointer that
+is added to a list that is then called in reverse order.  Technically, the
 handlers aren't actually chained together except through the containing
 list but the effect is the same; handlers in a dynamic list are called
 until done.
 
-The key to a Handler Chain is the chain of handlers is dynamic and the
+The key to a Handler Chain is that the chain of handlers is dynamic and the
 handlers are invoked in order until all handlers have been invoked.  A
 common variation is to allow a handler to stop the processing so no
 additional handlers are called.
@@ -45,7 +45,7 @@ a handler in a Handler Chain can abort the sequence of calls to additional
 handlers.
 
 In an "ideal" object-oriented implementation, a Handler Chain is composed
-of handler objects that are linked to the previous handler object and next
+of handler objects that are linked to the previous handler object and the next
 handler object in the chain.  The head of the chain has an empty previous
 link while the last handler object in the chain has an empty next link.
 Each handler object has a `Process()` method that either processes the incoming
@@ -80,22 +80,32 @@ handlers.
   <th>C++
   <th>C#
   <th>Python
+  <th>C
 <tr>
   <td>@ref DesignPatternExamples_cpp::HandlerChain "HandlerChain" class
   <td>@ref DesignPatternExamples_csharp.HandlerChain "HandlerChain" class
   <td>@ref DesignPatternExamples_python.handlerchain.handlerchain_class.HandlerChain "HandlerChain" class
+  <td>HandlerChain_SendMessage()<br>
+      HandlerChain_AddWindow()<br>
+      HandlerChain_RemoveWindow()
 <tr>
   <td>@ref DesignPatternExamples_cpp::MessageWindow "MessageWindow" class
   <td>@ref DesignPatternExamples_cpp::MessageWindow "MessageWindow" class
   <td>@ref DesignPatternExamples_python.handlerchain.handlerchain_messagewindow_class.MessageWindow "MessageWindow" class
+  <td>@ref MessageWindow structure<br>
+      MessageWindow_Create()<br>
+      MessageWindow_Destroy()
 <tr>
   <td>@ref DesignPatternExamples_cpp::IMessageHandler "IMessageHandler" interface
   <td>@ref DesignPatternExamples_csharp::IMessageHandler "IMessageHandler" interface
   <td>@ref DesignPatternExamples_python.handlerchain.handlerchain_class.IMessageHandler "IMessageHandler" interface
+  <td>MessageWindow_ProcessMessage()
 <tr>
   <td>@ref DesignPatternExamples_cpp::WindowRectangle "WindowRectangle" class
   <td>@ref DesignPatternExamples_csharp.WindowRectangle "WindowRectangle" class
   <td>@ref DesignPatternExamples_python.handlerchain.handlerchain_messagewindow_class.WindowRectangle "WindowRectangle" class
+  <td>WindowRectangle structure<br>
+      WindowRectangle_PointInside()
 </table>
 
 The example presented here is a collection of "windows" represented by the
@@ -104,8 +114,8 @@ implemented through the IMessageHandler interface.  The windows are stored
 in the HandlerChain collection and can interact with that collection.
 
 ButtonDown messages are pushed in by the user of the HandlerChain class,
-selecting and deselecting windows (based on a position associated with the
-ButtonDown message).
+selecting and deselecting windows based on a position associated with the
+ButtonDown message.
 
 A ButtonUp message is pushed in by the user of the HandlerChain class.  In a
 window that is selected, the message causes an action to be taken, although
@@ -129,6 +139,10 @@ __C#__
 __Python__
 
 @snippet python/DesignPatternExamples_python/handlerchain/handlerchain_exercise.py Using HandlerChain in Python
+
+__C__
+
+@snippet c/HandlerChain_Exercise.c Using HandlerChain in C
 
 ### See Also
 - @ref mainpage "Main page"

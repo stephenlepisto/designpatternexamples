@@ -169,6 +169,21 @@
     <ClCompile Include="helpers\readkey.c">
       <Filter>Helper files</Filter>
     </ClCompile>
+    <ClCompile Include="HandlerChain_Message.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="HandlerChain_HandlerFunctions.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="helpers\mutex.c">
+      <Filter>Helper files</Filter>
+    </ClCompile>
+    <ClCompile Include="HandlerChain_MessageWindow.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="HandlerChain_WindowRectangle.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="helpers\stringlist.h">
@@ -320,6 +335,21 @@
     </ClInclude>
     <ClInclude Include="helpers\readkey.h">
       <Filter>Helper files</Filter>
+    </ClInclude>
+    <ClInclude Include="HandlerChain_HandlerFunctions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HandlerChain_Message.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="helpers\mutex.h">
+      <Filter>Helper files</Filter>
+    </ClInclude>
+    <ClInclude Include="HandlerChain_MessageWindow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HandlerChain_WindowRectangle.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

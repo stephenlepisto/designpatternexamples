@@ -2,7 +2,8 @@
 /// @brief
 /// Declaration of the UIntArray structure that represents an array of
 /// 32-bit unsigned integers along with the associated functions,
-/// UIntArray_Initialize(), UIntArray_Clear(), and UIntArray_AddInt().
+/// UIntArray_Initialize(), UIntArray_Clear(), UIntArray_AddInt(),
+/// UIntArray_RemoveInt(), UIntArray_Find(), and UIntArray_Copy().
 
 #pragma once
 #ifndef __UINTARRAY_H__
@@ -22,7 +23,8 @@
 typedef struct
 {
     uint32_t* data; ///< Pointer to array of 32-bit unsigned integers
-    size_t length;  ///< Number of 32-bit unsigned integers in the `data` array.
+    size_t length;  ///< Number of 32-bit unsigned integers actually in the `data` array.
+    size_t allocatedLength; ///< Number of elements that the `data` array can hold.
 
 } UIntArray;
 
@@ -46,6 +48,32 @@ void UIntArray_Clear(UIntArray* array);
 /// <param name="value">The value to add to the UIntArray object.</param>
 void UIntArray_AddInt(UIntArray* array, uint32_t value);
 
+/// <summary>
+/// Remove the unsigned 32-bit integer from the given UIntArray object at the
+/// given index.  All subsequent integers are moved up one.  Does nothing if
+/// the index is not valid.
+/// </summary>
+/// <param name="array">The UIntArray object to update.</param>
+/// <param name="removeIndex">Index of the value to remove.</param>
+void UIntArray_RemoveInt(UIntArray* array, int removeIndex);
+
+/// <summary>
+/// Search the given UIntArray object for the specified value and return the
+/// index of that found value.
+/// </summary>
+/// <param name="array">The UIntArray object to search.</param>
+/// <param name="value">The value to search for.</param>
+/// <returns>Returns an index into the list to the position of the value if
+/// found; otherwise, returns -1, indicating the value is not in the list.</returns>
+int UIntArray_Find(UIntArray* array, uint32_t value);
+
+/// <summary>
+/// Copy the source UIntArray to the destination UIntArray.  The destination
+/// UIntArray is erased before getting a copy of the contents of the source.
+/// </summary>
+/// <param name="sourceArray">The UIntArray to copy from.</param>
+/// <param name="destinationArray">The UIntArray to copy to.</param>
+void UIntArray_Copy(UIntArray* sourceArray, UIntArray* destinationArray);
 
 #endif // __UINTARRAY_H__
 
