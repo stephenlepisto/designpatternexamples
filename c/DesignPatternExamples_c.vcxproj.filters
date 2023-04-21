@@ -184,6 +184,12 @@
     <ClCompile Include="HandlerChain_WindowRectangle.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Interpreter_Interpreter.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="helpers\titlecase.c">
+      <Filter>Helper files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="helpers\stringlist.h">
@@ -350,6 +356,12 @@
     </ClInclude>
     <ClInclude Include="HandlerChain_WindowRectangle.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Interpreter_Interpreter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="helpers\titlecase.h">
+      <Filter>Helper files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

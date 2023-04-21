@@ -22,11 +22,13 @@ symbols (tokens) that are converted directly into machine language (a discrete
 series of bytes or numbers) -- which the CPU essentially interprets to produce
 some kind of action.
 
-Ar a much higher level of abstraction, a domain-specific language could be used
+At a much higher level of abstraction, a domain-specific language could be used
 to make it simple to create business logic for an application.  This domain-
 specific language typically consists of simple commands and parameters that,
 when executed in sequence, accomplish some task specific to the application.
 The process of executing the domain-specific language requires an interpreter.
+SQL (Structured Query Language) is an example of a domain-specific language, as
+it is dedicated to reading or writing data to a structured database.
 
 In short, what is interpreted is a set of tokens that represent actions.
 The tokens can be arranged in an abstract syntax tree to provide more
@@ -42,15 +44,17 @@ in the @ref nullobject_pattern example.
 # How to Use
 
 <table>
-<caption>Links to the Interpreter class</caption>
+<caption>Links to the Interpreter class or function</caption>
 <tr>
   <th>C++
   <th>C#
   <th>Python
+  <th>C
 <tr>
   <td>@ref DesignPatternExamples_cpp::Interpreter_Class "Interpreter_Class" class
   <td>@ref DesignPatternExamples_csharp.Interpreter_Class "Interpreter_Class" class
   <td>@ref DesignPatternExamples_python.interpreter.interpreter_class.Interpreter_Class "Interpreter_Class" class
+  <td>Interpreter_Interpret() function
 </table>
 
 The example provided here takes an array of integers and converts each into
@@ -69,6 +73,10 @@ __C#__
 __Python__
 
 @snippet python/DesignPatternExamples_python/interpreter/interpreter_exercise.py Using Interpreter in Python
+
+__C__
+
+@snippet c/Interpreter_Exercise.c Using Interpreter in C
 
 ### See Also
 - @ref mainpage "Main page"
