@@ -1,6 +1,6 @@
 /// @file
 /// @brief
-/// Declaration of the @ref Helpers::titlecase "title" function, for making a
+/// Declaration of the @ref Helpers::titlecase "titlecase"() function, for making a
 /// word lowercase with the first letter uppercase.
 
 #pragma once

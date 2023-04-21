@@ -1,6 +1,6 @@
 /// @file
 /// @brief
-/// Implementation of the @ref Helpers::titlecase "title" function, for making
+/// Implementation of the @ref Helpers::titlecase "titlecase"() function, for making
 /// a word lowercase with the first letter uppercase.
 
 #include <sstream>
