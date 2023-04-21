@@ -2,7 +2,7 @@
 /// @brief
 /// Declaration of the ItemPair structure, along with the iterator functions,
 /// Iterator_GetItems(), Iterator_GetKeys(), Iterator_GetValues(),
-/// Iterator_NextItem(), Iterator_NextKey(), and Iterator_GetValue(),
+/// Iterator_NextItem(), Iterator_NextKey(), and Iterator_NextValue(),
 /// as used in the @ref iterator_pattern.
 
 #pragma once

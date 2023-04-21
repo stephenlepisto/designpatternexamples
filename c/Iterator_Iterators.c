@@ -2,7 +2,7 @@
 /// @brief
 /// Implementation of the iterator functions,
 /// Iterator_GetItems(), Iterator_GetKeys(), Iterator_GetValues(),
-/// Iterator_NextItem(), Iterator_NextKey(), and Iterator_GetValue(),
+/// Iterator_NextItem(), Iterator_NextKey(), and Iterator_NextValue(),
 /// as used in the @ref iterator_pattern.
 
 #include "Iterator_Iterators.h"
@@ -12,13 +12,13 @@
 
 /// <summary>
 /// A list of keys as example data. The number of keys must match the number
-/// of values in the `values` list.
+/// of values in the @ref _values list.
 /// </summary>
 static const char* _keys[] =   { "One"    , "Two"    , "Three"   };
 
 /// <summary>
 /// A list of values as example data.  The number of values must match the
-/// number of keys in the `keys` list.
+/// number of keys in the @ref _keys list.
 /// </summary>
 static const char* _values[] = { "Value 1", "Value 2", "Value 3" };
 
