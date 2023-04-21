@@ -190,6 +190,9 @@
     <ClCompile Include="helpers\titlecase.c">
       <Filter>Helper files</Filter>
     </ClCompile>
+    <ClCompile Include="Iterator_Iterators.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="helpers\stringlist.h">
@@ -362,6 +365,9 @@
     </ClInclude>
     <ClInclude Include="helpers\titlecase.h">
       <Filter>Helper files</Filter>
+    </ClInclude>
+    <ClInclude Include="Iterator_Iterators.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

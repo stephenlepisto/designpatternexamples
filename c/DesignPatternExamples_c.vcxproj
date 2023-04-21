@@ -199,6 +199,7 @@
     <ClCompile Include="Interpreter_Exercise.c" />
     <ClCompile Include="Interpreter_Interpreter.c" />
     <ClCompile Include="Iterator_Exercise.c" />
+    <ClCompile Include="Iterator_Iterators.c" />
     <ClCompile Include="Mediator_Exercise.c" />
     <ClCompile Include="Memento_Exercise.c" />
     <ClCompile Include="NullObject_Exercise.c" />
@@ -259,6 +260,7 @@
     <ClInclude Include="Interpreter_Exercise.h" />
     <ClInclude Include="Interpreter_Interpreter.h" />
     <ClInclude Include="Iterator_Exercise.h" />
+    <ClInclude Include="Iterator_Iterators.h" />
     <ClInclude Include="Mediator_Exercise.h" />
     <ClInclude Include="Memento_Exercise.h" />
     <ClInclude Include="NullObject_Exercise.h" />

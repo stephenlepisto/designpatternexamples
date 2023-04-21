@@ -46,33 +46,50 @@ accessed in any order.
 # How to Use
 
 <table>
-<caption>Links to the Iterator classes and interface</caption>
+<caption>Links to the Iterator classes and interface or functions</caption>
 <tr>
   <th>C++
   <th>C#
   <th>Python
+  <th>C
 <tr>
   <td>@ref DesignPatternExamples_cpp::IteratorContainer_Class "IteratorContainer_Class" class
   <td>@ref DesignPatternExamples_csharp.IteratorContainer_Class "IteratorContainer_Class" class
   <td>@ref DesignPatternExamples_python.iterator.iterator_class.IteratorContainer_Class "IteratorContainer_Class" class
+  <td>Iterator_GetItems() function<br>
+      Iterator_GetKeys() function<br>
+      Iterator_GetValues() function
 <tr>
   <td>@ref DesignPatternExamples_cpp::Iterator "IIterator" interface
   <td>@ref DesignPatternExamples_csharp.Iterator "IIterator" interface
   <td>@ref DesignPatternExamples_python.iterator.iterator_class.IIterator "IIterator" interface
+  <td>Not Applicable
 <tr>
   <td>@ref DesignPatternExamples_cpp::Iterator "Iterator" class
   <td>@ref DesignPatternExamples_csharp.Iterator "Iterator" class
   <td>@ref DesignPatternExamples_python.iterator.iterator_class.Iterator "Iterator" class
+  <td>Iterator_NextItem() function<br>
+      Iterator_NextKey() function<br>
+      Iterator_NextValue() function
 </table>
 
+_[C#, C++, Python]_
 Having said all that, here is an example of how an object-oriented iterator
 can be implemented.  In this case, the example uses the interface, `IIterator`,
 to represent an iterator to the caller.  A custom container class,
 `IteratorContainer_Class`, provides an instance of this interface to allow the
 caller to iterate forward over the container.  This custom container can
-expose multiple iterators, each independent of the others.  The use of
-multiple iterators on the same container is normally used only when the
-container is a read-only type; that is, the contents will not be changing.
+expose multiple iterators, each independent of the others.
+
+_[C]_
+In C, there are no objects, so functions are used to get an iterator over the
+various kinds of data.  Another function is used to move the iterator over the
+internal data to get the next element.  Note how each type of iterator has its
+own dedicated pair of functions, such as Iterator_GetItems(), and
+Iterator_NextItem().
+
+The use of multiple iterators on the same container is normally used only when
+the container is a read-only type; that is, the contents will not be changing.
 Once the contents are changed (added or removed), all iterators are considered
 invalid.
 
@@ -87,6 +104,10 @@ __C#__
 __Python__
 
 @snippet python/DesignPatternExamples_python/iterator/iterator_exercise.py Using Iterator in Python
+
+__C__
+
+@snippet c/Iterator_Exercise.c Using Iterator in C
 
 ### See Also
 - @ref mainpage "Main page"
