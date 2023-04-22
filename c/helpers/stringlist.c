@@ -19,6 +19,7 @@ void StringList_Initialize(StringList* stringList)
     {
         stringList->strings = NULL;
         stringList->strings_count = 0;
+        stringList->allocated_count = 0;
     }
 }
 
@@ -36,8 +37,7 @@ void StringList_Clear(StringList* stringList)
                 free((void *)stringList->strings[index]);
             }
             free(stringList->strings);
-            stringList->strings = NULL;
-            stringList->strings_count = 0;
+            StringList_Initialize(stringList);
         }
     }
 }
@@ -48,29 +48,59 @@ void StringList_Clear(StringList* stringList)
 bool StringList_AddString(StringList* stringList, const char* string)
 {
     bool stringAdded = false;
-    const char** new_list = NULL;
 
     if (stringList != NULL && string != NULL)
     {
+        const char** new_list = NULL;
         if (stringList->strings == NULL)
         {
             new_list = malloc(sizeof(const char*));
+            stringList->allocated_count = 1;
+        }
+        else if (stringList->strings_count < stringList->allocated_count)
+        {
+            new_list = stringList->strings;
         }
         else
         {
-            size_t newSize = (stringList->strings_count + 1) * sizeof(const char*);
-            new_list = realloc(stringList->strings, newSize);
+            size_t newCount = stringList->allocated_count + 1;
+            new_list = realloc(stringList->strings, newCount * sizeof(const char*));
+            stringList->allocated_count = newCount;
         }
 
         if (new_list != NULL)
         {
             stringList->strings = new_list;
-            stringList->strings[stringList->strings_count] = _strdup(string);
-            stringList->strings_count++;
-            stringAdded = true;
+            char* newString = _strdup(string);
+            if (newString != NULL)
+            {
+                stringList->strings[stringList->strings_count] = newString;
+                stringList->strings_count++;
+                stringAdded = true;
+            }
         }
     }
     return stringAdded;
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// StringList_Remove()
+///////////////////////////////////////////////////////////////////////////////
+void StringList_Remove(StringList* stringList, int removeIndex)
+{
+    if (stringList != NULL && stringList->strings != NULL)
+    {
+        if (removeIndex >= 0 && removeIndex < stringList->strings_count)
+        {
+            const char* stringToRemove = stringList->strings[removeIndex];
+            for (size_t stringIndex = removeIndex; stringIndex < stringList->allocated_count - 1; stringIndex++)
+            {
+                stringList->strings[stringIndex] = stringList->strings[stringIndex + 1];
+            }
+            stringList->strings_count--;
+            free((char*)stringToRemove);
+        }
+    }
 }
 
 ///////////////////////////////////////////////////////////////////////////////

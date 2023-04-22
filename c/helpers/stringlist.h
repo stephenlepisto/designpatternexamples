@@ -25,6 +25,11 @@ typedef struct _StringList
     /// </summary>
     size_t strings_count;
 
+    /// <summary>
+    /// The number of strings that can be held in the @p strings list.
+    /// </summary>
+    size_t allocated_count;
+
 } StringList;
 
 
@@ -53,6 +58,15 @@ void StringList_Clear(StringList* stringList);
 /// false, indicating an out of memory condition has occurred (the original
 /// string list is untouched in this case).</returns>
 bool StringList_AddString(StringList* stringList, const char* string);
+
+/// <summary>
+/// Remove the specified string from the given string list.
+/// </summary>
+/// <param name="stringList">A pointer to a StringList representing the list of
+/// strings.</param>
+/// <param name="removeIndex">Index of the string to remove from the list.  Call
+/// StringList_Find() to get the index.</param>
+void StringList_Remove(StringList* stringList, int removeIndex);
 
 /// <summary>
 /// Search the given string list for the given string.  If found, return the
