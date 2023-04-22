@@ -18,6 +18,7 @@ void UIntArray_Initialize(UIntArray* array)
     {
         array->data = NULL;
         array->length = 0;
+        array->allocatedLength = 0;
     }
 }
 
@@ -52,9 +53,9 @@ void UIntArray_AddInt(UIntArray* array, uint32_t value)
         }
         else
         {
-            size_t newSize = (array->length + 1) * sizeof(uint32_t);
-            new_list = realloc(array->data, newSize);
-            array->allocatedLength = newSize;
+            size_t newCount = (array->length + 1);
+            new_list = realloc(array->data, newCount * sizeof(uint32_t));
+            array->allocatedLength = newCount;
         }
         if (new_list != NULL)
         {
