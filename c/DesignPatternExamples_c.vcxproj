@@ -201,6 +201,13 @@
     <ClCompile Include="Iterator_Exercise.c" />
     <ClCompile Include="Iterator_Iterators.c" />
     <ClCompile Include="Mediator_Exercise.c" />
+    <ClCompile Include="Mediator_Functions.c" />
+    <ClCompile Include="Mediator_Group.c" />
+    <ClCompile Include="Mediator_GroupList.c" />
+    <ClCompile Include="Mediator_Groups.c" />
+    <ClCompile Include="Mediator_User.c" />
+    <ClCompile Include="Mediator_UserList.c" />
+    <ClCompile Include="Mediator_Users.c" />
     <ClCompile Include="Memento_Exercise.c" />
     <ClCompile Include="NullObject_Exercise.c" />
     <ClCompile Include="Observer_Exercise.c" />
@@ -262,6 +269,13 @@
     <ClInclude Include="Iterator_Exercise.h" />
     <ClInclude Include="Iterator_Iterators.h" />
     <ClInclude Include="Mediator_Exercise.h" />
+    <ClInclude Include="Mediator_Functions.h" />
+    <ClInclude Include="Mediator_Group.h" />
+    <ClInclude Include="Mediator_GroupList.h" />
+    <ClInclude Include="Mediator_Groups.h" />
+    <ClInclude Include="Mediator_User.h" />
+    <ClInclude Include="Mediator_UserList.h" />
+    <ClInclude Include="Mediator_Users.h" />
     <ClInclude Include="Memento_Exercise.h" />
     <ClInclude Include="NullObject_Exercise.h" />
     <ClInclude Include="Observer_Exercise.h" />

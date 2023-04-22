@@ -61,31 +61,65 @@ to perform the requests.
 # How to Use
 
 <table>
-<caption>Links to the Mediator classes</caption>
+<caption>Links to the Mediator classes or functions</caption>
 <tr>
   <th>C++
   <th>C#
   <th>Python
+  <th>C
 <tr>
   <td>@ref DesignPatternExamples_cpp::UserGroupMediator "UserGroupMediator" class
   <td>@ref DesignPatternExamples_csharp.UserGroupMediator "UserGroupMediator" class
   <td>@ref DesignPatternExamples_python.mediator.mediator_class.UserGroupMediator "UserGroupMediator" class
+  <td>Mediator_AddUser() function<br>
+      Mediator_RemoveUser()<br>
+      Mediator_AddGroup()<br>
+      Mediator_RemoveGroup()<br>
+      Mediator_AddUserToGroup()<br>
+      Mediator_RemoveUserFromGroup()<br>
+      Mediator_RemoveUserFromAllGroups()<br>
+      Mediator_GetAllGroups()<br>
+      Mediator_GetAllUsers()<br>
+      Mediator_IsUserInGroup()<br>
+      Mediator_GetUsersInGroup()<br>
+      Mediator_GetGroupsWithUser()
 <tr>
   <td>@ref DesignPatternExamples_cpp::Group "Group" class
   <td>@ref DesignPatternExamples_csharp::Group "Group" class
   <td>@ref DesignPatternExamples_python.mediator.mediator_group_classes.Group "Group" class
+  <td>Groups_AddGroup() function<br>
+      Groups_RemoveGroup()<br>
+      Groups_FindGroup()<br>
+      Groups_UserInGroup()<br>
+      Groups_AddUserGroup()<br>
+      Groups_RemoveUserFromGroup()<br>
+      Groups_RemoveUserFromAllGroups()<br>
+      Groups_GetAllGroups()<br>
+      Groups_GetAllUsersInGroup()<br>
+      Groups_GetGroupsWithUser()
 <tr>
   <td>@ref DesignPatternExamples_cpp::GroupList "GroupList" class
   <td>@ref DesignPatternExamples_csharp::GroupList "GroupList" class
   <td>@ref DesignPatternExamples_python.mediator.mediator_group_classes.GroupList "GroupList" class
+  <td>GroupList_Clear() function<br>
+      GroupList_AddGroup()<br>
+      GroupList_FindGroup()<br>
+      GroupList_RemoveGroup()
 <tr>
   <td>@ref DesignPatternExamples_cpp::User "User" class
   <td>@ref DesignPatternExamples_csharp::User "User" class
   <td>@ref DesignPatternExamples_python.mediator.mediator_user_classes.User "User" class
+  <td>User_Create() function<br>
+      User_Destroy()
 <tr>
   <td>@ref DesignPatternExamples_cpp::UserList "UserList" class
   <td>@ref DesignPatternExamples_csharp::UserList "UserList" class
   <td>@ref DesignPatternExamples_python.mediator.mediator_user_classes.UserList "UserList" class
+  <td>UserList_Initialize() function<br>
+      UserList_Clear()<br>
+      UserList_AddUser()<br>
+      UserList_FindUser()<br>
+      UserList_RemoveUser()
 </table>
 
 This example makes a further refinement by having the Users list and Groups
@@ -160,6 +194,10 @@ __C#__
 __Python__
 
 @snippet python/DesignPatternExamples_python/mediator/mediator_exercise.py Using Mediator in Python
+
+__C__
+
+@snippet c/Mediator_Exercise.c Using Mediator in C
 
 ### See Also
 - @ref mainpage "Main page"

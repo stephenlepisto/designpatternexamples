@@ -193,6 +193,27 @@
     <ClCompile Include="Iterator_Iterators.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Mediator_Functions.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Mediator_User.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Mediator_Groups.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Mediator_GroupList.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Mediator_Group.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Mediator_Users.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Mediator_UserList.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="helpers\stringlist.h">
@@ -367,6 +388,27 @@
       <Filter>Helper files</Filter>
     </ClInclude>
     <ClInclude Include="Iterator_Iterators.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Mediator_Functions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Mediator_User.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Mediator_Groups.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Mediator_GroupList.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Mediator_Group.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Mediator_UserList.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Mediator_Users.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
