@@ -209,6 +209,8 @@
     <ClCompile Include="Mediator_UserList.c" />
     <ClCompile Include="Mediator_Users.c" />
     <ClCompile Include="Memento_Exercise.c" />
+    <ClCompile Include="Memento_Memento.c" />
+    <ClCompile Include="Memento_TextObject.c" />
     <ClCompile Include="NullObject_Exercise.c" />
     <ClCompile Include="Observer_Exercise.c" />
     <ClCompile Include="program.c" />
@@ -277,6 +279,8 @@
     <ClInclude Include="Mediator_UserList.h" />
     <ClInclude Include="Mediator_Users.h" />
     <ClInclude Include="Memento_Exercise.h" />
+    <ClInclude Include="Memento_Memento.h" />
+    <ClInclude Include="Memento_TextObject.h" />
     <ClInclude Include="NullObject_Exercise.h" />
     <ClInclude Include="Observer_Exercise.h" />
     <ClInclude Include="Proxy_Exercise.h" />

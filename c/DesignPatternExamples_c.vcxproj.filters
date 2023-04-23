@@ -214,6 +214,12 @@
     <ClCompile Include="Mediator_UserList.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Memento_Memento.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Memento_TextObject.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="helpers\stringlist.h">
@@ -409,6 +415,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Mediator_Users.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Memento_Memento.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Memento_TextObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

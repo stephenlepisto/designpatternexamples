@@ -49,18 +49,29 @@ commands to get to the next save state are remembered and replayed.
   <th>C++
   <th>C#
   <th>Python
+  <th>C
 <tr>
   <td>@ref DesignPatternExamples_cpp::IMemento "IMemento" interface
   <td>@ref DesignPatternExamples_csharp.IMemento "IMemento" interface
   <td>@ref DesignPatternExamples_python.memento.memento.IMemento "IMemento" interface
+  <td>Not Applicable
 <tr>
   <td>@ref DesignPatternExamples_cpp::Memento_TextObject::Memento "Memento" class
   <td>@ref DesignPatternExamples_csharp.Memento_TextObject.Memento "Memento" class
   <td>@ref DesignPatternExamples_python.memento.memento.Memento_TextObject.Memento "Memento" class
+  <td>Memento structure<br>
+      Memento_Create()<br>
+      Memento_Destroy()
 <tr>
   <td>@ref DesignPatternExamples_cpp::Memento_TextObject "Memento_TextObject" class
   <td>@ref DesignPatternExamples_csharp.Memento_TextObject "Memento_TextObject" class
   <td>@ref DesignPatternExamples_python.memento.memento.Memento_TextObject "Memento_TextObject" class
+  <td>Memento_TextObject structure<br>
+      Memento_TextObject_Create()<br>
+      Memento_TextObject_Destroy()<br>
+      Memento_TextObject_GetText()<br>
+      Memento_TextObject_SetText()<br>
+      Memento_TextObject_ToString()
 </table>
 
 The example used here is a snapshot of a text object.  This is then used
@@ -79,6 +90,10 @@ __C#__
 __Python__
 
 @snippet python/DesignPatternExamples_python/memento/memento_exercise.py Using Memento in Python
+
+__C__
+
+@snippet c/Memento_Exercise.c Using Memento in C
 
 ### See Also
 - @ref mainpage "Main page"
