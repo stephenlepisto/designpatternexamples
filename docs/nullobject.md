@@ -33,56 +33,68 @@ way or a flag is set (or cleared) on the class instance.  The idea is there
 is an object that does nothing but acts as a stand-in for a real object
 that does do something.
 
-For one example, the @ref bridge_pattern "Bridge pattern" example has a
-Bridge_NullLogger class that represents a logger that does nothing.  This is a
-classic case of a null object.
+For one example, the @ref bridge_pattern example has a Bridge_NullLogger class
+that represents a logger that does nothing.  This is a classic case of a null
+object.
 
 # How to Use
 
 <table>
-<caption>Links to the Null Object classes</caption>
+<caption>Links to the Null Object classes or functions</caption>
 <tr>
   <th>C++
   <th>C#
   <th>Python
+  <th>C
 <tr>
   <td>@ref DesignPatternExamples_cpp::MoveProcessor "MoveProcessor" class
   <td>@ref DesignPatternExamples_csharp.MoveProcessor "MoveProcessor" class
   <td>@ref DesignPatternExamples_python.nullobject.null_object.MoveProcessor "MoveProcessor" class
+  <td>MoveProcessor_ExecuteMoveList() function<br>
+      MoveProcessor_ShowMoveList()
 <tr>
   <td>@ref DesignPatternExamples_cpp::MoveCommand "MoveCommand" base class
   <td>@ref DesignPatternExamples_csharp::MoveCommand "MoveCommand" base class
   <td>@ref DesignPatternExamples_python.nullobject.null_object.MoveCommand "MoveCommand" base class
+  <td>MoveCommand structure<br>
+      MoveCommand_Create()<br>
+      MoveCommand_Destroy()
 <tr>
   <td>@ref DesignPatternExamples_cpp::MoveCommandNone "MoveCommandNone" (Null Object) class
   <td>@ref DesignPatternExamples_csharp.MoveCommandNone "MoveCommandNone" (Null Object) class
   <td>@ref DesignPatternExamples_python.nullobject.null_object.MoveCommandNone "MoveCommandNone" (Null Object) class
+  <td>MoveCommandNone_Execute() function
 <tr>
   <td>@ref DesignPatternExamples_cpp::MoveCommandLeft "MoveCommandLeft" class
   <td>@ref DesignPatternExamples_csharp.MoveCommandLeft "MoveCommandLeft" class
   <td>@ref DesignPatternExamples_python.nullobject.null_object.MoveCommandLeft "MoveCommandLeft" class
+  <td>MoveCommandLeft_Execute() function
 <tr>
   <td>@ref DesignPatternExamples_cpp::MoveCommandRight "MoveCommandRight" class
   <td>@ref DesignPatternExamples_csharp.MoveCommandRight "MoveCommandRight" class
   <td>@ref DesignPatternExamples_python.nullobject.null_object.MoveCommandRight "MoveCommandRight" class
+  <td>MoveCommandRight_Execute() function
 <tr>
   <td>@ref DesignPatternExamples_cpp::MoveCommandUp "MoveCommandUp" class
   <td>@ref DesignPatternExamples_csharp.MoveCommandUp "MoveCommandUp" class
   <td>@ref DesignPatternExamples_python.nullobject.null_object.MoveCommandUp "MoveCommandUp" class
+  <td>MoveCommandUp_Execute() function
 <tr>
   <td>@ref DesignPatternExamples_csharp.MoveCommandDown "MoveCommandDown"
   <td>@ref DesignPatternExamples_csharp.MoveCommandDown "MoveCommandDown" class
   <td>@ref DesignPatternExamples_python.nullobject.null_object.MoveCommandDown "MoveCommandDown" class
+  <td>MoveCommandDown_Execute() function
 </table>
 
 The somewhat contrived example here parses a string for single letter move
-commands, converting them into class objects for each command.  For all
-other characters in the string, a null object is used to represent the move
-command.  Bad commands are not simply ignored so as to allow for showing
-them along with the command class assigned to execute the command.
+commands, converting them into class objects (C++, C#, Python) or functions (C)
+for each command.  For all other characters in the string, a null object or
+function is used to represent the move command.  Bad commands are not simply
+ignored so as to allow for showing them along with the command class assigned
+to execute the command.
 
-This example also uses a form of the @ref command_pattern "Command pattern"
-and the @ref interpreter_pattern "Interpreter pattern".
+This example also uses a form of the @ref command_pattern the
+@ref interpreter_pattern.
 
 __C++__
 
@@ -95,6 +107,10 @@ __C#__
 __Python__
 
 @snippet python/DesignPatternExamples_python/nullobject/nullobject_exercise.py Using NullObject in Python
+
+__C__
+
+@snippet c/NullObject_Exercise.c Using NullObject in C
 
 ### See Also
 - @ref mainpage "Main page"

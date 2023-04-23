@@ -212,6 +212,8 @@
     <ClCompile Include="Memento_Memento.c" />
     <ClCompile Include="Memento_TextObject.c" />
     <ClCompile Include="NullObject_Exercise.c" />
+    <ClCompile Include="NullObject_MoveCommand.c" />
+    <ClCompile Include="NullObject_MoveCommandList.c" />
     <ClCompile Include="Observer_Exercise.c" />
     <ClCompile Include="program.c" />
     <ClCompile Include="Proxy_Exercise.c" />
@@ -282,6 +284,8 @@
     <ClInclude Include="Memento_Memento.h" />
     <ClInclude Include="Memento_TextObject.h" />
     <ClInclude Include="NullObject_Exercise.h" />
+    <ClInclude Include="NullObject_MoveCommand.h" />
+    <ClInclude Include="NullObject_MoveCommandList.h" />
     <ClInclude Include="Observer_Exercise.h" />
     <ClInclude Include="Proxy_Exercise.h" />
     <ClInclude Include="State_Exercise.h" />

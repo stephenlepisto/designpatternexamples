@@ -220,6 +220,12 @@
     <ClCompile Include="Memento_TextObject.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="NullObject_MoveCommand.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="NullObject_MoveCommandList.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="helpers\stringlist.h">
@@ -421,6 +427,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Memento_TextObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="NullObject_MoveCommand.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="NullObject_MoveCommandList.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
