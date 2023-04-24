@@ -220,6 +220,8 @@
     <ClCompile Include="Observer_NumberProducer.c" />
     <ClCompile Include="program.c" />
     <ClCompile Include="Proxy_Exercise.c" />
+    <ClCompile Include="Proxy_ProxyService.c" />
+    <ClCompile Include="Proxy_RealService.c" />
     <ClCompile Include="State_Exercise.c" />
     <ClCompile Include="Strategy_Exercise.c" />
     <ClCompile Include="Visitor_Exercise.c" />
@@ -294,6 +296,9 @@
     <ClInclude Include="Observer_NumberChangedFunctionList.h" />
     <ClInclude Include="Observer_NumberProducer.h" />
     <ClInclude Include="Proxy_Exercise.h" />
+    <ClInclude Include="Proxy_IWorkByProxy.h" />
+    <ClInclude Include="Proxy_ProxyService.h" />
+    <ClInclude Include="Proxy_RealService.h" />
     <ClInclude Include="State_Exercise.h" />
     <ClInclude Include="Strategy_Exercise.h" />
     <ClInclude Include="Visitor_Exercise.h" />

@@ -50,18 +50,22 @@ easier to maintain.
   <th>C++
   <th>C#
   <th>Python
+  <th>C
 <tr>
   <td>@ref DesignPatternExamples_cpp::IWorkByProxy "IWorkByProxy" interface
   <td>@ref DesignPatternExamples_csharp.IWorkByProxy "IWorkByProxy" interface
   <td>@ref DesignPatternExamples_python.proxy.proxy_interface.IWorkByProxy "IWorkByProxy" interface
+  <td>IWorkByProxy structure
 <tr>
   <td>@ref Proxy_Class_Private::Proxy_Class "Proxy_Class" class
   <td>@ref DesignPatternExamples_csharp.Proxy_Classes_Container.Proxy_Class "Proxy_Class" class
   <td>@ref DesignPatternExamples_python.proxy.proxy_class.Proxy_Class "Proxy_Class" class
+  <td>GetProxyService()
 <tr>
   <td>@ref Proxy_Class_Private::Real_Class "Real_Class" class
   <td>@ref DesignPatternExamples_csharp.Proxy_Classes_Container.Real_Class "Real_Class" class
   <td>@ref DesignPatternExamples_python.proxy.proxy_class_real.Real_Class "Real_Class" class
+  <td>GetRealService()
 </table>
 
 This example is really simple: An interface called `IWorkByProxy` is implemented
@@ -81,6 +85,10 @@ __C#__
 __Python__
 
 @snippet python/DesignPatternExamples_python/proxy/proxy_exercise.py Using Proxy in Python
+
+__C__
+
+@snippet c/Proxy_Exercise.c Using Proxy in C
 
 ### See Also
 - @ref mainpage "Main page"

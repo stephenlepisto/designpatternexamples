@@ -1,7 +1,8 @@
 /// @file
 /// @brief
 /// Implementation of the DynamicString structure, along with
-/// DynamicString_Initialize(), DynamicString_Clear(), and DynamicString_Append()
+/// DynamicString_Initialize(), DynamicString_Clear(), DynamicString_Append(),
+/// and DynamicString_Set()
 /// functions that work with that structure.
 
 #include <stdlib.h>
@@ -37,8 +38,10 @@ void DynamicString_Clear(DynamicString* string)
 ///////////////////////////////////////////////////////////////////////////////
 // DynamicString_Append()
 ///////////////////////////////////////////////////////////////////////////////
-void DynamicString_Append(DynamicString* string, const char* s)
+bool DynamicString_Append(DynamicString* string, const char* s)
 {
+    bool success = false;
+
     if (string != NULL && s != NULL)
     {
         char* newText = NULL;
@@ -57,18 +60,25 @@ void DynamicString_Append(DynamicString* string, const char* s)
             string->string = newText;
             strcat_s(string->string, newSize, s);
             string->length = strlen(string->string);
+            success = true;
         }
     }
+
+    return success;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
 // DynamicString_Set()
 ///////////////////////////////////////////////////////////////////////////////
-void DynamicString_Set(DynamicString* string, const char* s)
+bool DynamicString_Set(DynamicString* string, const char* s)
 {
+    bool success = false;
+
     if (string != NULL)
     {
         DynamicString_Clear(string);
-        DynamicString_Append(string, s);
+        success = DynamicString_Append(string, s);
     }
+
+    return success;
 }

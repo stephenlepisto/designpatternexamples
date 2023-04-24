@@ -235,6 +235,12 @@
     <ClCompile Include="Observer_NumberProducer.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Proxy_RealService.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Proxy_ProxyService.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="helpers\stringlist.h">
@@ -451,6 +457,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Observer_NumberProducer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Proxy_RealService.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Proxy_IWorkByProxy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Proxy_ProxyService.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
