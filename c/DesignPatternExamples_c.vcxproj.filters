@@ -226,6 +226,15 @@
     <ClCompile Include="NullObject_MoveCommandList.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="helpers\uint32_to_binary.c">
+      <Filter>Helper files</Filter>
+    </ClCompile>
+    <ClCompile Include="Observer_NumberChangedFunctionList.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Observer_NumberProducer.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="helpers\stringlist.h">
@@ -433,6 +442,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="NullObject_MoveCommandList.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="helpers\uint32_to_binary.h">
+      <Filter>Helper files</Filter>
+    </ClInclude>
+    <ClInclude Include="Observer_NumberChangedFunctionList.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Observer_NumberProducer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

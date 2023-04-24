@@ -17,7 +17,7 @@ something in response to the change notification.
 One common example of the observer pattern is the View element of the
 Model-View-Controller architecture.  In this architecture, the Model holds
 all the data, the Controller is the input mediator (yes, an example of the
-Mediator pattern) between the Model and the outside world, and the View is
+@ref mediator_pattern) between the Model and the outside world, and the View is
 what shows the Model to the outside world.  There can be multiple Views.
 When a change occurs in the Model, the Views are notified of the change.
 Each View then pulls data from the Model to render that specific view.
@@ -65,53 +65,64 @@ called as part of the process of sending the event notifications.
   <th>C++
   <th>C#
   <th>Python
+  <th>C
 <tr>
   <td>@ref DesignPatternExamples_cpp::IObserverNumberChanged "IObserverNumberChanged" interface
   <td>@ref DesignPatternExamples_csharp.IObserverNumberChanged "IObserverNumberChanged" interface
   <td>@ref DesignPatternExamples_python.observer.observersubject_numberproducer.IObserverNumberChanged "IObserverNumberChanged" interface
+  <td>Not Applicable
 <tr>
   <td> @ref DesignPatternExamples_cpp::INumberProducer "INumberProducer" interface
   <td>@ref DesignPatternExamples_csharp::INumberProducer "INumberProducer" interface
   <td>@ref DesignPatternExamples_python.observer.observersubject_numberproducer.INumberProducer "INumberProducer" interface
+  <td>Not Applicable
 <tr>
   <td>@ref DesignPatternExamples_cpp::IEventNotifications "IEventNotifications" interface
   <td>@ref DesignPatternExamples_csharp.IEventNotifications "IEventNotifications" interface
   <td>@ref DesignPatternExamples_python.observer.observersubject_numberproducer.IEventNotifications "IEventNotifications" interface
+  <td>Not Applicable
 <tr>
   <td>@ref DesignPatternExamples_cpp::ObserverSubject_NumberProducer "ObserverSubject_NumberProducer" class
   <td>@ref DesignPatternExamples_csharp::ObserverSubject_NumberProducer "ObserverSubject_NumberProducer" class
   <td>@ref DesignPatternExamples_python.observer.observersubject_numberproducer.ObserverSubject_NumberProducer "ObserverSubject_NumberProducer" class
+  <td>NumberProducer structure<br>
+      NumberProducer_Create()<br>
+      NumberProducer_Destroy()
 <tr>
   <td>@ref DesignPatternExamples_cpp::ObserverForDecimal "ObserverForDecimal" class
   <td>@ref DesignPatternExamples_csharp.ObserverForDecimal "ObserverForDecimal" class
   <td>@ref DesignPatternExamples_python.observer.observer_class.ObserverForDecimal "ObserverForDecimal" class
+  <td>ObserverForDecimal_NumberChanged()
 <tr>
   <td>@ref DesignPatternExamples_cpp::ObserverForHexaDecimal "ObserverForHexaDecimal" class
   <td>@ref DesignPatternExamples_csharp.ObserverForHexaDecimal "ObserverForHexaDecimal" class
   <td>@ref DesignPatternExamples_python.observer.observer_class.ObserverForHexaDecimal "ObserverForHexaDecimal" class
+  <td>ObserverForHexadecimal_NumberChanged()
 <tr>
   <td>@ref DesignPatternExamples_cpp::ObserverForBinary "ObserverForBinary" class
   <td>@ref DesignPatternExamples_csharp.ObserverForBinary "ObserverForBinary" class
   <td>@ref DesignPatternExamples_python.observer.observer_class.ObserverForBinary "ObserverForBinary" class
+  <td>ObserverForBinary_NumberChanged()
 </table>
 
 In this example of the Observer pattern, a Subject contains a numerical
 value that can change.  There are three observers to the subject who are
 notified whenever the value changes.  Each observer pulls the number from
-the Subject and displays the number in a different base.  Typically these
-observers would run on different threads but in the interest of keeping
-things readable, everything runs on the same thread.  The order of the
-output is dictated by the order of the observers subscribing to the
-Subject.
+the Subject (for C++, C#, and Python) or is pushed the number (for C) and then
+displays the number in a different base.  Typically these observers would run
+on different threads but in the interest of keeping things readable, everything
+runs on the same thread.  The order of the output is dictated by the order of
+the observers subscribing to the Subject.
 
-*Note: This example could be made simpler by having the Subject push the
-data to the observers.  I wanted to show the more complex form of the
-Observer pattern, however, so I went with a pull model.*
+*Note: For C++, C#, and Python, this example could be made simpler by having
+the Subject push the data to the observers, as shown in the example for C.  I
+wanted to show the more complex form of the Observer pattern, however, so I
+went with a pull model.*
 
-*The push model would have eliminated the need for the INumberProducer
-interface on the Subject as well as the need to take and store the
-INumberProducer object in each observer.  And that in turn would simplify
-each observer class down to a single method to support the
+*As the C example suggests, the push model would have eliminated the need for
+the INumberProducer interface on the Subject as well as the need to take and
+store the INumberProducer object in each observer.  And that in turn would
+simplify each observer class down to a single method to support the
 IObserverNumberChanged interface.*
 
 
@@ -126,6 +137,10 @@ __C#__
 __Python__
 
 @snippet python/DesignPatternExamples_python/observer/observer_exercise.py Using Observer in Python
+
+__C__
+
+@snippet c/Observer_Exercise.c Using Observer in C
 
 ### See Also
 - @ref mainpage "Main page"

@@ -195,6 +195,7 @@
     <ClCompile Include="helpers\stringlist.c" />
     <ClCompile Include="helpers\strstri.c" />
     <ClCompile Include="helpers\titlecase.c" />
+    <ClCompile Include="helpers\uint32_to_binary.c" />
     <ClCompile Include="helpers\uintarray.c" />
     <ClCompile Include="Interpreter_Exercise.c" />
     <ClCompile Include="Interpreter_Interpreter.c" />
@@ -215,6 +216,8 @@
     <ClCompile Include="NullObject_MoveCommand.c" />
     <ClCompile Include="NullObject_MoveCommandList.c" />
     <ClCompile Include="Observer_Exercise.c" />
+    <ClCompile Include="Observer_NumberChangedFunctionList.c" />
+    <ClCompile Include="Observer_NumberProducer.c" />
     <ClCompile Include="program.c" />
     <ClCompile Include="Proxy_Exercise.c" />
     <ClCompile Include="State_Exercise.c" />
@@ -261,6 +264,7 @@
     <ClInclude Include="helpers\readkey.h" />
     <ClInclude Include="helpers\sleep.h" />
     <ClInclude Include="helpers\titlecase.h" />
+    <ClInclude Include="helpers\uint32_to_binary.h" />
     <ClInclude Include="helpers\uintarray.h" />
     <ClInclude Include="helpers\makelocaltime.h" />
     <ClInclude Include="helpers\replace.h" />
@@ -287,6 +291,8 @@
     <ClInclude Include="NullObject_MoveCommand.h" />
     <ClInclude Include="NullObject_MoveCommandList.h" />
     <ClInclude Include="Observer_Exercise.h" />
+    <ClInclude Include="Observer_NumberChangedFunctionList.h" />
+    <ClInclude Include="Observer_NumberProducer.h" />
     <ClInclude Include="Proxy_Exercise.h" />
     <ClInclude Include="State_Exercise.h" />
     <ClInclude Include="Strategy_Exercise.h" />
