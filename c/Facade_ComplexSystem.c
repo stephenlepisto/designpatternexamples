@@ -3,6 +3,7 @@
 /// Implementation of the IDeviceNetworkLowLevel interface and the complex
 /// system it represents for the @ref facade_pattern.
 
+#include <stdio.h>
 #include "Facade_Interface.h"
 #include "Facade_ComplexSystem.h"
 
@@ -43,10 +44,10 @@ typedef struct
 /// </summary>
 typedef struct
 {
-    const char* Name;
-    bool        IsLocked;
-    DeviceNode* nodes;
-    size_t      numNodes;
+    const char* Name;      ///< Name of device chain
+    bool        IsLocked;  ///< true if device chain is locked; otherwise, false
+    DeviceNode* nodes;     ///< List of nodes in this device chain
+    size_t      numNodes;  ///< Number of nodes in the `nodes` field
 } DeviceChain;
 
 
@@ -202,7 +203,11 @@ static void DeviceChain_GetIdCodesForVisibleNodes(int chainIndex, UIntArray* idc
             {
                 if (nodes[index].Visible)
                 {
-                    UIntArray_AddInt(idcodes, nodes[index].Idcode);
+                    if (!UIntArray_AddInt(idcodes, nodes[index].Idcode))
+                    {
+                        printf("  Error!  Out of memory condition adding idcode to list of idcodes in DeviceChain_GetIdCodesForVisibleNodes()!\n");
+                        break;
+                    }
                 }
             }
         }

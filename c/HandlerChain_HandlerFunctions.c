@@ -6,6 +6,7 @@
 /// as used in the @ref handlerchain_pattern.
 
 #include <stdlib.h>
+#include <stdio.h>
 #include <stdbool.h>
 
 #include "helpers/mutex.h"
@@ -105,19 +106,26 @@ void HandlerChain_SendMessage(int windowId, Message* message)
 {
     _LockMutex();
     UIntArray localList = { 0 };
-    UIntArray_Copy(&_handleList, &localList);
+    bool success = UIntArray_Copy(&_handleList, &localList);
     _UnlockMutex();
 
-    for (size_t index = 0; index < localList.length; index++)
+    if (success)
     {
-        if (windowId == -1 || windowId == (int)localList.data[index])
+        for (size_t index = 0; index < localList.length; index++)
         {
-            if (MessageWindow_ProcessMessage((int)localList.data[index], message))
+            if (windowId == -1 || windowId == (int)localList.data[index])
             {
-                // Processing terminated
-                break;
+                if (MessageWindow_ProcessMessage((int)localList.data[index], message))
+                {
+                    // Processing terminated
+                    break;
+                }
             }
         }
+    }
+    else
+    {
+        printf("  Error!  Out of memory condition copying the handler chain list in HandlerChain_SendMessage()!\n'");
     }
     UIntArray_Clear(&localList);
 }
@@ -125,15 +133,27 @@ void HandlerChain_SendMessage(int windowId, Message* message)
 ///////////////////////////////////////////////////////////////////////////////
 // HandlerChain_AddWindow()
 ///////////////////////////////////////////////////////////////////////////////
-void HandlerChain_AddWindow(int windowId)
+bool HandlerChain_AddWindow(int windowId)
 {
+    bool success = false;
+
     _LockMutex();
     int foundIndex = UIntArray_Find(&_handleList, (uint32_t)windowId);
     if (foundIndex == -1)
     {
-        UIntArray_AddInt(&_handleList, (uint32_t)windowId);
+        success = UIntArray_AddInt(&_handleList, (uint32_t)windowId);
+        if (!success)
+        {
+            printf("  Error!  Out of memory condition adding window handle to handler chain in HandlerChain_AddWindow()!\n");
+        }
+    }
+    else
+    {
+        printf("  Error!  Unable to find window handle %d in HandlerChain_AddWindow()!\n", windowId);
     }
     _UnlockMutex();
+
+    return false;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -153,27 +173,51 @@ void HandlerChain_RemoveWindow(int windowId)
 ///////////////////////////////////////////////////////////////////////////////
 // HandlerChain_ToString()
 ///////////////////////////////////////////////////////////////////////////////
-void HandlerChain_ToString(DynamicString* output)
+bool HandlerChain_ToString(DynamicString* output)
 {
+    bool success = false;
+
     if (output != NULL)
     {
         _LockMutex();
         UIntArray localList = { 0 };
-        UIntArray_Copy(&_handleList, &localList);
+        success = UIntArray_Copy(&_handleList, &localList);
         _UnlockMutex();
 
-        for (size_t index = 0; index < _handleList.length; index++)
+        if (success)
         {
-            DynamicString localOutput = { 0 };
-            MessageWindow_ToString((int)_handleList.data[index], &localOutput);
-            if (localOutput.length != 0)
+            for (size_t index = 0; index < _handleList.length; index++)
             {
-                DynamicString_Append(output, "    ");
-                DynamicString_Append(output, localOutput.string);
-                DynamicString_Append(output, "\n");
+                DynamicString localOutput = { 0 };
+                success = MessageWindow_ToString((int)_handleList.data[index], &localOutput);
+                if (success)
+                {
+                    success = DynamicString_Append(output, "    ");
+                    if (success)
+                    {
+                        success = DynamicString_Append(output, localOutput.string);
+                    }
+                    if (success)
+                    {
+                        success = DynamicString_Append(output, "\n");
+                    }
+                }
+
+                DynamicString_Clear(&localOutput);
+
+                if (!success)
+                {
+                    printf("  Error!  Out of memory condition converting handler chain to a string!\n");
+                    break;
+                }
             }
-            DynamicString_Clear(&localOutput);
+        }
+        else
+        {
+            printf("  Error!  Out of memory condition copying the handler chain in HandlerChain_ToString()!\n");
         }
         UIntArray_Clear(&localList);
     }
+
+    return success;
 }

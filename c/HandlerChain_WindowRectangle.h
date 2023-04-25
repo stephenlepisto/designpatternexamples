@@ -58,7 +58,10 @@ bool WindowRectangle_PointInside(WindowRectangle* rectangle, MessagePosition* po
 /// <param name="output">A DynamicString that returns the string version of the
 /// rectangle.  Call DynamicString_Initialize() on this object before passing
 /// as an argument.</param>
-void WindowRectangle_ToString(WindowRectangle* rectangle, DynamicString* output);
+/// <returns>Returns true if the rectangle was formatted as a string; otherwise,
+/// returns false, indicating an out of memory condition (or NULL argument).
+/// </returns>
+bool WindowRectangle_ToString(WindowRectangle* rectangle, DynamicString* output);
 
 
 #endif // __HANDLERCHAIN_WINDOWRECTANGLE_H__

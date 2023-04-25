@@ -11,17 +11,29 @@
 ///////////////////////////////////////////////////////////////////////////////
 // MessagePosition_ToString()
 ///////////////////////////////////////////////////////////////////////////////
-void MessagePosition_ToString(MessagePosition* position, DynamicString* output)
+bool MessagePosition_ToString(MessagePosition* position, DynamicString* output)
 {
+    bool success = false;
+
     if (position != NULL && output != NULL)
     {
         char buffer[64] = { 0 };
         int num_chars = sprintf_s(buffer, sizeof(buffer), "x=%2d,y=%2d", position->X, position->Y);
         if (num_chars != -1)
         {
-            DynamicString_Append(output, buffer);
+            success = DynamicString_Append(output, buffer);
+            if (!success)
+            {
+                printf("  Error!  out of memory condition appending message position as string in MessagePosition_ToString()!\n");
+            }
+        }
+        else
+        {
+            printf("  Error!  sprintf_s() failed in MessagePosition_ToString()!\n");
         }
     }
+
+    return success;
 }
 
 
@@ -46,8 +58,10 @@ void Message_Initialize(Message* message, MessageType type, int x, int y)
 ///////////////////////////////////////////////////////////////////////////////
 // Message_ToString()
 ///////////////////////////////////////////////////////////////////////////////
-void Message_ToString(Message* message, DynamicString* output)
+bool Message_ToString(Message* message, DynamicString* output)
 {
+    bool success = false;
+
     if (message != NULL && output != NULL)
     {
         char buffer[64] = { 0 };
@@ -72,13 +86,26 @@ void Message_ToString(Message* message, DynamicString* output)
         }
         DynamicString positionOutput = { 0 };
         DynamicString_Initialize(&positionOutput);
-        MessagePosition_ToString(&message->Position, &positionOutput);
+        success = MessagePosition_ToString(&message->Position, &positionOutput);
 
-        int num_chars = sprintf_s(buffer, sizeof(buffer), "%s at (%s)", messageTypeAsString, positionOutput.string);
-        if (num_chars != -1)
+        if (success)
         {
-            DynamicString_Append(output, buffer);
+            int num_chars = sprintf_s(buffer, sizeof(buffer), "%s at (%s)", messageTypeAsString, positionOutput.string);
+            if (num_chars != -1)
+            {
+                success = DynamicString_Append(output, buffer);
+                if (!success)
+                {
+                    printf("  Error!  Out of memory condition in Message_ToString() while appending string to output!\n");
+                }
+            }
+            else
+            {
+                printf("  Error!  sprintf_s() failed in Message_ToString!\n");
+            }
         }
         DynamicString_Clear(&positionOutput);
     }
+
+    return success;
 }

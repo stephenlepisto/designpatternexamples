@@ -144,14 +144,20 @@ void Interpreter_Exercise()
         const char* tokensAsString = _TokensToString(tokenList);
 
         DynamicString sentence = { 0 };
-        Interpreter_Interpret(tokenList, &sentence);
+        bool success = Interpreter_Interpret(tokenList, &sentence);
 
-        // 50 is a magic number corresponding to the longest token list
-        // expressed as a string.  Derived empirically.  It makes the
-        // output easier to, er, interpret.
-        printf("  %-50s ==> \"%s\"\n", tokensAsString, sentence.string);
-
+        if (success)
+        {
+            // 50 is a magic number corresponding to the longest token list
+            // expressed as a string.  Derived empirically.  It makes the
+            // output easier to, er, interpret.
+            printf("  %-50s ==> \"%s\"\n", tokensAsString, sentence.string);
+        }
         DynamicString_Clear(&sentence);
+        if (!success)
+        {
+            break;
+        }
     }
 
     printf("  Done.\n");

@@ -41,7 +41,10 @@ enum
 /// <param name="output">A DynamicString object returning the sentence created
 /// through interpreting the tokens.  Call DynamicString_Clear() when done with
 /// the string.</param>
-void Interpreter_Interpret(const int* tokenList, DynamicString* output);
+/// <returns>Returns true if the token list was interpreted successfully;
+/// otherwise, returns false, indicating an out of memory condition (or a NULL
+/// argument.</returns>
+bool Interpreter_Interpret(const int* tokenList, DynamicString* output);
 
 #endif // __INTERPRETER_INTERPRETER_H__
 

@@ -65,8 +65,10 @@ bool WindowRectangle_PointInside(WindowRectangle* rectangle, MessagePosition* po
 ///////////////////////////////////////////////////////////////////////////////
 // WindowRectangle_ToString()
 ///////////////////////////////////////////////////////////////////////////////
-void WindowRectangle_ToString(WindowRectangle* rectangle, DynamicString* output)
+bool WindowRectangle_ToString(WindowRectangle* rectangle, DynamicString* output)
 {
+    bool success = false;
+
     if (rectangle != NULL && output != NULL)
     {
         char buffer[64] = { 0 };
@@ -74,7 +76,17 @@ void WindowRectangle_ToString(WindowRectangle* rectangle, DynamicString* output)
             rectangle->Left, rectangle->Top, rectangle->Right, rectangle->Bottom);
         if (num_chars != -1)
         {
-            DynamicString_Append(output, buffer);
+            success = DynamicString_Append(output, buffer);
+            if (!success)
+            {
+                printf("  Error!  Out of memory condition formatting a window's rectangle as a string in WindowRectangle_ToString()!\n");
+            }
+        }
+        else
+        {
+            printf("  Error!  sprintf_s() failed in WindowRectangle_ToString() to format a window's rectangle as a string!\n");
         }
     }
+
+    return success;
 }

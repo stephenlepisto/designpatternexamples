@@ -24,19 +24,36 @@
 /// <param name="items">The list of strings to convert.</param>
 /// <param name="output">A DynamicString object to be filled with the string
 /// representation of the list.</param>
-void _ListToString(StringList* items, DynamicString* output)
+/// <returns>Returns true if the string was created successfully; otherwise,
+/// returns false indicating an out of memory condition (or NULL argument).
+/// </returns>
+bool _ListToString(StringList* items, DynamicString* output)
 {
+    bool success = false;
+
     if (items != NULL && output != NULL)
     {
+        success = true;
         for (size_t index = 0; index < items->strings_count; ++index)
         {
             if (index != 0)
             {
-                DynamicString_Append(output, ", ");
+                success = DynamicString_Append(output, ", ");
             }
-            DynamicString_Append(output, items->strings[index]);
+            if (success)
+            {
+                success = DynamicString_Append(output, items->strings[index]);
+            }
+
+            if (!success)
+            {
+                printf("  Error!  Out of memory condition converting a list of strings to a comma-delimited string in _ListToString()!\n");
+                break;
+            }
         }
     }
+
+    return success;
 }
 
 /// <summary>
@@ -209,12 +226,14 @@ bool _Mediator_Example_ShowAllGroups()
     _ReportAnyMediatorError("Getting all groups", errorCode);
     if (errorCode == MediatorErrorCode_No_Error)
     {
-        _ListToString(&groupNames, &output);
-        printf("  Operation 1: Show all groups\n");
-        printf("    All groups: %s\n", output.string);
+        canContinue = _ListToString(&groupNames, &output);
+        if (canContinue)
+        {
+            printf("  Operation 1: Show all groups\n");
+            printf("    All groups: %s\n", output.string);
+        }
         DynamicString_Clear(&output);
         StringList_Clear(&groupNames);
-        canContinue = true;
     }
     
     return canContinue;
@@ -238,12 +257,14 @@ bool _Mediator_Example_ShowAllUsers()
     _ReportAnyMediatorError("Getting all users", errorCode);
     if (errorCode == MediatorErrorCode_No_Error)
     {
-        _ListToString(&userNames, &output);
-        printf("  Operation 2: Show all users\n");
-        printf("    All users : %s\n", output.string);
+        canContinue = _ListToString(&userNames, &output);
+        if (canContinue)
+        {
+            printf("  Operation 2: Show all users\n");
+            printf("    All users : %s\n", output.string);
+        }
         DynamicString_Clear(&output);
         StringList_Clear(&userNames);
-        canContinue = true;
     }
 
     return canContinue;
@@ -287,11 +308,13 @@ bool _Mediator_Example_ShowUsersInGroup()
     _ReportAnyMediatorError("Getting all users in a group", errorCode);
     if (errorCode == MediatorErrorCode_No_Error)
     {
-        _ListToString(&userNames, &output);
-        printf("    All users in '%s' group: %s\n", groupName, output.string);
+        canContinue = _ListToString(&userNames, &output);
+        if (canContinue)
+        {
+            printf("    All users in '%s' group: %s\n", groupName, output.string);
+        }
         DynamicString_Clear(&output);
         StringList_Clear(&userNames);
-        canContinue = true;
     }
 
     return canContinue;
@@ -316,11 +339,13 @@ bool _Mediator_Example_ShowAllGroupsContainingUser()
     _ReportAnyMediatorError("Getting all groups containing a user", errorCode);
     if (errorCode == MediatorErrorCode_No_Error)
     {
-        _ListToString(&groupNames, &output);
-        printf("    All groups with user '%s': %s\n", userName, output.string);
+        canContinue = _ListToString(&groupNames, &output);
+        if (canContinue)
+        {
+            printf("    All groups with user '%s': %s\n", userName, output.string);
+        }
         DynamicString_Clear(&output);
         StringList_Clear(&groupNames);
-        canContinue = true;
     }
 
     return canContinue;
@@ -352,11 +377,13 @@ bool _Mediator_Example_RemoveUserFromGroup()
         _ReportAnyMediatorError("Getting groups with a user", errorCode);
         if (errorCode == MediatorErrorCode_No_Error)
         {
-            _ListToString(&groupNames, &output);
-            printf("      All groups with user '%s': %s\n", userName, output.string);
+            canContinue = _ListToString(&groupNames, &output);
+            if (canContinue)
+            {
+                printf("      All groups with user '%s': %s\n", userName, output.string);
+            }
             DynamicString_Clear(&output);
             StringList_Clear(&groupNames);
-            canContinue = true;
         }
     }
 
@@ -388,11 +415,13 @@ bool _Mediator_Example_AddUserToGroup()
         _ReportAnyMediatorError("Getting groups with a user", errorCode);
         if (errorCode == MediatorErrorCode_No_Error)
         {
-            _ListToString(&groupNames, &output);
-            printf("      All groups with user '%s': %s\n", userName, output.string);
+            canContinue = _ListToString(&groupNames, &output);
+            if (canContinue)
+            {
+                printf("      All groups with user '%s': %s\n", userName, output.string);
+            }
             DynamicString_Clear(&output);
             StringList_Clear(&groupNames);
-            canContinue = true;
         }
     }
 
@@ -418,25 +447,30 @@ bool _Mediator_Example_RemoveUserFromAllGroups()
     _ReportAnyMediatorError("Getting groups with a user before removing user", errorCode);
     if (errorCode == MediatorErrorCode_No_Error)
     {
-        _ListToString(&groupNames, &output);
-        printf("    Removing user '%s' from all groups.\n", userName);
-        printf("      Start: all groups with user '%s': %s\n", userName, output.string);
-        DynamicString_Clear(&output);
-        StringList_Clear(&groupNames);
-        printf("      Removing...\n");
-        errorCode = Mediator_RemoveUserFromAllGroups(userName);
-        _ReportAnyMediatorError("Removing user from all groups", errorCode);
-        if (errorCode == MediatorErrorCode_No_Error)
+        canContinue = _ListToString(&groupNames, &output);
+        if (canContinue)
         {
-            errorCode = Mediator_GetGroupsWithUser(userName, &groupNames);
-            _ReportAnyMediatorError("Getting groups with a user after removing user", errorCode);
+            printf("    Removing user '%s' from all groups.\n", userName);
+            printf("      Start: all groups with user '%s': %s\n", userName, output.string);
+            DynamicString_Clear(&output);
+            StringList_Clear(&groupNames);
+            printf("      Removing...\n");
+            errorCode = Mediator_RemoveUserFromAllGroups(userName);
+            _ReportAnyMediatorError("Removing user from all groups", errorCode);
             if (errorCode == MediatorErrorCode_No_Error)
             {
-                _ListToString(&groupNames, &output);
-                printf("      End: all groups with user '%s': %s\n", userName, output.string);
-                DynamicString_Clear(&output);
-                StringList_Clear(&groupNames);
-                canContinue = true;
+                errorCode = Mediator_GetGroupsWithUser(userName, &groupNames);
+                _ReportAnyMediatorError("Getting groups with a user after removing user", errorCode);
+                if (errorCode == MediatorErrorCode_No_Error)
+                {
+                    canContinue = _ListToString(&groupNames, &output);
+                    if (canContinue)
+                    {
+                        printf("      End: all groups with user '%s': %s\n", userName, output.string);
+                    }
+                    DynamicString_Clear(&output);
+                    StringList_Clear(&groupNames);
+                }
             }
         }
     }
@@ -469,20 +503,22 @@ bool _Mediator_Example_RemoveUser()
         _ReportAnyMediatorError("Getting all users after removing a user", errorCode);
         if (errorCode == MediatorErrorCode_No_Error)
         {
-            _ListToString(&userNames, &output);
-            printf("      All users : %s\n", output.string);
+            canContinue = _ListToString(&userNames, &output);
+            if (canContinue)
+            {
+                printf("      All users : %s\n", output.string);
+            }
             DynamicString_Clear(&output);
             StringList_Clear(&userNames);
         }
     }
 
-    if (errorCode == MediatorErrorCode_No_Error)
+    if (errorCode == MediatorErrorCode_No_Error && canContinue)
     {
         errorCode = Mediator_GetAllGroups(&groupNames);
         _ReportAnyMediatorError("Getting all groups after removing a user", errorCode);
         if (errorCode == MediatorErrorCode_No_Error)
         {
-            canContinue = true;
             for (size_t index = 0; index < groupNames.strings_count; index++)
             {
                 const char* name = groupNames.strings[index];
@@ -490,10 +526,17 @@ bool _Mediator_Example_RemoveUser()
                 _ReportAnyMediatorError("Getting users in a group after removing a user", errorCode);
                 if (errorCode == MediatorErrorCode_No_Error)
                 {
-                    _ListToString(&userNames, &output);
-                    printf("      Users in group '%s': %s\n", name, output.string);
+                    canContinue = _ListToString(&userNames, &output);
+                    if (canContinue)
+                    {
+                        printf("      Users in group '%s': %s\n", name, output.string);
+                    }
                     DynamicString_Clear(&output);
                     StringList_Clear(&userNames);
+                    if (!canContinue)
+                    {
+                        break;
+                    }
                 }
                 else
                 {

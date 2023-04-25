@@ -54,7 +54,10 @@ bool MessageWindow_ProcessMessage(int windowId, Message* message);
 /// <param name="output">A DynamicString that returns the string version of the
 /// window.  Call DynamicString_Initialize() on this object before passing
 /// as an argument.</param>
-void MessageWindow_ToString(int windowId, DynamicString* output);
+/// <returns>Returns true if the message window was converted to a string;
+/// otherwise, returns false, indicating an out of memory condition (or a NULL
+/// argument).</returns>
+bool MessageWindow_ToString(int windowId, DynamicString* output);
 
 #endif //__HANDLERCHAIN_WINDOW_H__
 

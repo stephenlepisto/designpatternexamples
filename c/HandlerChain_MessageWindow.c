@@ -324,11 +324,21 @@ int MessageWindow_Create(const char* title, int x, int y, int w, int h)
         {
             windowId = _nextWindowId++;
             window->_windowId = windowId;
-            HandlerChain_AddWindow(window->_windowId);
-            window->_title = title;
-            WindowRectangle_Initialize(&window->_windowBox, x, y, w, h);
-            WindowRectangle_Initialize(&window->_closeBox, window->_windowBox.Right - CLOSE_WIDTH, window->_windowBox.Top, CLOSE_WIDTH, CLOSE_HEIGHT);
-            _AppendWindowToList(window);
+            bool success = HandlerChain_AddWindow(window->_windowId);
+            if (success)
+            {
+                window->_title = title;
+                WindowRectangle_Initialize(&window->_windowBox, x, y, w, h);
+                WindowRectangle_Initialize(&window->_closeBox, window->_windowBox.Right - CLOSE_WIDTH, window->_windowBox.Top, CLOSE_WIDTH, CLOSE_HEIGHT);
+                _AppendWindowToList(window);
+            }
+            else
+            {
+                printf("  Error!  Out of memory condition adding a window to the handler chain in MessageWindow_Create()!\n");
+                free(window);
+                window = NULL;
+                windowId = -1;
+            }
         }
     }
 
@@ -394,8 +404,10 @@ bool MessageWindow_ProcessMessage(int windowId, Message* message)
 ///////////////////////////////////////////////////////////////////////////////
 // MessageWindow_ProcessMessage()
 ///////////////////////////////////////////////////////////////////////////////
-void MessageWindow_ToString(int windowId, DynamicString* output)
+bool MessageWindow_ToString(int windowId, DynamicString* output)
 {
+    bool success = false;
+
     if (output != NULL)
     {
         MessageWindow* window = _FindWindow(windowId);
@@ -403,15 +415,28 @@ void MessageWindow_ToString(int windowId, DynamicString* output)
         {
             char buffer[256] = { 0 };
             DynamicString boxOutput = { 0 };
-            WindowRectangle_ToString(&window->_windowBox, &boxOutput);
-            int num_chars = sprintf_s(buffer, sizeof(buffer), "[id=%2d] \"%s\" (%s), selected=%s",
-                window->_windowId, window->_title, boxOutput.string,
-                (window->_selected) ? "true" : "false");
-            if (num_chars != -1)
+            success = WindowRectangle_ToString(&window->_windowBox, &boxOutput);
+            if (success)
             {
-                DynamicString_Append(output, buffer);
+                int num_chars = sprintf_s(buffer, sizeof(buffer), "[id=%2d] \"%s\" (%s), selected=%s",
+                    window->_windowId, window->_title, boxOutput.string,
+                    (window->_selected) ? "true" : "false");
+                if (num_chars != -1)
+                {
+                    success = DynamicString_Append(output, buffer);
+                    if (!success)
+                    {
+                        printf("  Error!  Out of memory condition formatting a MessageWindow as a string!\n");
+                    }
+                }
+                else
+                {
+                    printf("  Error!  sprintf_s() failed in MessageWindow_ToString()!\n");
+                }
             }
             DynamicString_Clear(&boxOutput);
         }
     }
+
+    return success;
 }

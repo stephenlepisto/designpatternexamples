@@ -27,7 +27,10 @@ void HandlerChain_SendMessage(int windowId, Message* message);
 /// If a MessageWindow is already in the list, it is not added again.
 /// </summary>
 /// <param name="windowId">ID of the MessageWindow to add.</param>
-void HandlerChain_AddWindow(int windowId);
+/// <returns>Returns true if the handler chain was successfully added to the
+/// list; otherwise, returns false, indicating an out of memory condition
+/// (or a NULL argument).</returns>
+bool HandlerChain_AddWindow(int windowId);
 
 /// <summary>
 /// Remove an instance of a MessageWindow from the list,
@@ -45,7 +48,10 @@ void HandlerChain_RemoveWindow(int windowId);
 /// </summary>
 /// <param name="output">Returns a string representation of the Handler Chain
 /// and all the handlers it contains.</param>
-void HandlerChain_ToString(DynamicString* output);
+/// <returns>Returns true if the handler chain was successfully converted to
+/// a string; otherwise, returns false, indicating an out of memory condition
+/// (or a NULL argument).</returns>
+bool HandlerChain_ToString(DynamicString* output);
 
 
 #endif // __HANDLECHAIN_HANDLERFUNCTIONS_H__

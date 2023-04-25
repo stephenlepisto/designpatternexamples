@@ -72,7 +72,10 @@ typedef struct
 /// <param name="output">A DynamicString in which to store the string
 /// representation of the `position` argument.  Call DynamicString_Initialize()
 /// on this object before passing as an argument.</param>
-void MessagePosition_ToString(MessagePosition* position, DynamicString* output);
+/// <returns>Returns true if the message position was successfully converted to
+/// a string; otherwise, returns false, indicating an out of memory condition
+/// (or a NULL argument).</returns>
+bool MessagePosition_ToString(MessagePosition* position, DynamicString* output);
 
 
 //========================================================================
@@ -116,7 +119,10 @@ void Message_Initialize(Message* message, MessageType type, int x, int y);
 /// <param name="message">The Message object to convert.</param>
 /// <param name="output">The string representation of the Message object.
 /// Call DynamicString_Initialize() on this object before passing as an argument.</param>
-void Message_ToString(Message* message, DynamicString* output);
+/// <returns>Returns true if the message was successfully converted to a string;
+/// otherwise, returns false, indicating an out of memory condition (or a NULL
+/// argument).</returns>
+bool Message_ToString(Message* message, DynamicString* output);
 
 #endif // __HANDLERCHAIN_MESSAGE_H__
 

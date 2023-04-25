@@ -108,10 +108,13 @@ static const char* _InterpretToken(int token)
 ///////////////////////////////////////////////////////////////////////////////
 // Interpreter_Interpret()
 ///////////////////////////////////////////////////////////////////////////////
-void Interpreter_Interpret(const int* tokenList, DynamicString* output)
+bool Interpreter_Interpret(const int* tokenList, DynamicString* output)
 {
+    bool success = false;
+
     if (tokenList != NULL && output != NULL)
     {
+        success = true;
         for (size_t tokenIndex = 0; tokenList[tokenIndex] != EOL; ++tokenIndex)
         {
             const char* tokenAsString = _InterpretToken(tokenList[tokenIndex]);
@@ -123,19 +126,35 @@ void Interpreter_Interpret(const int* tokenList, DynamicString* output)
                 if (titleString == NULL)
                 {
                     printf("  Error!  titlecase() in Interpreter_Interpret() encountered an out of memory condition!\n");
+                    success = false;
                     break;
                 }
                 tokenAsString = titleString;
             }
-            DynamicString_Append(output, tokenAsString);
+            success = DynamicString_Append(output, tokenAsString);
             free(titleString); // Free this now that we are done with it
 
-            // Rule 4: No space between last two tokens (if the following expression is false)
-            if (tokenList[tokenIndex + 2] != EOL)
+            if (success)
             {
-                // Rule 3: Separate all words by a single space.
-                DynamicString_Append(output, " ");
+                // Rule 4: No space between last two tokens (if the following expression is false)
+                if (tokenList[tokenIndex + 2] != EOL)
+                {
+                    // Rule 3: Separate all words by a single space.
+                    success = DynamicString_Append(output, " ");
+                    if (!success)
+                    {
+                        printf("  Error!  Out of memory condition adding space separator to output in Interpreter_Interpret()!\n");
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                printf("  Error!  Out of memory condition adding token to output in Interpreter_Interpret()!\n");
+                break;
             }
         }
     }
+
+    return success;
 }
