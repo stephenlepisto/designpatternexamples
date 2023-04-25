@@ -37,8 +37,10 @@ void UIntArray_Clear(UIntArray* array)
 ///////////////////////////////////////////////////////////////////////////////
 // UIntArray_AddInt()
 ///////////////////////////////////////////////////////////////////////////////
-void UIntArray_AddInt(UIntArray* array, uint32_t value)
+bool UIntArray_AddInt(UIntArray* array, uint32_t value)
 {
+    bool success = false;
+
     if (array != NULL)
     {
         uint32_t* new_list = NULL;
@@ -62,8 +64,11 @@ void UIntArray_AddInt(UIntArray* array, uint32_t value)
             array->data = new_list;
             array->data[array->length] = value;
             array->length++;
+            success = true;
         }
     }
+
+    return success;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -110,8 +115,10 @@ int UIntArray_Find(UIntArray* array, uint32_t value)
 ///////////////////////////////////////////////////////////////////////////////
 // UIntArray_Copy()
 ///////////////////////////////////////////////////////////////////////////////
-void UIntArray_Copy(UIntArray* sourceArray, UIntArray* destinationArray)
+bool UIntArray_Copy(UIntArray* sourceArray, UIntArray* destinationArray)
 {
+    bool success = false;
+
     if (sourceArray != NULL && destinationArray != NULL)
     {
         if (sourceArray->data != NULL)
@@ -127,6 +134,7 @@ void UIntArray_Copy(UIntArray* sourceArray, UIntArray* destinationArray)
                     destinationArray->data = new_list;
                     destinationArray->allocatedLength = new_size;
                     destinationArray->length = sourceArray->length;
+                    success = true;
                 }
                 else
                 {
@@ -136,4 +144,6 @@ void UIntArray_Copy(UIntArray* sourceArray, UIntArray* destinationArray)
             }
         }
     }
+
+    return success;
 }

@@ -9,6 +9,7 @@
 #ifndef __UINTARRAY_H__
 #define __UINTARRAY_H__
 
+#include <stdbool.h>
 #include <stdint.h>
 
 /// <summary>
@@ -46,7 +47,10 @@ void UIntArray_Clear(UIntArray* array);
 /// </summary>
 /// <param name="array">The UIntArray object to update.</param>
 /// <param name="value">The value to add to the UIntArray object.</param>
-void UIntArray_AddInt(UIntArray* array, uint32_t value);
+/// <returns>Returns true if the value was added to the array; otherwise,
+/// returns false, indicating an out of memory condition (or a NULL argument).
+/// </returns>
+bool UIntArray_AddInt(UIntArray* array, uint32_t value);
 
 /// <summary>
 /// Remove the unsigned 32-bit integer from the given UIntArray object at the
@@ -73,7 +77,10 @@ int UIntArray_Find(UIntArray* array, uint32_t value);
 /// </summary>
 /// <param name="sourceArray">The UIntArray to copy from.</param>
 /// <param name="destinationArray">The UIntArray to copy to.</param>
-void UIntArray_Copy(UIntArray* sourceArray, UIntArray* destinationArray);
+/// <returns>Returns true if the array was successfully copied; otherwise,
+/// returns false, indicating an out of memory condition (or a NULL argument).
+/// </returns>
+bool UIntArray_Copy(UIntArray* sourceArray, UIntArray* destinationArray);
 
 #endif // __UINTARRAY_H__
 
