@@ -39,8 +39,8 @@ def State_Exercise():
 
     filterContext = StateContext_Class()
     textToFilter = \
-'''//########################################################################
-//########################################################################
+'''/*####################  Block Comment  #################################*/
+//####################  Line Comment  ####################################
 // A comment.  /* A nested comment */
         
 void State_Exercise() // An exercise in state machines

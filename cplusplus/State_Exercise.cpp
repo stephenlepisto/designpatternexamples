@@ -66,8 +66,8 @@ namespace DesignPatternExamples_cpp
 
         StateContext_Class filterContext;
         std::string textToFilter =
-            "//########################################################################\n"
-            "//########################################################################\n"
+            "/*####################  Block Comment  #################################*/\n"
+            "//####################  Line Comment  ####################################\n"
             "// A comment.  /* A nested comment */\n"
             "\n"
             "void State_Exercise() // An exercise in state machines\n"

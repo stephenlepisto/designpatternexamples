@@ -511,7 +511,6 @@ namespace DesignPatternExamples_csharp
                     break;
 
                 case '*':
-                    context.OutputCharacter(character);
                     nextState = CurrentState.EndBlockComment;
                     break;
 

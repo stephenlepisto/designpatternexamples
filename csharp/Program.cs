@@ -1581,9 +1581,9 @@ namespace DesignPatternExamples_csharp
             Console.WriteLine("State Exercise");
 
             StateContext_Class filterContext = new StateContext_Class();
-            string textToFilter = 
-                "//########################################################################\n" +
-                "//########################################################################\n" +
+            string textToFilter =
+                "/*####################  Block Comment  #################################*/\n" +
+                "//####################  Line Comment  ####################################\n" +
                 "// A comment.  /* A nested comment */\n" + 
                 "\n" +
                 "void State_Exercise() // An exercise in state machines\n" +

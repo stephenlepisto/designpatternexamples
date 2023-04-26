@@ -437,7 +437,6 @@ class State_BlockComment(IStateBehavior):
                 nextState = CurrentState.Done
 
             case '*':
-                context.OutputCharacter(character)
                 nextState = CurrentState.EndBlockComment
 
             case _:
