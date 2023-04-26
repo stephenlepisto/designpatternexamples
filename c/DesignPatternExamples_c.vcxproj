@@ -223,6 +223,7 @@
     <ClCompile Include="Proxy_ProxyService.c" />
     <ClCompile Include="Proxy_RealService.c" />
     <ClCompile Include="State_Exercise.c" />
+    <ClCompile Include="State_RemoveComments.c" />
     <ClCompile Include="Strategy_Exercise.c" />
     <ClCompile Include="Visitor_Exercise.c" />
   </ItemGroup>
@@ -300,6 +301,7 @@
     <ClInclude Include="Proxy_ProxyService.h" />
     <ClInclude Include="Proxy_RealService.h" />
     <ClInclude Include="State_Exercise.h" />
+    <ClInclude Include="State_RemoveComments.h" />
     <ClInclude Include="Strategy_Exercise.h" />
     <ClInclude Include="Visitor_Exercise.h" />
   </ItemGroup>

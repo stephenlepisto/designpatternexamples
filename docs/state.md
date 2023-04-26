@@ -102,30 +102,35 @@ knows about the instances of the state classes.
 # How to Use
 
 <table>
-<caption>Links to the State classes and interfaces</caption>
+<caption>Links to the State classes and interfaces or functions</caption>
 <tr>
   <th>C++
   <th>C#
   <th>Python
+  <th>C
 <tr>
   <td>@ref DesignPatternExamples_cpp::IStateContext "IStateContext" interface
   <td>@ref DesignPatternExamples_csharp::IStateContext "IStateContext" interface
   <td>@ref DesignPatternExamples_python.state.state_interface.IStateContext "IStateContext" interface
+  <td>&lt;Not Applicable&gt;
 <tr>
   <td>@ref DesignPatternExamples_cpp::IStateBehavior "IStateBehavior" interface
   <td>@ref DesignPatternExamples_cpp::IStateBehavior "IStateBehavior" interface
   <td>@ref DesignPatternExamples_python.state.state_interface.IStateBehavior "IStateBehavior" interface
+  <td>&lt;Not Applicable&gt;
 <tr>
   <td>@ref DesignPatternExamples_cpp::StateContext_Class "StateContext_Class" class
   <td>@ref DesignPatternExamples_csharp.StateContext_Class "StateContext_Class" class
   <td>@ref DesignPatternExamples_python.state.state_class.StateContext_Class "StateContext_Class"
+  <td>StateContext structure
 <tr>
   <td>(Hidden in C++)
   <td>&lt;Not Applicable&gt;
   <td>@ref DesignPatternExamples_python.state._state_class_private.StateContext_ClassImpl "StateContext_ClassImpl" class
+  <td>State_RemoveComments()
 </table>
 
-The demonstration example parses a block of C++ or C# code (Python parses C++
+The demonstration example parses a block of C, C++ or C# code (Python parses C++
 code since Python does not have nested comments to show off) to remove all
 comments.  It ignores comments inside of quotes.  The context maintains an
 iterator through the text and an accumulator of comment-free text.  The
@@ -133,15 +138,16 @@ context also maintains the current state.  The changes in state are
 displayed along the way.
 
 This example also demonstrates a parser that does not use a look-ahead
-approach, in which the next character coming is peeked at to determine
-which state should be next.  The look-ahead can potentially simplify the
-number of states needed but the example would get quite messy with
-potentially multiple if statements for each state change.
+approach, where the next character coming is peeked at to determine which state
+should be next.  The look-ahead can potentially simplify the number of states
+needed but the example would get quite messy with potentially multiple `if`
+statements for each state change.
 
-Note: This example highlights one problem of an object-oriented approach
-to a state machine and that is the sheer number of small classes that need
-to be managed.  You either get many classes in a single file or many files
-each with a small class.
+Note: *[C++, C#, Python]* This example highlights one problem of an
+object-oriented approach to a state machine and that is the sheer number of
+small classes that need to be managed.  You either get many classes in a single
+file or many files each with a small class.  Contrast this with the C function
+approach, which is much simpler.
 
 
 __C++__
@@ -155,6 +161,10 @@ __C#__
 __Python__
 
 @snippet python/DesignPatternExamples_python/state/state_exercise.py Using State in Python
+
+__C__
+
+@snippet c/State_Exercise.c Using State in C
 
 ### See Also
 - @ref mainpage "Main page"
