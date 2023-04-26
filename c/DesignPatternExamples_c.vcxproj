@@ -225,6 +225,7 @@
     <ClCompile Include="State_Exercise.c" />
     <ClCompile Include="State_RemoveComments.c" />
     <ClCompile Include="Strategy_Exercise.c" />
+    <ClCompile Include="Strategy_SortStrategy.c" />
     <ClCompile Include="Visitor_Exercise.c" />
   </ItemGroup>
   <ItemGroup>
@@ -303,6 +304,7 @@
     <ClInclude Include="State_Exercise.h" />
     <ClInclude Include="State_RemoveComments.h" />
     <ClInclude Include="Strategy_Exercise.h" />
+    <ClInclude Include="Strategy_SortStrategy.h" />
     <ClInclude Include="Visitor_Exercise.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

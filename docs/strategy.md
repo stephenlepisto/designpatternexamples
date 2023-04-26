@@ -43,7 +43,7 @@ about files and folders.  This feature can be broken down into two
 components:
 
 1. Fetch information about files/folders
-2. Display the fetched information about the files/folders
+2. Show the fetched information about the files/folders
 
 To fetch the information about files and folders, there are several
 options:
@@ -59,10 +59,10 @@ list of files/folders given a pattern.  Then specific implementations of
 the interface can deal with matching files and recursing through folders.
 
 The same approach can be taken with displaying the information:
-  - Display all information about files/folders in sorted order
-  - Display only the names of files/folders in sorted order
-  - Display only the names of files in sorted order
-  - Display only the names of folders in sorted order
+  - Show all information about files/folders in sorted order
+  - Show only the names of files/folders in sorted order
+  - Show only the names of files in sorted order
+  - Show only the names of folders in sorted order
 
 Each of these display options could be a strategy.  Define an interface
 that takes a list of information about files/folders and display all or
@@ -87,7 +87,7 @@ the `ls` program might look like this:
   3. Create instance of display interface based on input parameters
   4. Get list of files using file fetch interface
   5. Sort list of files using sorting interface
-  6. Display list of files using display interface
+  6. Show list of files using display interface
   7. Done.
 
 All the really hard stuff happens inside the implementation of each
@@ -102,30 +102,40 @@ later on without affecting the above pseudo-code.
   <th>C++
   <th>C#
   <th>Python
+  <th>C
 <tr>
   <td>@ref DesignPatternExamples_cpp::ISortEntries "ISortEntries" interface
   <td>@ref DesignPatternExamples_csharp.ISortEntries "ISortEntries" interface
   <td>@ref DesignPatternExamples_python.strategy.strategy_sortentries_class.Strategy_SortEntries_ClassFactory "Strategy_SortEntries_ClassFactory" interface
+  <td>&lt;Not Applicable&gt;
 <tr>
   <td>@ref DesignPatternExamples_cpp::Strategy_SortEntries_ClassFactory "Strategy_SortEntries_ClassFactory" class
   <td>@ref DesignPatternExamples_csharp.ISortEntries "ISortEntries" interface
   <td>@ref DesignPatternExamples_python.strategy.strategy_sortentries_class.Strategy_SortEntries_ClassFactory "Strategy_SortEntries_ClassFactory" class
+  <td>SortStrategy_Initialize()
 <tr>
   <td>@ref DesignPatternExamples_cpp::Strategy_SortEntries_ByName "Strategy_SortEntries_ByName" class
   <td>@ref DesignPatternExamples_csharp.Strategy_SortEntries_ByName "Strategy_SortEntries_ByName" class
   <td>@ref DesignPatternExamples_python.strategy.strategy_sortentries_class.Strategy_SortEntries_ByName "Strategy_SortEntries_ByName" class
+  <td>Sort_Entries()<br>
+      _Compare_Name()
 <tr>
   <td>@ref DesignPatternExamples_cpp::Strategy_SortEntries_ByAge "Strategy_SortEntries_ByAge" class
   <td>@ref DesignPatternExamples_csharp.Strategy_SortEntries_ByAge "Strategy_SortEntries_ByAge" class
   <td>@ref DesignPatternExamples_python.strategy.strategy_sortentries_class.Strategy_SortEntries_ByAge "Strategy_SortEntries_ByAge" class
+  <td>Sort_Entries()<br>
+      _Compare_Age()
 <tr>
   <td>@ref DesignPatternExamples_cpp::Strategy_SortEntries_ByHeight "Strategy_SortEntries_ByHeight" class
   <td>@ref DesignPatternExamples_csharp.Strategy_SortEntries_ByHeight "Strategy_SortEntries_ByHeight" class
   <td>@ref DesignPatternExamples_python.strategy.strategy_sortentries_class.Strategy_SortEntries_ByHeight "Strategy_SortEntries_ByHeight" class
+  <td>Sort_Entries()<br>
+      _Compare_Height()
 <tr>
   <td>@ref DesignPatternExamples_cpp::Strategy_ShowEntries_Class "Strategy_ShowEntries_Class"
   <td>@ref DesignPatternExamples_csharp.Strategy_ShowEntries_Class "Strategy_ShowEntries_Class" class
   <td>@ref DesignPatternExamples_python.strategy.strategy_showentries_class.Strategy_ShowEntries_Class "Strategy_ShowEntries_Class" class
+  <td>Display_Entries()<br>
 </table>
 
 As interesting as the above file lister example would be, it would be just
@@ -152,6 +162,10 @@ __C#__
 __Python__
 
 @snippet python/DesignPatternExamples_python/strategy/strategy_exercise.py Using Strategy in Python
+
+__C__
+
+@snippet c/Strategy_Exercise.c Using Strategy in C
 
 ### See Also
 - @ref mainpage "Main page"

@@ -244,6 +244,9 @@
     <ClCompile Include="State_RemoveComments.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Strategy_SortStrategy.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="helpers\stringlist.h">
@@ -472,6 +475,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="State_RemoveComments.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Strategy_SortStrategy.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
