@@ -247,6 +247,24 @@
     <ClCompile Include="Strategy_SortStrategy.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Visitor_Village.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="helpers\mapofstrings.c">
+      <Filter>Helper files</Filter>
+    </ClCompile>
+    <ClCompile Include="helpers\mapofint.c">
+      <Filter>Helper files</Filter>
+    </ClCompile>
+    <ClCompile Include="Visitor_Shop.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Visitor_OrderVisitor.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="helpers\conststringlist.c">
+      <Filter>Helper files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="helpers\stringlist.h">
@@ -479,6 +497,24 @@
     </ClInclude>
     <ClInclude Include="Strategy_SortStrategy.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="helpers\mapofstrings.h">
+      <Filter>Helper files</Filter>
+    </ClInclude>
+    <ClInclude Include="helpers\mapofint.h">
+      <Filter>Helper files</Filter>
+    </ClInclude>
+    <ClInclude Include="Visitor_Village.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Visitor_Shop.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Visitor_OrderVisitor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="helpers\conststringlist.h">
+      <Filter>Helper files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

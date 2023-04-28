@@ -1,19 +1,19 @@
 /// @file
 /// @brief
-/// Implementation of the @ref StringList structure and supporting functions to
-/// work with a list of strings: StringList_Initialize(), StringList_Clear(),
-/// StringList_AddString(), and StringList_Find().
+/// Implementation of the @ref ConstStringList structure and supporting functions to
+/// work with a list of strings: ConstStringList_Initialize(), ConstStringList_Clear(),
+/// ConstStringList_AddString(), ConstStringList_Remove(), and ConstStringList_Find().
 
 #include <stdlib.h>
 #include <string.h>
 #include <memory.h>
 
-#include "stringlist.h"
+#include "conststringlist.h"
 
 ///////////////////////////////////////////////////////////////////////////////
-// StringList_Initialize()
+// ConstStringList_Initialize()
 ///////////////////////////////////////////////////////////////////////////////
-void StringList_Initialize(StringList* stringList)
+void ConstStringList_Initialize(ConstStringList* stringList)
 {
     if (stringList != NULL)
     {
@@ -24,28 +24,26 @@ void StringList_Initialize(StringList* stringList)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-// StringList_Clear()
+// ConstStringList_Clear()
 ///////////////////////////////////////////////////////////////////////////////
-void StringList_Clear(StringList* stringList)
+void ConstStringList_Clear(ConstStringList* stringList)
 {
     if (stringList != NULL)
     {
         if (stringList->strings != NULL && stringList->strings_count != 0)
         {
-            for (size_t index = 0; index < stringList->strings_count; index++)
-            {
-                free((void *)stringList->strings[index]);
-            }
+            // The strings in the list are constant and are not supposed to be
+            // deleted.  Just forget they existed.
             free(stringList->strings);
-            StringList_Initialize(stringList);
+            ConstStringList_Initialize(stringList);
         }
     }
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-// StringList_AddString()
+// ConstStringList_AddString()
 ///////////////////////////////////////////////////////////////////////////////
-bool StringList_AddString(StringList* stringList, const char* string)
+bool ConstStringList_AddString(ConstStringList* stringList, const char* string)
 {
     bool stringAdded = false;
 
@@ -71,22 +69,18 @@ bool StringList_AddString(StringList* stringList, const char* string)
         if (new_list != NULL)
         {
             stringList->strings = new_list;
-            char* newString = _strdup(string);
-            if (newString != NULL)
-            {
-                stringList->strings[stringList->strings_count] = newString;
-                stringList->strings_count++;
-                stringAdded = true;
-            }
+            stringList->strings[stringList->strings_count] = string;
+            stringList->strings_count++;
+            stringAdded = true;
         }
     }
     return stringAdded;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-// StringList_AddStrings()
+// ConstStringList_AddStrings()
 ///////////////////////////////////////////////////////////////////////////////
-bool StringList_AddStrings(StringList* stringList, const char** strings, size_t numStrings)
+bool ConstStringList_AddStrings(ConstStringList* stringList, const char** strings, size_t numStrings)
 {
     bool stringsAdded = false;
 
@@ -115,13 +109,7 @@ bool StringList_AddStrings(StringList* stringList, const char** strings, size_t 
             size_t offset = stringList->strings_count;
             for (size_t index = 0; index < numStrings; index++)
             {
-                char* newString = _strdup(strings[index]);
-                if (newString == NULL)
-                {
-                    stringsAdded = false;
-                    break;
-                }
-                stringList->strings[offset + index] = newString;
+                stringList->strings[offset + index] = strings[index];
                 stringList->strings_count++;
             }
         }
@@ -131,29 +119,27 @@ bool StringList_AddStrings(StringList* stringList, const char** strings, size_t 
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-// StringList_Remove()
+// ConstStringList_Remove()
 ///////////////////////////////////////////////////////////////////////////////
-void StringList_Remove(StringList* stringList, int removeIndex)
+void ConstStringList_Remove(ConstStringList* stringList, int removeIndex)
 {
     if (stringList != NULL && stringList->strings != NULL)
     {
         if (removeIndex >= 0 && removeIndex < stringList->strings_count)
         {
-            const char* stringToRemove = stringList->strings[removeIndex];
             for (size_t stringIndex = removeIndex; stringIndex < stringList->allocated_count - 1; stringIndex++)
             {
                 stringList->strings[stringIndex] = stringList->strings[stringIndex + 1];
             }
             stringList->strings_count--;
-            free((char*)stringToRemove);
         }
     }
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-// StringList_Find()
+// ConstStringList_Find()
 ///////////////////////////////////////////////////////////////////////////////
-int StringList_Find(StringList* stringList, const char* string)
+int ConstStringList_Find(ConstStringList* stringList, const char* string)
 {
     int foundIndex = -1;
 

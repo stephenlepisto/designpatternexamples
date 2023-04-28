@@ -86,35 +86,48 @@ the data types are going to change infrequently.
 # How to Use
 
 <table>
-<caption>Links to the key Visitor classes and interfaces</caption>
+<caption>Links to the key Visitor classes and interfaces or functions</caption>
 <tr>
   <th>C++
   <th>C#
   <th>Python
+  <th>C
 <tr>
-<td colspan="3">__Visitors that Visit Elements__
+<td colspan="4">__Visitors that Visit Elements__
 <tr>
   <td>@ref DesignPatternExamples_cpp::Visitor "Visitor" base class
   <td>@ref DesignPatternExamples_csharp.Visitor "Visitor" base class
   <td>@ref DesignPatternExamples_python.visitor.visitor_class.Visitor "Visitor" base class
+  <td>&lt;Not Applicable&gt;
 <tr>
   <td>@ref DesignPatternExamples_cpp::OrderVisitor "OrderVisitor" class
   <td>@ref DesignPatternExamples_csharp.OrderVisitor "OrderVisitor" class
   <td>@ref DesignPatternExamples_python.visitor.visitor_ordervisitor.OrderVisitor "OrderVisitor" class
+  <td>OrderVisitor structure<br>
+      OrderVisitor_VisitShop()<br>
+      Village_VisitShop()
 <tr>
-<td colspan="3">__Elements to be Visited__
+<td colspan="4">__Elements to be Visited__
 <tr>
   <td>@ref DesignPatternExamples_cpp::Visitor_Shop "Visitor_Shop" base class
   <td>@ref DesignPatternExamples_csharp.Visitor_Shop "Visitor_Shop" base class
   <td>@ref DesignPatternExamples_python.visitor.visitor_visitor_shop.Visitor_Shop "Visitor_Shop" base class
+  <td>Visitor_Shop structure
 <tr>
   <td>@ref DesignPatternExamples_cpp::Visitor_Restaurant "Visitor_Restaurant" example class
   <td>@ref DesignPatternExamples_csharp.Visitor_Restaurant "Visitor_Restaurant" example class
   <td>@ref DesignPatternExamples_python.visitor.visitor_element_classes.Visitor_Restaurant "Visitor_Restaurant"
+  <td>Visitor_Shop structure
 </table>
 
-The example provided here shows a C++, a C#, and a Python version of the same visitor
-pattern.
+The example provided here shows a C++, a C#, Python, and C version of the same visitor
+pattern.  However, the C version is all functions and structures.
+
+For C, the entry point for visiting shops is Village_VisitShop(), which loops over
+all shops and calls OrderVisitor_VisitShop() with each shop in turn.  There are no
+structures representing types of shops so the Visitor_Shop structure represents
+all shops.  OrderVisitor_VisitShop() ignores any store that doesn't sell the
+requested items.
 
 __C++__
 
@@ -127,6 +140,10 @@ __C#__
 __Python__
 
 @snippet python/DesignPatternExamples_python/visitor/visitor_exercise.py Using Visitor in Python
+
+__C__
+
+@snippet c/Visitor_Exercise.c Using Visitor in C
 
 ### See Also
 - @ref mainpage "Main page"

@@ -60,6 +60,20 @@ void StringList_Clear(StringList* stringList);
 bool StringList_AddString(StringList* stringList, const char* string);
 
 /// <summary>
+/// Add an array of strings to the given string list.
+/// </summary>
+/// <param name="stringList">A pointer to a StringList representing the list of
+/// strings.</param>
+/// <param name="strings">Pointer to an array of strings to add to the list.
+/// The strings are duplicated and appended to the list.</param>
+/// <param name="numStrings">Number of strings in the `strings` parameter to
+/// add.</param>
+/// <returns>Returns true if the string was added to the list; otherwise, returns
+/// false, indicating an out of memory condition has occurred (the original
+/// string list is untouched in this case).</returns>
+bool StringList_AddStrings(StringList* stringList, const char** strings, size_t numStrings);
+
+/// <summary>
 /// Remove the specified string from the given string list.
 /// </summary>
 /// <param name="stringList">A pointer to a StringList representing the list of

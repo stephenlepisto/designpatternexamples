@@ -181,11 +181,14 @@
     <ClCompile Include="HandlerChain_MessageWindow.c" />
     <ClCompile Include="HandlerChain_WindowRectangle.c" />
     <ClCompile Include="helpers\checkforkey.c" />
+    <ClCompile Include="helpers\conststringlist.c" />
     <ClCompile Include="helpers\cursor.c" />
     <ClCompile Include="helpers\datetime.c" />
     <ClCompile Include="helpers\dynamicstring.c" />
     <ClCompile Include="helpers\enablevtmode.c" />
     <ClCompile Include="helpers\makelocaltime.c" />
+    <ClCompile Include="helpers\mapofint.c" />
+    <ClCompile Include="helpers\mapofstrings.c" />
     <ClCompile Include="helpers\mutex.c" />
     <ClCompile Include="helpers\readkey.c" />
     <ClCompile Include="helpers\replace.c" />
@@ -227,6 +230,9 @@
     <ClCompile Include="Strategy_Exercise.c" />
     <ClCompile Include="Strategy_SortStrategy.c" />
     <ClCompile Include="Visitor_Exercise.c" />
+    <ClCompile Include="Visitor_OrderVisitor.c" />
+    <ClCompile Include="Visitor_Shop.c" />
+    <ClCompile Include="Visitor_Village.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Adapter_BackEndFunctions.h" />
@@ -260,10 +266,13 @@
     <ClInclude Include="HandlerChain_MessageWindow.h" />
     <ClInclude Include="HandlerChain_WindowRectangle.h" />
     <ClInclude Include="helpers\checkforkey.h" />
+    <ClInclude Include="helpers\conststringlist.h" />
     <ClInclude Include="helpers\cursor.h" />
     <ClInclude Include="helpers\datetime.h" />
     <ClInclude Include="helpers\dynamicstring.h" />
     <ClInclude Include="helpers\enablevtmode.h" />
+    <ClInclude Include="helpers\mapofint.h" />
+    <ClInclude Include="helpers\mapofstrings.h" />
     <ClInclude Include="helpers\mutex.h" />
     <ClInclude Include="helpers\readkey.h" />
     <ClInclude Include="helpers\sleep.h" />
@@ -306,6 +315,9 @@
     <ClInclude Include="Strategy_Exercise.h" />
     <ClInclude Include="Strategy_SortStrategy.h" />
     <ClInclude Include="Visitor_Exercise.h" />
+    <ClInclude Include="Visitor_OrderVisitor.h" />
+    <ClInclude Include="Visitor_Shop.h" />
+    <ClInclude Include="Visitor_Village.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
