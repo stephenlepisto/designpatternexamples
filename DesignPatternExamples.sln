@@ -15,6 +15,8 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "DesignPatternExamples_pytho
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DesignPatternExamples_c", "c\DesignPatternExamples_c.vcxproj", "{E5564270-1A88-4395-86C8-FDC6954FFD80}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "design_pattern_examples_rust", "rust\design_pattern_examples_rust\design_pattern_examples_rust.vcxproj", "{3AA4CD77-27F0-4A1B-81CD-7BF270A9E3A7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -91,6 +93,18 @@ Global
 		{E5564270-1A88-4395-86C8-FDC6954FFD80}.Release|x64.Build.0 = Release|x64
 		{E5564270-1A88-4395-86C8-FDC6954FFD80}.Release|x86.ActiveCfg = Release|Win32
 		{E5564270-1A88-4395-86C8-FDC6954FFD80}.Release|x86.Build.0 = Release|Win32
+		{3AA4CD77-27F0-4A1B-81CD-7BF270A9E3A7}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{3AA4CD77-27F0-4A1B-81CD-7BF270A9E3A7}.Debug|Any CPU.Build.0 = Debug|x64
+		{3AA4CD77-27F0-4A1B-81CD-7BF270A9E3A7}.Debug|x64.ActiveCfg = Debug|x64
+		{3AA4CD77-27F0-4A1B-81CD-7BF270A9E3A7}.Debug|x64.Build.0 = Debug|x64
+		{3AA4CD77-27F0-4A1B-81CD-7BF270A9E3A7}.Debug|x86.ActiveCfg = Debug|Win32
+		{3AA4CD77-27F0-4A1B-81CD-7BF270A9E3A7}.Debug|x86.Build.0 = Debug|Win32
+		{3AA4CD77-27F0-4A1B-81CD-7BF270A9E3A7}.Release|Any CPU.ActiveCfg = Release|x64
+		{3AA4CD77-27F0-4A1B-81CD-7BF270A9E3A7}.Release|Any CPU.Build.0 = Release|x64
+		{3AA4CD77-27F0-4A1B-81CD-7BF270A9E3A7}.Release|x64.ActiveCfg = Release|x64
+		{3AA4CD77-27F0-4A1B-81CD-7BF270A9E3A7}.Release|x64.Build.0 = Release|x64
+		{3AA4CD77-27F0-4A1B-81CD-7BF270A9E3A7}.Release|x86.ActiveCfg = Release|Win32
+		{3AA4CD77-27F0-4A1B-81CD-7BF270A9E3A7}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

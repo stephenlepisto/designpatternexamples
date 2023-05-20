@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>17.0</VCProjectVersion>
+    <ProjectGuid>{3AA4CD77-27F0-4A1B-81CD-7BF270A9E3A7}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <NMakeOutput>$(OutDir)\design_pattern_examples_rust.exe</NMakeOutput>
+    <NMakePreprocessorDefinitions>
+    </NMakePreprocessorDefinitions>
+    <OutDir>$(ProjectDir)target\release\</OutDir>
+    <IntDir>$(ProjectDir)target\release\intermediate\</IntDir>
+    <NMakeBuildCommandLine>cargo build --release</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>cargo build --release</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>pushd $(OutDir)
+echo Erasing target from deps directory...
+pushd deps
+erase $(TargetName).*
+popd
+REM echo Erasing examples directory...
+REM pushd examples
+REM erase /q *.*
+REM popd
+REM echo Deleting the incremental directory...
+REM rd /s /q incremental
+REM popd
+echo Erasing program files...
+erase $(TargetName).*
+popd
+</NMakeCleanCommandLine>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <NMakeOutput>$(OutDir)\design_pattern_examples_rust.exe</NMakeOutput>
+    <NMakePreprocessorDefinitions>
+    </NMakePreprocessorDefinitions>
+    <OutDir>$(ProjectDir)target\debug\</OutDir>
+    <IntDir>$(ProjectDir)target\debug\intermediate\</IntDir>
+    <NMakeBuildCommandLine>cargo build</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>cargo build</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>pushd $(OutDir)
+echo Erasing target from deps directory...
+pushd deps
+erase $(TargetName).*
+popd
+REM echo Erasing examples directory...
+REM pushd examples
+REM erase /q *.*
+REM popd
+REM echo Deleting the incremental directory...
+REM rd /s /q incremental
+REM popd
+echo Erasing program files...
+erase $(TargetName).*
+popd
+</NMakeCleanCommandLine>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <NMakeOutput>$(OutDir)\design_pattern_examples_rust.exe</NMakeOutput>
+    <NMakePreprocessorDefinitions>
+    </NMakePreprocessorDefinitions>
+    <OutDir>$(ProjectDir)target\debug\</OutDir>
+    <IntDir>$(ProjectDir)target\debug\intermediate\</IntDir>
+    <NMakeBuildCommandLine>cargo build</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>cargo build</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>pushd $(OutDir)
+echo Erasing target from deps directory...
+pushd deps
+erase $(TargetName).*
+popd
+REM echo Erasing examples directory...
+REM pushd examples
+REM erase /q *.*
+REM popd
+REM echo Deleting the incremental directory...
+REM rd /s /q incremental
+REM popd
+echo Erasing program files...
+erase $(TargetName).*
+popd
+</NMakeCleanCommandLine>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <NMakeOutput>$(OutDir)\design_pattern_examples_rust.exe</NMakeOutput>
+    <NMakePreprocessorDefinitions>
+    </NMakePreprocessorDefinitions>
+    <OutDir>$(ProjectDir)target\release\</OutDir>
+    <IntDir>$(ProjectDir)target\release\intermediate\</IntDir>
+    <NMakeBuildCommandLine>cargo build --release</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>cargo build --release</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>pushd $(OutDir)
+echo Erasing target from deps directory...
+pushd deps
+erase $(TargetName).*
+popd
+REM echo Erasing examples directory...
+REM pushd examples
+REM erase /q *.*
+REM popd
+REM echo Deleting the incremental directory...
+REM rd /s /q incremental
+REM popd
+echo Erasing program files...
+erase $(TargetName).*
+popd
+</NMakeCleanCommandLine>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <None Include="Cargo.toml" />
+    <None Include="src\main.rs" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

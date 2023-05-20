@@ -1,0 +1,12 @@
+
+/// @file
+/// @brief
+/// Implementation of the bridge_exercise() function as used in the 
+/// @ref bridge_pattern.
+
+pub fn bridge_exercise() {
+    println!("");
+    println!("Bridge Exercise");
+
+    println!("  Done.");
+}
