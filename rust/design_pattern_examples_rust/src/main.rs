@@ -25,7 +25,8 @@ mod strategy;
 mod visitor;
 
 
-/// Alias for a function pointer, using C# as inspiration for the name.
+/// Alias for a pointer to a function that takes no parameters and returns nothing,
+/// using C# as inspiration for the name.
 type Action = fn();
 
 /// Represents a single exercise or example for a design pattern.
@@ -94,22 +95,22 @@ Options:
     }
 }
 
-/// Helper function to parse the given options and store the results in
-/// the given Options structure.  Displays help if requested and
-/// returns false.
+/// Helper function to parse the given options and return the results in
+/// the given Options structure.  Displays help if requested.
 ///
 /// # Parameters
 /// - args
 ///
-///     A list of strings containing the command line arguments (should
-///     not include the program name normally in the first item)
+///    A list of strings containing the command line arguments (should
+///    not include the program name, which is normally the first item)
 /// - exercises
 ///
-///     List of Exercise objects to display if help is needed.
+///    List of Exercise objects to display if help is needed.
 ///
 /// # Returns
-/// `Ok<Options>` if successful (the Options structure is filled in by
-/// command line parameters.  Returns `Err<&str>` if help was requested.
+/// `Ok<Options>` if successful (the Options structure is filled in with
+/// command line parameters.  Returns `Err<"">` if help was requested and
+/// displayed (and therefore exit from program is desired).
 fn parse_options(args: &[String], exercise_list: &Vec<Exercise>) -> Result<Options, &'static str> {
     let mut exercise_names: Vec<String> = Vec::new();
 
@@ -151,7 +152,7 @@ fn main() {
     );
 
     // skip() first argument as it is the program name.
-    let args: Vec<String> = env::args().skip(1).collect();
+    let args = env::args().skip(1).collect::<Vec<String>>();
 
     let parsed_options = parse_options(&args, &exercise_list);
 
