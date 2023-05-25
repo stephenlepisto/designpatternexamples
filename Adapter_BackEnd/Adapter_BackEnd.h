@@ -9,14 +9,22 @@
 
 #include <stdint.h>
 
+#ifdef ADAPTERBACKEND_EXPORTS
+#define DllExport __declspec(dllexport)
+#else
+#define DllExport __declspec(dllimport)
+#endif
+
+
 /// Name of the first block.
-#define BLOCK_NAME_0 "gorp"
+DllExport extern const char* BLOCK_NAME_0;
 
 /// Name of the second block.
-#define BLOCK_NAME_1 "baba"
+DllExport extern const char* BLOCK_NAME_1;
 
 /// Name of the third block.
-#define BLOCK_NAME_2 "yaga"
+DllExport extern const char* BLOCK_NAME_2;
+
 
 enum {
     DDR_MAX_OFFSET = 32,      ///< All offsets must from 0 to 1 less than this value.
@@ -45,12 +53,12 @@ typedef enum
 /// memory block.
 /// </summary>
 /// <param name="blockName">Name of the block to access (one of the predefined
-/// labels, @p BLOCK_NAME_0, @p BLOCK_NAME_1, or @p BLOCK_NAME_2)</param>
+/// names, @p BLOCK_NAME_0, @p BLOCK_NAME_1, or @p BLOCK_NAME_2)</param>
 /// <param name="dataHandle">Returns a handle to be used for accessing the
 /// specific memory block.</param>
 /// <returns>Returns a value from the DDR_ErrorCode enumeration indicating
 /// success or failure.</returns>
-DDR_ErrorCode DDR_OpenMemoryBlock(const char* blockName, int* dataHandle);
+DllExport DDR_ErrorCode DDR_OpenMemoryBlock(const char* blockName, int* dataHandle);
 
 /// <summary>
 /// Close access to a previously opened memory block, thus releasing it for
@@ -60,7 +68,7 @@ DDR_ErrorCode DDR_OpenMemoryBlock(const char* blockName, int* dataHandle);
 /// obtained from the DDR_OpenMemoryBlock() function.</param>
 /// <returns>Returns a value from the DDR_ErrorCode enumeration indicating
 /// success or failure.</returns>
-DDR_ErrorCode DDR_CloseMemoryBlock(int dataHandle);
+DllExport DDR_ErrorCode DDR_CloseMemoryBlock(int dataHandle);
 
 /// <summary>
 /// Retrieve the number of chunks in the memory block indicated by the handle
@@ -72,7 +80,7 @@ DDR_ErrorCode DDR_CloseMemoryBlock(int dataHandle);
 /// memory block.</param>
 /// <returns>Returns a value from the DDR_ErrorCode enumeration indicating
 /// success or failure.</returns>
-DDR_ErrorCode DDR_GetMemorySize(int dataHandle, int* memorySizeInChunks);
+DllExport DDR_ErrorCode DDR_GetMemorySize(int dataHandle, int* memorySizeInChunks);
 
 /// <summary>
 /// Read a single 32-bit value at the given offset in the memory block indicated
@@ -85,7 +93,7 @@ DDR_ErrorCode DDR_GetMemorySize(int dataHandle, int* memorySizeInChunks);
 /// <param name="value">Returns the requested valued.</param>
 /// <returns>Returns a value from the DDR_ErrorCode enumeration indicating
 /// success or failure.</returns>
-DDR_ErrorCode DDR_GetDataChunk(int dataHandle, int chunkOffset, uint32_t* value);
+DllExport DDR_ErrorCode DDR_GetDataChunk(int dataHandle, int chunkOffset, uint32_t* value);
 
 /// <summary>
 /// Writes a single 32-bit value to the given offset in the memory block indicated
@@ -98,6 +106,6 @@ DDR_ErrorCode DDR_GetDataChunk(int dataHandle, int chunkOffset, uint32_t* value)
 /// <param name="value">The value to write to the memory block</param>
 /// <returns>Returns a value from the DDR_ErrorCode enumeration indicating
 /// success or failure.</returns>
-DDR_ErrorCode DDR_SetDataChunk(int dataHandle, int chunkOffset, uint32_t value);
+DllExport DDR_ErrorCode DDR_SetDataChunk(int dataHandle, int chunkOffset, uint32_t value);
 
 #endif // __ADAPTER_BACKENDFUNCTIONS_H__

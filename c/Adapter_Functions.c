@@ -7,32 +7,12 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "Adapter_BackEndFunctions.h"
+#include <Adapter_BackEnd.h>
 
 #include "Adapter_Functions.h"
 
 static char _lastError[128] = { 0 }; ///< Holds last error message
 static char _hexdump[512] = { 0 }; ///< Collects hex dump as a single string. We do not expect more than about 424 bytes per hex dump.
-
-/// <summary>
-/// Represents a mapping between a block number (a value from the @ref MemoryBlockNumber
-/// enumeration) and a string identifying the name of a block.
-/// </summary>
-typedef struct
-{
-    MemoryBlockNumber blockNumber; ///< Value from the @ref MemoryBlockNumber enumeration associated with the block name.
-    const char* blockName;         ///< The name of the memory block to access.
-} BlockName;
-
-/// <summary>
-/// Table to translate from a block number (as used by the Adapter) to a
-/// name (as used by the back-end functions).
-/// </summary>
-BlockName block_numbers_to_names[] = {
-    { Memory_Block_0, BLOCK_NAME_0 },
-    { Memory_Block_1, BLOCK_NAME_1 },
-    { Memory_Block_2, BLOCK_NAME_2 }
-};
 
 /// <summary>
 /// Given a block number, retrieve the corresponding block name.
@@ -45,14 +25,24 @@ static const char* _GetBlockNameForBlockNumber(MemoryBlockNumber blockNumber)
 {
     const char* blockName = NULL;
 
-    for (size_t index = 0; index < _countof(block_numbers_to_names); index++)
+    switch (blockNumber)
     {
-        if (block_numbers_to_names[index].blockNumber == blockNumber)
-        {
-            blockName = block_numbers_to_names[index].blockName;
+        case Memory_Block_0:
+            blockName = BLOCK_NAME_0;
             break;
-        }
+
+        case Memory_Block_1:
+            blockName = BLOCK_NAME_1;
+            break;
+
+        case Memory_Block_2:
+            blockName = BLOCK_NAME_2;
+            break;
+
+        default:
+            break;
     }
+
     return blockName;
 }
 

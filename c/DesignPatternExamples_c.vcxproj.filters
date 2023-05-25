@@ -25,9 +25,6 @@
     <ClCompile Include="helpers\stringlist.c">
       <Filter>Helper files</Filter>
     </ClCompile>
-    <ClCompile Include="Adapter_Exercise.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Bridge_Exercise.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -77,12 +74,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Visitor_Exercise.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Adapter_BackEndFunctions.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Adapter_Functions.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Bridge_ILogger.c">
@@ -265,6 +256,12 @@
     <ClCompile Include="helpers\conststringlist.c">
       <Filter>Helper files</Filter>
     </ClCompile>
+    <ClCompile Include="Adapter_Exercise.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Adapter_Functions.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="helpers\stringlist.h">
@@ -322,9 +319,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Visitor_Exercise.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Adapter_BackEndFunctions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Adapter_Functions.h">

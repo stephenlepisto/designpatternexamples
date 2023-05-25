@@ -2,13 +2,17 @@
 /// @brief
 /// Implementation of the memory read/write functions
 /// as used in the @ref adapter_pattern.
+#include "pch.h"
 
-#include <stdbool.h>
-#include <stdlib.h>
-#include <string.h>
-#include <memory.h>
+#include "Adapter_BackEnd.h"
 
-#include "Adapter_BackEndFunctions.h"
+#define BLOCK_0_NAME "gorp"
+#define BLOCK_1_NAME "baba"
+#define BLOCK_2_NAME "yaga"
+
+const char* BLOCK_NAME_0 = BLOCK_0_NAME;
+const char* BLOCK_NAME_1 = BLOCK_1_NAME;
+const char* BLOCK_NAME_2 = BLOCK_2_NAME;
 
 /// <summary>
 /// Maximum number of 32-bit chunks in a single memory block.
@@ -44,9 +48,9 @@ typedef struct
 /// as a 32-bit quantity.
 /// </summary>
 static MemoryBlock memory_blocks[] = {
-    { BLOCK_NAME_0, false, { 0 } },
-    { BLOCK_NAME_1, false, { 0 } },
-    { BLOCK_NAME_2, false, { 0 } }
+    { BLOCK_0_NAME, false, { 0 } },
+    { BLOCK_1_NAME, false, { 0 } },
+    { BLOCK_2_NAME, false, { 0 } }
 };
 
 
