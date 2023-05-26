@@ -4,8 +4,14 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.4.33403.182
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesignPatternExamples_csharp", "csharp\DesignPatternExamples_csharp.csproj", "{8A5D373A-567B-4F53-96FC-2181AF2ED313}"
+	ProjectSection(ProjectDependencies) = postProject
+		{C41C4CD0-BE19-4A5D-BB78-13105CD33B6E} = {C41C4CD0-BE19-4A5D-BB78-13105CD33B6E}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DesignPatternExamples_cplusplus", "cplusplus\DesignPatternExamples_cplusplus.vcxproj", "{6A81AA67-0AFF-4E07-A728-1CB2C483C18B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{C41C4CD0-BE19-4A5D-BB78-13105CD33B6E} = {C41C4CD0-BE19-4A5D-BB78-13105CD33B6E}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WebPages", "WebPages\WebPages.vcxproj", "{52A1AD6D-6FE1-46B6-8A03-C3690CF33C30}"
 EndProject
@@ -19,6 +25,9 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DesignPatternExamples_c", "
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "design_pattern_examples_rust", "rust\design_pattern_examples_rust\design_pattern_examples_rust.vcxproj", "{3AA4CD77-27F0-4A1B-81CD-7BF270A9E3A7}"
+	ProjectSection(ProjectDependencies) = postProject
+		{C41C4CD0-BE19-4A5D-BB78-13105CD33B6E} = {C41C4CD0-BE19-4A5D-BB78-13105CD33B6E}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Adapter_BackEnd", "Adapter_BackEnd\Adapter_BackEnd.vcxproj", "{C41C4CD0-BE19-4A5D-BB78-13105CD33B6E}"
 EndProject

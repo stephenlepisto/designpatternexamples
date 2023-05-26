@@ -9,19 +9,19 @@
 #[link(name="Adapter_BackEnd")]
 extern "C" {
     #[doc = " Name of the first block."]
-    #[link_name = "BLOCK_NAME_0"]
+    #[link_name="BLOCK_NAME_0"]
     pub static block_name_0: *const ::std::os::raw::c_char;
 }
 #[link(name="Adapter_BackEnd")]
 extern "C" {
     #[doc = " Name of the second block."]
-    #[link_name = "BLOCK_NAME_1"]
+    #[link_name="BLOCK_NAME_1"]
     pub static block_name_1: *const ::std::os::raw::c_char;
 }
 #[link(name="Adapter_BackEnd")]
 extern "C" {
     #[doc = " Name of the third block."]
-    #[link_name = "BLOCK_NAME_2"]
+    #[link_name="BLOCK_NAME_2"]
     pub static block_name_2: *const ::std::os::raw::c_char;
 }
 #[doc = "< All offsets must from 0 to 1 less than this value."]
@@ -45,7 +45,7 @@ pub const DDR_ErrorCode_DDR_ErrorCode_Invalid_Offset: DDR_ErrorCode = 5;
 pub const DDR_ErrorCode_DDR_ErrorCode_Null_Argument: DDR_ErrorCode = 6;
 #[doc = " <summary>\n Represents the possible errors that can be returned from the memory block\n access functions.\n </summary>"]
 pub type DDR_ErrorCode = ::std::os::raw::c_int;
-#[link(name="Adapter_BackEnd")]
+
 extern "C" {
     #[doc = " <summary>\n Open access to a memory block for exclusive use, given the name of the\n memory block.\n </summary>\n <param name=\"blockName\">Name of the block to access (one of the predefined\n names, @p BLOCK_NAME_0, @p BLOCK_NAME_1, or @p BLOCK_NAME_2)</param>\n <param name=\"dataHandle\">Returns a handle to be used for accessing the\n specific memory block.</param>\n <returns>Returns a value from the DDR_ErrorCode enumeration indicating\n success or failure.</returns>"]
     #[link_name="DDR_OpenMemoryBlock"]
@@ -54,13 +54,13 @@ extern "C" {
         dataHandle: *mut ::std::os::raw::c_int,
     ) -> DDR_ErrorCode;
 }
-#[link(name="Adapter_BackEnd")]
+
 extern "C" {
     #[doc = " <summary>\n Close access to a previously opened memory block, thus releasing it for\n others to open.\n </summary>\n <param name=\"dataHandle\">Handle to a previously opened memory block as\n obtained from the DDR_OpenMemoryBlock() function.</param>\n <returns>Returns a value from the DDR_ErrorCode enumeration indicating\n success or failure.</returns>"]
     #[link_name="DDR_CloseMemoryBlock"]
     pub fn ddr_close_memory_block(dataHandle: ::std::os::raw::c_int) -> DDR_ErrorCode;
 }
-#[link(name="Adapter_BackEnd")]
+
 extern "C" {
     #[doc = " <summary>\n Retrieve the number of chunks in the memory block indicated by the handle\n to the successfully opened memory block.\n </summary>\n <param name=\"dataHandle\">Handle to a previously opened memory block as\n obtained from the DDR_OpenMemoryBlock() function.</param>\n <param name=\"memorySizeInChunks\">Returns the number of 32-bit chunks in the\n memory block.</param>\n <returns>Returns a value from the DDR_ErrorCode enumeration indicating\n success or failure.</returns>"]
     #[link_name="DDR_GetMemorySize"]
@@ -69,7 +69,7 @@ extern "C" {
         memorySizeInChunks: *mut ::std::os::raw::c_int,
     ) -> DDR_ErrorCode;
 }
-#[link(name="Adapter_BackEnd")]
+
 extern "C" {
     #[doc = " <summary>\n Read a single 32-bit value at the given offset in the memory block indicated\n by the specified handle.\n </summary>\n <param name=\"dataHandle\">Handle to a previously opened memory block as\n obtained from the DDR_OpenMemoryBlock() function.</param>\n <param name=\"chunkOffset\">Offset into the memory block from which to get\n the value (range is 0 to DDR_MAX_OFFSET-1).</param>\n <param name=\"value\">Returns the requested valued.</param>\n <returns>Returns a value from the DDR_ErrorCode enumeration indicating\n success or failure.</returns>"]
     #[link_name="DDR_GetDataChunk"]
@@ -79,7 +79,7 @@ extern "C" {
         value: *mut u32,
     ) -> DDR_ErrorCode;
 }
-#[link(name="Adapter_BackEnd")]
+
 extern "C" {
     #[doc = " <summary>\n Writes a single 32-bit value to the given offset in the memory block indicated\n by the specified handle.\n </summary>\n <param name=\"dataHandle\">Handle to a previously opened memory block as\n obtained from the DDR_OpenMemoryBlock() function.</param>\n <param name=\"chunkOffset\">Offset into the memory block to which to set\n the value (range is 0 to DDR_MAX_OFFSET-1).</param>\n <param name=\"value\">The value to write to the memory block</param>\n <returns>Returns a value from the DDR_ErrorCode enumeration indicating\n success or failure.</returns>"]
     #[link_name="DDR_SetDataChunk"]
