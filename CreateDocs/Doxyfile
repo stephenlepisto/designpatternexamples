@@ -921,6 +921,7 @@ INPUT                  = ../cplusplus \
                          ../csharp \
                          ../python/DesignPatternExamples_python \
                          ../c \
+                         ../Adapter_BackEnd \
                          ../Docs
 
 # This tag can be used to specify the character encoding of the source files
