@@ -3,6 +3,7 @@
 //! Implementation of the adapter_exercise() function.
 
 pub mod adapter_functions;
+pub mod adapter_backend;
 
 use adapter_functions::{MemoryBlockNumber, adapter_open_memory, adapter_close_memory, adapter_read_memory, adapter_write_memory, adapter_buffer_to_string};
 
@@ -32,7 +33,7 @@ pub fn adapter_exercise() {
         write_data[index] = index as u8;
     }
 
-    let hex_dump = match adapter_buffer_to_string(&write_data, 2) {
+    let mut hex_dump = match adapter_buffer_to_string(&write_data, 2) {
         Ok(value) => value,
         Err(message) => {
             eprintln!("  {message}");
@@ -58,7 +59,7 @@ pub fn adapter_exercise() {
         }
     };
 
-    let hex_dump = match adapter_buffer_to_string(&read_data, 2) {
+    hex_dump = match adapter_buffer_to_string(&read_data, 2) {
         Ok(value) => value,
         Err(message) => {
             eprintln!("  {message}");
