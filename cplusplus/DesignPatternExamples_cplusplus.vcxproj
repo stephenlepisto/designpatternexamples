@@ -95,11 +95,19 @@
       <TreatWarningAsError>true</TreatWarningAsError>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <AdditionalOptions>/Zc:__cplusplus %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalIncludeDirectories>../lib/include/</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>..\lib\$(PlatformShortName)\$(Configuration)\</AdditionalLibraryDirectories>
+      <AdditionalDependencies>Adapter_BackEnd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>set FILES=Adapter_BackEnd.dll Adapter_BackEnd.pdb
+for %%f in (%FILES%) do xcopy /Y /D /F "..\lib\$(PlatformShortName)\$(Configuration)\%%f" "$(TargetDir)"
+</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -112,13 +120,21 @@
       <TreatWarningAsError>true</TreatWarningAsError>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <AdditionalOptions>/Zc:__cplusplus %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalIncludeDirectories>../lib/include/</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>..\lib\$(PlatformShortName)\$(Configuration)\</AdditionalLibraryDirectories>
+      <AdditionalDependencies>Adapter_BackEnd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>set FILES=Adapter_BackEnd.dll Adapter_BackEnd.pdb
+for %%f in (%FILES%) do xcopy /Y /D /F "..\lib\$(PlatformShortName)\$(Configuration)\%%f" "$(TargetDir)"
+</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -129,11 +145,19 @@
       <TreatWarningAsError>true</TreatWarningAsError>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <AdditionalOptions>/Zc:__cplusplus %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalIncludeDirectories>../lib/include/</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>..\lib\$(PlatformShortName)\$(Configuration)\</AdditionalLibraryDirectories>
+      <AdditionalDependencies>Adapter_BackEnd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>set FILES=Adapter_BackEnd.dll Adapter_BackEnd.pdb
+for %%f in (%FILES%) do xcopy /Y /D /F "..\lib\$(PlatformShortName)\$(Configuration)\%%f" "$(TargetDir)"
+</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -146,16 +170,23 @@
       <TreatWarningAsError>true</TreatWarningAsError>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <AdditionalOptions>/Zc:__cplusplus %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalIncludeDirectories>../lib/include/</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>..\lib\$(PlatformShortName)\$(Configuration)\</AdditionalLibraryDirectories>
+      <AdditionalDependencies>Adapter_BackEnd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>set FILES=Adapter_BackEnd.dll Adapter_BackEnd.pdb
+for %%f in (%FILES%) do xcopy /Y /D /F "..\lib\$(PlatformShortName)\$(Configuration)\%%f" "$(TargetDir)"
+</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Adapter_BackEndFunctions.cpp" />
     <ClCompile Include="Adapter_Exercise.cpp" />
     <ClCompile Include="Adapter_FrontEndClass.cpp" />
     <ClCompile Include="Bridge_ConsoleLogger.cpp" />
@@ -210,7 +241,6 @@
     <ClCompile Include="Visitor_Village.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Adapter_BackEndFunctions.h" />
     <ClInclude Include="Adapter_Exercise.h" />
     <ClInclude Include="Adapter_FrontEndClass.h" />
     <ClInclude Include="Bridge_ConsoleLogger.h" />

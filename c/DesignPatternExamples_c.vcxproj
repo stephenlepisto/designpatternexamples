@@ -103,7 +103,9 @@
       <AdditionalDependencies>Adapter_BackEnd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /Y /D /F "..\lib\$(PlatformShortName)\$(Configuration)\Adapter_BackEnd.dll" "$(TargetDir)"</Command>
+      <Command>set FILES=Adapter_BackEnd.dll Adapter_BackEnd.pdb
+for %%f in (%FILES%) do xcopy /Y /D /F "..\lib\$(PlatformShortName)\$(Configuration)\%%f" "$(TargetDir)"
+</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -127,7 +129,9 @@
       <AdditionalDependencies>Adapter_BackEnd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /Y /D /F "..\lib\$(PlatformShortName)\$(Configuration)\Adapter_BackEnd.dll" "$(TargetDir)"</Command>
+      <Command>set FILES=Adapter_BackEnd.dll Adapter_BackEnd.pdb
+for %%f in (%FILES%) do xcopy /Y /D /F "..\lib\$(PlatformShortName)\$(Configuration)\%%f" "$(TargetDir)"
+</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -147,7 +151,9 @@
       <AdditionalDependencies>Adapter_BackEnd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /Y /D /F "..\lib\$(PlatformShortName)\$(Configuration)\Adapter_BackEnd.dll" "$(TargetDir)"</Command>
+      <Command>set FILES=Adapter_BackEnd.dll Adapter_BackEnd.pdb
+for %%f in (%FILES%) do xcopy /Y /D /F "..\lib\$(PlatformShortName)\$(Configuration)\%%f" "$(TargetDir)"
+</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -171,7 +177,9 @@
       <AdditionalDependencies>Adapter_BackEnd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /Y /D /F "..\lib\$(PlatformShortName)\$(Configuration)\Adapter_BackEnd.dll" "$(TargetDir)"</Command>
+      <Command>set FILES=Adapter_BackEnd.dll Adapter_BackEnd.pdb
+for %%f in (%FILES%) do xcopy /Y /D /F "..\lib\$(PlatformShortName)\$(Configuration)\%%f" "$(TargetDir)"
+</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>

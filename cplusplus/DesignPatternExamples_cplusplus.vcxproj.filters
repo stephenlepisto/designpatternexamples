@@ -36,9 +36,6 @@
     <ClCompile Include="Adapter_FrontEndClass.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Adapter_BackEndFunctions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Bridge_Logger.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -229,9 +226,6 @@
     </ClInclude>
     <ClInclude Include="helpers\stricmp.h">
       <Filter>Helper Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Adapter_BackEndFunctions.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Adapter_Exercise.h">
       <Filter>Header Files</Filter>

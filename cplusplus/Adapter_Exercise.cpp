@@ -13,7 +13,7 @@ namespace DesignPatternExamples_cpp
 {
 
     /// <summary>
-    /// Example of using the @ref adapter_pattern "Adapter" design pattern.
+    /// Example of using the @ref adapter_pattern.
     /// 
     /// This example adapts functions that return error codes into a class
     /// object that throws exceptions, which is more fitting of an object-
@@ -26,7 +26,7 @@ namespace DesignPatternExamples_cpp
         std::cout << "Adapter Exercise" << std::endl;
         try
         {
-            DataReaderWriter dataReaderWriter("-target BXT");
+            DataReaderWriter dataReaderWriter(DataReaderWriter::Memory_Block_0);
 
             // Create the data to be written
             uint32_t dataSize = 128;
@@ -43,10 +43,10 @@ namespace DesignPatternExamples_cpp
             std::cout << dataDump << std::endl;
 
             // Write the data to the external component
-            dataReaderWriter.Write(writeData, dataSize);
+            dataReaderWriter.Write(0, writeData, dataSize);
 
             // Read the data from the external component
-            std::vector<uint8_t> readData = dataReaderWriter.Read(dataSize);
+            std::vector<uint8_t> readData = dataReaderWriter.Read(0, dataSize);
 
             // Display the data read back.  Should be the same as was written.
             dataDump = dataReaderWriter.BufferToString(readData, dataSize, 2);
