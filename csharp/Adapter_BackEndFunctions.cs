@@ -1,231 +1,146 @@
 ﻿/// @file
 /// @brief
 /// The @ref DesignPatternExamples_csharp.DataReadWriteFunctions "DataReadWriteFunctions"
-/// class static functions as used in the @ref adapter_pattern "Adapter pattern".
+/// class static functions as used in the @ref adapter_pattern.
 /// 
-/// For this example, the DataReadWriteFunctions class represents a library of
-/// functions that use error codes for reporting errors.  In a real C# program,
-/// the static methods on this class might actually be calls into an external
-/// DLL.
+/// For this example, the DataReadWriteFunctions class uses C#'s P/Invoke to
+/// call into the Adapter_BackEnd.dll, that not only uses error codes for
+/// reporting errors, but the format of the data is very different as well,
+/// which also has to be adapted.
 
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace DesignPatternExamples_csharp
 {
     /// <summary>
-    /// Represents some example functions for accessing a target to read/write data.
+    /// Represents some P/Invoke functions for accessing a named blocks of
+    /// memory to read/write data in the Adapter_BackEnd.dll.
     /// </summary>
     internal static class DataReadWriteFunctions
     {
         /// <summary>
-        /// Error code returned by the Data Read/Write functions. 
+        /// All offsets must from 0 to 1 less than this value.
         /// </summary>
-        /// <remarks>The caller would consult a reference manual for these
-        /// error codes or get them from a header file.  These are defined here
-        /// for this example to make it clear error codes are being returned.
-        /// The caller can use GetLastErrorMessage() to translate the error
-        /// code to a human-readable string.
-        /// </remarks>
-        private enum ErrorCodes
+        public const int DDR_MAX_OFFSET = 32;        ///< All offsets must from 0 to 1 less than this value.
+
+
+        /// <summary>
+        /// Represents the possible errors that can be returned from the memory block
+        /// access functions.  It is not possible to use C#'s P/Invoke to get these
+        /// values so the enumeration needs to be duplicated here.
+        /// </summary>
+        public enum DDR_ErrorCode
         {
-            NoError = 0,
-            InvalidParameter = 1,
-            AlreadyShutDown = 2,
-            AlreadyStarted = 3,
-            InvalidDataHandle = 4
+            DDR_ErrorCode_Success = 0,               ///< Operation succeeded
+            DDR_ErrorCode_Block_Already_Opened = 1,  ///< Memory block is already open and cannot be opened again
+            DDR_ErrorCode_Block_Not_Opened = 2,      ///< Memory block is closed and cannot be accessed
+            DDR_ErrorCode_Invalid_Block_Name = 3,    ///< The given name is not a recognized memory block name
+            DDR_ErrorCode_Invalid_Handle = 4,        ///< The handle argument does not correspond to a valid open memory block
+            DDR_ErrorCode_Invalid_Offset = 5,        ///< The given offset is out of bounds
+            DDR_ErrorCode_Null_Argument = 6          ///< The block name pointer or return handle pointer argument is NULL
         }
 
+        /// <summary>
+        /// Define the name of BLOCK 0 that can be accessed in the
+        /// Adapter_BackEnd.dll.  In C#'s P/Invoke, it is not possible to map
+        /// a string data through P/Invoke, only methods.
+        /// </summary>
+        public const string BLOCK_NAME_0 = "gorp";
+        /// <summary>
+        /// Define the name of BLOCK 1 that can be accessed in the
+        /// Adapter_BackEnd.dll.  In C#'s P/Invoke, it is not possible to map
+        /// a string data through P/Invoke, only methods.
+        /// </summary>
+        public const string BLOCK_NAME_1 = "baba";
+        /// <summary>
+        /// Define the name of BLOCK 2 that can be accessed in the
+        /// Adapter_BackEnd.dll.  In C#'s P/Invoke, it is not possible to map
+        /// a string data through P/Invoke, only methods.
+        /// </summary>
+        public const string BLOCK_NAME_2 = "yaga";
+
+
+        private const string dll = "Adapter_BackEnd";
 
         /// <summary>
-        /// A dictionary mapping a string name to a buffer of bytes.
+        /// P/Invoke wrapper that opens access to a memory block for exclusive
+        /// use, given the name of the memory block.
         /// </summary>
-        private static Dictionary<string, byte[]> _localData = new Dictionary<string, byte[]>();
-        /// <summary>
-
-        /// A dictionary mapping an integer token to a string (the name used
-        /// in the _localData dictionary).  The token is returned to the caller.
-        /// </summary>
-        private static Dictionary<int, string> _handleToKey = new Dictionary<int, string>();
-
-        /// <summary>
-        /// The next token to allocate.
-        /// </summary>
-        private static int _nextKey = 0;
-
-        /// <summary>
-        /// The last error code set by a function.
-        /// </summary>
-        private static ErrorCodes _lastErrorCode;
-
+        /// <param name="blockName">Name of the block to access (one of the predefined
+        /// names, @p BLOCK_NAME_0, @p BLOCK_NAME_1, or @p BLOCK_NAME_2)</param>
+        /// <param name="dataHandle">Returns a handle to be used for accessing the
+        /// specific memory block.</param>
+        /// <returns>Returns a value from the DDR_ErrorCode enumeration indicating
+        /// success or failure.</returns>
+        [DllImport(dll, CallingConvention = CallingConvention.Cdecl,
+        ExactSpelling = true, CharSet = CharSet.Ansi)]
+        internal static extern
+        DDR_ErrorCode DDR_OpenMemoryBlock(string blockName, out Int32 dataHandle);
 
         /// <summary>
-        /// Initialize the data reader/writer.
+        /// P/Invoke wrapper that closes access to a previously opened memory
+        /// block, thus releasing it for others to open.
         /// </summary>
-        /// <param name="initData">Initialization string</param>
-        /// <param name="dataHandle">Returns the handle representing the data reader/writer</param>
-        /// <returns>0 if successful; otherwise, non-zero if there was an error.</returns>
-        public static int Startup(string initData, out int dataHandle)
-        {
-            _lastErrorCode = ErrorCodes.AlreadyStarted;
-            dataHandle = -1;
-            if (!_localData.ContainsKey(initData))
-            {
-                // Generate a buffer of integers to use as the initial data that
-                // in turn is associated with the initData name.
-                byte[] data = new byte[128];
-                for (int index = 0; index < data.Length; ++index)
-                {
-                    // Reverse order of numbers.
-                    data[index] = (byte)(data.Length - index);
-                }
-                _localData[initData] = data;
-
-                // Now generate a token (a handle) for the initData buffer
-                // and return it.
-                dataHandle = _nextKey;
-                ++_nextKey;
-                _handleToKey[dataHandle] = initData;
-                _lastErrorCode = ErrorCodes.NoError;
-            }
-
-            return (int)_lastErrorCode;
-        }
-
+        /// <param name="dataHandle">Handle to a previously opened memory block as
+        /// obtained from the DDR_OpenMemoryBlock() function.</param>
+        /// <returns>Returns a value from the DDR_ErrorCode enumeration indicating
+        /// success or failure.</returns>
+        [DllImport(dll, CallingConvention = CallingConvention.Cdecl,
+        ExactSpelling = true, CharSet = CharSet.Ansi)]
+        internal static extern
+        DDR_ErrorCode DDR_CloseMemoryBlock(Int32 dataHandle);
 
         /// <summary>
-        /// Shut down the data reader/writer.
+        /// P/Invoke wrapper that retrieves the number of chunks in the memory
+        /// block indicated by the handle to the successfully opened memory
+        /// block.
         /// </summary>
-        /// <param name="dataHandle">Handle to shut down</param>
-        /// <returns>0 if successful; otherwise, non-zero if there was an error.</returns>
-        public static int Shutdown(int dataHandle)
-        {
-            _lastErrorCode = ErrorCodes.AlreadyShutDown;
-
-            if (_handleToKey.ContainsKey(dataHandle))
-            {
-                _localData.Remove(_handleToKey[dataHandle]);
-                _handleToKey.Remove(dataHandle);
-                _lastErrorCode = ErrorCodes.NoError;
-            }
-
-            return (int)_lastErrorCode;
-        }
-
+        /// <param name="dataHandle">Handle to a previously opened memory block as
+        /// obtained from the DDR_OpenMemoryBlock() function.</param>
+        /// <param name="memorySizeInChunks">Returns the number of 32-bit chunks in the
+        /// memory block.</param>
+        /// <returns>Returns a value from the DDR_ErrorCode enumeration indicating
+        /// success or failure.</returns>
+        [DllImport(dll, CallingConvention = CallingConvention.Cdecl,
+        ExactSpelling = true, CharSet = CharSet.Ansi)]
+        internal static extern
+        DDR_ErrorCode DDR_GetMemorySize(Int32 dataHandle, out Int32 memorySizeInChunks);
 
         /// <summary>
-        /// Retrieve the message related to the last error reported as a string.
+        /// P/Invoke wrapper that reads a single 32-bit value at the given
+        /// offset in the memory block indicated by the specified handle.
         /// </summary>
-        /// <returns>A string containing the last error message.  Returns an empty string
-        /// if there was no error.</returns>
-        public static string GetLastErrorMessage()
-        {
-            string errorMessage = "";
-            switch(_lastErrorCode)
-            {
-                case ErrorCodes.NoError:
-                    break;
-
-                case ErrorCodes.InvalidParameter:
-                    errorMessage = "Invalid parameter";
-                    break;
-                
-                case ErrorCodes.AlreadyShutDown:
-                    errorMessage = "Data reader/writer already shut down.";
-                    break;
-
-                case ErrorCodes.AlreadyStarted:
-                    errorMessage = "Data reader/writer already started.";
-                    break;
-
-                case ErrorCodes.InvalidDataHandle:
-                    errorMessage = "Invalid data handle";
-                    break;
-
-                default:
-                    errorMessage = "Unknown error";
-                    break;
-            }
-            return errorMessage;
-        }
-
+        /// <param name="dataHandle">Handle to a previously opened memory block as
+        /// obtained from the DDR_OpenMemoryBlock() function.</param>
+        /// <param name="chunkOffset">Offset into the memory block from which to get
+        /// the value (range is 0 to DDR_MAX_OFFSET-1).</param>
+        /// <param name="value">Returns the requested valued.</param>
+        /// <returns>Returns a value from the DDR_ErrorCode enumeration indicating
+        /// success or failure.</returns>
+        [DllImport(dll, CallingConvention = CallingConvention.Cdecl,
+        ExactSpelling = true, CharSet = CharSet.Ansi)]
+        internal static extern
+        DDR_ErrorCode DDR_GetDataChunk(Int32 dataHandle, Int32 chunkOffset, out UInt32 value);
 
         /// <summary>
-        /// Write a block of bytes to the target.
+        /// P/Invoke wrapper that writes a single 32-bit value to the given
+        /// offset in the memory block indicated by the specified handle.
         /// </summary>
-        /// <param name="dataHandle">Handle to data reader/writer.</param>
-        /// <param name="data">A block of data of at least 'dataLength' bytes.</param>
-        /// <param name="dataLength">The number of bytes to write.</param>
-        /// <returns>0 if successful; otherwise, non-zero if there was an error.</returns>
-        public static int WriteData(int dataHandle, byte[] data, uint dataLength)
-        {
-            _lastErrorCode = ErrorCodes.InvalidParameter;
-
-            if (data != null && data.Length <= dataLength)
-            {
-                _lastErrorCode = ErrorCodes.InvalidDataHandle;
-                if (_handleToKey.ContainsKey(dataHandle))
-                {
-                    byte[] localData = _localData[_handleToKey[dataHandle]];
-                    if (dataLength > localData.Length)
-                    {
-                        localData = new byte[dataLength];
-                    }
-
-                    for (uint index = 0; index < dataLength; ++index)
-                    {
-                        localData[index] = data[index];
-                    }
-                    _lastErrorCode = ErrorCodes.NoError;
-                }
-            }
-
-            return (int)_lastErrorCode;
-        }
-
-
-        /// <summary>
-        /// Read a block of bytes from the target.
-        /// </summary>
-        /// <param name="dataHandle">Handle to data reader/writer.</param>
-        /// <param name="maxDataLength">The maximum number of bytes to read.</param>
-        /// <param name="data">The buffer to store the bytes  Can be null if attempting to
-        /// retrieve the amount of data available.</param>
-        /// <param name="availableDataLength">Returns the number of bytes available for
-        /// reading.</param>
-        /// <returns>0 if successful; otherwise, non-zero if there was an error.</returns>
-        public static int ReadData(int dataHandle, uint maxDataLength, byte[] data, out uint availableDataLength)
-        {
-            _lastErrorCode = ErrorCodes.InvalidDataHandle;
-
-            availableDataLength = 0;
-            if (_handleToKey.ContainsKey(dataHandle))
-            {
-                byte[] localData = _localData[_handleToKey[dataHandle]];
-                availableDataLength = (uint)localData.Length;
-
-                _lastErrorCode = ErrorCodes.NoError; // data parameter is allowed to be null
-                if (data != null)
-                {
-                    _lastErrorCode = ErrorCodes.InvalidParameter;
-                    // If buffer is large enough to contain the requested data then
-                    if (data.Length >= maxDataLength)
-                    {
-                        // Read only up to the amount available
-                        uint byteCount = maxDataLength > localData.Length ? (uint)localData.Length : maxDataLength;
-                        for (uint index = 0; index < byteCount; ++index)
-                        {
-                            data[index] = localData[index];
-                        }
-                        _lastErrorCode = ErrorCodes.NoError;
-                    }
-                }
-            }
-
-            return (int)_lastErrorCode;
-        }
+        /// <param name="dataHandle">Handle to a previously opened memory block as
+        /// obtained from the DDR_OpenMemoryBlock() function.</param>
+        /// <param name="chunkOffset">Offset into the memory block to which to set
+        /// the value (range is 0 to DDR_MAX_OFFSET-1).</param>
+        /// <param name="value">The value to write to the memory block</param>
+        /// <returns>Returns a value from the DDR_ErrorCode enumeration indicating
+        /// success or failure.</returns>
+        [DllImport(dll, CallingConvention = CallingConvention.Cdecl,
+        ExactSpelling = true, CharSet = CharSet.Ansi)]
+        internal static extern
+        DDR_ErrorCode DDR_SetDataChunk(Int32 dataHandle, Int32 chunkOffset, UInt32 value);
     }
 }

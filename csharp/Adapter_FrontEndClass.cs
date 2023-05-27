@@ -4,7 +4,9 @@
 /// class used in the @ref adapter_pattern "Adapter pattern".
 
 using System;
+using System.Collections;
 using System.Text;
+using static DesignPatternExamples_csharp.DataReadWriteFunctions;
 
 namespace DesignPatternExamples_csharp
 {
@@ -40,43 +42,133 @@ namespace DesignPatternExamples_csharp
     /// <remarks>Wraps the DataReaderWriterFunctions.</remarks>
     internal class DataReaderWriter : IDisposable
     {
+        /// <summary>
+        /// Represents the memory blocks that can be accessed.  Hides how memory blocks
+        /// are actually identified.
+        /// </summary>
+        public enum MemoryBlockNumber
+        {
+            Memory_Block_0 = 0,  ///< First block
+            Memory_Block_1 = 1,  ///< Second block
+            Memory_Block_2 = 2,  ///< Third block
+        };
+
         private bool _disposed;
         private bool _initialized;
         private int _dataHandle;
 
+        private string _GetBlockNameForBlockNumber(MemoryBlockNumber blockNumber)
+        {
+            string blockName = "";
+
+            switch (blockNumber)
+            {
+                case MemoryBlockNumber.Memory_Block_0:
+                    blockName = BLOCK_NAME_0;
+                    break;
+
+                case MemoryBlockNumber.Memory_Block_1:
+                    blockName = BLOCK_NAME_1;
+                    break;
+
+                case MemoryBlockNumber.Memory_Block_2:
+                    blockName = BLOCK_NAME_2;
+                    break;
+
+                default:
+                    break;
+            }
+
+            return blockName;
+        }
+
+        /// <summary>
+        /// Convert the given error code to a string message.
+        /// </summary>
+        /// <param name="errorCode">A value from the DDR_ErrorCode enumeration.</param>
+        /// <returns>A constant string describing the error.</returns>
+        string _GetErrorMessage(DDR_ErrorCode errorCode)
+        {
+            string message = "";
+
+            switch (errorCode)
+            {
+                case DataReadWriteFunctions.DDR_ErrorCode.DDR_ErrorCode_Success:
+                    message = "Operation succeeded";
+                    break;
+
+                case DataReadWriteFunctions.DDR_ErrorCode.DDR_ErrorCode_Block_Already_Opened:
+                    message = "Memory block is already open and cannot be opened again";
+                    break;
+
+                case DataReadWriteFunctions.DDR_ErrorCode.DDR_ErrorCode_Block_Not_Opened:
+                    message = "Memory block is closed and cannot be accessed";
+                    break;
+
+                case DataReadWriteFunctions.DDR_ErrorCode.DDR_ErrorCode_Invalid_Block_Name:
+                    message = "The given name is not a recognized memory block name";
+                    break;
+
+                case DataReadWriteFunctions.DDR_ErrorCode.DDR_ErrorCode_Invalid_Handle:
+                    message = "The handle argument does not correspond to a valid open memory block";
+                    break;
+
+                case DataReadWriteFunctions.DDR_ErrorCode.DDR_ErrorCode_Invalid_Offset:
+                    message = "The given offset is out of bounds";
+                    break;
+
+                case DataReadWriteFunctions.DDR_ErrorCode.DDR_ErrorCode_Null_Argument:
+                    message = "The block name pointer or return handle pointer argument is NULL";
+                    break;
+
+                default:
+                    message = "Unrecognized error code.";
+                    break;
+            }
+
+            return message;
+        }
+
         /// <summary>
         /// Creates a formatted error message from the given operation, using
-        /// the last error message from the DataReaderWriterFunctions library.
+        /// the error code from the Adapter_BackEnd library.
         /// </summary>
+        /// <param name="errorCode">The error code from the underlying library
+        /// to be converted to a string.</param>
         /// <param name="operation">The operation that was in process when the
         /// error occurred.</param>
         /// <returns>Returns an error message formatted as a string.</returns>
-        private string _ConstructErrorMessage(string operation)
+        string _ConstructErrorMessage(DDR_ErrorCode errorCode, string operation)
         {
-            StringBuilder output = new StringBuilder();
-            string msg = DataReadWriteFunctions.GetLastErrorMessage();
-            output.AppendFormat("{0}: {1}", operation, msg);
-
-            return output.ToString();
+            string msg = _GetErrorMessage(errorCode);
+            return String.Format("{0}: {1}", operation, msg);
         }
 
 
         /// <summary>
         /// Constructor for a data reader/writer
         /// </summary>
-        /// <param name="init">Initialization string.</param>
+        /// <param name="blockNumber">A value from the MemoryBlockNumber enumeration
+        /// indicating the block of memory to open.</param>
         /// <exception cref="DataReaderWriterInitException">Failed to initialize the data reader/writer.</exception>
-        public DataReaderWriter(string init)
+        public DataReaderWriter(MemoryBlockNumber blockNumber)
         {
-            int errorCode = DataReadWriteFunctions.Startup(init, out _dataHandle);
-            if (errorCode == 0)
+            _initialized = false;
+            _dataHandle = -1;
+            string blockName = _GetBlockNameForBlockNumber(blockNumber);
+            if (!String.IsNullOrEmpty(blockName))
             {
-                _initialized = true;
-            }
-            else
-            {
-                string msg = _ConstructErrorMessage("Initializing data reader/writer");
-                throw new DataReaderWriterInitException(msg);
+                DataReadWriteFunctions.DDR_ErrorCode errorCode =
+                    DataReadWriteFunctions.DDR_OpenMemoryBlock(blockName, out _dataHandle);
+                if (errorCode == DDR_ErrorCode.DDR_ErrorCode_Success)
+                {
+                    _initialized = true;
+                }
+                else
+                {
+                    string msg = _ConstructErrorMessage(errorCode, "Initializing data reader/writer");
+                    throw new DataReaderWriterInitException(msg);
+                }
             }
         }
 
@@ -84,33 +176,59 @@ namespace DesignPatternExamples_csharp
         /// <summary>
         /// Read a specified number of bytes.
         /// </summary>
+        /// <param name="byteOffset">Byte offset into the memory block from
+        /// which to start reading.</param>
         /// <param name="maxBytes">Number of bytes to read</param>
         /// <returns>An array of bytes that were read.</returns>
         /// <exception cref="DataReaderWriterInitException">Data reader/writer not initialized.</exception>
         /// <exception cref="DataReaderWriterException">Failed to read data.</exception>
-        public byte[] Read(uint maxBytes)
+        public byte[] Read(int byteOffset, uint maxBytes)
         {
             if (!_initialized)
             {
                 throw new DataReaderWriterInitException("Data reader/writer is not initialized.");
             }
 
-            uint availableByteCount = 0;
-            int errorCode = DataReadWriteFunctions.ReadData(_dataHandle, 0, null, out availableByteCount);
+            byte[] data = new byte[maxBytes];
 
-            if (errorCode != 0)
+            if (maxBytes > 0)
             {
-                string msg = _ConstructErrorMessage("Preparing to read data");
-                throw new DataReaderWriterException(msg);
-            }
-
-            byte[] data = new byte[availableByteCount];
-
-            errorCode = DataReadWriteFunctions.ReadData(_dataHandle, maxBytes, data, out availableByteCount);
-            if (errorCode != 0)
-            {
-                string msg = _ConstructErrorMessage("Reading data");
-                throw new DataReaderWriterException(msg);
+                int chunkOffset = byteOffset / (sizeof(UInt32));
+                UInt32 value = 0;
+                UInt32 bufferIndex = 0;
+                DDR_ErrorCode errorCode = DDR_ErrorCode.DDR_ErrorCode_Success;
+                errorCode = DDR_GetDataChunk(_dataHandle, chunkOffset, out value);
+                if (errorCode == DDR_ErrorCode.DDR_ErrorCode_Success)
+                {
+                    int byteOffsetInChunk = byteOffset % (sizeof(UInt32));
+                    while (bufferIndex < maxBytes)
+                    {
+                        data[bufferIndex] = (byte) (value & 0xff);
+                        bufferIndex++;
+                        value >>= 8;
+                        byteOffsetInChunk++;
+                        if (byteOffsetInChunk == sizeof(UInt32))
+                        {
+                            chunkOffset++;
+                            if (chunkOffset >= DataReadWriteFunctions.DDR_MAX_OFFSET)
+                            {
+                                break;
+                            }
+                            byteOffsetInChunk = 0;
+                            errorCode = DDR_GetDataChunk(_dataHandle, chunkOffset, out value);
+                            if (errorCode != DDR_ErrorCode.DDR_ErrorCode_Success)
+                            {
+                                string msg = _ConstructErrorMessage(errorCode, "Reading memory");
+                                throw new DataReaderWriterException(msg);
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    string msg = _ConstructErrorMessage(errorCode, "Reading memory");
+                    throw new DataReaderWriterException(msg);
+                }
             }
 
             return data;
@@ -119,20 +237,73 @@ namespace DesignPatternExamples_csharp
         /// <summary>
         /// Write a specified number of bytes.
         /// </summary>
+        /// <param name="byteOffset">Byte offset into the memory block to which
+        /// to start writing.</param>
         /// <param name="data">Array of bytes to write.  Must be at least 'maxBytes' in length.</param>
         /// <param name="maxBytes">Number of bytes to write</param>
         /// <exception cref="DataReaderWriterInitException">Data reader/writer not initialized.</exception>
         /// <exception cref="DataReaderWriterException">Failed to write data.</exception>
-        public void Write(byte[] data, uint maxBytes)
+        public void Write(int byteOffset, byte[] data, uint maxBytes)
         {
             if (!_initialized)
             {
                 throw new DataReaderWriterInitException("Data reader/writer is not initialized.");
             }
-            int errorCode = DataReadWriteFunctions.WriteData(_dataHandle, data, maxBytes);
-            if (errorCode != 0)
+            DDR_ErrorCode errorCode = DDR_ErrorCode.DDR_ErrorCode_Success;
+            int chunkOffset = byteOffset / sizeof(UInt32);
+            UInt32 value = 0;
+            int byteOffsetInChunk = byteOffset % sizeof(UInt32);
+            UInt32 bufferIndex = 0;
+            UInt32 byteMask = (UInt32)0xff << byteOffsetInChunk;
+            if (byteOffsetInChunk != 0)
             {
-                string msg = _ConstructErrorMessage("Writing data");
+                errorCode = DDR_GetDataChunk(_dataHandle, chunkOffset, out value);
+            }
+            if (errorCode == DDR_ErrorCode.DDR_ErrorCode_Success)
+            {
+                while (bufferIndex < maxBytes)
+                {
+                    value &= ~byteMask;
+                    value |= ((UInt32)data[bufferIndex]) << (byteOffsetInChunk * 8);
+                    bufferIndex++;
+                    byteMask <<= 8;
+                    byteOffsetInChunk++;
+                    if (byteOffsetInChunk == sizeof(UInt32))
+                    {
+                        errorCode = DDR_SetDataChunk(_dataHandle, chunkOffset, value);
+                        if (errorCode == DDR_ErrorCode.DDR_ErrorCode_Success)
+                        {
+                            byteMask = 0xff;
+                            byteOffsetInChunk = 0;
+                            chunkOffset++;
+                            if (chunkOffset >= DDR_MAX_OFFSET)
+                            {
+                                break;
+                            }
+                        }
+                        else
+                        {
+                            string msg = _ConstructErrorMessage(errorCode, "Writing memory");
+                            throw new DataReaderWriterException(msg);
+                        }
+                    }
+                }
+                if (errorCode == DDR_ErrorCode.DDR_ErrorCode_Success)
+                {
+                    if (byteOffsetInChunk != 0)
+                    {
+                        errorCode = DDR_SetDataChunk(_dataHandle, chunkOffset, value);
+                    }
+                }
+                if (errorCode != DDR_ErrorCode.DDR_ErrorCode_Success)
+                {
+                    string msg = _ConstructErrorMessage(errorCode, "Writing memory");
+                    throw new DataReaderWriterException(msg);
+                }
+            }
+            else
+            {
+                string msg = _ConstructErrorMessage(errorCode, "Reading memory in preparation to writing memory");
                 throw new DataReaderWriterException(msg);
             }
         }
@@ -191,11 +362,11 @@ namespace DesignPatternExamples_csharp
                 if (_initialized)
                 {
                     _initialized = false;
-                    int errorCode = DataReadWriteFunctions.Shutdown(_dataHandle);
+                    DDR_ErrorCode errorCode = DataReadWriteFunctions.DDR_CloseMemoryBlock(_dataHandle);
                     _dataHandle = -1;
                     if (errorCode != 0)
                     {
-                        string msg = _ConstructErrorMessage("Shutting down data reader/writer");
+                        string msg = _ConstructErrorMessage(errorCode, "Shutting down data reader/writer");
                         throw new DataReaderWriterInitException(msg);
                     }
                 }

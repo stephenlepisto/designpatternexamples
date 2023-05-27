@@ -37,7 +37,7 @@ namespace DesignPatternExamples_csharp
             try
             {
                 // Will call Dispose() automatically when exiting the using block
-                using (var dataReaderWriter = new DataReaderWriter("-target BXT"))
+                using (var dataReaderWriter = new DataReaderWriter(DataReaderWriter.MemoryBlockNumber.Memory_Block_0))
                 {
                     // Create the data to be written
                     uint dataSize = 128;
@@ -52,10 +52,10 @@ namespace DesignPatternExamples_csharp
                     Console.WriteLine("  Data written:{0}{1}", Environment.NewLine, dataDump);
 
                     // Write the data to the external component
-                    dataReaderWriter.Write(writeData, dataSize);
+                    dataReaderWriter.Write(0, writeData, dataSize);
 
                     // Read the data from the external component
-                    byte[] readData = dataReaderWriter.Read(dataSize);
+                    byte[] readData = dataReaderWriter.Read(0, dataSize);
 
                     // Display the data read back.  Should be the same as was written.
                     dataDump = dataReaderWriter.BufferToString(readData, dataSize, 2);
