@@ -1,7 +1,9 @@
 /// @file
 /// @brief
-/// Declaration of the memory read/write functions
-/// as used in the @ref adapter_pattern.
+/// Declaration of the "low-level" memory block read/write functions that are
+/// provided in a separate DLL called Adapter_BackEnd.dll, which is wrapped or
+/// adapted to by the various programming languages as part of the @ref adapter_pattern
+/// examples.
 
 #pragma once
 #ifndef __ADAPTER_BACKENDFUNCTIONS_H__
@@ -93,7 +95,7 @@ extern "C" {
     /// obtained from the DDR_OpenMemoryBlock() function.</param>
     /// <param name="chunkOffset">Offset into the memory block from which to get
     /// the value (range is 0 to DDR_MAX_OFFSET-1).</param>
-    /// <param name="value">Returns the requested valued.</param>
+    /// <param name="value">Returns the requested value.</param>
     /// <returns>Returns a value from the DDR_ErrorCode enumeration indicating
     /// success or failure.</returns>
     DllExport DDR_ErrorCode DDR_GetDataChunk(int dataHandle, int chunkOffset, uint32_t* value);
