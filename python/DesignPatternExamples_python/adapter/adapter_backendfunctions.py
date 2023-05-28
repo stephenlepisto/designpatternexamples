@@ -1,192 +1,172 @@
-## The @ref DesignPatternExamples_python.adapter.adapter_backendfunctions.DataReadWriteFunctions "DataReadWriteFunctions"
-#  class used in the @ref adapter_pattern.
+## @file
+#  @brief
+#  The wrapper for the @ref Adapter_BackEnd.h "Adapter_BackEnd" DLL
+#  containing functions used in the @ref adapter_pattern.
 
+import os
+import os.path
+from ctypes import *
 from enum import Enum
+from sqlite3 import adapt
 
-##  Error code returned by the Data Read/Write functions. 
+## Represents the possible errors that can be returned from the memory block
+#  access functions.
+class DDR_ErrorCode(Enum):
+    ## Operation succeeded
+    DDR_ErrorCode_Success = 0
+    ## Memory block is already open and cannot be opened again
+    DDR_ErrorCode_Block_Already_Opened = 1
+    ## Memory block is closed and cannot be accessed
+    DDR_ErrorCode_Block_Not_Opened = 2
+    ## The given name is not a recognized memory block name
+    DDR_ErrorCode_Invalid_Block_Name = 3
+    ## The handle argument does not correspond to a valid open memory block
+    DDR_ErrorCode_Invalid_Handle = 4
+    ## The given offset is out of bounds
+    DDR_ErrorCode_Invalid_Offset = 5
+    ## The block name pointer or return handle pointer argument is NULL
+    DDR_ErrorCode_Null_Argument = 6
+
+
+## All offsets must from 0 to 1 less than this value.
+DDR_MAX_OFFSET = 32
+
+## Name of the first block.
+BLOCK_NAME_0 = "gorp"
+
+## Name of the second block.
+BLOCK_NAME_1 = "baba"
+
+## Name of the third block.
+BLOCK_NAME_2 = "yaga"
+
+
+## Represents an opaque token or handle to data.  Since a class is passed by
+#  reference in Python, a function can write to the handle to set its value. 
+#  Use the `value` attribute to read/write the handle.
+class Handle:
+    ## Constructor
+    def __init__(self):
+        self.value = -1
+
+    ## @var value
+    #       The attribute to read to get the value passed back through the
+    #       Handle class instance.  The value can also be written to.
+
+
+## Represents a value that can be passed into or out of a function.  Since a
+#  class is passed by reference in Python, a function can write to the handle
+#  to set its value.  Use the `value` attribute to read/write the handle.
+class ValueHandle:
+    ## Constructor
+    def __init__(self):
+        self.value = 0
+
+    ## @var value
+    #       The attribute to read to get the value passed back through the
+    #       ValueHandle class instance.  The value can also be written to.
+
+
+## Path to the @ref Adapter_BackEnd.h "Adapter_BackEnd" DLL that will be loaded
+#  by ctypes.  The DLL is located in the same directory as this file.
+dll_path = os.path.join(os.path.dirname(__file__), "Adapter_BackEnd")
+
+## Instance of a CDLL object representing the loaded @ref Adapter_BackEnd.h "Adapter_BackEnd" DLL.
+adapter_backend = cdll.LoadLibrary(dll_path)
+
+
+##  Open access to a memory block for exclusive use, given the name of the
+#   memory block.  Use
+#    @ref DesignPatternExamples_python.adapter.adapter_backendfunctions.ddr_closememoryblock "ddr_closememoryblock"()
+#    to release access to the memory block.
 #
-#  The caller would consult a reference manual for these error codes or get
-#  them from a header file.  These are defined here for this example to
-#  make it clear error codes are being returned.  The caller can use
-#  GetLastErrorMessage() to translate the error code to a human-readable
-#  string.
-class ErrorCodes(Enum):
-    NoError = 0
-    InvalidParameter = 1
-    AlreadyShutDown = 2
-    AlreadyStarted = 3
-    InvalidDataHandle = 4
+#   @param blockName
+#          Name of the block to access (one of the predefined names,
+#          `BLOCK_NAME_0`, `BLOCK_NAME_1`, or `BLOCK_NAME_2`)
+#   @param dataHandle
+#          Returns a handle to be used for accessing the specific memory block.
+#   @returns
+#     Returns a value from the
+#     @ref DesignPatternExamples_python.adapter.adapter_backendfunctions.DDR_ErrorCode "DDR_ErrorCode"
+#     enumeration indicating success or failure.
+def ddr_openmemoryblock(blockName, dataHandle: Handle) -> DDR_ErrorCode:
+    handle = c_int()
+    name = blockName.encode("UTF8")
+    error_code = DDR_ErrorCode(adapter_backend.DDR_OpenMemoryBlock(name, byref(handle)))
+    if error_code == DDR_ErrorCode.DDR_ErrorCode_Success:
+        dataHandle.value = handle.value
+    return error_code
 
+##  Close access to a memory block previously opened by ddr_openmemoryblock(),
+#   thus releasing it for others to open.
+#
+#   @param dataHandle
+#          Handle to a previously opened memory block as obtained from the
+#          @ref DesignPatternExamples_python.adapter.adapter_backendfunctions.ddr_openmemoryblock "ddr_openmemoryblock"() function.
+#   @returns
+#     Returns a value from the
+#     @ref DesignPatternExamples_python.adapter.adapter_backendfunctions.DDR_ErrorCode "DDR_ErrorCode"
+#     enumeration indicating success or failure.
+def ddr_closememoryblock(dataHandle : Handle) -> DDR_ErrorCode:
+    return DDR_ErrorCode(adapter_backend.DDR_CloseMemoryBlock(dataHandle.value))
 
-## Represents an opaque token or handle to data in the
-#  @ref DesignPatternExamples_python.adapter.adapter_backendfunctions.DataReadWriteFunctions "DataReadWriteFunctions"
-#  class.  Since a class is passed by reference in Python, a function such as
-#  @ref DesignPatternExamples_python.adapter.adapter_backendfunctions.DataReadWriteFunctions.Startup() "Startup"()
-#  can write to the handle to set its value.  Use the `value` attribute to read/write the handle.
-class Handle(int):
-    pass
+##  Retrieve the number of chunks in the memory block indicated by the handle
+#   to the successfully opened memory block.
+#
+#   @param dataHandle
+#          Handle to a previously opened memory block as obtained from the
+#          @ref DesignPatternExamples_python.adapter.adapter_backendfunctions.ddr_openmemoryblock "ddr_openmemoryblock"() function.
+#   @param memorySizeInChunks
+#          Returns the number of 32-bit chunks in the memory block.
+#   @returns
+#     Returns a value from the
+#     @ref DesignPatternExamples_python.adapter.adapter_backendfunctions.DDR_ErrorCode "DDR_ErrorCode"
+#     enumeration indicating success or failure.
+def ddr_getmemorysize(dataHandle: Handle, memorySizeInChunks: Handle) -> DDR_ErrorCode:
+    chunks = c_int()
+    error_code = DDR_ErrorCode(adapter_backend.DDR_GetMemorySize(dataHandle.value, byref(chunks)))
+    if error_code == DDR_ErrorCode.DDR_ErrorCode_Success:
+        memorySizeInChunks.value = chunks.value
+    return error_code
 
-##  A dictionary mapping a string name to a buffer of bytes.
-_localData = {} # type: dict[str, bytearray]
+##  Read a single 32-bit value at the given offset in the memory block indicated
+#   by the specified handle.
+#
+#   @param dataHandle
+#          Handle to a previously opened memory block as obtained from the
+#          @ref DesignPatternExamples_python.adapter.adapter_backendfunctions.ddr_openmemoryblock "ddr_openmemoryblock"() function.
+#   @param chunkOffset
+#          Offset into the memory block from which to get the value (range is 0 to
+#          @ref DesignPatternExamples_python.adapter.adapter_backendfunctions.DDR_MAX_OFFSET "DDR_MAX_OFFSET"-1).
+#   @param value
+#          Returns the requested value.
+#   @returns
+#     Returns a value from the
+#     @ref DesignPatternExamples_python.adapter.adapter_backendfunctions.DDR_ErrorCode "DDR_ErrorCode"
+#     enumeration indicating success or failure.
+def ddr_getdatachunk(dataHandle: Handle, chunkOffset: int, value: Handle) -> DDR_ErrorCode:
+    chunk_value = c_uint32()
+    error_code = DDR_ErrorCode(adapter_backend.DDR_GetDataChunk(dataHandle.value, chunkOffset, byref(chunk_value)))
+    if error_code == DDR_ErrorCode.DDR_ErrorCode_Success:
+        value.value = chunk_value.value
+    return error_code
 
-## A dictionary mapping an integer token to a string (the name used
-#  in the _localData dictionary).  The token is returned to the caller.
-_handleToKey = {} # type: dict[int, str]
-
-##  The next token to allocate.
-_nextKey = 0 # type: int
-
-##  The last error code set by a function.
-_lastErrorCode = ErrorCodes.NoError
-
-
-## Represents a collection of functions used for accessing some arbitrarily-
-#  sized block of data.  These functions return error codes that need to
-#  be adapted to exceptions by the Adapter design pattern wrapper.
-class DataReadWriteFunctions:
-
-    ##  Initialize the data reader/writer.
-    #
-    #  @param initData
-    #         Initialization string
-    #  @param dataHandle
-    #         Returns the handle representing the data reader/writer
-    #
-    #  @returns
-    #    Returns 0 if successful; otherwise, non-zero if there was an error.
-    def Startup(initData : str, dataHandle : Handle) -> int:
-        _lastErrorCode = ErrorCodes.InvalidParameter
-        if dataHandle != None:
-            _lastErrorCode = ErrorCodes.AlreadyStarted
-            dataHandle.value = -1
-            if not initData in _localData:
-                # Generate a buffer of integers to use as the initial data
-                # that in turn is associated with the initData name.
-                data = bytearray(128)
-                for index in range(0, len(data)):
-                    # Reverse order of numbers.
-                    data[index] = len(data) - index
-                _localData[initData] = data
-
-                # Now generate a token (a handle) for the initData buffer
-                # and return it.
-                dataHandle.value = _nextKey
-                ++_nextKey
-                _handleToKey[dataHandle.value] = initData
-                _lastErrorCode = ErrorCodes.NoError
-        return int(_lastErrorCode.value)
-
-
-    ##  Shut down the data reader/writer.
-    #
-    #  @param dataHandle
-    #         Handle to shut down
-    #
-    #  @returns
-    #    Returns 0 if successful; otherwise, non-zero if there was an error.
-    def Shutdown(dataHandle : Handle) -> int:
-        _lastErrorCode = ErrorCodes.AlreadyShutDown
-
-        if dataHandle.value in _handleToKey:
-            del(_localData[_handleToKey[dataHandle.value]])
-            del(_handleToKey[dataHandle.value])
-            _lastErrorCode = ErrorCodes.NoError
-        return int(_lastErrorCode.value)
- 
-
-    ##  Retrieve the message related to the last error reported as a string.
-    #
-    #  @returns
-    #    A string containing the last error message.  Returns an empty string
-    #    if there was no error.
-    def GetLastErrorMessage() -> str:
-        match _lastErrorCode:
-            case ErrorCodes.NoError:
-                return ""
-
-            case ErrorCodes.InvalidParameter:
-                return "Invalid parameter"
-
-            case ErrorCodes.AlreadyShutDown:
-                return "Data reader/writer already shut down."
-
-            case ErrorCodes.AlreadyStarted:
-                return "Data reader/writer already started."
-
-            case ErrorCodes.InvalidDataHandle:
-                return "Invalid data handle"
-
-            case _:
-                return "Unknown error: {}".format(_lastErrorCode)
-
-
-    ##  Write a block of bytes to the target.
-    #
-    #  @param dataHandle
-    #         Handle to data reader/writer.
-    #  @param data
-    #         A block of data of at least `dataLength` bytes.
-    #  @param dataLength
-    #         The number of bytes to write.
-    #
-    #  @returns
-    #    Returns 0 if successful; otherwise, non-zero if there was an error.
-    def WriteData(dataHandle : Handle, data: bytearray, dataLength: int) -> int:
-        _lastErrorCode = ErrorCodes.InvalidParameter
-
-        if data:
-            _lastErrorCode = ErrorCodes.InvalidDataHandle
-            if dataHandle.value in _handleToKey:
-                localData = _localData[_handleToKey[dataHandle.value]]
-                if dataLength > len(localData):
-                    localData.extend(bytearray(dataLength - len(localData)))
-
-                for index in range(0, dataLength):
-                    localData[index] = data[index]
-                _lastErrorCode = ErrorCodes.NoError
-        return int(_lastErrorCode.value)
-
-
-    ##  Read a block of bytes from the target.
-    #
-    #  @param dataHandle
-    #         Handle to data reader/writer.
-    #  @param maxDataLength
-    #         The maximum number of bytes to read.
-    #  @param data
-    #         The buffer to store the bytes  Can be null if attempting to
-    #         retrieve the amount of data available.
-    #  @param availableDataLength
-    #         A list by which the number of bytes available for reading is
-    #         returned.  Cannot be None.
-    #
-    #  @returns
-    #    Returns 0 if successful; otherwise, non-zero if there was an error.
-    def ReadData(dataHandle : Handle, maxDataLength : int, data : bytearray,
-        availableDataLength : list[int]) -> int:
-        _lastErrorCode = ErrorCodes.InvalidParameter
-
-        if availableDataLength is not None:
-            if len(availableDataLength) == 0:
-                availableDataLength.append(0)
-            else:
-                availableDataLength[0] = 0
-            _lastErrorCode = ErrorCodes.InvalidDataHandle
-            if dataHandle.value in _handleToKey:
-                localData = _localData[_handleToKey[dataHandle.value]]
-                availableDataLength[0] = len(localData)
-
-                # Note: data parameter is allowed to be null
-                _lastErrorCode = ErrorCodes.NoError
-                if data is not None:
-                    _lastErrorCode = ErrorCodes.InvalidParameter
-                    # If buffer is large enough to contain the requested
-                    # data then
-                    if availableDataLength[0] >= maxDataLength:
-                        # Read only up to the amount available
-                        byteCount = len(localData) if maxDataLength > len(localData) else maxDataLength
-                        for index in range(0, byteCount):
-                            data[index] = localData[index]
-                        _lastErrorCode = ErrorCodes.NoError
-
-        return int(_lastErrorCode.value)
+##  Writes a single 32-bit value to the given offset in the memory block indicated
+#   by the specified handle.
+#
+#   @param dataHandle
+#          Handle to a previously opened memory block as obtained from the
+#          @ref DesignPatternExamples_python.adapter.adapter_backendfunctions.ddr_openmemoryblock "ddr_openmemoryblock"() function.
+#   @param chunkOffset
+#          Offset into the memory block to which to set the value (range is 0 to
+#          @ref DesignPatternExamples_python.adapter.adapter_backendfunctions.DDR_MAX_OFFSET "DDR_MAX_OFFSET"-1).
+#   @param value
+#          The value to write to the memory block
+#   @returns
+#     Returns a value from the
+#     @ref DesignPatternExamples_python.adapter.adapter_backendfunctions.DDR_ErrorCode "DDR_ErrorCode"
+#     enumeration indicating success or failure.
+def ddr_setdatachunk(dataHandle: Handle, chunkOffset: int, value: int) -> DDR_ErrorCode:
+    chunk_value = c_uint32(value)
+    error_code = DDR_ErrorCode(adapter_backend.DDR_SetDataChunk(dataHandle.value, chunkOffset, chunk_value))
+    return error_code

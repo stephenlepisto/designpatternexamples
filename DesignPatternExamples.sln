@@ -18,6 +18,9 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CreateDocs", "CreateDocs\CreateDocs.vcxproj", "{5D922FFC-4FBC-40C9-9EC5-F54EB0730BC5}"
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "DesignPatternExamples_python", "python\DesignPatternExamples_python\DesignPatternExamples_python.pyproj", "{DCFEA88A-4108-44CD-88AB-70103972520F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{96BA1AF0-2CAB-4A51-8EF4-C0B9EEC3BE44} = {96BA1AF0-2CAB-4A51-8EF4-C0B9EEC3BE44}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DesignPatternExamples_c", "c\DesignPatternExamples_c.vcxproj", "{E5564270-1A88-4395-86C8-FDC6954FFD80}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -30,6 +33,11 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "design_pattern_examples_rus
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Adapter_BackEnd", "Adapter_BackEnd\Adapter_BackEnd.vcxproj", "{C41C4CD0-BE19-4A5D-BB78-13105CD33B6E}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Python_BuildEvents", "python\Python_BuildEvents\Python_BuildEvents.vcxproj", "{96BA1AF0-2CAB-4A51-8EF4-C0B9EEC3BE44}"
+	ProjectSection(ProjectDependencies) = postProject
+		{C41C4CD0-BE19-4A5D-BB78-13105CD33B6E} = {C41C4CD0-BE19-4A5D-BB78-13105CD33B6E}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -131,6 +139,18 @@ Global
 		{C41C4CD0-BE19-4A5D-BB78-13105CD33B6E}.Release|x64.Build.0 = Release|x64
 		{C41C4CD0-BE19-4A5D-BB78-13105CD33B6E}.Release|x86.ActiveCfg = Release|Win32
 		{C41C4CD0-BE19-4A5D-BB78-13105CD33B6E}.Release|x86.Build.0 = Release|Win32
+		{96BA1AF0-2CAB-4A51-8EF4-C0B9EEC3BE44}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{96BA1AF0-2CAB-4A51-8EF4-C0B9EEC3BE44}.Debug|Any CPU.Build.0 = Debug|x64
+		{96BA1AF0-2CAB-4A51-8EF4-C0B9EEC3BE44}.Debug|x64.ActiveCfg = Debug|x64
+		{96BA1AF0-2CAB-4A51-8EF4-C0B9EEC3BE44}.Debug|x64.Build.0 = Debug|x64
+		{96BA1AF0-2CAB-4A51-8EF4-C0B9EEC3BE44}.Debug|x86.ActiveCfg = Debug|Win32
+		{96BA1AF0-2CAB-4A51-8EF4-C0B9EEC3BE44}.Debug|x86.Build.0 = Debug|Win32
+		{96BA1AF0-2CAB-4A51-8EF4-C0B9EEC3BE44}.Release|Any CPU.ActiveCfg = Release|x64
+		{96BA1AF0-2CAB-4A51-8EF4-C0B9EEC3BE44}.Release|Any CPU.Build.0 = Release|x64
+		{96BA1AF0-2CAB-4A51-8EF4-C0B9EEC3BE44}.Release|x64.ActiveCfg = Release|x64
+		{96BA1AF0-2CAB-4A51-8EF4-C0B9EEC3BE44}.Release|x64.Build.0 = Release|x64
+		{96BA1AF0-2CAB-4A51-8EF4-C0B9EEC3BE44}.Release|x86.ActiveCfg = Release|Win32
+		{96BA1AF0-2CAB-4A51-8EF4-C0B9EEC3BE44}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

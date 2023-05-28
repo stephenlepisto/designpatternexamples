@@ -4,7 +4,7 @@
 # @ref DesignPatternExamples_python.adapter.adapter_exercise.Adapter_Exercise "Adapter_Exercise"()
 # function as used in the @ref adapter_pattern.
 
-from .adapter_frontendclass import DataReaderWriter, DataReaderWriterException, DataReaderWriterInitException
+from .adapter_frontendclass import MemoryBlock, DataReaderWriter, DataReaderWriterException, DataReaderWriterInitException
 
 ## Example of using the @ref adapter_pattern.
 # 
@@ -24,17 +24,22 @@ def Adapter_Exercise():
         for index in range(0, dataSize):
             writeData.append(index)
 
-        with DataReaderWriter("-target BXT") as dataReaderWriter:
+        with DataReaderWriter(MemoryBlock.MEMORY_BLOCK_0) as dataReaderWriter:
+            readData = dataReaderWriter.Read(0, dataSize)
+            dataDump = dataReaderWriter.BufferToString(readData, dataSize, 2)
+            print("  Initial data read:")
+            print(dataDump)
+
             # Display the data to be written
             dataDump = dataReaderWriter.BufferToString(writeData, dataSize, 2)
-            print("  Data written:")
+            print("  Data to be written:")
             print(dataDump)
 
             # Write the data to the external component
-            dataReaderWriter.Write(writeData, dataSize)
+            dataReaderWriter.Write(0, writeData, dataSize)
 
             # Read the data from the external component
-            readData = dataReaderWriter.Read(dataSize)
+            readData = dataReaderWriter.Read(0, dataSize)
 
             # Display the data read back.  Should be the same as was written.
             dataDump = dataReaderWriter.BufferToString(readData, dataSize, 2)
