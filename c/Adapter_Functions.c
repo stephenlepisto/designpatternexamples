@@ -326,7 +326,7 @@ bool Adapter_WriteMemory(int dataHandle, int byteOffset, const uint8_t* buffer, 
             uint32_t value = 0;
             int byteOffsetInChunk = byteOffset % sizeof(uint32_t);
             int bufferIndex = 0;
-            uint32_t byteMask = 0xff << byteOffsetInChunk;
+            uint32_t byteMask = 0xff << (byteOffsetInChunk * 8);
             if (byteOffsetInChunk != 0)
             {
                 errorCode = DDR_GetDataChunk(dataHandle, chunkOffset, &value);

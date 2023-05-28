@@ -254,7 +254,7 @@ namespace DesignPatternExamples_csharp
             UInt32 value = 0;
             int byteOffsetInChunk = byteOffset % sizeof(UInt32);
             UInt32 bufferIndex = 0;
-            UInt32 byteMask = (UInt32)0xff << byteOffsetInChunk;
+            UInt32 byteMask = (UInt32)0xff << (byteOffsetInChunk * 8);
             if (byteOffsetInChunk != 0)
             {
                 errorCode = DDR_GetDataChunk(_dataHandle, chunkOffset, out value);

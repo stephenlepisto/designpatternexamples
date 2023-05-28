@@ -258,7 +258,7 @@ pub fn adapter_write_memory(data_handle: DataHandle, byte_offset: i32, bytes_to_
     let mut value: u32 = 0;
     let mut byte_offset_in_chunk = byte_offset % 4;
     let mut buffer_index: usize = 0;
-    let mut byte_mask : u32 = 0xffu32 << byte_offset_in_chunk;
+    let mut byte_mask : u32 = 0xffu32 << (byte_offset_in_chunk * 8);
     let mut error_code = DDR_ErrorCode_DDR_ErrorCode_Success;
     if byte_offset_in_chunk != 0 {
         error_code = unsafe { ddr_get_data_chunk(data_handle, chunk_offset, &mut value) };

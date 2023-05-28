@@ -233,7 +233,7 @@ namespace DesignPatternExamples_cpp
             uint32_t value = 0;
             int byteOffsetInChunk = byteOffset % sizeof(uint32_t);
             uint32_t bufferIndex = 0;
-            uint32_t byteMask = 0xff << byteOffsetInChunk;
+            uint32_t byteMask = 0xff << (byteOffsetInChunk * 8);
             if (byteOffsetInChunk != 0)
             {
                 errorCode = DDR_GetDataChunk(_dataHandle, chunkOffset, &value);
