@@ -74,6 +74,7 @@ namespace DesignPatternExamples_cpp
     private:
         bool _initialized;
         int _dataHandle;
+        uint32_t _memoryBlockByteSize;
 
     private:
         /// <summary>
@@ -97,6 +98,12 @@ namespace DesignPatternExamples_cpp
         /// Destructor.
         /// </summary>
         ~DataReaderWriter();
+
+        /// <summary>
+        /// Retrieve the size of the currently opened memory block in bytes.
+        /// </summary>
+        /// <returns>The size of memory block in bytes.</returns>
+        uint32_t GetMemoryBlockByteSize();
 
         /// <summary>
         /// Read a specified number of bytes.

@@ -172,7 +172,6 @@ pub fn adapter_close_memory(data_handle: DataHandle) -> Result<(), String> {
 /// If successful, returns `Ok(usize)` containing the number of bytes available
 /// to access; otherwise, returns `Err(String)` containing the reason for the
 /// failure.
-#[allow(dead_code)] // Not currently used
 pub fn adapter_get_memory_size(data_handle: DataHandle) -> Result<usize, String> {
     let mut memory_size: ::std::os::raw::c_int = 0;
     let error_code = unsafe { ddr_get_memory_size(data_handle, &mut memory_size) };

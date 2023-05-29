@@ -18,32 +18,38 @@ def Adapter_Exercise():
     print("Adapter Exercise")
 
     try:
-        # Create the data to be written
-        dataSize = 128
-        writeData = []
-        for index in range(0, dataSize):
-            writeData.append(index)
 
         with DataReaderWriter(MemoryBlock.MEMORY_BLOCK_0) as dataReaderWriter:
-            readData = dataReaderWriter.Read(0, dataSize)
-            dataDump = dataReaderWriter.BufferToString(readData, dataSize, 2)
-            print("  Initial data read:")
+            memoryBlockSize = dataReaderWriter.MemoryBlockByteSize
+            # Create the data to be written
+            dataSize = 16
+            byteOffset = 41
+            writeData = []
+            for index in range(0, dataSize):
+                writeData.append(index + 1)
+                
+            readData = dataReaderWriter.Read(0, memoryBlockSize)
+            dataDump = dataReaderWriter.BufferToString(readData, memoryBlockSize, 2)
+            print("  Initial memory block contents:")
             print(dataDump)
 
             # Display the data to be written
-            dataDump = dataReaderWriter.BufferToString(writeData, dataSize, 2)
-            print("  Data to be written:")
+            dataDump = dataReaderWriter.BufferToString(writeData, len(writeData), 2)
+            print("  Data to be written to memory block:")
             print(dataDump)
 
+            print("  Writing data to byte offset {}...".format(byteOffset))
             # Write the data to the external component
-            dataReaderWriter.Write(0, writeData, dataSize)
+            dataReaderWriter.Write(byteOffset, writeData, len(writeData))
 
+            print("  Reading back the memory block...")
             # Read the data from the external component
-            readData = dataReaderWriter.Read(0, dataSize)
+            readData = dataReaderWriter.Read(0, memoryBlockSize)
+            print()
 
             # Display the data read back.  Should be the same as was written.
-            dataDump = dataReaderWriter.BufferToString(readData, dataSize, 2)
-            print("  Data read:")
+            dataDump = dataReaderWriter.BufferToString(readData, memoryBlockSize, 2)
+            print("  Current memory block contents:")
             print(dataDump)
     except DataReaderWriterInitException as ex:
         print("Error with startup or shutdown! {0}".format(ex))

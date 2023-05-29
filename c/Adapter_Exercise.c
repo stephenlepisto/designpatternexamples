@@ -28,52 +28,83 @@ void Adapter_Exercise()
     int dataHandle = -1;
     if (Adapter_OpenMemory(Memory_Block_0, &dataHandle))
     {
-        uint8_t writeData[128] = { 0 };
+        uint8_t writeData[16] = { 0 };
+        uint8_t readData[128] = { 0 };
+        int bufferOffset = 41;
         uint32_t dataSize = _countof(writeData);
         int bytesWritten = 0;
         int bytesRead = 0;
-        // Create the data to be written
-        for (uint32_t index = 0; index < dataSize; index++)
-        {
-            writeData[index] = (uint8_t)index;
-        }
+        int memoryBlockSize = 0;
+        const char* hexdump = NULL;
 
-        // Display the data to be written
-        const char* hexdump = Adapter_BufferToString(writeData, dataSize, 2);
-        if (hexdump == NULL)
+        if (Adapter_GetMemorySize(dataHandle, &memoryBlockSize))
         {
-            printf("  %s\n", Adapter_GetLastErrorMessage());
-        }
-        else
-        {
-            printf("  Data written:\n");
-            printf("%s\n", hexdump);
-
-            if (Adapter_WriteMemory(dataHandle, 0, writeData, dataSize, &bytesWritten))
+            if (Adapter_ReadMemory(dataHandle, 0, readData, memoryBlockSize, &bytesRead))
             {
-                uint8_t readData[128] = { 0 };
-                if (Adapter_ReadMemory(dataHandle, 0, readData, bytesWritten, &bytesRead))
+                hexdump = Adapter_BufferToString(readData, bytesRead, 2);
+                if (hexdump != NULL)
                 {
-                    hexdump = Adapter_BufferToString(readData, bytesRead, 2);
-                    if (hexdump == NULL)
+                    printf(" Initial memory block contents:\n");
+                    printf("%s\n", hexdump);
+
+                    // Create the data to be written
+                    for (uint32_t index = 0; index < dataSize; index++)
                     {
-                        printf("  %s\n", Adapter_GetLastErrorMessage());
+                        writeData[index] = (uint8_t)(index + 1);
+                    }
+
+                    // Display the data to be written
+                    hexdump = Adapter_BufferToString(writeData, dataSize, 2);
+                    if (hexdump != NULL)
+                    {
+                        printf("  Data to be written to memory block:\n");
+                        printf("%s\n", hexdump);
+
+                        printf("  Writing data to byte offset %d\n", bufferOffset);
+                        if (Adapter_WriteMemory(dataHandle, bufferOffset, writeData, dataSize, &bytesWritten))
+                        {
+                            printf("  Reading back the memory block...\n");
+                            if (Adapter_ReadMemory(dataHandle, 0, readData, memoryBlockSize, &bytesRead))
+                            {
+                                hexdump = Adapter_BufferToString(readData, bytesRead, 2);
+                                if (hexdump != NULL)
+                                {
+                                    printf("  Current memory block contents:\n");
+                                    printf("%s\n", hexdump);
+                                }
+                                else
+                                {
+                                    printf("  %s\n", Adapter_GetLastErrorMessage());
+                                }
+                            }
+                            else
+                            {
+                                printf("  %s\n", Adapter_GetLastErrorMessage());
+                            }
+                        }
+                        else
+                        {
+                            printf("  %s\n", Adapter_GetLastErrorMessage());
+                        }
                     }
                     else
                     {
-                        printf("  Data read:\n");
-                        printf("%s\n", hexdump);
+                        printf("  %s\n", Adapter_GetLastErrorMessage());
                     }
                 }
                 else
                 {
                     printf("  %s\n", Adapter_GetLastErrorMessage());
-                }
+}
             }
             else
             {
                 printf("  %s\n", Adapter_GetLastErrorMessage());
             }
+        }
+        else
+        {
+            printf("  %s\n", Adapter_GetLastErrorMessage());
         }
 
         if (!Adapter_CloseMemory(dataHandle))

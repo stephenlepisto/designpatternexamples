@@ -11,7 +11,6 @@
 
 #include <Adapter_BackEnd.h>
 #include "Adapter_FrontEndClass.h"
-//#include "Adapter_BackEndFunctions.h"
 
 namespace // Anonymous namespace
 {
@@ -127,8 +126,18 @@ namespace DesignPatternExamples_cpp
         if (blockName != NULL)
         {
             DDR_ErrorCode errorCode = DDR_OpenMemoryBlock(blockName, &_dataHandle);
-            if (errorCode == 0)
+            if (errorCode == DDR_ErrorCode_Success)
             {
+                int memorySizeInChunks = 0;
+                errorCode = DDR_GetMemorySize(_dataHandle, &memorySizeInChunks);
+                if (errorCode != DDR_ErrorCode_Success)
+                {
+                    std::string msg =
+                        _ConstructErrorMessage(errorCode,
+                            "Memory block not opened so cannot retrieve memory block size");
+                    throw new DataReaderWriterInitException(msg);
+                }
+                _memoryBlockByteSize = static_cast<uint32_t>(memorySizeInChunks) * sizeof(uint32_t);
                 _initialized = true;
             }
             else
@@ -151,6 +160,14 @@ namespace DesignPatternExamples_cpp
         }
     }
 
+
+    ///////////////////////////////////////////////////////////////////////////
+    // DataReaderWriter::GetMemoryBlockByteSize
+    ///////////////////////////////////////////////////////////////////////////
+    uint32_t DataReaderWriter::GetMemoryBlockByteSize()
+    {
+        return _initialized ? _memoryBlockByteSize : 0;
+    }
 
     ///////////////////////////////////////////////////////////////////////
     // DataReaderWriter::Read method

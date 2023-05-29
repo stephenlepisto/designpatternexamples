@@ -56,7 +56,24 @@ namespace DesignPatternExamples_csharp
         private bool _disposed;
         private bool _initialized;
         private int _dataHandle;
+        private uint _memoryBlockByteSize;
 
+        /// <summary>
+        /// Retrieve the size of the memory block in bytes.
+        /// </summary>
+        public uint MemoryBlockByteSize
+        {
+            get { return _memoryBlockByteSize; }
+        }
+
+        /// <summary>
+        /// Helper function to convert a value from the @ref MemoryBlockNumber
+        /// enumeration, which specifies the number of a memory block, into
+        /// the name of the block as required by the low-level
+        /// @ref Adapter_BackEnd.h "Adapter_BackEnd" DLL.</summary>
+        /// <param name="blockNumber">Value from the MemoryBlockNumber enumeration
+        /// for which to get the block name.</param>
+        /// <returns>Returns a string containing the name of the block.</returns>
         private string _GetBlockNameForBlockNumber(MemoryBlockNumber blockNumber)
         {
             string blockName = "";
@@ -162,6 +179,15 @@ namespace DesignPatternExamples_csharp
                     DataReadWriteFunctions.DDR_OpenMemoryBlock(blockName, out _dataHandle);
                 if (errorCode == DDR_ErrorCode.DDR_ErrorCode_Success)
                 {
+                    int memorySizeInChunks = 0;
+                    errorCode = DataReadWriteFunctions.DDR_GetMemorySize(_dataHandle, out memorySizeInChunks);
+                    if (errorCode != DDR_ErrorCode.DDR_ErrorCode_Success)
+                    {
+                        string msg = _ConstructErrorMessage(errorCode,
+                            "Memory block not opened so cannot retrieve memory block size");
+                        throw new DataReaderWriterInitException(msg);
+                    }
+                    _memoryBlockByteSize = (uint)memorySizeInChunks * sizeof(UInt32);
                     _initialized = true;
                 }
                 else

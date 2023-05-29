@@ -28,29 +28,40 @@ namespace DesignPatternExamples_cpp
         {
             DataReaderWriter dataReaderWriter(DataReaderWriter::Memory_Block_0);
 
+            uint32_t memoryBlockSize = dataReaderWriter.GetMemoryBlockByteSize();
+            
+            std::vector<uint8_t> readData = dataReaderWriter.Read(0, memoryBlockSize);
+            std::string dataDump = 
+                dataReaderWriter.BufferToString(readData, memoryBlockSize, 2);
+            std::cout << "  Initial memory block contents:" << std::endl;
+            std::cout << dataDump << std::endl;
+
             // Create the data to be written
-            uint32_t dataSize = 128;
+            uint32_t dataSize = 16;
+            int byteOffset = 41;
             std::vector<uint8_t> writeData(dataSize);
             for (uint32_t index = 0; index < dataSize; ++index)
             {
-                writeData[index] = static_cast<uint8_t>(index);
+                writeData[index] = static_cast<uint8_t>(index+1);
             }
 
             // Display the data to be written
-            std::string dataDump =
-                dataReaderWriter.BufferToString(writeData, dataSize, 2);
-            std::cout << "  Data written:" << std::endl;
+            dataDump = dataReaderWriter.BufferToString(writeData, dataSize, 2);
+            std::cout << "  Data to be written to memory block:" << std::endl;
             std::cout << dataDump << std::endl;
 
+            std::cout << "  Writing data to byte offset " << byteOffset << "..." << std::endl;
             // Write the data to the external component
-            dataReaderWriter.Write(0, writeData, dataSize);
+            dataReaderWriter.Write(byteOffset, writeData, dataSize);
 
+            std::cout << "  Reading back the memory block..." << std::endl;
             // Read the data from the external component
-            std::vector<uint8_t> readData = dataReaderWriter.Read(0, dataSize);
+            readData = dataReaderWriter.Read(0, memoryBlockSize);
+            std::cout << std::endl;
 
-            // Display the data read back.  Should be the same as was written.
-            dataDump = dataReaderWriter.BufferToString(readData, dataSize, 2);
-            std::cout << "  Data read:" << std::endl;
+            // Display the data read back.
+            dataDump = dataReaderWriter.BufferToString(readData, memoryBlockSize, 2);
+            std::cout << "  Current memory block contents:" << std::endl;
             std::cout << dataDump << std::endl;
         }
         catch (DataReaderWriterInitException& e)

@@ -91,10 +91,10 @@ class DataReaderWriter:
             self._initialized = False
 
 
-    ## Retrieve the size of the memory block expressed as a number of 32-bit chunks.
+    ## Retrieve the size of the memory block in bytes.
     #
     #  @returns
-    #    Returns the number of 32-bit chunks in the currently opened memory
+    #    Returns the number of bytes available in the currently opened memory
     #    block.
     @property
     def MemoryBlockByteSize(self):
