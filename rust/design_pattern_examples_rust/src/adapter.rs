@@ -15,6 +15,8 @@ use adapter_functions::{MemoryBlockNumber, adapter_open_memory, adapter_close_me
 /// 
 /// The Adapter functions translate the 32-bit chunk access into arrays of bytes.
 /// The Adapter functions also provide human-readable messages for error codes.
+
+// ! [Using Adapter in Rust]
 pub fn adapter_exercise() {
     println!("");
     println!("Adapter Exercise");
@@ -79,3 +81,6 @@ pub fn adapter_exercise() {
 
     println!("  Done.");
 }
+
+// ! [Using Adapter in Rust]
+
