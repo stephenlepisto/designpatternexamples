@@ -259,6 +259,11 @@ namespace DesignPatternExamples_cpp
                             {
                                 break;
                             }
+                            errorCode = DDR_GetDataChunk(_dataHandle, chunkOffset, &value);
+                            if (errorCode != DDR_ErrorCode_Success)
+                            {
+                                break;
+                            }
                         }
                         else
                         {

@@ -279,6 +279,13 @@ pub fn adapter_write_memory(data_handle: DataHandle, byte_offset: i32, bytes_to_
                     if chunk_offset >= DDR_MAX_OFFSET {
                         break;
                     }
+                    error_code = unsafe { ddr_get_data_chunk(data_handle, chunk_offset, &mut value) };
+                    if let DDR_ErrorCode_DDR_ErrorCode_Success = error_code {
+
+                    } else {
+                        return Err(_report_ddr_error(error_code, "Reading memory in preparation to writing memory"));
+                    }
+                    
                 } else {
                     return Err(_report_ddr_error(error_code, "Writing memory"));
                 }

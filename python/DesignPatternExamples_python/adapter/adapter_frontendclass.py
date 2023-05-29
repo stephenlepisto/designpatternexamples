@@ -6,6 +6,7 @@
 from ctypes import sizeof, c_uint32
 from io import StringIO
 from enum import Enum
+from math import trunc
 
 from .adapter_backendfunctions import *
 
@@ -50,6 +51,7 @@ class DataReaderWriter:
         self._initialized = False
         self._blockNumber = blockNumber
         self._dataHandle = Handle()
+        self._memoryBlockByteSize = 0
 
     ## @var _initialized
     #       True if this instance has been initialized to use the
@@ -59,6 +61,8 @@ class DataReaderWriter:
     #  @var _dataHandle
     #       Contains the handle to the memory block after __enter__()
     #       has returned.
+    #  @var _memoryBlockByteSize
+    #       Holds the number of bytes in the opened memory block
 
     ## Entry function used in the `with` statement to initialize an instance
     #  of the reader/writer.
@@ -66,7 +70,14 @@ class DataReaderWriter:
         block_name = self._GetBlockNameForBlockNumber(self._blockNumber)
         errorCode = ddr_openmemoryblock(block_name, self._dataHandle)
         if errorCode == DDR_ErrorCode.DDR_ErrorCode_Success:
-            self._initialized = True
+            value = ValueHandle()
+            errorCode = ddr_getmemorysize(self._dataHandle, value)
+            if errorCode == DDR_ErrorCode.DDR_ErrorCode_Success:
+                self._memoryBlockByteSize = value.value * sizeof(c_uint32)
+                self._initialized = True
+            else:
+                msg = self._ConstructErrorMessage(errorCode, "Getting size of memory block")
+                raise DataReaderWriterInitException(msg)
         else:
             msg = self._ConstructErrorMessage(errorCode, "Initializing data reader/writer")
             raise DataReaderWriterInitException(msg)
@@ -78,6 +89,20 @@ class DataReaderWriter:
         if self._initialized:
             ddr_closememoryblock(self._dataHandle)
             self._initialized = False
+
+
+    ## Retrieve the size of the memory block expressed as a number of 32-bit chunks.
+    #
+    #  @returns
+    #    Returns the number of 32-bit chunks in the currently opened memory
+    #    block.
+    @property
+    def MemoryBlockByteSize(self):
+        if not self._initialized:
+            msg = self._ConstructErrorMessage(DDR_ErrorCode.DDR_ErrorCode_Block_Not_Opened,
+                                             "Memory block not opened so cannot retrieve memory block size")
+            raise DataReaderWriterInitException(msg)
+        return self._memoryBlockByteSize
 
 
     ## Given a value from the
@@ -215,7 +240,7 @@ class DataReaderWriter:
             errorCode = DDR_ErrorCode.DDR_ErrorCode_Success
             chunkOffset = byteOffset // sizeof(c_uint32)
             value = ValueHandle()
-            byteOffsetInChunk = byteOffset % sizeof(c_uint32)
+            byteOffsetInChunk = int(byteOffset % sizeof(c_uint32))
             bufferIndex = 0
             byteMask = 0xff << (byteOffsetInChunk * 8)
             if byteOffsetInChunk != 0:
@@ -235,6 +260,10 @@ class DataReaderWriter:
                             chunkOffset += 1
                             if chunkOffset >= DDR_MAX_OFFSET:
                                 break
+                            errorCode = ddr_getdatachunk(self._dataHandle, chunkOffset, value)
+                            if errorCode != DDR_ErrorCode.DDR_ErrorCode_Success:
+                                msg = self._ConstructErrorMessage(errorCode, "Reading memory")
+                                raise DataReaderWriterException(msg)
                         else:
                             msg = self._ConstructErrorMessage(errorCode, "Writing memory")
                             raise DataReaderWriterException(msg)

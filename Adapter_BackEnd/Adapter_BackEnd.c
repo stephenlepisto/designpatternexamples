@@ -136,6 +136,7 @@ DDR_ErrorCode DDR_OpenMemoryBlock(const char* blockName, int* dataHandle)
                 // Note: We are using the index as the handle
                 *dataHandle = foundBlockIndex;
                 errorCode = DDR_ErrorCode_Success;
+                memset(memory_blocks[foundBlockIndex].data, 0xff, sizeof(memory_blocks[foundBlockIndex].data));
             }
         }
     }

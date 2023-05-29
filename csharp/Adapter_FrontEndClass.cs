@@ -280,6 +280,11 @@ namespace DesignPatternExamples_csharp
                             {
                                 break;
                             }
+                            errorCode = DDR_GetDataChunk(_dataHandle, chunkOffset, out value);
+                            if (errorCode != DDR_ErrorCode.DDR_ErrorCode_Success)
+                            {
+                                break;
+                            }
                         }
                         else
                         {

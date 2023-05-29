@@ -353,6 +353,11 @@ bool Adapter_WriteMemory(int dataHandle, int byteOffset, const uint8_t* buffer, 
                                 writeOkay = true;
                                 break;
                             }
+                            errorCode = DDR_GetDataChunk(dataHandle, chunkOffset, &value);
+                            if (errorCode != DDR_ErrorCode_Success)
+                            {
+                                break;
+                            }
                         }
                         else
                         {

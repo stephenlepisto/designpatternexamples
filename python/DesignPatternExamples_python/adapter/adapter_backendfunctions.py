@@ -122,7 +122,7 @@ def ddr_closememoryblock(dataHandle : Handle) -> DDR_ErrorCode:
 #     Returns a value from the
 #     @ref DesignPatternExamples_python.adapter.adapter_backendfunctions.DDR_ErrorCode "DDR_ErrorCode"
 #     enumeration indicating success or failure.
-def ddr_getmemorysize(dataHandle: Handle, memorySizeInChunks: Handle) -> DDR_ErrorCode:
+def ddr_getmemorysize(dataHandle: Handle, memorySizeInChunks: ValueHandle) -> DDR_ErrorCode:
     chunks = c_int()
     error_code = DDR_ErrorCode(adapter_backend.DDR_GetMemorySize(dataHandle.value, byref(chunks)))
     if error_code == DDR_ErrorCode.DDR_ErrorCode_Success:
@@ -144,7 +144,7 @@ def ddr_getmemorysize(dataHandle: Handle, memorySizeInChunks: Handle) -> DDR_Err
 #     Returns a value from the
 #     @ref DesignPatternExamples_python.adapter.adapter_backendfunctions.DDR_ErrorCode "DDR_ErrorCode"
 #     enumeration indicating success or failure.
-def ddr_getdatachunk(dataHandle: Handle, chunkOffset: int, value: Handle) -> DDR_ErrorCode:
+def ddr_getdatachunk(dataHandle: Handle, chunkOffset: int, value: ValueHandle) -> DDR_ErrorCode:
     chunk_value = c_uint32()
     error_code = DDR_ErrorCode(adapter_backend.DDR_GetDataChunk(dataHandle.value, chunkOffset, byref(chunk_value)))
     if error_code == DDR_ErrorCode.DDR_ErrorCode_Success:

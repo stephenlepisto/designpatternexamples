@@ -27,6 +27,7 @@ fn main() {
     // Make sure the output directory exists
     output_path.try_exists().unwrap();
 
+    println!("cargo:warning=Copying Adapter_BackEnd files to {}", output_path.display());
     for file in files_to_copy {
         let src = input_path.join(file);
         let dest = output_path.join(file);
