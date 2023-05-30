@@ -25,9 +25,10 @@ mod strategy;
 mod visitor;
 
 
-/// Alias for a pointer to a function that takes no parameters and returns nothing,
-/// using C# as inspiration for the name.
-type Action = fn();
+/// Alias for a pointer to a function that takes no parameters and returns a
+/// `Result<(), String>` (so only the error needs any action taken), using C#
+/// as inspiration for the name.
+type Action = fn() -> Result<(), String>;
 
 /// Represents a single exercise or example for a design pattern.
 struct Exercise {
@@ -160,7 +161,10 @@ fn main() {
         for exercise in exercise_list {
             if options.exercise_names.is_empty() ||
                options.exercise_names.contains(&exercise.exercise_name) {
-                (exercise.exercise_to_run)();
+                   let error_code = (exercise.exercise_to_run)();
+                if let Err(message) = error_code {
+                    println!("  {message}");
+                }
             }
         }
     }

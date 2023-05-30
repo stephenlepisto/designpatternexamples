@@ -6,9 +6,7 @@ pub mod adapter_functions;
 pub mod adapter_backend;
 
 use adapter_functions::{
-    MemoryBlockNumber, adapter_open_memory, adapter_close_memory,
-    adapter_get_memory_size, adapter_read_memory, adapter_write_memory,
-    adapter_buffer_to_string
+    MemoryBlockNumber, DataReaderWriter, adapter_buffer_to_string
 };
 
 /// Example of using the "Adapter" design pattern in rust.
@@ -21,41 +19,18 @@ use adapter_functions::{
 /// The Adapter functions also provide human-readable messages for error codes.
 
 // ! [Using Adapter in Rust]
-pub fn adapter_exercise() {
+pub fn adapter_exercise() -> Result<(), String> {
     println!("");
     println!("Adapter Exercise");
 
-    let data_handle = match adapter_open_memory(MemoryBlockNumber::MemoryBlock0) {
-        Ok(handle) => handle,
-        Err(message) => {
-            eprintln!("  {message}");
-            return;
-        }
-    };
+    let mut reader_writer = DataReaderWriter::new(MemoryBlockNumber::MemoryBlock0);
 
-    let memory_block_size = match adapter_get_memory_size(data_handle) {
-        Ok(value) => value,
-        Err(message) => {
-            eprintln!("  {message}");
-            return;
-        }
-    };
+    reader_writer.open()?;
 
-    let mut read_data = match adapter_read_memory(data_handle, 0, memory_block_size) {
-        Ok(data) => data,
-        Err(message) => {
-            eprintln!("  {message}");
-            return;
-        }
-    };
+    let memory_block_size = reader_writer.memory_block_byte_size;
 
-    let mut hex_dump = match adapter_buffer_to_string(&read_data, 2) {
-        Ok(value) => value,
-        Err(message) => {
-            eprintln!("  {message}");
-            return;
-        }
-    };
+    let mut read_data = reader_writer.read(0, memory_block_size)?;
+    let mut hex_dump = adapter_buffer_to_string(&read_data, 2)?;
     println!("  Initial memory block contents:");
     println!("{hex_dump}");
 
@@ -66,53 +41,25 @@ pub fn adapter_exercise() {
         write_data[index] = (index + 1) as u8;
     }
 
-    hex_dump = match adapter_buffer_to_string(&write_data, 2) {
-        Ok(value) => value,
-        Err(message) => {
-            eprintln!("  {message}");
-            return;
-        }
-    };
+    hex_dump = adapter_buffer_to_string(&write_data, 2)?;
     println!("  Data to be written to memory block:");
     println!("{hex_dump}");
 
     println!("  Writing data to byte offset {buffer_offset}");
-    let _ = match adapter_write_memory(data_handle, buffer_offset, &write_data) {
-        Ok(_) => (),
-        Err(message) => {
-            eprintln!("  {message}");
-            return;
-        }
-    };
+    let _ = reader_writer.write(buffer_offset, &write_data)?;
 
-    println!("Reading back the memory block...");
-    read_data = match adapter_read_memory(data_handle, 0, memory_block_size) {
-        Ok(data) => data,
-        Err(message) => {
-            eprintln!("  {message}");
-            return;
-        }
-    };
+    println!("  Reading back the memory block...");
+    read_data = reader_writer.read(0, memory_block_size)?;
+    println!();
 
-    hex_dump = match adapter_buffer_to_string(&read_data, 2) {
-        Ok(value) => value,
-        Err(message) => {
-            eprintln!("  {message}");
-            return;
-        }
-    };
+    hex_dump = adapter_buffer_to_string(&read_data, 2)?;
     println!("  Current memory block contents:");
     println!("{hex_dump}");
 
-    match adapter_close_memory(data_handle) {
-        Ok(t) => t,
-        Err(message) => {
-            eprintln!("  {message}");
-            return;
-        }
-    };
+    reader_writer.close()?;
 
     println!("  Done.");
+    Ok(())
 }
 
 // ! [Using Adapter in Rust]
