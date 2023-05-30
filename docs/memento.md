@@ -85,7 +85,7 @@ __C++__
 
 __C#__
 
-@snippet csharp/program.cs Using Memento in C#
+@snippet csharp/Memento_Exercise.cs Using Memento in C#
 
 __Python__
 

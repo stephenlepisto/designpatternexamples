@@ -102,7 +102,7 @@ __C++__
 
 __C#__
 
-@snippet csharp/program.cs Using NullObject in C#
+@snippet csharp/NullObject_Exercise.cs Using NullObject in C#
 
 __Python__
 

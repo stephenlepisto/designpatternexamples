@@ -69,7 +69,7 @@ __C++__
 
 __C#__
 
-@snippet csharp/program.cs Using Composite in C#
+@snippet csharp/Composite_Exercise.cs Using Composite in C#
 
 __Python__
 

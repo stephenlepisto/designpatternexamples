@@ -64,7 +64,7 @@ a simplistic undo):
         back into the state it was in before the last command was applied.
 
 This example implements the above algorithm.  A __Command_TextObject__ instance
-representing the target of the commands.  The commands themselves are stored in
+represents the target of the commands.  The commands themselves are stored in
 a __Command__ instance.  A simple stack is used to remember the commands in the
 order in which they are applied.  After several commands are applied, the
 commands are undone in reverse order.
@@ -78,7 +78,7 @@ __C++__
 
 __C#__
 
-@snippet csharp/program.cs Using Command in C#
+@snippet csharp/Command_Exercise.cs Using Command in C#
 
 __Python__
 

@@ -74,7 +74,7 @@ __C++__
 
 __C#__
 
-@snippet csharp/program.cs Using Bridge in C#
+@snippet csharp/Bridge_Exercise.cs Using Bridge in C#
 
 __Python__
 

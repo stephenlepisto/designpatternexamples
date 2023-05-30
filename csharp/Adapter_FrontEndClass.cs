@@ -1,7 +1,7 @@
 ﻿/// @file
 /// @brief
 /// The @ref DesignPatternExamples_csharp.DataReaderWriter "DataReaderWriter"
-/// class used in the @ref adapter_pattern "Adapter pattern".
+/// class used in the @ref adapter_pattern.
 
 using System;
 using System.Collections;

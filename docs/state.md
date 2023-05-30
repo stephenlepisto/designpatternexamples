@@ -156,7 +156,7 @@ __C++__
 
 __C#__
 
-@snippet csharp/program.cs Using State in C#
+@snippet csharp/State_Exercise.cs Using State in C#
 
 __Python__
 

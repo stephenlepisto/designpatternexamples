@@ -134,7 +134,7 @@ __C++__
 
 __C#__
 
-@snippet csharp/program.cs Using HandlerChain in C#
+@snippet csharp/HandlerChain_Exercise.cs Using HandlerChain in C#
 
 __Python__
 

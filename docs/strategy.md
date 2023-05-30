@@ -157,7 +157,7 @@ __C++__
 
 __C#__
 
-@snippet csharp/program.cs Using Strategy in C#
+@snippet csharp/Strategy_Exercise.cs Using Strategy in C#
 
 __Python__
 

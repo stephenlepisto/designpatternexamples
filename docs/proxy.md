@@ -80,7 +80,7 @@ __C++__
 
 __C#__
 
-@snippet csharp/program.cs Using Proxy in C#
+@snippet csharp/Proxy_Exercise.cs Using Proxy in C#
 
 __Python__
 

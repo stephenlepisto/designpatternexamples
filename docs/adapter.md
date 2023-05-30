@@ -62,7 +62,7 @@ __C++__
 
 __C#__
 
-@snippet csharp/program.cs Using Adapter in C#
+@snippet csharp/Adapter_Exercise.cs Using Adapter in C#
 
 __Python__
 

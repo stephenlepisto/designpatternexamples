@@ -135,7 +135,7 @@ __C++__
 
 __C#__
 
-@snippet csharp/program.cs Using Visitor in C#
+@snippet csharp/Visitor_Exercise.cs Using Visitor in C#
 
 __Python__
 

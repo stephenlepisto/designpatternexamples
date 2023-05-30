@@ -81,7 +81,7 @@ __C++__
 
 __C#__
 
-@snippet csharp/program.cs Using Decorator in C#
+@snippet csharp/Decorator_Exercise.cs Using Decorator in C#
 
 __Python__
 

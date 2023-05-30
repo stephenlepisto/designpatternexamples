@@ -68,7 +68,7 @@ __C++__
 
 __C#__
 
-@snippet csharp/program.cs Using Interpreter in C#
+@snippet csharp/Interpreter_Exercise.cs Using Interpreter in C#
 
 __Python__
 

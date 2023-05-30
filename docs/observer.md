@@ -132,7 +132,7 @@ __C++__
 
 __C#__
 
-@snippet csharp/program.cs Using Observer in C#
+@snippet csharp/Observer_Exercise.cs Using Observer in C#
 
 __Python__
 

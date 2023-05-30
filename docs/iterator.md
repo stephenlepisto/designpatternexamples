@@ -99,7 +99,7 @@ __C++__
 
 __C#__
 
-@snippet csharp/program.cs Using Iterator in C#
+@snippet csharp/Iterator_Exercise.cs Using Iterator in C#
 
 __Python__
 

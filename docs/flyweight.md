@@ -115,7 +115,7 @@ __C++__
 
 __C#__
 
-@snippet csharp/program.cs Using Flyweight in C#
+@snippet csharp/Flyweight_Exercise.cs Using Flyweight in C#
 
 __Python__
 

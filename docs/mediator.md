@@ -189,7 +189,7 @@ __C++__
 
 __C#__
 
-@snippet csharp/program.cs Using Mediator in C#
+@snippet csharp/Mediator_Exercise.cs Using Mediator in C#
 
 __Python__
 
