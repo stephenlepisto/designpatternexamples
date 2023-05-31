@@ -1,7 +1,5 @@
-//! adapter_functions.rs
-//!
-//! Implementation of the DataReaderWriter struct that acts as an adapter to
-//! the Adapter_BackEnd DLL (via the function wrappers in adapter_backend.rs).
+//! Contains the DataReaderWriter struct that acts as an adapter to the
+//! Adapter_BackEnd DLL (via the function wrappers in adapter_backend.rs).
 
 #![allow(non_upper_case_globals)] // For DDR_ErrorCode items
 

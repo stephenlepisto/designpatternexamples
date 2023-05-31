@@ -1,4 +1,4 @@
-//! adapter_backend.rs
+//! Contains the wrapper functions for calling into the Adapter_BackEnd DLL.
 //!
 //! Originally created with bindgen from Adapter_BackEnd.h.  Extensively modified
 //! to remove unused components, clean up documentation, simplify names, provide

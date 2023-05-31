@@ -1,7 +1,12 @@
-//! # design_pattern_examples_rust
+//! # Design Pattern Examples in Rust
 //!
-//! Implementation of the main() entry point and the machinery to call all the
-//! design pattern example functions.
+//! Provides 18 examples of the Design patterns spelled out in the book
+//! _Design Patterns: Elements of Object-Oriented Software_, by Gamma, Helm,
+//! Johnson, and Vlissides.
+//!
+//! The main.rs file contains the main() entry point and the machinery to call
+//! all the design pattern example functions. The design pattern examples are
+//! each implemented in their own sub-modules.
 
 use std::env;
 

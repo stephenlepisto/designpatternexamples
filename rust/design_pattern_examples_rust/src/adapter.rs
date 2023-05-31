@@ -1,6 +1,14 @@
-//! # adapter
+//! The Adapter design pattern example module
 //!
-//! Implementation of the adapter_exercise() function.
+//! This example adapts functions that:
+//! 1. Accesses memory in 32-bit chunks instead of bytes
+//! 2. Returns error codes but no human-readable error messages
+//! 
+//! The DataReaderWriter struct (in the adapter_functions.rs module) translates
+//! the 32-bit chunk access into arrays of bytes.  The DataReaderWriter struct
+//! also provides human-readable messages for error codes.
+//!
+//! Accessed through the adapter_exercise() function.
 
 pub mod adapter_functions;
 pub mod adapter_backend;
