@@ -26,9 +26,8 @@ namespace // Anonymous
     /// Save the given command on the undo list then execute the command on
     /// the given text object.
     /// </summary>
-    /// <param name="text">The Command_TextObject on which to apply the command.</param>
     /// <param name="command">The Command object to apply to the text object.</param>
-    void Command_Save_And_Execute(Command_TextObject::shared_ptr_t text, Command command)
+    void Command_Save_And_Execute(Command command)
     {
         _commandUndoList.push_back(command);
         command.Execute();
@@ -102,7 +101,7 @@ namespace // Anonymous
     void Command_ApplyReplaceCommand(Command_TextObject::shared_ptr_t text, std::string searchPattern, std::string replaceText)
     {
         Command command(text, "Replace", Command_Operation_Replace, searchPattern, replaceText);
-        Command_Save_And_Execute(text, command);
+        Command_Save_And_Execute(command);
         std::cout << std::format("    command {0:<31}==> \"{1}\"", command.ToString(), text->ToString()) << std::endl;
     }
 
@@ -117,7 +116,7 @@ namespace // Anonymous
     void Command_ApplyReverseCommand(Command_TextObject::shared_ptr_t text)
     {
         Command command(text, "Reverse", Command_Operation_Reverse);
-        Command_Save_And_Execute(text, command);
+        Command_Save_And_Execute(command);
         std::cout << std::format("    command {0:<31}==> \"{1}\"", command.ToString(), text->ToString()) << std::endl;
     }
 
