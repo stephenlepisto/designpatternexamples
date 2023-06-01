@@ -48,7 +48,7 @@ fn _bridge_exercise_demonstrate_logging(logger: &mut Box<dyn ILogger>, logger_ty
 //-----------------------------------------------------------------------------
 
 
-/// Example of using the "Bridge" _pattern.
+/// Example of using the "Bridge" pattern.
 /// 
 /// In this example, the Bridge pattern is used to allow a program to offer
 /// multiple ways to perform logging without changing how the logging is
@@ -56,6 +56,8 @@ fn _bridge_exercise_demonstrate_logging(logger: &mut Box<dyn ILogger>, logger_ty
 ///
 /// In this exercise, note how the calls into the logger are the
 /// same regardless of the logger used.
+
+// ! [Using Bridge in Rust]
 pub fn bridge_exercise() -> Result<(), String> {
     println!("");
     println!("Bridge Exercise");
@@ -82,3 +84,4 @@ pub fn bridge_exercise() -> Result<(), String> {
 
     Ok(())
 }
+// ! [Using Bridge in Rust]
