@@ -79,6 +79,11 @@ __C__
 
 @snippet c/Composite_Exercise.c Using Composite in C
 
+__Rust__
+
+(_Apologies.  Doxygen does not understand Rust syntax and therefore cannot colorize the code._)
+
+@snippet rust/design_pattern_examples_rust/src/composite.rs Using Composite in Rust
 
 ### See Also
 - @ref mainpage "Main page"
