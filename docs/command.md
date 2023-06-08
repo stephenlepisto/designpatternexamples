@@ -88,5 +88,12 @@ __C__
 
 @snippet c/command_exercise.c Using Command in C
 
+__Rust__
+
+(_Apologies.  Doxygen does not understand Rust syntax and therefore cannot colorize the code._)
+
+@snippet rust/design_pattern_examples_rust/src/command.rs Using Command in Rust
+
+
 ### See Also
 - @ref mainpage "Main page"

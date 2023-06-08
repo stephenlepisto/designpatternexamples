@@ -84,6 +84,11 @@ __C__
 
 @snippet c/bridge_exercise.c Using Bridge in C
 
+__Rust__
+
+(_Apologies.  Doxygen does not understand Rust syntax and therefore cannot colorize the code._)
+
+@snippet rust/design_pattern_examples_rust/src/bridge.rs Using Bridge in Rust
 
 ### See Also
 - @ref mainpage "Main Page"
