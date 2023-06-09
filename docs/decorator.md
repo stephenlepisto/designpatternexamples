@@ -68,7 +68,7 @@ decorators are applied to the concrete class by wrapping the concrete class).
 
 In this example, the concrete class is called TextElement and up to three
 decorators can be applied (WhiteBackgroundDecorator, UnderlineDecorator, and
-ReadForegroundDecorator).  Decorators should ideally be designed to be applied
+RedForegroundDecorator).  Decorators should ideally be designed to be applied
 in any order, as is the case here.  If an order is required, the documentation
 that comes with the decorators would explain it.  All decorators implement a base
 class that manages the wrapped elements (and implements the IRenderElement
