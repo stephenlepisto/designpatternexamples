@@ -96,5 +96,11 @@ __C__
 
 @snippet c/Facade_Exercise.c Using Facade in C
 
+__Rust__
+
+(_Apologies.  Doxygen does not understand Rust syntax and therefore cannot colorize the code._)
+
+@snippet rust/design_pattern_examples_rust/src/facade.rs Using Facade in Rust
+
 ### See Also
 - @ref mainpage "Main page"
