@@ -17,6 +17,10 @@ pub struct BigResourceManager {
 }
 
 impl BigResourceManager {
+    /// Constructor.
+    ///
+    /// # Returns
+    /// Returns a new instance of the BigResourceManager struct.
     pub fn new() -> BigResourceManager {
         BigResourceManager { resources: vec![] }
     }

@@ -7,7 +7,7 @@
 /// 
 /// This context is manipulated outside the Flyweight Image by the
 /// controlling entity (in this case, the flyweight_exercise() function).  The
-/// Flyweight_Image structure just holds onto the context, along with a handle
+/// FlyweightImage struct just holds onto the context, along with a handle
 /// to the big resource.
 pub struct FlyweightContext {
     /// Offset into big resource to left edge of image, in characters.
@@ -32,6 +32,21 @@ pub struct FlyweightContext {
 
 
 impl FlyweightContext {
+    /// Constructor.
+    ///
+    /// # Parameters
+    /// - offset_x_to_image
+    ///
+    ///   Offset into big resource to left edge of image, in characters.
+    /// - image_width
+    ///
+    ///   Width of image, in characters.
+    /// - image_height
+    ///
+    ///   Height of image, in characters.
+    ///
+    /// # Returns
+    /// Returns a new instance of the FlyweightContext struct.
     pub fn new(offset_x_to_image: usize, image_width: usize, image_height: usize) -> FlyweightContext {
         FlyweightContext {
             offset_x_to_image: offset_x_to_image,

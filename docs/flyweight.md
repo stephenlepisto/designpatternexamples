@@ -125,5 +125,11 @@ __C__
 
 @snippet c/Flyweight_Exercise.c Using Flyweight in C
 
+__Rust__
+
+(_Apologies.  Doxygen does not understand Rust syntax and therefore cannot colorize the code._)
+
+@snippet rust/design_pattern_examples_rust/src/flyweight.rs Using Flyweight in Rust
+
 ### See Also
 - @ref mainpage "Main page"

@@ -12,7 +12,6 @@ use super::flyweight_display::Display;
 /// render() function.
 pub struct BigResource {
     data: Vec<Vec<char>>,
-    num_images: usize,
 }
 
 
@@ -27,18 +26,10 @@ impl BigResource {
     ///   the "image" data.  We are using list of characters because Rust does
     ///   not allow a string to be indexed for an individual character.
     ///
-    /// - num_images
-    ///   The number of Flyweight images stored in this single "big" resource
-    ///   image (images are arranged horizontally, one for each instance of the
-    ///   Flyweight struct.  Divide the overall width by the number of images
-    ///   to get the width of each individual image, although each Flyweight
-    ///   instance stores the individual image width (and height) that instance
-    ///   uses).
-    ///
     /// # Returns
     /// Returns the given data wrapped in a new BigResource instance.
-    pub fn new(data: Vec<Vec<char>>, num_images: usize) -> BigResource {
-        BigResource { data, num_images }
+    pub fn new(data: Vec<Vec<char>>) -> BigResource {
+        BigResource { data }
     }
 
     /// Render the specified portion of the big resource into the given display at

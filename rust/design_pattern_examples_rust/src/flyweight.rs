@@ -7,12 +7,12 @@
 //! In this example, a large object is represented by a so-called "big
 //! resource" (a two-dimensional array of text characters) containing
 //! multiple images, one associated with each flyweight struct.
-//! Flyweight structs that represent offset into the big resource,
+//! FlyweightImage structs that contain an offset into the big resource,
 //! along with position and velocity, are attached to the big resource
 //! image so they all share the same image but have different positions
 //! and velocities.  The image is rendered to a display area using
-//! the Flyweight struct.  The Flyweight struct instances then have their
-//! positions updated, bouncing off the edges of the display area 60
+//! the FlyweightImage struct.  The FlyweightImage struct instances then have
+//! their positions updated, bouncing off the edges of the display area 60
 //! times a second.  This continues for 1000 iterations or until a key
 //! is pressed.
 //!
@@ -29,13 +29,30 @@ pub mod flyweight_image;
 //-----------------------------------------------------------------------------
 
 use std::cmp::{min, max};
-use rand::Rng;
+use std::time::Duration;
+use std::thread;
 
+use super::helpers::{cursor, random, key_input};
 use flyweight_bigresource_manager::BigResourceManager;
 use flyweight_bigresource::BigResource;
 use flyweight_display::Display;
 use flyweight_image::FlyweightImage;
 use flyweight_context::FlyweightContext;
+
+//-----------------------------------------------------------------------------
+
+/// Width of the "display", in characters, in which to render Flyweight "images".
+const DISPLAY_WIDTH: usize = 80;
+/// Height of the "display", in characters, in which to render Flyweight "images".
+const DISPLAY_HEIGHT: usize = 20;
+/// Width of an individual Flyweight "image", in characters.
+const IMAGE_WIDTH: usize = 30;
+/// Height of an individual Flyweight "image", in characters.
+const IMAGE_HEIGHT: usize = 5;
+/// Number of Flyweight "images" to generate and manipulate.
+const NUMFLYWEIGHTS: usize = 5;
+/// Number of iterations of moving and rendering the Flyweight "images".
+const NUM_ITERATIONS: usize = 1000;
 
 //-----------------------------------------------------------------------------
 
@@ -86,26 +103,28 @@ fn _flyweight_generate_big_resource(image_count: usize, image_width: usize, imag
         }
         data[row] = image_row;
     }
-    BigResource::new(data, num_images)
+    BigResource::new(data)
 }
 
 /// Generate a random velocity, which includes a speed and a direction.
 /// The velocity is 0.2 to 1.0 (in increments of 0.2) and the direction
 /// is either + or -.
 fn _flyweight_generate_velocity() -> f32 {
-    let speed_range = rand::thread_rng().gen_range(1..=5) as f32;
+    let speed_range = random::random(1..(5+1)) as f32;
     let speed = speed_range / 5.0;
-    let direction = match rand::thread_rng().gen_bool(50.0 / 100.0) {
-        true => 1.0,
-        false => -1.0,
+    let direction = match random::random(1..100+1) {
+        1..=50 => -1.0,
+        51..=101 => 1.0,
+        _ => 1.0,
     };
 
     speed * direction
 }
 
 
-/// Helper function to generate the specified number of Flyweight_image objects
-/// and associate those objects with individual contexts and a single big resource.
+/// Helper function to generate the specified number of FlyweightImage struct
+/// instances and associate those objects with individual contexts and a single
+/// big resource.
 /// 
 /// The image and display sizes are provided so as to randomize the
 /// position of each flyweight within the display.
@@ -116,8 +135,8 @@ fn _flyweight_generate_flyweight_images(big_resource_id: usize, num_flyweights: 
     for _image_index in 0..num_flyweights {
         let mut context = FlyweightContext::new(_image_index * image_width, image_width, image_height);
         // Make sure the entire image can be rendered at each position
-        context.position_x = rand::thread_rng().gen_range(0..(display_width - image_width)) as f32;
-        context.position_y = rand::thread_rng().gen_range(0..(display_height - image_height)) as f32;
+        context.position_x = random::random(0..(display_width - image_width) as u32) as f32;
+        context.position_y = random::random(0..(display_height - image_height) as u32) as f32;
         context.velocity_x = _flyweight_generate_velocity();
         context.velocity_y = _flyweight_generate_velocity();
 
@@ -126,6 +145,50 @@ fn _flyweight_generate_flyweight_images(big_resource_id: usize, num_flyweights: 
     }
 }
 
+
+/// Move the given flyweight instances within the display, bouncing them off
+/// the edges of the display.
+/// 
+/// The display size and image size are provided here
+fn _flyweight_move_images(images: &mut Vec<FlyweightImage>, display_width: usize, display_height: usize) {
+    for image in images.iter_mut() {
+        let image_width = image.context.image_width;
+        let image_height = image.context.image_height;
+        let mut new_x = image.context.position_x + image.context.velocity_x;
+        let mut new_y = image.context.position_y + image.context.velocity_y;
+        if new_x < 0.0 || (new_x + (image_width as f32)) > display_width as f32 {
+            image.context.velocity_x = -image.context.velocity_x;
+            if new_x < 0.0 {
+                new_x = 0.0;
+            } else {
+                new_x = (display_width - image_width) as f32;
+            }
+        }
+
+        if new_y < 0.0 || (new_y + (image_height as f32)) > display_height as f32 {
+            image.context.velocity_y = -image.context.velocity_y;
+            if new_y < 0.0 {
+                new_y = 0.0;
+            } else {
+                new_y = (display_height - image_height) as f32;
+            }
+        }
+
+        image.context.position_x = new_x;
+        image.context.position_y = new_y;
+    }
+}
+
+/// Clear the given "display" to a background character, erasing whatever was
+/// there before.
+///
+/// # Parameters
+/// - display
+///
+///   The display to clear.
+fn _flyweight_clear_display(display: &mut Display) {
+    display.clear_display('~');
+}
 
 /// Generate a display area in which to render the big resource.
 ///
@@ -141,11 +204,12 @@ fn _flyweight_generate_flyweight_images(big_resource_id: usize, num_flyweights: 
 /// Returns a new instance of the Display struct, ready for use.
 fn _fylweight_generate_display(width: usize, height: usize) -> Display {
     let mut display = Display::new(width, height);
-    display.clear_display('~');
+    _flyweight_clear_display(&mut display);
     display
 }
 
-/// Render the image into the display, once for each flyweight instance.
+/// Render the given images into the display, drawing on the big resource
+/// "image" found in the given Big Resource Manager.
 fn _flyweight_render_images(resource_manager: &BigResourceManager, images: &Vec<FlyweightImage>, display: &mut Display) {
     // Render the image into the "display", one image for each instance
     // of the Flyweight class.
@@ -155,6 +219,11 @@ fn _flyweight_render_images(resource_manager: &BigResourceManager, images: &Vec<
 }
 
 /// Render the display to the screen.
+///
+/// # Parameters
+/// - display
+///
+///   The display to render to the console.
 fn _flyweight_show_display(display: &Display) {
     let mut output = String::new();
     for row in 0..display.height {
@@ -179,11 +248,11 @@ fn _flyweight_show_display(display: &Display) {
 /// In this example, a large object is represented by a so-called "big
 /// resource" (a two-dimensional array of text characters) containing
 /// multiple images, one associated with each flyweight struct.
-/// Flyweight structs that represent offset into the big resource,
+/// FlyweightImage structs that represent an offset into the big resource,
 /// along with position and velocity, are attached to the big resource
 /// image so they all share the same image but have different positions
 /// and velocities.  The image is rendered to a display area using
-/// the Flyweight struct.  The Flyweight struct instances then have their
+/// the FlyweightImage struct.  The FlyweightImage struct instances then have their
 /// positions updated, bouncing off the edges of the display area 60
 /// times a second.  This continues for 1000 iterations or until a key
 /// is pressed.
@@ -191,13 +260,6 @@ fn _flyweight_show_display(display: &Display) {
 pub fn flyweight_exercise() -> Result<(), String> {
     println!("");
     println!("Flyweight Exercise");
-
-    const DISPLAY_WIDTH: usize = 80;
-    const DISPLAY_HEIGHT: usize = 20;
-    const IMAGE_WIDTH: usize = 30;
-    const IMAGE_HEIGHT: usize = 5;
-    const NUMFLYWEIGHTS: usize = 5;
-    const NUM_ITERATIONS: usize = 1000;
 
     let mut big_resource_manager = BigResourceManager::new();
     let big_resource = _flyweight_generate_big_resource(NUMFLYWEIGHTS, IMAGE_WIDTH, IMAGE_HEIGHT);
@@ -221,8 +283,25 @@ pub fn flyweight_exercise() -> Result<(), String> {
     _flyweight_render_images(&big_resource_manager, &flyweight_images, &mut display);
     _flyweight_show_display(&display);
 
-    let cursor_left = -1;
-    let cursor_top = -1;
+    // Now let's have some fun and bounce those images around for a while!
+    // (Or until a keypress.)
+    let (cursor_left, mut cursor_top) = cursor::get_cursor_position();
+    cursor_top -= (DISPLAY_HEIGHT + 1) as u16;
+
+    let mut key_input = key_input::KeyInput::new();
+    for index in 0..NUM_ITERATIONS {
+        cursor::set_cursor_position(cursor_left, cursor_top - 1);
+        println!("  {:5}/{} iterations [press a key to exit early]", index + 1, NUM_ITERATIONS);
+        cursor::set_cursor_position(cursor_left, cursor_top);
+        _flyweight_clear_display(&mut display);
+        _flyweight_move_images(&mut flyweight_images, display.width, display.height);
+        _flyweight_render_images(&big_resource_manager, &flyweight_images, &mut display);
+        _flyweight_show_display(&display);
+        thread::sleep(Duration::from_millis(16)); // 60 frames a second
+        if key_input.check_for_key() {
+            break;
+        }
+    }
 
     println!("  Done.");
 

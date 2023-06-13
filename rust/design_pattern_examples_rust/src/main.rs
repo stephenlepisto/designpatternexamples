@@ -10,6 +10,8 @@
 
 use std::env;
 
+extern crate winconsole;
+
 mod adapter;
 mod bridge;
 mod command;
@@ -28,6 +30,7 @@ mod proxy;
 mod state;
 mod strategy;
 mod visitor;
+mod helpers;
 
 
 /// Alias for a pointer to a function that takes no parameters and returns a

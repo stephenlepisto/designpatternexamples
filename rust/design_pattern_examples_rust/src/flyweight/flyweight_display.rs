@@ -5,8 +5,12 @@
 /// "display" window is then printed to the console window at a specified
 /// coordinate to render a "frame" of motion in the "display".
 pub struct Display {
+    /// The "display" as represented by a vector of vector of characters.  Each
+    /// vector of characters represents a row.
     pub display: Vec<Vec<char>>,
+    /// Width of the "display", in characters
     pub width: usize,
+    /// Height of the "display", in characters
     pub height: usize,
 }
 
