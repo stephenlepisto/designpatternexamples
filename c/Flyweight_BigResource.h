@@ -22,8 +22,6 @@
 typedef struct
 {
     char* data;    ///< Image data, row-oriented
-    int width;     ///< Width of image data
-    int height;    ///< Height of image data
     int numImages; ///< Number of images represented in the big image
 } BigResource;
 

@@ -68,8 +68,6 @@ static int _Flyweight_GenerateBigResource(int numImages, int width, int height)
             const char imageBackgroundCharacter[] = "0123456789";
 
             resource->data = image;
-            resource->width = width;
-            resource->height = height;
             resource->numImages = numImages;
 
             for (int row = 0; row < height; ++row)

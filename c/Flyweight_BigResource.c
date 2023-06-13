@@ -19,8 +19,6 @@ void BigResource_Clear(BigResource* resource)
     {
         free(resource->data);
         resource->data = NULL;
-        resource->width = 0;
-        resource->height = 0;
     }
 }
 
