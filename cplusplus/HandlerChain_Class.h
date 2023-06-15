@@ -83,6 +83,7 @@ namespace DesignPatternExamples_cpp
     public:
         using unique_ptr_t = std::unique_ptr<HandlerChain>;
 
+    private:
         /// <summary>
         /// The list of message handlers.
         /// </summary>
