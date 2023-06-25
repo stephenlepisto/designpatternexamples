@@ -1,6 +1,7 @@
 //! Contains the IMessageHandler trait.
 
 use super::handlerchain_message::Message;
+use super::handlerchain_handlerchain::MessageReturnTypes;
 
 //-----------------------------------------------------------------------------
 
@@ -11,7 +12,7 @@ pub trait IMessageHandler {
     /// collection.
     fn id(&self) -> i32;
 
-    /// Called with a message on each window.
+    /// Called with a message for the window.
     ///
     /// # Parameters
     /// - message
@@ -19,10 +20,12 @@ pub trait IMessageHandler {
     ///   Message object representing the message to process.
     ///
     /// # Returns
-    /// Returns true if the message was processed and the message should not be
-    /// passed to subsequent windows.  Returns false to indicate the message
-    /// should be passed to subsequent windows.
-    fn process_message(&mut self, message: &Message) -> bool;
+    /// Returns a value from the MessageReturnTypes enumeration indicating what
+    /// action the caller should take: (Stop) This message was handled and
+    /// processing should stop, (Continue) this message can be passed on to
+    /// other handlers, or (Close) this handler is closed so remove from the
+    /// handlers list and stop further processing.
+    fn process_message(&mut self, message: &Message) -> MessageReturnTypes;
 
     /// Return a string representation of the message handler.
     fn to_string(&self) -> String;

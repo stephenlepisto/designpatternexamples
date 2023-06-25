@@ -5,12 +5,16 @@
 use std::fmt::Display;
 
 
+/// Represent the types of messages that can be sent to a MessageWindow (as
+/// seen by the IMessageHandler::process_message() method).
+///
+/// Normally, the Close message type would be supported but Rust does not like
+/// nested calls to mutable objects, which is required with Close (the Button
+/// Up handler would send a Close message to the HandlerChain).  Instead, the
+/// Button Up message handler of the MessageWindow returns a Close return code
+/// so HandlerChain::send_message() can take care of removing the window from
+/// the handler list.
 pub enum MessageType {
-    /// Window is asked to close itself, generally sent by the window itself
-    /// in response to a button up in a Close region.  Applies only to the
-    /// currently selected window.
-    Close = 0,
-
     /// Selects a window based on position.
     ButtonDown = 1,
 
@@ -57,6 +61,8 @@ impl Display for MessagePosition {
 
 //=============================================================================
 
+/// Represents a message sent to the windows.  A message contains a type
+/// and a position.
 pub struct Message {
     /// Value from the MessageType enumeration indicating the type of this message.
     pub message_type: MessageType,
@@ -96,7 +102,6 @@ impl Display for Message {
     /// Convert the Message struct contents to a string.
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         let type_as_string = match self.message_type {
-            MessageType::Close => "Close",
             MessageType::ButtonDown => "ButtonDown",
             MessageType::ButtonUp => "ButtonUp",
         };

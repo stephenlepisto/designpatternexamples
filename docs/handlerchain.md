@@ -128,6 +128,11 @@ collection.  This Close message is processed only by the currently selected
 window and causes the window to remove itself from the collection so it no
 longer receives messages.
 
+(__RUST__: The Rust version does not support the Close message like the Button
+Down and Button Up messages.  This is due to the strict nature of ownership and
+borrowing (through references) that Rust enforces.  The output from the Rust
+version therefore differs slightly when it comes to the closing of "Window 2".)
+
 __C++__
 
 @snippet cplusplus/HandlerChain_Exercise.cpp Using HandlerChain in C++
@@ -143,6 +148,13 @@ __Python__
 __C__
 
 @snippet c/HandlerChain_Exercise.c Using HandlerChain in C
+
+__RUST__
+
+(_Apologies.  Doxygen does not understand Rust syntax and therefore cannot colorize the code._)
+
+@snippet rust/design_pattern_examples_rust/src/handlerchain.rs Using HandlerChain in Rust
+
 
 ### See Also
 - @ref mainpage "Main page"

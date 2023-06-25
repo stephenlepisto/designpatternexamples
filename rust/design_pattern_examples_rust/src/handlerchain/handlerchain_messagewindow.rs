@@ -1,14 +1,12 @@
 //! Contains the WindowRectangle struct and the MessageWindow struct.
 
-use std::cell::RefCell;
 use std::cmp::max;
 use std::fmt::Display;
-use std::rc::Rc;
 use std::sync::Mutex;
 
 use super::handlerchain_message::{MessagePosition, MessageType, Message};
 use super::handlerchain_imessagehandler_trait::IMessageHandler;
-use super::handlerchain_handlerchain::HandlerChain;
+use super::handlerchain_handlerchain::MessageReturnTypes;
 
 //-----------------------------------------------------------------------------
 
@@ -24,7 +22,7 @@ const CLOSE_WIDTH: i32 = 2;
 const CLOSE_HEIGHT: i32 = 2;
 
 /// Used for assigning a unique ID to each created window.
-static NEXT_WINDOW_ID: Mutex<i32> = Mutex::new(0);
+static NEXT_WINDOW_ID: Mutex<i32> = Mutex::new(1);
 
 /// Retrieve the next window ID from a global static and update the static for
 /// the next window ID.
@@ -82,7 +80,7 @@ impl WindowRectangle {
     /// # Parameters
     /// - point
     ///
-    ///   A MessagePoint struct to determine if it is inside this WindowRectangle.
+    ///   A MessagePosition struct to determine if it is inside this WindowRectangle.
     ///
     /// # Returns
     /// Returns true if the point is in this WindowRectangle; otherwise, returns
@@ -90,7 +88,7 @@ impl WindowRectangle {
     pub fn point_inside(&self, point: &MessagePosition) -> bool {
         let mut is_inside = false;
 
-        if point.x >= self.left && point.y < self.right &&
+        if point.x >= self.left && point.x < self.right &&
         point.y >= self.top && point.y < self.bottom {
             is_inside = true;
         }
@@ -132,46 +130,38 @@ pub struct MessageWindow {
     /// Whether this window has been selected (a button click occurred
     /// within the window).
     selected: bool,
-
-    /// The HandlerChain to which this window belongs (as an IMessageHandler
-    /// object).
-    handler_chain: Rc<RefCell<HandlerChain>>,
 }
 
 impl MessageWindow {
     /// Constructor
     ///
     /// # Parameters
-    /// -title
+    /// - title
     ///
-    ///  Title of the MessageWindow.
-    /// -x
+    ///   Title of the MessageWindow.
+    /// - x
     ///
-    ///  X position of the upper left corner of the window's region.
-    /// -y
+    ///   X position of the upper left corner of the window's region.
+    /// - y
     ///
-    ///  Y position of the upper left corner of hte window's region.
-    /// -width
+    ///   Y position of the upper left corner of the window's region.
+    /// - width
     ///
-    ///  Width of the window's region.
-    /// -height
+    ///   Width of the window's region.
+    /// - height
     ///
-    ///  Height of the window's region.
-    /// -handler_chain
-    ///
-    ///  A HandlerChain object that will be given the window.
+    ///   Height of the window's region.
     ///
     /// # Returns
     /// Returns a new instance of the MessageWindow struct.
-    pub fn new(title: &str, x: i32, y:i32, width: i32, height: i32, handler_chain: Rc<RefCell<HandlerChain>>) -> Rc<RefCell<dyn IMessageHandler>> {
-        Rc::new(RefCell::new(MessageWindow {
+    pub fn new(title: &str, x: i32, y:i32, width: i32, height: i32) -> MessageWindow {
+        MessageWindow {
             id : get_next_window_id(),
             title : title.to_string(),
             window_box: WindowRectangle::new(x, y, width, height),
             close_box: WindowRectangle::new(x + width - CLOSE_WIDTH, y, CLOSE_WIDTH, CLOSE_HEIGHT),
             selected: false,
-            handler_chain: handler_chain.clone(),
-        }))
+        }
     }
 
 
@@ -183,9 +173,11 @@ impl MessageWindow {
     ///   A Message object describing the ButtonDown message.
     ///
     /// # Returns
-    /// Returns false even if the message was handled (allows other windows to
-    /// select/deselect themselves).
-    fn handle_button_down_message(&mut self, message: &Message) -> bool {
+    /// Returns a value from the MessageReturnTypes enumeration indicating what
+    /// action the caller should take.  In this case, always return Continue so
+    /// other handlers can react to the same message (assumes no windows are
+    /// overlapping).
+    fn handle_button_down_message(&mut self, message: &Message) -> MessageReturnTypes {
         if self.window_box.point_inside(&message.message_position) {
             if !self.selected {
                 self.selected = true;
@@ -201,7 +193,7 @@ impl MessageWindow {
         // Note: we are saying we didn't handled the message here since
         // we want other windows to get the button down message as
         // well so they can select or deselect themselves.
-        false
+        MessageReturnTypes::Continue
     }
 
     /// Helper method to handle the ButtonUp message.
@@ -212,23 +204,26 @@ impl MessageWindow {
     ///   A Message object describing the ButtonUp message.
     ///
     /// # Returns
-    /// Returns true if the message was handled; otherwise, returns false
-    /// indicating the message was not handled.
-    fn handle_button_up_message(&mut self, message: &Message) -> bool {
-        let mut message_processed = false;
+    /// Returns a value from the MessageReturnTypes enumeration indicating what
+    /// action the caller should take: (Stop) This message was handled and
+    /// processing should stop, (Continue) this message can be passed on to
+    /// other handlers, or (Close) this handler is closed so remove from the
+    /// handlers list and stop further processing.
+    fn handle_button_up_message(&mut self, message: &Message) -> MessageReturnTypes {
+        let mut continue_code = MessageReturnTypes::Continue;
 
         if self.selected {
             if self.window_box.point_inside(&message.message_position) {
-                message_processed = true;
+                continue_code = MessageReturnTypes::Stop;
                 if self.close_box.point_inside(&message.message_position) {
-                    println!("  --> Button Up in \"{0}\" close box, sending Close message", self.title);
-                    self.handler_chain.borrow_mut().send_message(&Message::new(MessageType::Close, message.message_position.x, message.message_position.y));
+                    println!("  --> Button Up in \"{0}\" close box, forwarding message to close handler", self.title);
+                    continue_code = self.handle_close_message(message);
                 } else {
                     println!("  --> Button Up in \"{}\", no further action taken", self.title);
                 }
             }
         }
-        message_processed
+        continue_code
     }
 
     /// Helper method to handle the Close message.
@@ -239,20 +234,21 @@ impl MessageWindow {
     ///   NOT USED.
     ///
     /// # Returns
-    /// Returns true if the message was handled; otherwise, returns false
-    /// indicating the message was not handled.
-    fn handle_close_message(&mut self, _message: &Message) -> bool {
-        let mut message_processed = false;
+    /// Returns a value from the MessageReturnTypes enumeration indicating what
+    /// action the caller should take.  In this case, always return Close to
+    /// indicate this handler should be removed from the handler list so no
+    /// further messages can be sent to this window.
+    fn handle_close_message(&mut self, _message: &Message) -> MessageReturnTypes {
+        let mut continue_code = MessageReturnTypes::Continue;
 
         if self.selected {
             println!("  --> Close in \"{}\", removing window from handler chain", self.title);
             // This window is being closed.  We are handling the message
             // so no other window needs to see it.
-            message_processed = true;
+            continue_code = MessageReturnTypes::Close;
             self.selected = false;
-            self.handler_chain.borrow_mut().remove_handler(self as &dyn IMessageHandler);
         }
-        message_processed
+        continue_code
     }
 }
 
@@ -262,11 +258,10 @@ impl IMessageHandler for MessageWindow {
         self.id
     }
 
-    fn process_message(&mut self, message: &super::handlerchain_message::Message) -> bool {
+    fn process_message(&mut self, message: &super::handlerchain_message::Message) -> MessageReturnTypes {
         match message.message_type {
             MessageType::ButtonDown => self.handle_button_down_message(message),
             MessageType::ButtonUp => self.handle_button_up_message(message),
-            MessageType::Close => self.handle_close_message(message),
         }
     }
 
