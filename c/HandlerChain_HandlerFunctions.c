@@ -153,7 +153,7 @@ bool HandlerChain_AddWindow(int windowId)
     }
     _UnlockMutex();
 
-    return false;
+    return success;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
