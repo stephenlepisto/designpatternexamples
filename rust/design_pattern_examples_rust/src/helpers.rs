@@ -4,3 +4,4 @@
 pub mod key_input;
 pub mod cursor;
 pub mod random;
+pub mod titlecase;

@@ -78,5 +78,12 @@ __C__
 
 @snippet c/Interpreter_Exercise.c Using Interpreter in C
 
+__RUST__
+
+(_Apologies.  Doxygen does not understand Rust syntax and therefore cannot colorize the code._)
+
+@snippet rust/design_pattern_examples_rust/src/interpreter.rs Using Interpreter in Rust
+
+
 ### See Also
 - @ref mainpage "Main page"
