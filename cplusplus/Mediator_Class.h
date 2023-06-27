@@ -229,7 +229,7 @@ namespace DesignPatternExamples_cpp
         {
             if (_userGroupsContainer.Users.FindUser(userName) == nullptr)
             {
-                std::string message = std::format("User '{0}' does not exist.  Cannot get groups container user!", userName);
+                std::string message = std::format("User '{0}' does not exist.  Cannot get groups containing user!", userName);
                 throw Helpers::argumentinvalid_error("userName", message.c_str());
             }
 
