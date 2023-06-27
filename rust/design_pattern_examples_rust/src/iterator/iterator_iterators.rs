@@ -72,8 +72,8 @@ impl<'a> Items {
     /// Retrieve an iterator over the data that returns an ItemPair object
     /// containing both key and value for each entry.
     ///
-    /// #Returns
-    /// Returns an IIterator<ItemPair> trait representing the iterator.
+    /// # Returns
+    /// Returns an IIterator\<ItemPair\> trait representing the iterator.
     pub fn get_items(&'a self) -> impl IIterator<ItemPair> + 'a {
         ItemIterator { items: self, iterator: 0 }
     }
@@ -81,8 +81,8 @@ impl<'a> Items {
     /// Retrieve an iterator over the "key" part of the data, where the
     /// data returned from the iterator is a string type.
     ///
-    /// #Returns
-    /// Returns an IIterator<String> trait representing the iterator.
+    /// # Returns
+    /// Returns an IIterator\<String\> trait representing the iterator.
     pub fn get_keys(&'a self) -> impl IIterator<String> + 'a {
         KeyIterator { items: self, iterator: 0 }
     }
@@ -90,8 +90,8 @@ impl<'a> Items {
     /// Retrieve an iterator over the "value" part of the data, where the
     /// data returned from the iterator is a string type.
     ///
-    /// #Returns
-    /// Returns an IIterator<String> trait representing the iterator.
+    /// # Returns
+    /// Returns an IIterator\<String\> trait representing the iterator.
     pub fn get_values(&'a self) -> impl IIterator<String> + 'a {
         ValueIterator { items: self, iterator: 0 }
     }
