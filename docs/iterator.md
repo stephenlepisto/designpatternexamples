@@ -109,5 +109,11 @@ __C__
 
 @snippet c/Iterator_Exercise.c Using Iterator in C
 
+__RUST__
+
+(_Apologies.  Doxygen does not understand Rust syntax and therefore cannot colorize the code._)
+
+@snippet rust/design_pattern_examples_rust/src/iterator.rs Using Iterator in Rust
+
 ### See Also
 - @ref mainpage "Main page"
