@@ -95,5 +95,11 @@ __C__
 
 @snippet c/Memento_Exercise.c Using Memento in C
 
+__RUST__
+
+(_Apologies.  Doxygen does not understand Rust syntax and therefore cannot colorize the code._)
+
+@snippet rust/design_pattern_examples_rust/src/memento.rs Using Memento in Rust
+
 ### See Also
 - @ref mainpage "Main page"
