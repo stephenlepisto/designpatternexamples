@@ -112,5 +112,11 @@ __C__
 
 @snippet c/NullObject_Exercise.c Using NullObject in C
 
+__RUST__
+
+(_Apologies.  Doxygen does not understand Rust syntax and therefore cannot colorize the code._)
+
+@snippet rust/design_pattern_examples_rust/src/nullobject.rs Using NullObject in Rust
+
 ### See Also
 - @ref mainpage "Main page"
