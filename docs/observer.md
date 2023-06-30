@@ -142,5 +142,11 @@ __C__
 
 @snippet c/Observer_Exercise.c Using Observer in C
 
+__RUST__
+
+(_Apologies.  Doxygen does not understand Rust syntax and therefore cannot colorize the code._)
+
+@snippet rust/design_pattern_examples_rust/src/observer.rs Using Observer in Rust
+
 ### See Also
 - @ref mainpage "Main page"
