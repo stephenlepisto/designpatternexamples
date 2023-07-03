@@ -90,9 +90,9 @@ static EntryInformation entries[] =
 {
     // Name, age, height (in inches)
     { "Ronnie", 19, 84 },
-    { "Elaine", 29, 78 },
+    { "Elaine", 29, 71 },
     { "Jack", 20, 81 },
-    { "Myra", 35, 71 },
+    { "Myra", 35, 78 },
     { "Fred", 18, 88 },
 };
 

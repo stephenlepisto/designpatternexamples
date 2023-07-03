@@ -28,9 +28,9 @@ namespace DesignPatternExamples_csharp
         {
             // Name, age, height (in inches)
             new EntryInformation("Ronnie", 19, 84),
-            new EntryInformation("Elaine", 29, 78),
+            new EntryInformation("Elaine", 29, 71),
             new EntryInformation("Jack", 20, 81),
-            new EntryInformation("Myra", 35, 71),
+            new EntryInformation("Myra", 35, 78),
             new EntryInformation("Fred", 18, 88),
         };
 

@@ -13,9 +13,9 @@ from .strategy_isortentries import SortOptions
 entries = [
     # Name, age, height (in inches)
     EntryInformation("Ronnie", 19, 84),
-    EntryInformation("Elaine", 29, 78),
+    EntryInformation("Elaine", 29, 71),
     EntryInformation("Jack", 20, 81),
-    EntryInformation("Myra", 35, 71),
+    EntryInformation("Myra", 35, 78),
     EntryInformation("Fred", 18, 88),
 ]
 
