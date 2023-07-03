@@ -167,5 +167,11 @@ __C__
 
 @snippet c/Strategy_Exercise.c Using Strategy in C
 
+__RUST__
+
+(_Apologies.  Doxygen does not understand Rust syntax and therefore cannot colorize the code._)
+
+@snippet rust/design_pattern_examples_rust/src/strategy.rs Using Strategy in Rust
+
 ### See Also
 - @ref mainpage "Main page"
