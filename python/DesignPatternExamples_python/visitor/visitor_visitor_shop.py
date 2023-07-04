@@ -9,9 +9,32 @@ from typing import TypeAlias
 
 Visitor_Village : TypeAlias = "Visitor_Village"
 
-#from .visitor_village import Visitor_Village
 from .visitor_ordervisitor import OrderVisitor
 from .visitor_class import Visitor
+
+##-----------------------------------------------------------------------------
+
+## Determine if the two string lists have the same contents.
+#  
+#  @param left
+#         A StringList to compare.
+#  @param right
+#         Another StringList to compare.
+# 
+# @Returns
+# Returns True if the contents of the `left` list matches what
+# is in the `Right` list, regardless of actual order.
+def are_list_contents_the_same(left: list, right: list):
+    matched = False
+    if len(left) == len(right):
+        matched = True
+        for left_item in left:
+            if left_item not in right:
+                matched = False
+                break
+    return matched
+
+##-----------------------------------------------------------------------------
 
 ## Base class that all shops must implement.
 #  
@@ -185,12 +208,16 @@ class Visitor_Shop(ABC):
                             self.Name, itemToOrder))
                     visitor = OrderVisitor(self._ingredientsForItems[itemToOrder])
                     self._village.Accept(visitor)
+                    if are_list_contents_the_same(visitor.ItemsReceived, self._ingredientsForItems[itemToOrder]):
+                        # verify the ingredients received matches the ingredients
+                        # needed. Only then add 1 to the inventory.
+                        self.AddItemToInventory(itemToOrder)
                 else:
                     # The ordered item has no ingredients so the
                     # ordered item will be magically added to inventory
                     print("  {0}:   {1} out of stock, making...".format(
                             self.Name, itemToOrder))
-                self.AddItemToInventory(itemToOrder)
+                    self.AddItemToInventory(itemToOrder)
         return orderPlaced
 
 
@@ -202,8 +229,8 @@ class Visitor_Shop(ABC):
     #         Items that were ordered, some of which may be sold by this shop.
     #  @param itemsToBePickedUp
     #         List to be filled in with the item names that were picked up.
+    #         The list may contain items from other stores.
     def PickupOrder(self, items : list[str], itemsToBePickedUp : list[str]) -> None:
-        itemsToBePickedUp.clear()
         for item in items:
             # If this shop sells the item and the item is in stock then
             if self.DoesShopSellItem(item):
@@ -214,10 +241,13 @@ class Visitor_Shop(ABC):
                             self.Name, item))
 
         if itemsToBePickedUp:
+            itemsReceivedFromThisShop = []
             # Reduce inventory for the ordered items
-            output = self.StringizeList(itemsToBePickedUp)
             for itemToBePickedUp in itemsToBePickedUp:
-                self.Inventory[itemToBePickedUp] -= 1
+                if self.DoesShopSellItem(itemToBePickedUp):
+                     self.Inventory[itemToBePickedUp] -= 1
+                     itemsReceivedFromThisShop.append(itemToBePickedUp)
+            output = self.StringizeList(itemsReceivedFromThisShop)
             print("  {0}: Order picked up for {1}.".format(self.Name, output))
 
 
