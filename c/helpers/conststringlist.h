@@ -100,5 +100,16 @@ void ConstStringList_Remove(ConstStringList* stringList, int removeIndex);
 /// otherwise, returns -1 if the string is not found.</returns>
 int ConstStringList_Find(ConstStringList* stringList, const char* string);
 
+/// <summary>
+/// Compare two strings lists to determine if they have the same contents.
+/// </summary>
+/// <param name="left">A pointer to the first ConstStringList representing a
+/// list of strings to compare.</param>
+/// <param name="right">A pointer to the second ConstStringList representing
+/// a list of strings to compare.</param>
+/// <returns>Returns true if the two lists have the same content, regardless of
+/// the order of the content in either list; otherwise, returns false.</returns>
+bool ConstStringList_AreListsEqual(ConstStringList* left, ConstStringList* right);
+
 #endif // __CONSTSTRINGLIST_H__
 

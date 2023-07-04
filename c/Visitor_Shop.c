@@ -252,8 +252,50 @@ PlaceOrderReponse Shop_PlaceOrder(Visitor_Shop* shop, ConstStringList* itemsToOr
                         if (!success)
                         {
                             printf("  Error! Failed to visit shops for out of stock items, probably an out of memory condition!\n");
+                            OrderVisitor_Clear(&visitor);
                             break;
                         }
+                        if (ConstStringList_AreListsEqual(&visitor.ItemsReceived, shop->IngredientsForItems.entries[ingredientIndex].value))
+                        {
+                            // verify the ingredients received matches the ingredients needed.
+                            // only then add 1 to the inventory.
+                            success = Shop_AddItemToInventory(shop, ingredient);
+                            if (!success)
+                            {
+                                OrderVisitor_Clear(&visitor);
+                                break;
+                            }
+                        }
+                        else
+                        {
+                            DynamicString ingredients_list;
+                            DynamicString_Initialize(&ingredients_list);
+                            DynamicString received_items_list;
+                            DynamicString_Initialize(&received_items_list);
+
+                            success = _StringizeStringList(shop->IngredientsForItems.entries[ingredientIndex].value, &ingredients_list);
+                            if (!success)
+                            {
+                                printf("  Error!  Out of memory creating string list of needed ingredients!\n");
+                                OrderVisitor_Clear(&visitor);
+                                break;
+                            }
+                            success = _StringizeStringList(&visitor.ItemsReceived, &received_items_list);
+                            if (!success)
+                            {
+                                DynamicString_Clear(&ingredients_list);
+                                printf("  Error!  Out of memory creating string list of received items!\n");
+                                OrderVisitor_Clear(&visitor);
+                                break;
+                            }
+                            printf("  %s:  Error! Ordered %s but only received %s.\n",
+                                shop->Name, ingredients_list.string,
+                                received_items_list.string);
+
+                            DynamicString_Clear(&received_items_list);
+                            DynamicString_Clear(&ingredients_list);
+                        }
+                        OrderVisitor_Clear(&visitor);
                     }
                     else
                     {
@@ -261,11 +303,11 @@ PlaceOrderReponse Shop_PlaceOrder(Visitor_Shop* shop, ConstStringList* itemsToOr
                         // ordered item will be magically added to inventory
                         printf("  %s:   %s out of stock, making...\n",
                                 shop->Name, ingredient);
-                    }
-                    success = Shop_AddItemToInventory(shop, ingredient);
-                    if (!success)
-                    {
-                        break;
+                        success = Shop_AddItemToInventory(shop, ingredient);
+                        if (!success)
+                        {
+                            break;
+                        }
                     }
                 }
             }
@@ -292,7 +334,6 @@ bool Shop_PickupOrder(Visitor_Shop* shop, ConstStringList* items, ConstStringLis
 
     if (items != NULL && itemsToBePickedUp  != NULL && shop != NULL)
     {
-        ConstStringList_Clear(itemsToBePickedUp);
         for (size_t index = 0; index < items->strings_count; index++)
         {
             const char* item = items->strings[index];
@@ -320,21 +361,42 @@ bool Shop_PickupOrder(Visitor_Shop* shop, ConstStringList* items, ConstStringLis
         {
             // Reduce inventory for the ordered items
             DynamicString output = { 0 };
-            success = _StringizeStringList(itemsToBePickedUp, &output);
-            if (success)
+            ConstStringList itemsReceivedFromThisShop;
+            ConstStringList_Initialize(&itemsReceivedFromThisShop);
+            for (size_t index = 0; index < itemsToBePickedUp->strings_count; index++)
             {
-                for (size_t index = 0; index < itemsToBePickedUp->strings_count; index++)
+                const char* itemToBePickedUp = itemsToBePickedUp->strings[index];
+                if (Shop_DoesShopSellItem(shop, itemToBePickedUp))
                 {
-                    const char* itemToBePickedUp = itemsToBePickedUp->strings[index];
                     int inventoryIndex = MapOfInt_Find(&shop->Inventory, itemToBePickedUp);
                     if (inventoryIndex != -1)
                     {
                         shop->Inventory.entries[inventoryIndex].value--;
+                        success = ConstStringList_AddString(&itemsReceivedFromThisShop, itemToBePickedUp);
+                        if (!success)
+                        {
+                            printf("  Error!  Out of memory adding item to list of items to be picked up from shop %s!\n",
+                                shop->Name);
+                            break;
+                        }
                     }
                 }
-                printf("  %s: Order picked up for %s.\n", shop->Name, output.string);
+            }
+            if (success)
+            {
+                success = _StringizeStringList(&itemsReceivedFromThisShop, &output);
+                if (success)
+                {
+                    printf("  %s: Order picked up for %s.\n", shop->Name, output.string);
+                }
+                else
+                {
+                    printf("  Error!  Out of memory creating list of strings for items received from shop %s!\n",
+                        shop->Name);
+                }
             }
             DynamicString_Clear(&output);
+            ConstStringList_Clear(&itemsReceivedFromThisShop);
         }
 
     }

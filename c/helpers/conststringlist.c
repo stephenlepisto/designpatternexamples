@@ -157,3 +157,30 @@ int ConstStringList_Find(ConstStringList* stringList, const char* string)
 
     return foundIndex;
 }
+
+///////////////////////////////////////////////////////////////////////////////
+// ConstStringList_Find()
+///////////////////////////////////////////////////////////////////////////////
+bool ConstStringList_AreListsEqual(ConstStringList* left, ConstStringList* right)
+{
+    bool matched = false;
+
+    if (left != NULL && right != NULL)
+    {
+        if (left->strings_count == right->strings_count)
+        {
+            matched = true;
+            for (size_t index = 0; index < left->strings_count; index++)
+            {
+                int found_index = ConstStringList_Find(right, left->strings[index]);
+                if (found_index == -1)
+                {
+                    matched = false;
+                    break;
+                }
+            }
+        }
+    }
+
+    return matched;
+}
