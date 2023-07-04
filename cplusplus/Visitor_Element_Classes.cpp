@@ -184,12 +184,18 @@ namespace DesignPatternExamples_cpp
 
         if (!itemsToBePickedUp.empty())
         {
+            StringList itemsReceivedFromThisShop;
             // Reduce inventory for the ordered items
-            std::string output = StringizeList(itemsToBePickedUp);
             for (std::string& itemToBePickedUp : itemsToBePickedUp)
             {
-                Inventory[itemToBePickedUp]--;
+                if (DoesShopSellItem(itemToBePickedUp))
+                {
+                    Inventory[itemToBePickedUp]--;
+                    itemsReceivedFromThisShop.push_back(itemToBePickedUp);
+                }
             }
+
+            std::string output = StringizeList(itemsReceivedFromThisShop);
             std::cout
                 << std::format("  {0}: Order picked up for {1}.", Name(), output)
                 << std::endl;
