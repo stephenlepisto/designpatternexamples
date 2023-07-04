@@ -53,7 +53,7 @@ impl Village {
         self.shops.push(shop);
 
         shop_ingredients = HashMap::new();
-        shop_ingredients.insert("ketchup".to_string(), vec![]);
+        shop_ingredients.insert("hamburger buns".to_string(), vec![]);
         shop = VisitorShop::new(
             "Oxel's Breads and Buns Bakery",
             "131 Worthington Dr.",
@@ -150,8 +150,17 @@ impl Village {
     ///   An OrderVisitor object that contains a list of items to order and
     ///   a list of items received after the visit is complete.
     pub fn visit(&mut self, order: &mut OrderVisitor) {
-        for shop in self.shops.iter_mut() {
-            order.visit_shop(shop);
+        // Clone the shop list from the village to get around an error
+        // involving two mutable references to the village: The first is in
+        // the for loop and the second is when passing the village to the
+        // visit_shop() method.  Cloning the shop is kind of expensive,
+        // especially since this method can be recursively called by shops as
+        // needed.  But I could not find another way to get around the double
+        // mutable error.
+        let mut shops = self.shops.clone();
+
+        for shop in shops.iter_mut() {
+            order.visit_shop(shop, self);
         }
     }
 }

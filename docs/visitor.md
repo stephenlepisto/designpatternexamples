@@ -145,5 +145,11 @@ __C__
 
 @snippet c/Visitor_Exercise.c Using Visitor in C
 
+__RUST__
+
+(_Apologies.  Doxygen does not understand Rust syntax and therefore cannot colorize the code._)
+
+@snippet rust/design_pattern_examples_rust/src/visitor.rs Using Visitor in Rust
+
 ### See Also
 - @ref mainpage "Main page"

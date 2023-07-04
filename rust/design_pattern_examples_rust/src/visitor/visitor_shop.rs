@@ -6,9 +6,11 @@
 use std::collections::HashMap;
 
 use super::visitor_ordervisitor::OrderVisitor;
+use super::visitor_village::Village;
 
 
-//-----------------------------------------------------------------------------
+//=============================================================================
+//=============================================================================
 
 /// Convert a string list to a comma-delimited string.  Useful for displaying
 /// the list.
@@ -23,9 +25,41 @@ use super::visitor_ordervisitor::OrderVisitor;
 fn stringize_list(items: &Vec<String>) -> String {
     items.join(", ")
 }
-//-----------------------------------------------------------------------------
+
+/// Determine if the two string lists have the same contents.
+///
+/// # Parameters
+/// - left
+///
+///   The first list to compare.
+/// - right
+///
+///   The second list to compare.
+///
+/// # Returns
+/// Returns true if the contents of the `left` list matches what is in the
+/// `right` list, regardless of actual order.
+fn are_vector_contents_the_same(left: &Vec<String>, right: &Vec<String>) -> bool {
+    let mut matched = left.len() == right.len();
+
+    if matched {
+        for item in left.iter() {
+            if !right.contains(&item) {
+                matched = false;
+                break;
+            }
+        }
+    }
+
+    matched
+}
+
+//=============================================================================
+//=============================================================================
 
 
+/// Represents a shop in the village that can be visited.
+#[derive(Clone)]
 pub struct VisitorShop {
     /// Name of this shop.
     pub name: String,
@@ -108,6 +142,8 @@ impl VisitorShop {
         if !self.inventory.contains_key(item) {
             self.inventory.insert(item.to_string(), 1);
         } else {
+            // A HashMap requires a rather complicated mechanism to alter
+            // the value stored with a key.
             self.inventory.entry(item.to_string()).and_modify(|e| { *e += 1 });
         }
     }
@@ -120,11 +156,15 @@ impl VisitorShop {
     ///
     ///   An OrderVisitor object that contains a list of items to order,
     ///   possibly at this shop.
+    /// - village
+    ///
+    ///   A reference to the village containing this shop in case this shop
+    ///   needs to place an order of its own.
     ///
     /// # Returns
     /// Returns true if the order was successfully placed at this shop;
     /// otherwise, returns false, try another shop.
-    pub fn place_order(&mut self, order: &mut OrderVisitor) -> bool {
+    pub fn place_order(&mut self, order: &mut OrderVisitor, village: &mut Village) -> bool {
         let mut order_placed = false;
         
         let mut out_of_stock_items: Vec<String> = vec![];
@@ -152,8 +192,15 @@ impl VisitorShop {
                     if !items.is_empty() {
                         println!("  {0}:   {1} out of stock, ordering ingredients to make more...",
                             self.name, item);
-                        let reorder_visitor = OrderVisitor::new(&items);
-                        //village.visit(&reorder_visitor);
+                        let mut reorder_visitor = OrderVisitor::new(&items);
+                        village.visit(&mut reorder_visitor);
+                        if are_vector_contents_the_same(&reorder_visitor.items_received, &items) {
+                            self.add_item_to_inventory(item);
+                        } else {
+                            println!("  {0}:  Error! Ordered {1} but only received {2}.",
+                                self.name, stringize_list(items),
+                                stringize_list(&reorder_visitor.items_received));
+                        }
                     } else {
                         // The ordered item has no ingredients so the
                         // ordered item will be magically added to inventory
@@ -170,16 +217,17 @@ impl VisitorShop {
 
 
     /// Pick up the items sold by this shop (assumes the items were ordered
-    /// already).  Basically, this reduces the inventory for the given items
-    /// that are sold by this shop.  This method should be called only if
-    /// place_order() returns true.
+    /// already) and return them in the given OrderVisitor object.
+    ///
+    /// Basically, this reduces the inventory for the given items that are sold
+    /// by this shop.  This method should be called only if place_order()
+    /// returns true.
     ///
     /// # Parameters
     /// - order
     ///
     ///   An OrderVisitor object that receives the requested items.
     pub fn pickup_order(&mut self, order: &mut OrderVisitor) {
-        order.items_received.clear();
         for item in order.items_to_order.iter() {
             if self.does_shop_sell_item(&item) {
                 if self.is_item_in_stock(&item) {
@@ -191,11 +239,15 @@ impl VisitorShop {
             }
         }
         if !order.items_received.is_empty() {
+            let mut items_received: Vec<String> = vec![];
             // Reduce inventory for the ordered items
-            let items_as_string = stringize_list(&order.items_received);
             for item in order.items_received.iter() {
-                self.inventory.entry(item.clone()).and_modify(|e| { *e -= 1 });
+                if self.does_shop_sell_item(&item) {
+                    self.inventory.entry(item.clone()).and_modify(|e| { *e -= 1 });
+                    items_received.push(item.clone());
+                }
             }
+            let items_as_string = stringize_list(&items_received);
             println!("  {0}: Order picked up for {1}.", self.name, items_as_string);
         }
     }

@@ -4,14 +4,16 @@
 //-----------------------------------------------------------------------------
 
 use super::visitor_shop::VisitorShop;
+use super::visitor_village::Village;
+
 //-----------------------------------------------------------------------------
 
 /// Represents a visitor used for ordering items from various shops.  The user
 /// starts with an instance of this struct and a list of what they want to
 /// order.
 /// 
-/// Later, a shop will use this visitor to order ingredients to make a
-/// requested item.
+/// A shop can also use this struct to order ingredients to make a requested
+/// item.
 pub struct OrderVisitor {
     /// Items to be ordered from any shop that sells the item.
     pub items_to_order: Vec<String>,
@@ -42,8 +44,12 @@ impl OrderVisitor {
     /// - shop
     ///
     ///   The VisitorShop object to visit.
-    pub fn visit_shop(&mut self, shop: &mut VisitorShop) {
-        let order_placed = shop.place_order(self);
+    /// - village
+    ///
+    ///   A reference to the village in case a shop needs to place an order of
+    ///   its own.
+    pub fn visit_shop(&mut self, shop: &mut VisitorShop, village: &mut Village) {
+        let order_placed = shop.place_order(self, village);
         if order_placed {
             shop.pickup_order(self);
             self.shop_name_received_from = shop.name.clone();
