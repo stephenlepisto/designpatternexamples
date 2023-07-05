@@ -1,9 +1,7 @@
 /// @file
 /// @brief
-/// Declaration of the @ref ConstStringList structure and supporting functions to
-/// work with a list of constant strings: ConstStringList_Initialize(),
-/// ConstStringList_Clear(), ConstStringList_AddString(), ConstStringList_Remove(),
-/// and ConstStringList_Find().
+/// Declaration of the ConstStringList structure and supporting functions to
+/// work with a list of constant strings.
 
 #pragma once
 #ifndef __CONSTSTRINGLIST_H__

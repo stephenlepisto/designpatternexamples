@@ -1,8 +1,7 @@
 /// @file
 /// @brief
-/// Declaration of the StackEntry structure and the functions for a simple
-/// stack: StackEntry_Create(), StackEntry_Destroy(), Stack_Push(),
-/// Stack_Pop(), and Stack_IsEmpty().
+/// Declaration of the StackEntry structure and the supporting functions that
+/// represents a simple stack.
 
 #pragma once
 #ifndef __STACK_H__

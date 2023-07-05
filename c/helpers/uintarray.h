@@ -1,9 +1,7 @@
 /// @file
 /// @brief
-/// Declaration of the UIntArray structure that represents an array of
-/// 32-bit unsigned integers along with the associated functions,
-/// UIntArray_Initialize(), UIntArray_Clear(), UIntArray_AddInt(),
-/// UIntArray_RemoveInt(), UIntArray_Find(), and UIntArray_Copy().
+/// Declaration of the UIntArray structure and the supporting functions that
+/// represents an array of 32-bit unsigned integers.
 
 #pragma once
 #ifndef __UINTARRAY_H__

@@ -1,9 +1,7 @@
 /// @file
 /// @brief
-/// Implementation of the UIntArray structure that represents an array of
-/// 32-bit unsigned integers, along with the associated functions,
-/// UIntArray_Initialize(), UIntArray_Clear(), and UIntArray_AddInt(),
-/// UIntArray_RemoveInt(), UIntArray_Find(), and UIntArray_Copy().
+/// Implementation of the supporting functions for the UIntArray structure that
+/// represents an array of 32-bit unsigned integers.
 
 #include <stdlib.h>
 #include <memory.h>

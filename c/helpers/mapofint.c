@@ -1,8 +1,7 @@
 /// @file
 /// @brief
-/// Implementation of the MapOfInt structure's supporting functions for
-/// managing a map of strings keyed by another string: MapOfInt_Initialize(),
-/// MapOfInt_Clear(), MapOfInt_Add(), and MapOfInt_Find().
+/// Implementation of the supporting functions for the MapOfInt structure
+/// for managing a map of integers keyed by a string.
 
 #include <memory.h>
 #include <stdbool.h>

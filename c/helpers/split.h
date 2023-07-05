@@ -1,8 +1,7 @@
 /// @file
 /// @brief
-/// Declaration of the split() function, for splitting
-/// a string on delimiters, along with the SplitList_Clear() function for
-/// releasing the resources in a SplitList object.
+/// Declaration of the SplitList structure and the functions for working with
+/// splitting a string based on one or more delimiters.
 
 #pragma once
 #ifndef __SPLIT_H__

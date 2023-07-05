@@ -1,7 +1,7 @@
 /// @file
 /// @brief
-/// Declaration of the replace_chr(), replace_chri(), replace_str(), and replace_stri()
-/// functions, for replacing characters and strings in a string.
+/// Declaration of various helper functions for replacing characters or strings
+/// in a string.
 
 #pragma once
 #ifndef __REPLACE_H__

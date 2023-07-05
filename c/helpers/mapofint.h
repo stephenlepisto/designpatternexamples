@@ -1,8 +1,7 @@
 /// @file
 /// @brief
 /// Declaration of the MapOfInt structure and supporting functions for
-/// managing a map of strings keyed by another string: MapOfInt_Initialize(),
-/// MapOfInt_Clear(), MapOfInt_Add(), and MapOfInt_Find().
+/// managing a map of integers keyed by a string.
 
 #pragma once
 #ifndef __MAPOFINTS_H__

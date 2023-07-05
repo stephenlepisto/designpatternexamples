@@ -1,9 +1,7 @@
 /// @file
 /// @brief
-/// Implementation of the DynamicString structure, along with
-/// DynamicString_Initialize(), DynamicString_Clear(), DynamicString_Append(),
-/// and DynamicString_Set()
-/// functions that work with that structure.
+/// Implementation of the supporting functions for the DynamicString structure
+/// to work with dynamic strings.
 
 #include <stdlib.h>
 #include <string.h>

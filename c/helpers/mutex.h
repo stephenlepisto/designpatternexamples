@@ -1,7 +1,7 @@
 /// @file
 /// @brief
-/// Declaration of the Mutex structure along with mutex_create(), mutex_destroy(),
-/// mutex_lock(), and mutex_unlock() functions.
+/// Declaration of the Mutex structure and supporting functions for working
+/// with mutexes.
 #pragma once
 #ifndef __MUTEX_H__
 #define __MUTEX_H__

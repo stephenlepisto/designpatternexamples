@@ -1,7 +1,7 @@
 /// @file
 /// @brief
-/// Implementation of the functions for a simple stack: StackEntry_Create(),
-/// StackEntry_Destroy(), Stack_Push(), Stack_Pop(), and Stack_IsEmpty().
+/// Implementation of the supporting functions for the StackEntry structure
+/// that represents a simple stack.
 
 #include <stdlib.h>
 

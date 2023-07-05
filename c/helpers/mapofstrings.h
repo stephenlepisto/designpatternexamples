@@ -1,8 +1,7 @@
 /// @file
 /// @brief
 /// Declaration of the MapOfStrings structure and supporting functions for
-/// managing a map of strings keyed by another string: MapOfStrings_Initialize(),
-/// MapOfStrings_Clear(), MapOfStrings_Add(), and MapOfStrings_Find().
+/// managing a map of strings keyed by another string.
 
 #pragma once
 #ifndef __MAPOFSTRINGS_H__

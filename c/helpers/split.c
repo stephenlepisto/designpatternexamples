@@ -1,9 +1,7 @@
 /// @file
 /// @brief
-/// Implementation of the split() function, for splitting
-/// a string on delimiters, along with the SplitList_Clear() function for
-/// releasing the resources in a SplitList object.  Also has implementation for
-/// SplitList_Initialize(), and SplitList_AddString() functions.
+/// Implementation of the functions for working with the SplitList structure
+/// that is used for splitting a string based on one or more delimiters.
 
 #include <stdlib.h>
 #include <string.h>

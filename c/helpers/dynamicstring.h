@@ -1,9 +1,7 @@
 /// @file
 /// @brief
-/// Declaration of the DynamicString structure, along with
-/// DynamicString_Initialize(), DynamicString_Clear(), DynamicString_Append(),
-/// and DynamicString_Set()
-/// functions that work with that structure.
+/// Declaration of the DynamicString structure and supporting functions to work
+/// with dynamic strings.
  
 #pragma once
 #ifndef __DYNAMICSTRING_H__

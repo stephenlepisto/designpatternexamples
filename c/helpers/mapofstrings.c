@@ -1,8 +1,7 @@
 /// @file
 /// @brief
-/// Implementation of the MapOfStrings structure's supporting functions for
-/// managing a map of strings keyed by another string: MapOfStrings_Initialize(),
-/// MapOfStrings_Clear(), MapOfStrings_Add(), and MapOfStrings_Find().
+/// Implementation of the supporting functions for the MapOfStrings structure
+/// for managing a map of strings keyed by another string.
 
 #include <memory.h>
 #include <stdbool.h>

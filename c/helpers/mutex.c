@@ -1,7 +1,7 @@
 /// @file
 /// @brief
-/// Implementation of the Mutex structure along with mutex_create(),
-/// mutex_destroy(), mutex_lock(), and mutex_unlock() functions.
+/// Implementation of the functions used for working with the Mutex structure
+/// that deal with mutexes.
 
 #include <stdlib.h>
 

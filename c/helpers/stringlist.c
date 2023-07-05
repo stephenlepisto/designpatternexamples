@@ -1,8 +1,7 @@
 /// @file
 /// @brief
-/// Implementation of the @ref StringList structure and supporting functions to
-/// work with a list of strings: StringList_Initialize(), StringList_Clear(),
-/// StringList_AddString(), and StringList_Find().
+/// Implementation of the supporting functions for the StringList structure
+/// that works with a list of allocated strings.
 
 #include <stdlib.h>
 #include <string.h>

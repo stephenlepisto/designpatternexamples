@@ -1,8 +1,7 @@
 /// @file
 /// @brief
-/// Declaration of the @ref StringList structure and supporting functions to
-/// work with a list of strings: StringList_Initialize(), StringList_Clear(),
-/// StringList_AddString(), and StringList_Find().
+/// Declaration of the StringList structure and supporting functions to
+/// work with a list of allocated strings.
 
 #pragma once
 #ifndef __STRINGLIST_H__

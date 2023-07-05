@@ -1,7 +1,7 @@
 /// @file
 /// @brief
-/// Implementation of the replace_chr(), replace_chri(), replace_str(), and replace_stri()
-/// functions, for replacing characters and strings in a string.
+/// Implementation of various helper functions for replacing characters or
+/// strings in a string.
 
 #include <ctype.h>
 #include <stdlib.h>

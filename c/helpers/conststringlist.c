@@ -1,8 +1,7 @@
 /// @file
 /// @brief
-/// Implementation of the @ref ConstStringList structure and supporting functions to
-/// work with a list of strings: ConstStringList_Initialize(), ConstStringList_Clear(),
-/// ConstStringList_AddString(), ConstStringList_Remove(), and ConstStringList_Find().
+/// Implementation of the supporting functions for the ConstStringList
+/// to work with a list of constant strings.
 
 #include <stdlib.h>
 #include <string.h>
