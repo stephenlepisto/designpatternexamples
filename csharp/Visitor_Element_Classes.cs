@@ -6,9 +6,8 @@
 
 using System;
 using System.Collections.Generic;
-using System.Collections.Specialized;
+using System.Linq;
 using System.Text;
-using System.Xml.Serialization;
 
 namespace DesignPatternExamples_csharp
 {
@@ -187,6 +186,32 @@ namespace DesignPatternExamples_csharp
         }
 
         /// <summary>
+        /// Determine if the two string lists have the same contents.
+        /// </summary>
+        /// <param name="left">A StringList to compare.</param>
+        /// <param name="right">Another StringList to compare.</param>
+        /// <returns>Returns true if the contents of the `left` list matches what
+        /// is in the `right` list, regardless of actual order.</returns>
+        bool AreListContentsTheSame(string[] left, string[] right)
+        {
+            bool matched = false;
+
+            if (left.Length == right.Length)
+            {
+                matched = true;
+                foreach (string item in left)
+                {
+                    if (!right.Contains(item))
+                    {
+                        matched = false;
+                        break;
+                    }
+                }
+            }
+            return matched;
+        }
+
+        /// <summary>
         /// Place an order for the specified items.  If the inventory is empty,
         /// replenish the inventory by visiting other shops for the missing
         /// ingredients.
@@ -221,21 +246,28 @@ namespace DesignPatternExamples_csharp
             }
             if (outOfStockItems.Count > 0)
             {
-                    foreach (string itemToOrder in outOfStockItems)
+                foreach (string itemToOrder in outOfStockItems)
                 {
                     if (IngredientsForItems[itemToOrder].Length > 0)
                     {
                         Console.WriteLine("  {0}:   {1} out of stock, ordering ingredients to make more...", Name, itemToOrder);
                         OrderVisitor visitor = new OrderVisitor(IngredientsForItems[itemToOrder]);
                         Village.Accept(visitor);
+                        if (AreListContentsTheSame(visitor.ItemsReceived.ToArray(), IngredientsForItems[itemToOrder]))
+                        {
+                            // verify the ingredients received matches the
+                            // ingredients needed.  Only then add 1 to the
+                            // inventory.
+                            AddItemToInventory(itemToOrder);
+                        }
                     }
                     else
                     {
                         // The ordered item has no ingredients so the
                         // ordered item will be magically added to inventory
                         Console.WriteLine("  {0}:   {1} out of stock, making...", Name, itemToOrder);
+                        AddItemToInventory(itemToOrder);
                     }
-                    AddItemToInventory(itemToOrder);
                 }
             }
             return orderPlaced;
@@ -252,7 +284,6 @@ namespace DesignPatternExamples_csharp
         /// item names that were picked up.</param>
         public void PickupOrder(string[] items, List<string> itemsToBePickedUp)
         {
-            itemsToBePickedUp.Clear();
             foreach (string item in items)
             {
                 // If this shop sells the item and the item is in stock then
@@ -275,12 +306,15 @@ namespace DesignPatternExamples_csharp
                 StringBuilder output = new StringBuilder();
                 foreach (string itemToBePickedUp in itemsToBePickedUp)
                 {
-                    if (output.Length > 0)
+                    if (DoesShopSellItem(itemToBePickedUp))
                     {
-                        output.Append(", ");
+                        if (output.Length > 0)
+                        {
+                            output.Append(", ");
+                        }
+                        output.Append(itemToBePickedUp);
+                        Inventory[itemToBePickedUp]--;
                     }
-                    output.Append(itemToBePickedUp);
-                    Inventory[itemToBePickedUp]--;
                 }
                 Console.WriteLine("  {0}: Order picked up for {1}.", Name, output.ToString());
             }
