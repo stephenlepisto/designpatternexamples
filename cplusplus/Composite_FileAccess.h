@@ -1,7 +1,7 @@
 /// @file
 /// @brief
 /// Declaration of the @ref DesignPatternExamples_cpp::Composite_FileAccess "Composite_FileAccess"
-/// class used in the @ref composite_pattern "Composite pattern".
+/// class used in the @ref composite_pattern.
 
 #pragma once
 #ifndef __COMPOSITE_FILEACCESS_H__
@@ -24,7 +24,7 @@ namespace DesignPatternExamples_cpp
     private:
         /// <summary>
         /// List of all "files" and "directories" used in the
-        /// @ref command_pattern "Composite pattern" example.
+        /// @ref command_pattern example.
         /// </summary>
         static std::shared_ptr<FileDirEntry> rootEntry;
 

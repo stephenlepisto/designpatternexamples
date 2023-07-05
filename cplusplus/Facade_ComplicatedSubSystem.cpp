@@ -2,7 +2,7 @@
 /// @brief
 /// Implementation of the @ref DesignPatternExamples_cpp::Facade_ComplicatedSubSystem "Facade_ComplicatedSubSystem"
 /// class representing the complicated sub-system used in the
-/// @ref facade_pattern "Facade pattern".
+/// @ref facade_pattern.
 
 #include <memory>
 #include <string>
@@ -16,7 +16,7 @@ namespace DesignPatternExamples_cpp
 
     /// <summary>
     /// Represents a single device.
-    /// Part of the @ref facade_pattern "Facade pattern" example.
+    /// Part of the @ref facade_pattern example.
     /// </summary>
     struct DeviceNode
     {
@@ -64,7 +64,7 @@ namespace DesignPatternExamples_cpp
 
     /// <summary>
     /// Represents a device chain, which is a collection of DeviceNode objects.
-    /// Part of the @ref facade_pattern "Facade pattern" example.
+    /// Part of the @ref facade_pattern example.
     /// </summary>
     class DeviceChain
     {
@@ -218,7 +218,7 @@ namespace DesignPatternExamples_cpp
 
     /// <summary>
     /// Represents some kind of system that contains multiple device chains.
-    /// Part of the @ref facade_pattern "Facade pattern" example.
+    /// Part of the @ref facade_pattern example.
     /// </summary>
     /// <remarks>
     /// The following operations are available:
@@ -384,13 +384,13 @@ namespace DesignPatternExamples_cpp
 
     /// <summary>
     /// A singleton instance of the sub-system.
-    /// Part of the @ref facade_pattern "Facade pattern" example.
+    /// Part of the @ref facade_pattern example.
     /// </summary>
     static std::unique_ptr<Facade_ComplicatedSubSystem> _instance;
 
     /// <summary>
     /// Class factory for a singleton instance of the sub-system class.
-    /// Part of the @ref facade_pattern "Facade pattern" example.
+    /// Part of the @ref facade_pattern example.
     /// </summary>
     /// <returns>Returns a singleton instance of the class.</returns>
     IDeviceNetworkLowLevel* CreateLowLevelInstance()

@@ -3,7 +3,7 @@
 /// Declaration of the @ref DesignPatternExamples_cpp::IWorkByProxy "IWorkByProxy"
 /// interface and the
 /// @ref DesignPatternExamples_cpp::Proxy_Classes_Container "Proxy_Classes_Container"
-/// class used in the @ref proxy_pattern "Proxy pattern"
+/// class used in the @ref proxy_pattern
 
 #pragma once
 #ifndef __PROXY_CLASS_H__

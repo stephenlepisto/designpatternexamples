@@ -3,7 +3,7 @@
 /// Declaration of the @ref DesignPatternExamples_cpp::IStateContext "IStateContext" and
 /// @ref DesignPatternExamples_cpp::IStateBehavior "IStateBehavior" interfaces,
 /// as well as the @ref DesignPatternExamples_cpp::StateContext_Class "StateContext_Class"
-/// class used in the @ref state_pattern "State pattern".
+/// class used in the @ref state_pattern.
 
 #pragma once
 #ifndef __STATE_CLASS_H__

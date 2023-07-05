@@ -1,7 +1,7 @@
 /// @file
 /// @brief
 /// Implementation of the @ref DesignPatternExamples_cpp::Composite_FileAccess "Composite_FileAccess"
-/// class used in the @ref composite_pattern "Composite pattern".
+/// class used in the @ref composite_pattern.
 
 // This test requires /Zc:__cplusplus to be specified on the build command line.
 #if !defined(__cplusplus) || __cplusplus < 202002L

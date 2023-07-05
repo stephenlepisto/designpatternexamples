@@ -4,7 +4,7 @@
 /// @ref DesignPatternExamples_cpp::IEventNotifications "IEventNotifications",
 /// and @ref DesignPatternExamples_cpp::INumberProducer "INumberProducer" interfaces,
 /// and the @ref DesignPatternExamples_cpp::ObserverSubject_NumberProducer "ObserverSubject_NumberProducer"
-/// class used in the @ref observer_pattern "Observer pattern".
+/// class used in the @ref observer_pattern.
 ///
 /// The Observer pattern is used when one or more entities need to be told
 /// about a change in state of another entity (typically known as the Subject)

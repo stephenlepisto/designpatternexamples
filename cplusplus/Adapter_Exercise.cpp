@@ -1,7 +1,7 @@
 /// @file
 /// @brief
 /// Implementation of the Adapter_Exercise() function as used in the 
-/// @ref adapter_pattern "Adapter pattern".
+/// @ref adapter_pattern.
 
 #include "Adapter_Exercise.h"
 

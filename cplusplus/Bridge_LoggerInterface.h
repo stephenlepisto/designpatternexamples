@@ -1,7 +1,7 @@
 /// @file
 /// @brief
 /// Declaration of the @ref DesignPatternExamples_cpp::ILogger "ILogger"
-/// interface used by all logger classes in the @ref bridge_pattern "Bridge pattern".
+/// interface used by all logger classes in the @ref bridge_pattern.
 
 #pragma once
 #ifndef __BRIDGE_LOGGERINTERFACE_H__

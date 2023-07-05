@@ -2,7 +2,7 @@
 /// @brief
 /// Implementation of the @ref DesignPatternExamples_cpp::Message "Message"
 /// and @ref DesignPatternExamples_cpp::MessagePosition "MessagePosition" structs
-/// used in the @ref handlerchain_pattern "HandlerChain pattern"
+/// used in the @ref handlerchain_pattern
 
 #pragma once
 #ifndef __HANDLERCHAIN_MESSAGE_CLASS_H__

@@ -1,7 +1,7 @@
 /// @file
 /// @brief
 /// Implementation of the @ref DesignPatternExamples_cpp::NullLogger "NullLogger"
-/// class factory used in the @ref bridge_pattern "Bridge pattern".
+/// class factory used in the @ref bridge_pattern.
 
 #include "Bridge_NullLogger.h"
 

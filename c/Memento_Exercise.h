@@ -2,7 +2,7 @@
 /// @file
 /// @brief
 /// Declaration of the Memento_Exercise() function as used in the 
-/// @ref memento_pattern "Memento pattern".
+/// @ref memento_pattern.
 
 #pragma once
 #ifndef __MEMENTO_EXERCISE_H__

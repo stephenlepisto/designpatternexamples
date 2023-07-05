@@ -2,7 +2,7 @@
 /// @file
 /// @brief
 /// Implementation of the Iterator_Exercise() function as used in the 
-/// @ref iterator_pattern "Iterator pattern".
+/// @ref iterator_pattern.
 
 // This test requires /Zc:__cplusplus to be specified on the build command line.
 #if !defined(__cplusplus) || __cplusplus < 202002L

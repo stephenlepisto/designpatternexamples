@@ -1,7 +1,7 @@
 /// @file
 /// @brief
 /// Declaration of the @ref DesignPatternExamples_cpp::ISortEntries "ISortEntries"
-/// interface as used in the @ref strategy_pattern "Strategy pattern".
+/// interface as used in the @ref strategy_pattern.
 
 #pragma once
 #ifndef __STRATEGY_ISORTENTRIES_H__

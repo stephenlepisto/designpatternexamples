@@ -2,7 +2,7 @@
 /// @file
 /// @brief
 /// Implementation of the Interpreter_Exercise() function as used in the 
-/// @ref interpreter_pattern "Interpreter pattern".
+/// @ref interpreter_pattern.
 
 #include <stdbool.h>
 #include <stdio.h>

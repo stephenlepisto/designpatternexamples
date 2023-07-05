@@ -1,7 +1,7 @@
 /// @file
 /// @brief
 /// Implementation of the Observer_Exercise() function as used in the 
-/// @ref observer_pattern "Observer pattern".
+/// @ref observer_pattern.
 
 // This test requires /Zc:__cplusplus to be specified on the build command line.
 #if !defined(__cplusplus) || __cplusplus < 202002L

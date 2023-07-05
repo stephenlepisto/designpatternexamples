@@ -2,7 +2,7 @@
 /// @file
 /// @brief
 /// Declaration of the Composite_Exercise() function as used in the 
-/// @ref composite_pattern "Composite pattern".
+/// @ref composite_pattern.
 
 #pragma once
 #ifndef __COMPOSITE_EXERCISE_H__

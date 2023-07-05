@@ -1,7 +1,7 @@
 /// @file
 /// @brief
 /// Declaration of the @ref DesignPatternExamples_cpp::FileLogger "FileLogger"
-/// class used in the @ref bridge_pattern "Bridge pattern".
+/// class used in the @ref bridge_pattern.
 
 #pragma once
 #ifndef __BRIDGE_FILELOGGER_H__

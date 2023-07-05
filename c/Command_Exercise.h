@@ -2,7 +2,7 @@
 /// @file
 /// @brief
 /// Declaration of the Command_Exercise() function as used in the 
-/// @ref command_pattern "Command pattern".
+/// @ref command_pattern.
 
 #pragma once
 #ifndef __COMMAND_EXERCISE_H__

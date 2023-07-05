@@ -2,7 +2,7 @@
 /// @brief
 /// Declaration of the @ref DesignPatternExamples_cpp::IDeviceNetworkLowLevel "IDeviceNetworkLowLevel"
 /// interface representing the complicated sub-system used in the
-/// @ref facade_pattern "Facade pattern".
+/// @ref facade_pattern.
 
 #pragma once
 #ifndef __FACADESUBSYSTEM_INTERFACE_H__
@@ -15,7 +15,7 @@ namespace DesignPatternExamples_cpp
 
     /// <summary>
     /// Identifies the type of devices that can appear in a device chain.
-    /// Part of the @ref facade_pattern "Facade pattern" example.
+    /// Part of the @ref facade_pattern example.
     /// </summary>
     enum DeviceTypes
     {
@@ -46,7 +46,7 @@ namespace DesignPatternExamples_cpp
     /// Represents a network of device chains and the low level access to that
     /// network.  In general, the caller should take a lock on a device chain
     /// before accessing it then release the lock when done.
-    /// Part of the @ref facade_pattern "Facade pattern" example.
+    /// Part of the @ref facade_pattern example.
     /// </summary>
     /// <remarks>
     /// This interface makes it easier to contrast with the IDeviceNetworkHighLevel
@@ -116,7 +116,7 @@ namespace DesignPatternExamples_cpp
 
     /// <summary>
     /// Class factory for a singleton instance of the sub-system class.
-    /// Part of the @ref facade_pattern "Facade pattern" example.
+    /// Part of the @ref facade_pattern example.
     /// </summary>
     /// <returns>Returns a singleton instance of the class.</returns>
     IDeviceNetworkLowLevel* CreateLowLevelInstance();

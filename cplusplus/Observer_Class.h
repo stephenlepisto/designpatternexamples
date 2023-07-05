@@ -3,7 +3,7 @@
 /// Implementation for the @ref DesignPatternExamples_cpp::ObserverForDecimal "ObserverForDecimal",
 /// @ref DesignPatternExamples_cpp::ObserverForHexaDecimal "ObserverForHexaDecimal",
 /// and @ref DesignPatternExamples_cpp::ObserverForBinary "ObserverForBinary"
-/// classes used in the @ref observer_pattern "Observer pattern".
+/// classes used in the @ref observer_pattern.
 
 #pragma once
 #ifndef __OBSERVER_CLASS_H__

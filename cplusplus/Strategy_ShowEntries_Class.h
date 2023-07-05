@@ -1,7 +1,7 @@
 /// @file
 /// @brief
 /// Implementation of the @ref DesignPatternExamples_cpp::Strategy_ShowEntries_Class "Strategy_ShowEntries_Class"
-/// classes used in the @ref strategy_pattern "Strategy pattern".
+/// classes used in the @ref strategy_pattern.
 
 #pragma once
 #ifndef __STRATEGY_SHOWENTRIES_H__

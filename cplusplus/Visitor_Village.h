@@ -1,7 +1,7 @@
 /// @file
 /// @brief
 /// Declaration of the @ref DesignPatternExamples_cpp::Visitor_Village "Visitor_Village" class
-/// used in the @ref visitor_pattern "Visitor pattern"
+/// used in the @ref visitor_pattern
 
 #pragma once
 #ifndef __VISITOR_VILLAGE_H__

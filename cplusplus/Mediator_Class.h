@@ -2,7 +2,7 @@
 /// @brief
 /// Implementation of the @ref DesignPatternExamples_cpp::UserGroupsContainer "UserGroupsContainer"
 /// and the @ref DesignPatternExamples_cpp::UserGroupMediator "UserGroupMediator"
-/// classes used in the @ref mediator_pattern "Mediator pattern".
+/// classes used in the @ref mediator_pattern.
 
 #pragma once
 #ifndef __MEDIATOR_CLASS_H__

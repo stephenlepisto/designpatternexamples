@@ -4,7 +4,7 @@
 /// @ref DesignPatternExamples_cpp::Strategy_SortEntries_ClassFactory "Strategy_SortEntries_ClassFactory"
 /// class and implementation of the various StrategyXXX classes that implement
 /// the @ref DesignPatternExamples_cpp::ISortEntries "ISortEntries" interface
-/// as used in the @ref strategy_pattern "Strategy pattern".
+/// as used in the @ref strategy_pattern.
 
 #pragma once
 #ifndef __STRATEGY_SORTENTRIES_CLASSES_H__

@@ -3,7 +3,7 @@
 /// Implementation of the @ref DesignPatternExamples_cpp::IWorkByProxy "IWorkByProxy"
 /// interface and the
 /// @ref DesignPatternExamples_cpp::Proxy_Classes_Container "Proxy_Classes_Container"
-/// class used in the @ref proxy_pattern "Proxy pattern"
+/// class used in the @ref proxy_pattern
 
 // This test requires /Zc:__cplusplus to be specified on the build command line.
 #if !defined(__cplusplus) || __cplusplus < 202002L

@@ -2,7 +2,7 @@
 /// @brief
 /// Implementation of the @ref DesignPatternExamples_cpp::User "User" and the
 /// @ref DesignPatternExamples_cpp::UserList "UserList" classes
-/// used in the @ref mediator_pattern "Mediator pattern".
+/// used in the @ref mediator_pattern.
 
 
 #pragma once

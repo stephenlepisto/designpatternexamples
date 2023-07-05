@@ -2,7 +2,7 @@
 /// @file
 /// @brief
 /// Implementation of the HandlerChain_Exercise() function as used in the 
-/// @ref handlerchain_pattern "HandlerChain pattern".
+/// @ref handlerchain_pattern.
 
 // This test requires /Zc:__cplusplus to be specified on the build command line.
 #if !defined(__cplusplus) || __cplusplus < 202002L

@@ -4,7 +4,7 @@
 /// and the @ref DesignPatternExamples_cpp::Flyweight_Class "Flyweight_Class",
 /// @ref DesignPatternExamples_cpp::BigResource "BigResource", and
 /// @ref DesignPatternExamples_cpp::BigResourceManager "BigResourceManager"
-/// classes used in the @ref flyweight_pattern "Flyweight pattern".
+/// classes used in the @ref flyweight_pattern.
 
 #pragma once
 #ifndef __FLYWEIGHT_CLASSES_H__

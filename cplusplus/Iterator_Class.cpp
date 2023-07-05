@@ -1,7 +1,7 @@
 /// @file
 /// @brief
 /// Implementation of the @ref DesignPatternExamples_cpp::IteratorContainer_Class "IteratorContainer_Class"
-/// class as used in the @ref iterator_pattern "Iterator pattern".
+/// class as used in the @ref iterator_pattern.
 #include "Iterator_Class.h"
 
 namespace // Anonymous

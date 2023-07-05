@@ -1,7 +1,7 @@
 /// @file
 /// @brief
 /// Declaration of the @ref DesignPatternExamples_cpp::Interpreter_Class "Interpreter_Class"
-/// class used in the @ref interpreter_pattern "Interpreter pattern".
+/// class used in the @ref interpreter_pattern.
 
 #pragma once
 #ifndef __INTERPRETER_CLASS_H__

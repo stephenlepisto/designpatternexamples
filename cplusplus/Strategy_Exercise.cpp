@@ -2,7 +2,7 @@
 /// @file
 /// @brief
 /// Implementation of the Strategy_Exercise() function as used in the 
-/// @ref strategy_pattern "Strategy pattern".
+/// @ref strategy_pattern.
 
 // This test requires /Zc:__cplusplus to be specified on the build command line.
 #if !defined(__cplusplus) || __cplusplus < 202002L

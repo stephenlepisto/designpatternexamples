@@ -2,7 +2,7 @@
 /// @file
 /// @brief
 /// Implementation of the Proxy_Exercise() function as used in the 
-/// @ref proxy_pattern "Proxy pattern".
+/// @ref proxy_pattern.
 
 // This test requires /Zc:__cplusplus to be specified on the build command line.
 #if !defined(__cplusplus) || __cplusplus < 202002L

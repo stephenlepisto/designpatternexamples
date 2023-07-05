@@ -2,7 +2,7 @@
 /// @file
 /// @brief
 /// Implementation of the Command_Exercise() function as used in the 
-/// @ref command_pattern "Command pattern".
+/// @ref command_pattern.
 
 #include <iostream>
 #include <sstream>

@@ -5,7 +5,7 @@
 /// along with the implementations of the 
 /// @ref DesignPatternExamples_cpp::Iterator "Iterator" and
 /// @ref DesignPatternExamples_cpp::ItemPair "ItemPair" classes
-/// as used in the @ref iterator_pattern "Iterator pattern".
+/// as used in the @ref iterator_pattern.
 
 #pragma once
 #ifndef __ITERATOR_CLASS_H__

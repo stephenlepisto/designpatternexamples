@@ -1,7 +1,7 @@
 /// @file
 /// @brief
 /// Implementation of the @ref DesignPatternExamples_cpp::Strategy_SortEntries_ClassFactory "Strategy_SortEntries_ClassFactory"
-/// class as used in the @ref strategy_pattern "Strategy pattern".
+/// class as used in the @ref strategy_pattern.
 
 #include "Strategy_SortEntries_Classes.h"
 

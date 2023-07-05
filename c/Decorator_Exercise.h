@@ -2,7 +2,7 @@
 /// @file
 /// @brief
 /// Declaration of the Decorator_Exercise() function as used in the 
-/// @ref decorator_pattern "Decorator pattern".
+/// @ref decorator_pattern.
 
 #pragma once
 #ifndef __DECORATOR_EXERCISE_H__

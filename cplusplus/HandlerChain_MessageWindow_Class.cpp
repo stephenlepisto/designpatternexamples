@@ -1,7 +1,7 @@
 /// @file
 /// @brief
 /// Implementation of the @ref DesignPatternExamples_cpp::MessageWindow "MessageWindow" class
-/// used in the @ref handlerchain_pattern "HandlerChain pattern"
+/// used in the @ref handlerchain_pattern
 
 #include "HandlerChain_MessageWindow_Class.h"
 

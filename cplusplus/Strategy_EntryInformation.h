@@ -1,7 +1,7 @@
 /// @file
 /// @brief
 /// Implementation of the @ref DesignPatternExamples_cpp::EntryInformation "EntryInformation"
-/// class as used for data in the @ref strategy_pattern "Strategy pattern".
+/// class as used for data in the @ref strategy_pattern.
 
 #pragma once
 #ifndef __STRATEGY_ENTRYINFORMATION_H__

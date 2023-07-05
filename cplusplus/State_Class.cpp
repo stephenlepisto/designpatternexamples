@@ -3,7 +3,7 @@
 /// Implementation of the @ref DesignPatternExamples_cpp::IStateContext "IStateContext" and
 /// @ref DesignPatternExamples_cpp::IStateBehavior "IStateBehavior" interfaces,
 /// along with the private implementation of the StateContext_ClassImpl class
-/// and the various StateXXX classes used in the @ref state_pattern "State pattern".
+/// and the various StateXXX classes used in the @ref state_pattern.
 /// 
 /// The class implementations are in an anonymous namespace in a .cpp file to
 /// better hide them from the rest of the program.

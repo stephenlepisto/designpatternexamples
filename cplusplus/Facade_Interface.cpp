@@ -1,7 +1,7 @@
 /// @file
 /// @brief
 /// Implementation of the @ref DesignPatternExamples_cpp::IDeviceNetworkHighLevel "IDeviceNetworkHighLevel"
-/// interface representing the high-level system used in the @ref facade_pattern "Facade pattern".
+/// interface representing the high-level system used in the @ref facade_pattern.
 
 #include <memory>
 #include "helpers/argumentnull_error.h"
@@ -16,7 +16,7 @@ namespace // Anonymous
     /// the high level IDeviceNetworkHighLevel interface, which is a simpler
     /// interface.  All calls on the high level interface are forwarded to the
     /// appropriate low level interface.
-    /// Part of the @ref facade_pattern "Facade pattern" example.
+    /// Part of the @ref facade_pattern example.
     /// </summary>
     class DeviceNetworkHighLevel : public DesignPatternExamples_cpp::IDeviceNetworkHighLevel
     {

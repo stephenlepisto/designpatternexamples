@@ -1,7 +1,7 @@
 /// @file
 /// @brief
 /// Implementation of the @ref DesignPatternExamples_cpp::LoggerHelpers "LoggerHelpers"
-/// namespace functions used in the @ref bridge_pattern "Bridge pattern".
+/// namespace functions used in the @ref bridge_pattern.
 
 #if !defined(__cplusplus) || __cplusplus < 202002L
 #error Requires C++ 20 or later to compile!

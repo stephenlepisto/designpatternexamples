@@ -1,7 +1,7 @@
 /// @file
 /// @brief
 /// Implementation of the @ref DesignPatternExamples_cpp::OrderVisitor "OrderVisitor" class
-/// used in the @ref visitor_pattern "Visitor pattern"
+/// used in the @ref visitor_pattern
 
 #pragma once
 #ifndef __VISITOR_VISITOR_CLASS_H__

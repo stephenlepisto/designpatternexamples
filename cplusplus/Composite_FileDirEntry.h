@@ -3,7 +3,7 @@
 /// Implementation of the @ref DesignPatternExamples_cpp::FileDirEntry "FileDirEntry",
 /// @ref DesignPatternExamples_cpp::FileEntry "FileEntry", and
 /// @ref DesignPatternExamples_cpp::DirEntry "DirEntry" classes used in the
-/// @ref composite_pattern "Composite pattern".
+/// @ref composite_pattern.
 
 #pragma once
 #ifndef __COMPOSITE_FILEDIRENTRY_H__

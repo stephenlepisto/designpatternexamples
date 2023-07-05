@@ -2,7 +2,7 @@
 /// @brief
 /// Implementation of the @ref DesignPatternExamples_cpp::Group "Group" and the
 /// @ref DesignPatternExamples_cpp::GroupList "GroupList" classes
-/// used in the @ref mediator_pattern "Mediator pattern".
+/// used in the @ref mediator_pattern.
 
 #pragma once
 #ifndef __MEDIATOR_GROUP_CLASSES_H__

@@ -2,7 +2,7 @@
 /// @file
 /// @brief
 /// Declaration of the Strategy_Exercise() function as used in the 
-/// @ref strategy_pattern "Strategy pattern".
+/// @ref strategy_pattern.
 
 #pragma once
 #ifndef __STRATEGY_EXERCISE_H__

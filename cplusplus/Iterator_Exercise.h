@@ -2,7 +2,7 @@
 /// @file
 /// @brief
 /// Declaration of the Iterator_Exercise() function as used in the 
-/// @ref iterator_pattern "Iterator pattern".
+/// @ref iterator_pattern.
 
 #pragma once
 #ifndef __ITERATOR_EXERCISE_H__

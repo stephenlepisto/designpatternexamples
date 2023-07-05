@@ -1,7 +1,7 @@
 /// @file
 /// @brief
 /// Declaration of the @ref DesignPatternExamples_cpp::IDeviceNetworkHighLevel "IDeviceNetworkHighLevel"
-/// interface representing the high-level system used in the @ref facade_pattern "Facade pattern".
+/// interface representing the high-level system used in the @ref facade_pattern.
 
 #pragma once
 #ifndef __FACADE_INTERFACE_H__
@@ -26,7 +26,7 @@ namespace DesignPatternExamples_cpp
     /// This high level interface is a simplification and thus a facade for the
     /// low level interface and the system underneath.
     /// 
-    /// Part of the @ref facade_pattern "Facade pattern" example.
+    /// Part of the @ref facade_pattern example.
     /// </summary>
     struct IDeviceNetworkHighLevel
     {
@@ -72,7 +72,7 @@ namespace DesignPatternExamples_cpp
     /// <summary>
     /// Class factory for a singleton instance of the IDeviceNetworkHighLevel
     /// interface.
-    /// Part of the @ref facade_pattern "Facade pattern" example.
+    /// Part of the @ref facade_pattern example.
     /// </summary>
     /// <returns>Returns a singleton instance of the class.</returns>
     IDeviceNetworkHighLevel* CreateHighLevelInstance();
