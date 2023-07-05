@@ -21,9 +21,9 @@ from .visitor_class import Visitor
 #  @param right
 #         Another StringList to compare.
 # 
-# @Returns
-# Returns True if the contents of the `left` list matches what
-# is in the `Right` list, regardless of actual order.
+# @returns
+#    Returns True if the contents of the `left` list matches what is in the
+#    `Right` list, regardless of actual order.
 def are_list_contents_the_same(left: list, right: list):
     matched = False
     if len(left) == len(right):
