@@ -1,4 +1,6 @@
-## Main entry point for the DesignPatternExamples_python package.  Uses the
+## @file
+#  @brief
+#  Main entry point for the DesignPatternExamples_python package.  Uses the
 #  definition of main() from the __init__.py file.
 
 # The following is used during debugging; VS2022 does not allow for launching

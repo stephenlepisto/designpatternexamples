@@ -1,4 +1,5 @@
-## @package program
+## @file
+#  @brief
 #  Heart of the DesignPatternExamples_python package, which executes all the
 #  exercises.  This mirrors the C# and C++ program structures.
 
