@@ -367,6 +367,7 @@ popd
   <ItemGroup>
     <None Include="..\docs\adapter.md" />
     <None Include="..\docs\bridge.md" />
+    <None Include="..\docs\factory.md" />
     <None Include="..\docs\command.md" />
     <None Include="..\docs\composite.md" />
     <None Include="..\docs\decorator.md" />
@@ -382,6 +383,7 @@ popd
     <None Include="..\docs\observer.md" />
     <None Include="..\docs\private.md" />
     <None Include="..\docs\proxy.md" />
+    <None Include="..\docs\singleton.md" />
     <None Include="..\docs\state.md" />
     <None Include="..\docs\strategy.md" />
     <None Include="..\docs\template.md" />

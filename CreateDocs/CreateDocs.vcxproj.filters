@@ -94,5 +94,11 @@
     <None Include="..\docs\template.md">
       <Filter>Document Files</Filter>
     </None>
+    <None Include="..\docs\singleton.md">
+      <Filter>Document Files</Filter>
+    </None>
+    <None Include="..\docs\factory.md">
+      <Filter>Document Files</Filter>
+    </None>
   </ItemGroup>
 </Project>
