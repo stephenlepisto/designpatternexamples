@@ -365,8 +365,10 @@ popd
   <ItemDefinitionGroup>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <None Include="..\docs\abstract_factory.md" />
     <None Include="..\docs\adapter.md" />
     <None Include="..\docs\bridge.md" />
+    <None Include="..\docs\builder.md" />
     <None Include="..\docs\factory.md" />
     <None Include="..\docs\command.md" />
     <None Include="..\docs\composite.md" />
@@ -382,6 +384,7 @@ popd
     <None Include="..\docs\nullobject.md" />
     <None Include="..\docs\observer.md" />
     <None Include="..\docs\private.md" />
+    <None Include="..\docs\prototype.md" />
     <None Include="..\docs\proxy.md" />
     <None Include="..\docs\singleton.md" />
     <None Include="..\docs\state.md" />
