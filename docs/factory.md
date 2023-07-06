@@ -131,12 +131,13 @@ IMyInterface* CreateClass(WhichClass whichClass, int arg1, int arg2)
 }
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-## See Also
+## How to Use
 
-See the @ref singleton_pattern page for class factories that provide a singleton
-instance of one class.
+See the @ref singleton_pattern page for class factories that provide a
+singleton instance of one class.
 
-Here are additional examples of the factory pattern in action:
+The following links into the implementation of some of the other design
+patterns provide further examples of the factory pattern in use:
 
 __C__
 
@@ -149,6 +150,7 @@ __C++__
 - DesignPatternExamples_cpp::Logger::Logger()
     - A constructor that acts like a class factory but the instance is kept
       inside the Logger class, hidden from view.
+- DesignPatternExamples_cpp::Proxy_Classes_Container::CreateProxy()
 
 __C#__
 
@@ -156,13 +158,15 @@ __C#__
 - DesignPatternExamples_csharp.Logger.Logger()
     - A constructor that acts like a class factory but the instance is kept
       inside the Logger class, hidden from view.
-
+- DesignPatternExamples_csharp.Proxy_Classes_Container.CreateProxy()
+ 
 __Python__
 
 - DesignPatternExamples_python.strategy.strategy_sortentries_class.Strategy_SortEntries_ClassFactory.Create()
 - DesignPatternExamples_python.bridge.bridge_logger.Logger class
     - A constructor that acts like a class factory but the instance is kept
       inside the Logger class, hidden from view.
+- DesignPatternExamples_python.proxy.proxy_class.Proxy_Classes_Container.CreateProxy()
 
 ### See Also
 - @ref mainpage "Main page"
