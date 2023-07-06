@@ -134,7 +134,9 @@ namespace DesignPatternExamples_csharp
 
         #endregion
 
-        // The logger implementation represented by the ILogger interface.
+        /// <summary>
+        /// The logger implementation represented by the ILogger interface.
+        /// </summary>
         private ILogger _logger;
     }
 
