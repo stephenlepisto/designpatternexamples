@@ -29,27 +29,35 @@ A smart pointer is used so the object is deleted when the program exits.
 As can be seen in the above example, the singleton pattern is somewhat
 dependent on the features of the programming language being used and is
 primarily for object-oriented code.  However, the pattern is so simple that
-creating an entire example to demonstrate it seems pointless.  The 
-@ref facade_pattern has a good example of the singleton pattern in action, in
-several programming language so see the links below for those.  However, the
-above example demonstrates everything needed.
+creating an entire example to demonstrate it seems pointless.
 
-## See Also
+## How to Use
+
+The above example demonstrates everything needed to implement the basic factory
+pattern.  For a more detailed example of the singleton pattern, see the
+following links into the @ref facade_pattern examples for several languages.
+
+__C__
+
+- Proxy_GetRealService()
 
 __C++__
 
 - DesignPatternExamples_cpp::CreateLowLevelInstance()
 - DesignPatternExamples_cpp::CreateHighLevelInstance()
+- Proxy_Class_Private::Proxy_Class::_GetRealClass()
 
 __C#__
 
 - DesignPatternExamples_csharp.Facade_ComplicatedSubSystemFactory.CreateLowLevelInstance()
 - DesignPatternExamples_csharp.Facade_ComplicatedSubSystemFactory.CreateHighLevelInstance()
+- DesignPatternExamples_csharp.Proxy_Classes_Container.Proxy_Class._GetRealClass()
 
 __Python__
 
 - DesignPatternExamples_python.facade.facade_complicatedsubsystem.CreateLowLevelInstance()
 - DesignPatternExamples_python.facade.facade_highlevelsystem.CreateHighLevelInstance()
+- DesignPatternExamples_python.proxy.proxy_class.Proxy_Class._GetRealClass()
 
 
 ### See Also
