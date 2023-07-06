@@ -66,8 +66,10 @@ namespace DesignPatternExamples_csharp
         /// </summary>
         private class Proxy_Class : IWorkByProxy
         {
-            // The one and only instance of the real class associated with
-            // this proxy class instance.
+            /// <summary>
+            /// The one and only instance of the real class associated with
+            /// this proxy class instance.
+            /// </summary>
             IWorkByProxy _realClassInstance;
 
             /// <summary>
