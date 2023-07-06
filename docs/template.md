@@ -4,28 +4,6 @@ The Template pattern is used when a single algorithm needs to provide
 access points, otherwise known as hooks, to customize the algorithm for
 a particular task.
 
-C++ has formalized the concept of templates to the point that programs can
-be written in the template "language" itself.  In C++, a template is a
-piece of code where certain types are replaced by a "stand-in" type known
-as a template type.  When the template code, be it a class or function, is
-instantiated or used, the compiler is told the specific type to use for the
-template type and the code is then created at compile time for that
-type.  If a template function is called with three different types, three
-different versions of the function is created, one for each type.  What the
-code does is the same in each case, it's just the types that are different.
-
-In C++, it's possible to substitute functions as well, by providing
-user-defined classes as a template type.  As long as the user-defined class
-conforms to the method calls expected by the template function, the class
-can override or replace functionality expected by the function.
-
-C# introduced the concept of generics to accomplish roughly the same thing,
-again oriented around types.
-
-The Template pattern is a general process of modifying an algorithm so that
-one or more parts of the algorithm can be changed out for some other
-functionality that the algorithm can work with.
-
 The simplest form of a template pattern implementation is the qsort()
 function in the C library.  The qsort() function takes a pointer to another
 function that does the actual comparison between any two elements in the
@@ -101,10 +79,35 @@ The MVC framework is an algorithm describing how a Model and Controller
 work with Views.  The Views -- Observers -- are the hooks into the flow
 between Model and Controller.
 
+## A Note about C++ Templates
+
+C++ has a language feature known as template programming, wherein an algorithm
+is written to handle a wide range of types but the algorithm itself does not
+change.  A template is a piece of code such as an algorithm where certain types
+are replaced by a "stand-in" type known as a template type.  When the template
+code, be it a class or function, is instantiated or used, the compiler is told
+the specific type to use for the template type and the code is then created at
+compile time for that type.  If a template function is called with three
+different types, three different versions of the function is created, one for
+each type.  What the code does is the same in each case, it's just the types
+that are different.  This is not quite the same as the Template design pattern.
+
+In C++, it's possible to substitute functions as well, by providing
+user-defined classes as a template type.  As long as the user-defined class
+conforms to the method calls expected by the template function, the class
+can override or replace functionality expected by the function.
+
+Although it is possible to write a template-based algorithm that also
+implements the Template design pattern (where the template types represent
+callable types that represent hooks in the algorithm), it is not a recommended
+approach.  The maintenance of such code with the overloaded meanings of the
+word "template" is a far greater cost than keeping the Template design pattern
+very straightforward, without the use of C++ templates.
+
 
 # How to Use
 
-Nothing to see here.
+I did not write any examples of a Template design pattern.
 
 ### See Also
 - @ref mainpage "Main page"
