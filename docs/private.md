@@ -57,10 +57,26 @@ The idea of hiding data in a private class is old-fashioned and there are
 better ways of handling the hiding the implementation details of a class,
 even in C++, and that is through interfaces.
 
-# How to Use
+## How to Use
 
 See the @ref bridge_pattern for an example of using an interface to hide the
 implementation details.
+
+__C++__
+
+- The `_logger` field of the DesignPatternExamples_cpp::Logger class
+- The `_realClassInstance` field of the Proxy_Class_Private::Proxy_Class class
+
+__C#__
+
+- The `_logger` field of the DesignPatternExamples_csharp.Logger class
+- The `_realClassInstance` field of the DesignPatternExamples_csharp.Proxy_Classes_Container.Proxy_Class class
+
+__Python__
+
+- The `_logger` field of the DesignPatternExamples_python.bridge.bridge_logger.Logger class
+- The `_realClassInstance` field of the DesignPatternExamples_python.proxy.proxy_class.Proxy_Class class
+
 
 ### See Also
 - @ref mainpage "Main page"
