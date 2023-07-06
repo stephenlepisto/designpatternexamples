@@ -100,5 +100,14 @@
     <None Include="..\docs\factory.md">
       <Filter>Document Files</Filter>
     </None>
+    <None Include="..\docs\abstract_factory.md">
+      <Filter>Document Files</Filter>
+    </None>
+    <None Include="..\docs\builder.md">
+      <Filter>Document Files</Filter>
+    </None>
+    <None Include="..\docs\prototype.md">
+      <Filter>Document Files</Filter>
+    </None>
   </ItemGroup>
 </Project>
