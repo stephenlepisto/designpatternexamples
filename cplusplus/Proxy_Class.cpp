@@ -57,8 +57,7 @@ namespace Proxy_Class_Private
     class Proxy_Class : public DesignPatternExamples_cpp::IWorkByProxy
     {
     private:
-        // The one and only instance of the real class associated with
-        // this proxy class instance.
+        /// The one and only instance of the real class associated with this proxy class instance.
         std::unique_ptr<DesignPatternExamples_cpp::IWorkByProxy> _realClassInstance;
 
         /// <summary>
