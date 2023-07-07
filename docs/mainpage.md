@@ -23,8 +23,8 @@ programming languages that prominently feature object-oriented features.
 This documentation is built from my efforts to implement most of the design
 patterns in four different programming languages: C, C++, C#, and Python.  I
 also converted the patterns to Rust, but since Doxygen does not know how to
-parse Rust (as of July 6, 2023), I have captured the Rust source code in its
-own documentation site.
+parse Rust (as of July 6, 2023), I have captured the Rust source code and
+documentation in a separate location: [Rust Design Pattern Examples](https://stephenlepisto.com/developer/designpatternexamples/rust/doc/design_pattern_examples_rust/index.html "Browse Design Pattern Examples in Rust").
 
 
 ### The Design Pattern Examples Implemented Here

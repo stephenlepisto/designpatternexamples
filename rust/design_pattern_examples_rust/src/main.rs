@@ -4,6 +4,9 @@
 //! _Design Patterns: Elements of Object-Oriented Software_, by Gamma, Helm,
 //! Johnson, and Vlissides.
 //!
+//! (For overviews of the examples plus viewing them in other programming
+//! languages, see [Design Pattern Examples](<https://stephenlepisto.com/developer/designpatternexamples/general/> "Design Pattern Examples in C, C++, C#, and Python").)
+//!
 //! The main.rs file contains the main() entry point and the machinery to call
 //! all the design pattern example functions. The design pattern examples are
 //! each implemented in their own sub-modules.
