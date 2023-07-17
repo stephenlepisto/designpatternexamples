@@ -7,7 +7,6 @@ import os
 import os.path
 from ctypes import *
 from enum import Enum
-from sqlite3 import adapt
 
 ## Represents the possible errors that can be returned from the memory block
 #  access functions.
