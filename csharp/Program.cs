@@ -138,13 +138,11 @@ namespace DesignPatternExamples_csharp
             {
                 new Exercise("Adapter", () => { Adapter_Exercise exercise = new Adapter_Exercise(); exercise.Run(); }),
                 new Exercise("Bridge", () => { Bridge_Exercise exercise = new Bridge_Exercise(); exercise.Run(); }),
+                new Exercise("Command", () => { Command_Exercise exercise = new Command_Exercise(); exercise.Run(); }),
                 new Exercise("Composite", () => { Composite_Exercise exercise = new Composite_Exercise(); exercise.Run(); }),
                 new Exercise("Decorator", () => { Decorator_Exercise exercise = new Decorator_Exercise(); exercise.Run(); }),
                 new Exercise("Facade", () => { Facade_Exercise exercise = new Facade_Exercise(); exercise.Run(); }),
                 new Exercise("Flyweight", () => { Flyweight_Exercise exercise = new Flyweight_Exercise(); exercise.Run(); }),
-                new Exercise("Proxy", () => { Proxy_Exercise exercise = new Proxy_Exercise(); exercise.Run(); }),
-                new Exercise("Visitor", () => { Visitor_Exercise exercise = new Visitor_Exercise(); exercise.Run(); }),
-                new Exercise("Command", () => { Command_Exercise exercise = new Command_Exercise(); exercise.Run(); }),
                 new Exercise("HandlerChain", () => { HandlerChain_Exercise exercise = new HandlerChain_Exercise(); exercise.Run(); }),
                 new Exercise("Interpreter", () => { Interpreter_Exercise exercise = new Interpreter_Exercise(); exercise.Run(); }),
                 new Exercise("Iterator", () => { Iterator_Exercise exercise = new Iterator_Exercise(); exercise.Run(); }),
@@ -152,8 +150,10 @@ namespace DesignPatternExamples_csharp
                 new Exercise("Memento", () => { Memento_Exercise exercise = new Memento_Exercise(); exercise.Run(); }),
                 new Exercise("NullObject", () => { NullObject_Exercise exercise = new NullObject_Exercise(); exercise.Run(); }),
                 new Exercise("Observer", () => { Observer_Exercise exercise = new Observer_Exercise(); exercise.Run(); }),
+                new Exercise("Proxy", () => { Proxy_Exercise exercise = new Proxy_Exercise(); exercise.Run(); }),
                 new Exercise("State", () => { State_Exercise exercise = new State_Exercise(); exercise.Run(); }),
                 new Exercise("Strategy", () => { Strategy_Exercise exercise = new Strategy_Exercise(); exercise.Run(); }),
+                new Exercise("Visitor", () => { Visitor_Exercise exercise = new Visitor_Exercise(); exercise.Run(); }),
             };
 
             Options options = new Options();
