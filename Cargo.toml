@@ -1,0 +1,4 @@
+[workspace]
+members = [
+  "rust/design_pattern_examples_rust",
+]
