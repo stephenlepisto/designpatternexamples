@@ -152,6 +152,7 @@ namespace DesignPatternExamples_cpp
         /// <param name="argument1">First argument to the operation (after the TextObject).</param>
         /// <param name="argument2">Second argument to the operation (after the TextObject).</param>
         Command(Command_TextObject::shared_ptr_t source, const std::string& commandName, two_parameter_operation operation, const std::string& argument1, const std::string& argument2)
+            : _no_parameter_operation(nullptr)
         {
             _receiver = source;
             _commandName = commandName;
@@ -168,6 +169,7 @@ namespace DesignPatternExamples_cpp
         /// <param name="commandName">Easy-to-read name of the command.</param>
         /// <param name="operation">The operation to apply to the TextObject.</param>
         Command(Command_TextObject::shared_ptr_t source, const std::string& commandName, no_parameter_operation operation)
+            : _two_parameter_operation(nullptr)
         {
             _receiver = source;
             _commandName = commandName;
