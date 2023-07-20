@@ -177,3 +177,17 @@ add_custom_command(TARGET DesignPatternExamples_rust POST_BUILD
                        -P ${CMAKE_SOURCE_DIR}/copyfile_if_exists.cmake
                    COMMENT "Copying ${ADAPTER_PDB} if it exists."
                   )
+
+# Generate Rust documentation.
+add_custom_target(RustDocs ALL
+        DEPENDS doc/design_pattern_examples_rust/index.html
+)
+
+add_custom_command(OUTPUT doc/design_pattern_examples_rust/index.html
+    COMMAND ${CMAKE_COMMAND} -E env
+                "CARGO_BUILD_TARGET_DIR=${CMAKE_BINARY_DIR}/rust"
+                ${CARGO} doc
+    WORKING_DIRECTORY ${_RUST_ROOT}
+    COMMAND_EXPAND_LISTS
+    VERBATIM
+)
