@@ -1,0 +1,3 @@
+if(EXISTS ${FILE_TO_COPY})
+    file(COPY ${FILE_TO_COPY} DESTINATION ${DESTINATION})
+endif()
