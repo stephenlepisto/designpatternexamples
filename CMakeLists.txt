@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.21)
+cmake_minimum_required(VERSION 3.26)
 
 # Must specify languages here as this also locates the support for each
 # language.  Calling just

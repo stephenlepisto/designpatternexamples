@@ -6,7 +6,7 @@ set(CREATEDOCS_OUTPUT_DIR ${CMAKE_BINARY_DIR}/CreateDocs)
 set(EXTERNAL_DOCS_DIR ${CREATEDOCS_SOURCE_DIR}/../docs)
 
 add_custom_target(CreateDocs ALL
-    DEPENDS ${CREATEDOCS_OUTPUT_DIR}/doxy.out
+    DEPENDS doxy_files
 )
 
 # Use the Doxygen::doxygen imported target as the command.
@@ -14,11 +14,13 @@ add_custom_target(CreateDocs ALL
 # The old way of invoking Doxygen looked like this:
 #COMMAND ${CMAKE_COMMAND} -E env
 #    ${DOXYGEN_EXECUTABLE} Doxyfile >${CREATEDOCS_OUTPUT_DIR}/doxy.out
-add_custom_command(OUTPUT ${CREATEDOCS_OUTPUT_DIR}/doxy.out
+add_custom_command(OUTPUT doxy_files
     COMMAND Doxygen::doxygen Doxyfile >${CREATEDOCS_OUTPUT_DIR}/doxy.out
     COMMENT "Creating documentation with doxygen..."
     WORKING_DIRECTORY ${CREATEDOCS_SOURCE_DIR}
 )
+
+set_source_files_properties(doxy_files PROPERTIES SYMBOLIC true)
 
 target_sources(CreateDocs
     PRIVATE

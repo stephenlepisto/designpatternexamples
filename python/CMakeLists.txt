@@ -2,18 +2,21 @@ set(PYTHON_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/DesignPatternExamples_python)
 set(PYTHON_OUTPUT_DIR ${CMAKE_BINARY_DIR}/python/DesignPatternExamples_python)
 
 add_custom_target(DesignPatternExamples_python ALL
-                  DEPENDS ${PYTHON_OUTPUT_DIR}/program.py
+                  DEPENDS python_files
                  )
 
 add_dependencies(DesignPatternExamples_python Adapter_BackEnd)
 
 
-add_custom_command(OUTPUT ${PYTHON_OUTPUT_DIR}/program.py
+add_custom_command(OUTPUT python_files
+                    COMMAND ${CMAKE_COMMAND} -E echo "Copying python files over..."
                     COMMAND ${CMAKE_COMMAND} -E copy_directory_if_different
                         ${PYTHON_SOURCE_DIR} ${PYTHON_OUTPUT_DIR}
                     VERBATIM
                     COMMAND_EXPAND_LISTS
                   )
+
+set_source_files_properties(python_files PROPERTIES SYMBOLIC true)
 
 target_sources(DesignPatternExamples_python
     PRIVATE

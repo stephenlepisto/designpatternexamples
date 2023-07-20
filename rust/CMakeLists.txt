@@ -6,7 +6,7 @@ set(_RUST_SRC "${_RUST_ROOT}/src")
 # Rust is not supported directly in cmake so create a custom target and
 # link it to a custom command that does the actual building.
 add_custom_target(DesignPatternExamples_rust ALL
-    DEPENDS $<CONFIG>/design_pattern_examples_rust.exe
+    DEPENDS rust_files
     VERBATIM
 )
 
@@ -42,7 +42,7 @@ set(CARGO_ARGS build $<$<CONFIG:Release>:--release>)
 #
 # Rust still has some growing to do to play nicely with other tools such as
 # cmake.
-add_custom_command(OUTPUT $<CONFIG>/design_pattern_examples_rust.exe
+add_custom_command(OUTPUT rust_files
     COMMAND ${CMAKE_COMMAND} -E env
                 "CARGO_BUILD_TARGET_DIR=${CMAKE_BINARY_DIR}/rust"
                 "ADAPTER_BINARY_DIR=${ADAPTER_BINARY_DIR}"
@@ -52,6 +52,7 @@ add_custom_command(OUTPUT $<CONFIG>/design_pattern_examples_rust.exe
     VERBATIM
 )
 
+set_source_files_properties(rust_files PROPERTIES SYMBOLIC true)
 
 target_sources(DesignPatternExamples_rust
     PRIVATE
@@ -180,10 +181,10 @@ add_custom_command(TARGET DesignPatternExamples_rust POST_BUILD
 
 # Generate Rust documentation.
 add_custom_target(RustDocs ALL
-        DEPENDS doc/design_pattern_examples_rust/index.html
+        DEPENDS rust_docs
 )
 
-add_custom_command(OUTPUT doc/design_pattern_examples_rust/index.html
+add_custom_command(OUTPUT rust_docs
     COMMAND ${CMAKE_COMMAND} -E env
                 "CARGO_BUILD_TARGET_DIR=${CMAKE_BINARY_DIR}/rust"
                 ${CARGO} doc
@@ -191,3 +192,5 @@ add_custom_command(OUTPUT doc/design_pattern_examples_rust/index.html
     COMMAND_EXPAND_LISTS
     VERBATIM
 )
+
+set_source_files_properties(rust_docs PROPERTIES SYMBOLIC true)
