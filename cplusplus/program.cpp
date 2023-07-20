@@ -174,13 +174,11 @@ namespace DesignPatternExamples_cpp
                 // bindings to class methods.
                 Exercise("Adapter", [&] { Adapter_Exercise(); }),
                 Exercise("Bridge",  [&] { Bridge_Exercise(); }),
+                Exercise("Command",  [&] { Command_Exercise(); }),
                 Exercise("Composite",  [&] { Composite_Exercise(); }),
                 Exercise("Decorator",  [&] { Decorator_Exercise(); }),
                 Exercise("Facade",  [&] { Facade_Exercise(); }),
                 Exercise("Flyweight",  [&] { Flyweight_Exercise(); }),
-                Exercise("Proxy",  [&] { Proxy_Exercise(); }),
-                Exercise("Visitor",  [&] { Visitor_Exercise(); }),
-                Exercise("Command",  [&] { Command_Exercise(); }),
                 Exercise("HandlerChain",  [&] { HandlerChain_Exercise(); }),
                 Exercise("Interpreter",  [&] { Interpreter_Exercise(); }),
                 Exercise("Iterator",  [&] { Iterator_Exercise(); }),
@@ -188,8 +186,10 @@ namespace DesignPatternExamples_cpp
                 Exercise("Memento",  [&] { Memento_Exercise(); }),
                 Exercise("NullObject",  [&] { NullObject_Exercise(); }),
                 Exercise("Observer",  [&] { Observer_Exercise(); }),
+                Exercise("Proxy",  [&] { Proxy_Exercise(); }),
                 Exercise("State",  [&] { State_Exercise(); }),
                 Exercise("Strategy",  [&] { Strategy_Exercise(); }),
+                Exercise("Visitor",  [&] { Visitor_Exercise(); }),
             };
 
             Options options;
