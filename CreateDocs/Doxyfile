@@ -68,7 +68,7 @@ PROJECT_LOGO           =
 # entered, it will be relative to the location where doxygen was started. If
 # left blank the current directory will be used.
 
-OUTPUT_DIRECTORY       = ../
+OUTPUT_DIRECTORY       = ../build/CreateDocs
 
 # If the CREATE_SUBDIRS tag is set to YES then doxygen will create up to 4096
 # sub-directories (in 2 levels) under the output directory of each output format
@@ -905,7 +905,7 @@ WARN_LINE_FORMAT       = "at line $line of file $file"
 # specified the warning and error messages are written to standard output
 # (stdout).
 
-WARN_LOGFILE           = DoxyLog.err
+WARN_LOGFILE           = ../build/CreateDocs/DoxyLog.err
 
 #---------------------------------------------------------------------------
 # Configuration options related to the input files
