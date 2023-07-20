@@ -74,7 +74,7 @@ class Program:
                 "Options:\n" + \
                 "--help, -?\n" + \
                 "     This help text.\n"
-        
+
         print(usage.format("DesignPatternExamples_python"))
 
         print("Exercises available:")
@@ -111,13 +111,11 @@ class Program:
         exercises = [
             Program.Exercise("Adapter", Adapter_Exercise),
             Program.Exercise("Bridge", Bridge_Exercise),
+            Program.Exercise("Command", Command_Exercise),
             Program.Exercise("Composite", Composite_Exercise),
             Program.Exercise("Decorator", Decorator_Exercise),
             Program.Exercise("Facade", Facade_Exercise),
             Program.Exercise("Flyweight", Flyweight_Exercise),
-            Program.Exercise("Proxy", Proxy_Exercise),
-            Program.Exercise("Visitor", Visitor_Exercise),
-            Program.Exercise("Command", Command_Exercise),
             Program.Exercise("HandlerChain", HandlerChain_Exercise),
             Program.Exercise("Interpreter", Interpreter_Exercise),
             Program.Exercise("Iterator", Iterator_Exercise),
@@ -125,8 +123,10 @@ class Program:
             Program.Exercise("Memento", Memento_Exercise),
             Program.Exercise("NullObject", NullObject_Exercise),
             Program.Exercise("Observer", Observer_Exercise),
+            Program.Exercise("Proxy", Proxy_Exercise),
             Program.Exercise("State", State_Exercise),
             Program.Exercise("Strategy", Strategy_Exercise),
+            Program.Exercise("Visitor", Visitor_Exercise),
         ]
 
         options = Program.Options()
@@ -134,4 +134,3 @@ class Program:
             for exercise in exercises:
                 if len(options.exercise_names) == 0 or exercise.name in options.exercise_names:
                     exercise.exercise_to_run()
-
