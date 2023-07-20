@@ -32,7 +32,9 @@ fn main() {
     for file in files_to_copy {
         let src = input_path.join(file);
         let dest = output_path.join(file);
-        fs::copy(src, dest).unwrap();
+        if src.exists() {
+            fs::copy(src, dest).unwrap();
+        }
     }
 }
 
