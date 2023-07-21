@@ -9,6 +9,3 @@ edition = "2021"
 time = { version = "0.3.21", features = ["formatting", "local-offset", "macros"] }
 rand = {version = "0.8.5" }
 winconsole = { version = "0.11.1", features = ["input"] }
-
-[build-dependencies]
-serde_json = { version = "1.0" }
