@@ -55,7 +55,9 @@ Later versions of these applications should continue to work.
         cmake --build . --config release
 
 ## Running the Examples
-The following command lines runs all examples (from Command Prompt, navigate to the build directory first).
+After building everything, the following command lines displays Doxygen or Rust
+source documentation or runs all examples (from Command Prompt, navigate to the
+build directory first).
 
 | Documentation | Command Line  |
 | ------------- | ------------- |
@@ -73,5 +75,5 @@ The following command lines runs all examples (from Command Prompt, navigate to 
 
 To get help for each set of examples, use --help switch after the command line.
 
-To run an individual design pattern example, add the name (or names) of the example after the command line
-(all the names are shown with -help).
+To run an individual design pattern example, add the name (or names) of the
+example after the command line (all the names are shown with --help).
