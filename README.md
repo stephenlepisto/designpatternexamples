@@ -2,25 +2,31 @@
 by Stephen P. Lepisto
 
 # Overview
-This repository contains implementations of 18 of the classic object-oriented Design Patterns as described
-in the book _Design Patterns: Elements of Reusable Object-Oriented Software_ by Gamma, Helm, Johnson, and Vlissides.
-There are implementations in C, C++, C#, Python, and Rust.  These are not implementations of the examples in the book
-but are my own creations to demonstrate my experience with these patterns.
+This repository contains implementations of 18 of the classic object-oriented
+Design Patterns as described in the book _Design Patterns: Elements of Reusable
+Object-Oriented Software_ by Gamma, Helm, Johnson, and Vlissides.  There are
+implementations in C, C++, C#, Python, and Rust.  These are not implementations
+of the examples in the book but are my own creations to demonstrate my
+experience with these patterns.
 
-The C, C++, C#, and Python examples are documented with Doxygen and the results are online at
-https://stephenlepisto.com/developer/designpatternexamples/.
+The C, C++, C#, and Python examples are documented with Doxygen and the results
+are online at https://stephenlepisto.com/developer/designpatternexamples/.
 
-The Rust example doesn't work with Doxygen but instead uses Rust's own documentation, with the results also
-at https://stephenlepisto.com/developer/designpatternexamples/.  Refer to the Doxygen documentation for the
-overall discussion of each pattern (I didn't want to duplicate the discussions with the Rust's less capable
-documentation functionality).
+The Rust example doesn't work with Doxygen but instead uses Rust's own
+documentation, with the results also
+https://stephenlepisto.com/developer/designpatternexamples/.  Refer to the
+Doxygen documentation for the overall discussion of each pattern (I didn't want
+to duplicate the discussions with the Rust's less capable documentation
+functionality).
 
 
 # How to Build
 
 ## Minimum Requirements
-These are the versions of the various applications the DesignPatternExamples were written and tested on.
-Later versions of these applications should continue to work.
+These are the versions of the various applications the DesignPatternExamples
+were written and tested on.  Later versions of these applications should
+continue to work.
+
 ### Windows
 - CMake v3.26
 - Doxygen v1.9
@@ -31,7 +37,8 @@ Later versions of these applications should continue to work.
 - Git Bash for Windows v2.40
 
 ## Building the Code
-1. Open a Git Bash prompt create a directory where to download the code.  For example:
+1. Open a Git Bash prompt create a directory where to download the code.  For
+   example:
 
         md c:\work
         cd c:\work
