@@ -15,4 +15,8 @@
 #include <string.h>
 #include <memory.h>
 
+#ifndef _countof
+#define _countof(w) (sizeof(w)/sizeof((w)[0]))
+#endif
+
 #endif //PCH_H

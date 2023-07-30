@@ -3,11 +3,12 @@
 /// Implementation of the Adapter functions used
 /// in the @ref adapter_pattern.
 
-#include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
 
 #include <Adapter_BackEnd.h>
+
+#include "helpers/_countof.h"
 
 #include "Adapter_Functions.h"
 

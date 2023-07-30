@@ -10,6 +10,7 @@
 #include <format> // Requires C++20
 #include <sstream>
 
+#include "helpers/_countof.h"
 #include "helpers/titlecase.h"
 
 #include "Interpreter_Class.h"

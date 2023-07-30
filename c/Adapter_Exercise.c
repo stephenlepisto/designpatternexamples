@@ -1,10 +1,11 @@
 /// @file
 /// @brief
-/// Implementation of the Adapter_Exercise() function as used in the 
+/// Implementation of the Adapter_Exercise() function as used in the
 /// @ref adapter_pattern.
 
-#include <stdlib.h>
 #include <stdio.h>
+
+#include "helpers/_countof.h"
 
 #include "Adapter_Exercise.h"
 
@@ -12,11 +13,11 @@
 
 /// <summary>
 /// Example of using the @ref adapter_pattern "Adapter" design pattern in C.
-/// 
+///
 /// This example adapts functions that:
 /// 1. Accesses memory in 32-bit chunks instead of bytes
 /// 2. Returns error codes but no human-readable error messages
-/// 
+///
 /// The Adapter functions translate the 32-bit chunk access into arrays of bytes.
 /// The Adapter functions also provide human-readable messages for error codes.
 /// </summary>
@@ -120,4 +121,3 @@ void Adapter_Exercise()
     printf("  Done.\n");
 }
 // ! [Using Adapter in C]
-
