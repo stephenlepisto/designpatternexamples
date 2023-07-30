@@ -2,6 +2,8 @@
 /// @brief
 /// Implementation of the @ref DesignPatternExamples_cpp::IteratorContainer_Class "IteratorContainer_Class"
 /// class as used in the @ref iterator_pattern.
+#include "helpers/_countof.h"
+
 #include "Iterator_Class.h"
 
 namespace // Anonymous

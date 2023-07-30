@@ -4,8 +4,12 @@
 /// @ref Helpers::getcursorposition "getcursorposition()" functions for manipulating
 /// the cursor position on Windows terminals.
 
-#include <iostream>
+// This test requires /Zc:__cplusplus to be specified on the build command line.
+#if !defined(__cplusplus) || __cplusplus < 202002L
+#error Requires C++ 20 or later to compile!
+#endif
 #include <format>
+#include <iostream>
 #include <string>
 #include <vector>
 
@@ -13,6 +17,7 @@
 #include <windows.h>
 #endif
 
+#include "_countof.h"
 #include "cursor.h"
 #include "split.h"
 
