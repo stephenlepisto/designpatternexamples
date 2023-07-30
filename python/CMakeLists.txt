@@ -131,8 +131,9 @@ source_group("visitor" REGULAR_EXPRESSION ${PYTHON_SOURCE_DIR}/visitor/.*\.py)
 
 # Since TARGET generators are not supported in custom commands, get the needed
 # file paths and directories first and pass those in simple variables.
+set(IS_WINDOWS $<STREQUAL:${CMAKE_HOST_SYSTEM_NAME},Windows>)
 set(ADAPTER_LIBRARY "$<TARGET_FILE:Adapter_BackEnd>")
-set(ADAPTER_PDB "$<TARGET_PDB_FILE:Adapter_BackEnd>")
+set(ADAPTER_PDB "$<${IS_WINDOWS}:$<TARGET_PDB_FILE:Adapter_BackEnd>>")
 set(PYTHON_OUTPUT_DIR "${CMAKE_BINARY_DIR}/python/DesignPatternExamples_python/adapter")
 
 add_custom_command(TARGET DesignPatternExamples_python POST_BUILD
