@@ -1,3 +1,7 @@
+# This can only be used on Windows, unfortunately, as CMake only supports
+# Visual Studio for C# compilation.
+
+if(${CMAKE_HOST_SYSTEM_NAME} STREQUAL Windows)
 add_executable(DesignPatternExamples_csharp)
 
 add_dependencies(DesignPatternExamples_csharp Adapter_BackEnd)
@@ -101,3 +105,4 @@ add_custom_command(TARGET DesignPatternExamples_csharp POST_BUILD
                        -P ${CMAKE_SOURCE_DIR}/copyfile_if_exists.cmake
                    COMMENT "Copying ${ADAPTER_PDB} if it exists."
                   )
+endif()

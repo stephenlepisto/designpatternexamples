@@ -5,7 +5,12 @@ cmake_minimum_required(VERSION 3.26)
 # set_target_properties(DesignPatternExamples_csharp PROPERTIES LINKER_LANGUAGE CSharp)
 # in the individual CMakeLists.txt file isn't enough as, in this case, the C#
 # compiler was not found.
+if(${CMAKE_HOST_SYSTEM_NAME} STREQUAL Windows)
 project(DesignPatternExamples C CXX CSharp)
+else()
+project(DesignPatternExamples C CXX)
+endif()
+
 
 add_subdirectory(Adapter_BackEnd)
 add_subdirectory(c)
