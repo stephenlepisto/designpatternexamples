@@ -156,28 +156,26 @@ static bool ParseOptions(int argc, char** argv, Options* options, ExerciseList e
 //########################################################################
 
 ExerciseList exercises =
-{
-    { "Adapter", Adapter_Exercise },
-    { "Bridge",  Bridge_Exercise },
-    { "Composite",  Composite_Exercise },
-    { "Decorator",  Decorator_Exercise },
-    { "Facade",  Facade_Exercise },
-    { "Flyweight",  Flyweight_Exercise },
-    { "Proxy",  Proxy_Exercise },
-    { "Visitor",  Visitor_Exercise },
-    { "Command",  Command_Exercise },
-    { "HandlerChain",  HandlerChain_Exercise },
-    { "Interpreter",  Interpreter_Exercise },
-    { "Iterator",  Iterator_Exercise },
-    { "Mediator",  Mediator_Exercise },
-    { "Memento",  Memento_Exercise },
-    { "NullObject",  NullObject_Exercise },
-    { "Observer",  Observer_Exercise },
-    { "State",  State_Exercise },
-    { "Strategy",  Strategy_Exercise },
-    { NULL, NULL }
-};
-
+    {
+        {"Adapter", Adapter_Exercise},
+        {"Bridge", Bridge_Exercise},
+        {"Command", Command_Exercise},
+        {"Composite", Composite_Exercise},
+        {"Decorator", Decorator_Exercise},
+        {"Facade", Facade_Exercise},
+        {"Flyweight", Flyweight_Exercise},
+        {"HandlerChain", HandlerChain_Exercise},
+        {"Interpreter", Interpreter_Exercise},
+        {"Iterator", Iterator_Exercise},
+        {"Mediator", Mediator_Exercise},
+        {"Memento", Memento_Exercise},
+        {"NullObject", NullObject_Exercise},
+        {"Observer", Observer_Exercise},
+        {"Proxy", Proxy_Exercise},
+        {"State", State_Exercise},
+        {"Strategy", Strategy_Exercise},
+        {"Visitor", Visitor_Exercise},
+        {NULL, NULL}};
 
 /// <summary>
 /// Main entry point into this example program.
