@@ -125,8 +125,8 @@ static const char* _CurrentStateToString(CurrentState state)
         default:
             {
                 errorBuffer[0] = '\0';
-                int num_chars = sprintf_s(errorBuffer, sizeof(errorBuffer), "Unknown state (%d)", state);
-                if (num_chars != -1)
+                int num_chars = snprintf(errorBuffer, sizeof(errorBuffer), "Unknown state (%d)", state);
+                if (num_chars >= 0)
                 {
                     stateAsString = errorBuffer;
                 }
