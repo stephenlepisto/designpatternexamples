@@ -9,6 +9,7 @@
 #include <string.h>
 
 #include "helpers/dynamicstring.h"
+#include "helpers/formatstring.h"
 
 #include "Decorator_Exercise.h"
 
@@ -29,16 +30,11 @@ DynamicString* _Decorate(DynamicString* s, const char* decoration)
 {
     if (s != NULL && decoration != NULL)
     {
-        size_t newStringSize = s->length + strlen(decoration) + 1;
-        char* newString = calloc(1, newStringSize);
-        if (newString != NULL)
+        char *line = formatstring(decoration, s->string);
+        if (line != NULL)
         {
-            int numChars = sprintf_s(newString, newStringSize, decoration, s->string);
-            if (numChars != -1)
-            {
-                DynamicString_Set(s, newString);
-            }
-            free(newString);
+            DynamicString_Set(s, line);
+            free(line);
         }
     }
     return s;
