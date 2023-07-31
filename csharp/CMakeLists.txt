@@ -70,10 +70,6 @@ target_sources(DesignPatternExamples_csharp
 )
 
 set_property(TARGET DesignPatternExamples_csharp
-             PROPERTY DOTNET_TARGET_FRAMEWORK_VERSION v4.5
-            )
-
-set_property(TARGET DesignPatternExamples_csharp
              PROPERTY VS_GLOBAL_ROOTNAMESPACE DesignPatternExamples_csharp
             )
 

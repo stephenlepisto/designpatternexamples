@@ -7,6 +7,7 @@ cmake_minimum_required(VERSION 3.26)
 # compiler was not found.
 if(${CMAKE_HOST_SYSTEM_NAME} STREQUAL Windows)
 project(DesignPatternExamples C CXX CSharp)
+SET(CMAKE_DOTNET_TARGET_FRAMEWORK_VERSION "v4.7.2")
 else()
 project(DesignPatternExamples C CXX)
 endif()
