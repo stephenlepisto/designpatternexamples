@@ -93,11 +93,16 @@ static const char* _InterpretToken(int token)
         else
         {
             static char buffer[32] = { 0 };
-            int num_chars = sprintf_s(buffer, sizeof(buffer), "<UNKNOWN TOKEN %d>", token);
-            if (num_chars != -1)
+            int num_chars = snprintf(buffer, sizeof(buffer), "<UNKNOWN TOKEN %d>", token);
+            if (num_chars >= 0)
             {
                 // Rule 1: Invalid tokens returned as unknown.
                 tokenAsString = buffer;
+            }
+            else
+            {
+                int errorCode = errno;
+                printf("  Error(%d)!  snprintf() failed: %s", errorCode, strerror(errorCode));
             }
         }
     }

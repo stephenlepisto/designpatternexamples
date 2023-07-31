@@ -73,40 +73,27 @@ static const char* _TokensToString(int* tokens)
 {
     static char buffer[256] = { 0 };
 
-    errno_t err = 0;
     memset(buffer, 0, sizeof(buffer));
 
     buffer[0] = '[';
     for (size_t index = 0; tokens[index] != EOL; ++index)
     {
         char numBuffer[6] = { 0 };
-        int num_chars = sprintf_s(numBuffer, sizeof(numBuffer), "%3d", tokens[index]);
-        if (num_chars == -1)
+        int num_chars = snprintf(numBuffer, sizeof(numBuffer), "%3d", tokens[index]);
+        if (num_chars <= 0)
         {
-            printf("  Error!  sprintf_s() failed in _TokensToString()!\n");
+            int errorCode = errno;
+            printf("  Error (%d)!  snprintf() failed in _TokensToString(): %s!\n", errorCode,
+                strerror(errorCode));
             break;
         }
-        err = strcat_s(buffer, sizeof(buffer), numBuffer);
-        if (err)
-        {
-            printf("  Error!  strcat_s() failed to add number in _TokensToString()!\n");
-            break;
-        }
+        strcat(buffer, numBuffer);
         if (tokens[index + 1] != EOL)
         {
-            err = strcat_s(buffer, sizeof(buffer), ", ");
-            if (err)
-            {
-                printf("  Error!  strcat_s() failed in _TokensToString()!\n");
-                break;
-            }
+            strcat(buffer, ", ");
         }
     }
-    err = strcat_s(buffer, sizeof(buffer), "]");
-    if (err)
-    {
-        printf("  Error! strcat_s() failed at the end of _TokensToString()!\n");
-    }
+    strcat(buffer, "]");
 
     return buffer;
 }
