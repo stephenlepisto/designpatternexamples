@@ -56,7 +56,9 @@ bool DynamicString_Append(DynamicString* string, const char* s)
         {
             newText[string->length] = '\0';
             string->string = newText;
-            strcat_s(string->string, newSize, s);
+            // Previous code ensures there is space for s and string is zero-
+            // terminated.
+            strcat(string->string, s);
             string->length = strlen(string->string);
             success = true;
         }

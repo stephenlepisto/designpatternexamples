@@ -28,7 +28,7 @@ typedef enum
 /// <summary>
 /// Release all memory associated with list of groups.
 /// </summary>
-void Groups_Clear();
+void Groups_Clear(void);
 
 /// <summary>
 /// Add a group to the list of groups.
@@ -143,4 +143,3 @@ GroupErrorCode Groups_GetAllUsersInGroup(const char* groupName, StringList* user
 GroupErrorCode Groups_GetGroupsWithUser(const char* userName, StringList* groups);
 
 #endif // __MEDIATOR_GROUPS_H__
-

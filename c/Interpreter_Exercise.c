@@ -1,7 +1,7 @@
 
 /// @file
 /// @brief
-/// Implementation of the Interpreter_Exercise() function as used in the 
+/// Implementation of the Interpreter_Exercise() function as used in the
 /// @ref interpreter_pattern.
 
 #include <stdbool.h>
@@ -69,7 +69,7 @@ static int* _sentenceTokenLists[] = {
 /// with a -1 (EOL).</param>
 /// <returns>A string representation of the integer list.  This is a pointer to
 /// a static buffer and is valid only until the next call to this function.</returns>
-const char* _TokensToString(int* tokens)
+static const char* _TokensToString(int* tokens)
 {
     static char buffer[256] = { 0 };
 
@@ -117,23 +117,23 @@ const char* _TokensToString(int* tokens)
 
 /// <summary>
 /// Example of using the @ref interpreter_pattern.
-/// 
-/// The interpreter is instantiated then fed a series of arrays 
+///
+/// The interpreter is instantiated then fed a series of arrays
 /// containing integer tokens.  Each token represents a single word or
 /// punctuation mark.  The interpreter converts that array of tokens
 /// to an actual sentence by interpreting the meaning of the tokens.
-/// 
+///
 /// This is a very simple interpreter that handles the first token in
 /// a special way and supports punctuation.  It is an example of a
 /// linear interpreter where tokens can appear in any order (it's up
 /// to the creator of the token list to make sure the outcome makes
 /// any sense).
-/// 
+///
 /// The output shows the token list followed by the sentence produced
 /// from the tokens.
 /// </summary>
 // ! [Using Interpreter in C]
-void Interpreter_Exercise()
+void Interpreter_Exercise(void)
 {
     printf("\nInterpreter Exercise\n");
 
@@ -163,4 +163,3 @@ void Interpreter_Exercise()
     printf("  Done.\n");
     // ! [Using Interpreter in C]
 }
-

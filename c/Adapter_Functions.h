@@ -44,7 +44,7 @@ bool Adapter_CloseMemory(int dataHandle);
 /// Retrieve the number of bytes in the memory block associated with the
 /// specified data handle
 /// </summary>
-/// <param name="dataHandle">The handle returned from Adapter_OpenMemory() to 
+/// <param name="dataHandle">The handle returned from Adapter_OpenMemory() to
 /// access.</param>
 /// <param name="sizeInBytes">Returns the number of bytes available to access.</param>
 /// <returns>Returns true if all went well; otherwise, returns false, use
@@ -55,7 +55,7 @@ bool Adapter_GetMemorySize(int dataHandle, int* sizeInBytes);
 /// Read a requested number of bytes from the memory block associated with the
 /// given handle.
 /// </summary>
-/// <param name="dataHandle">The handle returned from Adapter_OpenMemory() to 
+/// <param name="dataHandle">The handle returned from Adapter_OpenMemory() to
 /// access.</param>
 /// <param name="byteOffset">Byte offset into the memory block from which to start
 /// reading.</param>
@@ -71,7 +71,7 @@ bool Adapter_ReadMemory(int dataHandle, int byteOffset, uint8_t* buffer, int max
 /// Write a requested number of bytes to the memory block associated with the
 /// given handle.
 /// </summary>
-/// <param name="dataHandle">The handle returned from Adapter_OpenMemory() to 
+/// <param name="dataHandle">The handle returned from Adapter_OpenMemory() to
 /// access.</param>
 /// <param name="byteOffset">Byte offset into the memory block to which to start
 /// writing.</param>
@@ -88,7 +88,7 @@ bool Adapter_WriteMemory(int dataHandle, int byteOffset, const uint8_t* buffer, 
 /// </summary>
 /// <returns>A string containing an error message.  Remains valid until the next
 /// Adapter operation that is called.</returns>
-const char* Adapter_GetLastErrorMessage();
+const char* Adapter_GetLastErrorMessage(void);
 
 /// <summary>
 /// Convert the specified data up to the specified number of bytes into
@@ -102,4 +102,3 @@ const char* Adapter_GetLastErrorMessage();
 const char* Adapter_BufferToString(const uint8_t* data, uint32_t maxBytes, int indent);
 
 #endif // __ADAPTER_FUNCTIONS_H__
-

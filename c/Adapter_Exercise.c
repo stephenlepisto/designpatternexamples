@@ -22,7 +22,7 @@
 /// The Adapter functions also provide human-readable messages for error codes.
 /// </summary>
 // ! [Using Adapter in C]
-void Adapter_Exercise()
+void Adapter_Exercise(void)
 {
     printf("\nAdapter_Exercise\n");
 

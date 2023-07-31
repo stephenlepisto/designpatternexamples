@@ -17,18 +17,9 @@ struct tm* makelocaltime(const time_t* time, struct tm* timestruct)
     struct tm* returnstruct = NULL;
     if (time != NULL && timestruct != NULL)
     {
-#ifdef _MSC_VER
-        // Note reversal of the parameters from the other forms.
-        errno_t err = localtime_s(timestruct, time);
-        if (err == 0)
-        {
-            returnstruct = timestruct;
-        }
-#elif defined(__STDC_LIB_EXT1__)
-        returnstruct = localtime_s(time, timestruct);
-#else
-        returnstruct = localtime_r(time, timestruct)
-#endif
+        returnstruct = localtime(time);
+        *timestruct = *returnstruct;
+        returnstruct = timestruct;
     }
     return returnstruct;
 }

@@ -16,7 +16,7 @@
 /// </summary>
 /// <returns>A string containing the current date and time expressed in
 /// local time.  Valid until the next call to this function.</returns>
-static const char* _GetTimeStamp()
+static const char* _GetTimeStamp(void)
 {
     time_t now = datetime_now();
     return datetime_to_string(now);

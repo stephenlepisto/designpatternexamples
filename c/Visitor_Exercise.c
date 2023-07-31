@@ -1,6 +1,6 @@
 /// @file
 /// @brief
-/// Implementation of the Visitor_Exercise() function as used in the 
+/// Implementation of the Visitor_Exercise() function as used in the
 /// @ref visitor_pattern.
 
 #include <stdio.h>
@@ -19,13 +19,13 @@
 
 /// <summary>
 /// Example of using the @ref visitor_pattern.
-/// 
+///
 /// The Visitor pattern is used to add functionality to a list of
 /// otherwise unchanging element objects by passing a visitor object to
 /// each element object.  Each element object calls the visitor object,
 /// passing itself as an argument.  The visitor object then does
 /// something based on the type of the element.
-/// 
+///
 /// In this exercise, a collection of shop objects is initialized then
 /// an order visitor is created to retrieve an item from one of the shop
 /// objects.  Along the way, shops that don't have the necessary
@@ -34,7 +34,7 @@
 /// thing.
 /// </summary>
 // ! [Using Visitor in C]
-void Visitor_Exercise()
+void Visitor_Exercise(void)
 {
     printf("\nVisitor Exercise\n");
 

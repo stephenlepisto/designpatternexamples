@@ -43,7 +43,7 @@ static bool _Real_DoWork(DynamicString* someArgument)
 
 /// <summary>
 /// The real service that does all the work.
-/// 
+///
 /// This would normally be a very expensive to create because it might be
 /// running on the server end of a remoting channel.
 /// </summary>
@@ -57,7 +57,7 @@ static IWorkByProxy _real_service = {
 ///////////////////////////////////////////////////////////////////////////////
 // GetRealService()
 ///////////////////////////////////////////////////////////////////////////////
-IWorkByProxy* GetRealService()
+IWorkByProxy* GetRealService(void)
 {
     return &_real_service;
 }

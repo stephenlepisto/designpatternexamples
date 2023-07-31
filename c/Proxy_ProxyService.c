@@ -23,7 +23,7 @@ static IWorkByProxy* _realService = NULL;
 /// </summary>
 /// <returns>A single instance of the real service represented by
 /// the IWorkByProxy interface.</returns>
-static IWorkByProxy* Proxy_GetRealService()
+static IWorkByProxy* Proxy_GetRealService(void)
 {
     if (_realService == NULL)
     {
@@ -72,7 +72,7 @@ IWorkByProxy proxy_service = {
 ///////////////////////////////////////////////////////////////////////////////
 // GetProxyService()
 ///////////////////////////////////////////////////////////////////////////////
-IWorkByProxy* GetProxyService()
+IWorkByProxy* GetProxyService(void)
 {
     printf("  --> Creating instance of proxy class...\n");
     return &proxy_service;

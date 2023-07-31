@@ -14,15 +14,15 @@
 /// A device chain can be thought of as a list of devices that can be made
 /// visible or hidden in the list but maintain the same relationship to
 /// each other regardless of visibility.
-/// 
+///
 /// The methods on this high level interface may seem the same as on the
 /// IDeviceNetworkLowLevel interface.  However, most of the methods on this
 /// high level interface hide the need for taking a lock on a chain before
 /// accessing the chain.
-/// 
+///
 /// This high level interface is a simplification and thus a facade for the
 /// low level interface and the system underneath.
-/// 
+///
 /// Part of the @ref facade_pattern example.
 /// </summary>
 typedef struct
@@ -30,7 +30,7 @@ typedef struct
     /// <summary>
     /// The number of device chains available from the sub-system.
     /// </summary>
-    int (*NumChains)();
+    int (*NumChains)(void);
 
     /// <summary>
     /// Returns a list of all idcodes from all selected devices in the
@@ -72,6 +72,6 @@ typedef struct
 /// </summary>
 /// <returns>Returns an IDeviceNetworkHighLevel interface representing a
 /// simplified access to the full device network.</returns>
-IDeviceNetworkHighLevel* Facade_GetHighLevelDeviceService();
+IDeviceNetworkHighLevel* Facade_GetHighLevelDeviceService(void);
 
 #endif // __FACADE_INTERFACE_H__

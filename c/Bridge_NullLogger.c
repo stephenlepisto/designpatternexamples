@@ -54,7 +54,7 @@ static void _Null_LogError(const char* message, void *data)
 ///////////////////////////////////////////////////////////////////////////////
 // CreateNullLogger()
 ///////////////////////////////////////////////////////////////////////////////
-ILogger* CreateNullLogger()
+ILogger* CreateNullLogger(void)
 {
     ILogger* logger = calloc(1, sizeof(ILogger));
     if (logger != NULL)

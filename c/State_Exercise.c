@@ -1,6 +1,6 @@
 /// @file
 /// @brief
-/// Implementation of the State_Exercise() function as used in the 
+/// Implementation of the State_Exercise() function as used in the
 /// @ref state_pattern.
 
 #include <stdbool.h>
@@ -48,7 +48,7 @@ static void _State_DisplayText(const char* textToDisplay)
 //=============================================================================
 //=============================================================================
 
-const char* textToFilter =
+static const char* textToFilter =
 "/*####################  Block Comment  #################################*/\n"
 "//####################  Line Comment  ####################################\n"
 "// A comment.  /* A nested comment */\n"
@@ -67,19 +67,19 @@ const char* textToFilter =
 
 /// <summary>
 /// Example of using the @ref state_pattern.
-/// 
+///
 /// The State pattern alters the behavior of the class hierarchy based
 /// on some state.  This is the basis of a Finite State Machine.
-/// 
+///
 /// In this exercise, the State class is a filter that parses text to
 /// remove C++-style line and block comments.  It needs to be smart
 /// enough to ignore comment characters inside quotes.
-/// 
+///
 /// The filtering process starts with creating the context that drives
 /// the state machine.  Internal classes are provided for each state.
 /// </summary>
 // ! [Using State in C]
-void State_Exercise()
+void State_Exercise(void)
 {
     printf("\nState_Exercise\n");
 

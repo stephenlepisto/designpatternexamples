@@ -14,7 +14,7 @@
 /// </summary>
 /// <returns>Returns an ILogger instance to use for logging to a console;
 /// returns NULL if something went wrong in creating the logger.</returns>
-ILogger* CreateNullLogger();
+ILogger* CreateNullLogger(void);
 
 /// <summary>
 /// Destroy the given instance of an ILogger for outputting to a console.

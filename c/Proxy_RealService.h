@@ -13,8 +13,7 @@
 /// Return a pointer to the real service expressed as an IWorkByProxy service.
 /// </summary>
 /// <returns>Returns an IWorkByProxy object representing the real service.</returns>
-IWorkByProxy* GetRealService();
+IWorkByProxy* GetRealService(void);
 
 
 #endif // __PROXY_REALSERVICE_H__
-

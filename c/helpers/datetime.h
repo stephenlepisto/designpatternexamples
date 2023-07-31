@@ -21,7 +21,6 @@ const char* datetime_to_string(time_t timestamp);
 /// Retrieve a time stamp that represents the current time.
 /// </summary>
 /// <returns>A time_t value representing the current time.</returns>
-time_t datetime_now();
+time_t datetime_now(void);
 
 #endif // __DATETIME_H__
-

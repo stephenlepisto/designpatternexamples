@@ -28,7 +28,7 @@ typedef enum
 /// <summary>
 /// Release all memory associated with the list of users.
 /// </summary>
-void Users_Clear();
+void Users_Clear(void);
 
 /// <summary>
 /// Add a user to the list of users.

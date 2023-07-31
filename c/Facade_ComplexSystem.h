@@ -60,7 +60,7 @@ typedef struct
     /// Retrieve the number of device chains available in the network.
     /// </summary>
     /// <returns>Returns the number of device chains available.</returns>
-    int (*GetNumChains)();
+    int (*GetNumChains)(void);
 
     /// <summary>
     /// Lock the specified device chain for exclusive access.
@@ -125,7 +125,6 @@ typedef struct
 /// </summary>
 /// <returns>Returns an IDeviceNetworkLowLevel interface representing the full
 /// device network.</returns>
-IDeviceNetworkLowLevel* Facade_GetLowLevelDeviceService();
+IDeviceNetworkLowLevel* Facade_GetLowLevelDeviceService(void);
 
 #endif // __FACADE_COMPLEXSYSTEM_H__
-

@@ -1,7 +1,7 @@
 
 /// @file
 /// @brief
-/// Implementation of the HandlerChain_Exercise() function as used in the 
+/// Implementation of the HandlerChain_Exercise() function as used in the
 /// @ref handlerchain_pattern.
 
 #include <stdbool.h>
@@ -17,7 +17,7 @@
 //=============================================================================
 
 /// <summary>
-/// Helper function to construct a list of windows.  Messages will be passed 
+/// Helper function to construct a list of windows.  Messages will be passed
 /// to these windows via the HandlerChain_SendMessage() function.
 /// </summary>
 /// <param name="windowIds">Array of ints that will be filled in with the
@@ -69,7 +69,7 @@ static void _ShowHandlerChain(const char* prompt)
 /// <summary>
 /// Example of using the @ref handlerchain_pattern or
 /// Chain of Responsibility design pattern.
-/// 
+///
 /// The Handler Chain pattern is used to support a dynamic list of
 /// handlers that are passed the same arguments.  It is kind of the
 /// inverse of the Visitor pattern, where the Visitor pattern is a
@@ -85,7 +85,7 @@ static void _ShowHandlerChain(const char* prompt)
 /// one of several handler functions based on the type of the message.
 /// </summary>
 // ! [Using HandlerChain in C]
-void HandlerChain_Exercise()
+void HandlerChain_Exercise(void)
 {
     printf("\nHandlerChain Exercise\n");
 
@@ -138,4 +138,3 @@ void HandlerChain_Exercise()
     printf("  Done.\n");
 }
 // ! [Using HandlerChain in C]
-

@@ -118,6 +118,10 @@ static const char* _CurrentStateToString(CurrentState state)
             stateAsString = "Done";
             break;
 
+        case State_Error:
+            stateAsString = "Error";
+            break;
+
         default:
             {
                 errorBuffer[0] = '\0';
@@ -181,16 +185,16 @@ static void _OutputCharacter(StateContext* context, char character)
 
 /// <summary>
 /// Handles the state of normal text behavior.
-/// 
+///
 /// Process the next character from the context, returning the next
 /// state the context should move to.
-/// 
+///
 /// Transitions to the following states for the seen input:
 /// - \" : go to State_DoubleQuotedText (start of a double-quoted string)
 /// - '  : go to State_SingleQuotedText (start of a single-quoted string)
 /// - /  : go to State_StartComment (start of a line or block comment)
 /// - EOF_CHAR : go to State_Done (no more input)
-/// 
+///
 /// </summary>
 /// <param name="context">A StateContext object representing the context
 /// to use for getting the next character of input and to which to output
@@ -238,10 +242,10 @@ static CurrentState _State_NormalText_GoNextState(StateContext* context)
 /// <summary>
 /// Handles the state of being inside a double-quote string where filtering
 /// is essentially turned off until the end of the string is reached.
-/// 
+///
 /// Process the next character from the context, returning the next
 /// state the context should move to.
-/// 
+///
 /// Transitions to the following states for the seen input:
 /// - \"  - go to State_NormalText (end of a double-quoted string)
 /// - \   - go to State_EscapedDoubleQuoteText (start of an escaped character)
@@ -289,10 +293,10 @@ static CurrentState _State_DoubleQuotedText_GoNextState(StateContext* context)
 /// <summary>
 /// Handles the state of being inside a single-quoted string where filtering
 /// is effectively turned off until the end of the string is reached.
-/// 
+///
 /// Process the next character from the context, returning the next
 /// state the context should move to.
-/// 
+///
 /// Transitions to the following states for the seen input:
 /// - '   - go to State_NormalText (end of a single-quoted string)
 /// - \   - go to State_EscapedSingleQuoteText (start of an escaped character)
@@ -341,10 +345,10 @@ static CurrentState _State_SingleQuotedText_GoNextState(StateContext* context)
 /// double-quoted string.  We don't do anything with the escaped character
 /// other than output it.  Handling escaped characters allows us to more
 /// accurately detect the end of the string.
-/// 
+///
 /// Process the next character from the context, returning the next
 /// state the context should move to.
-/// 
+///
 /// Transitions to the following states for the seen input:
 /// - {ANY} - go to State_DoubleQuotedText (end of escape sequence)
 /// - EOF_CHAR - go to State_Done (no more input)
@@ -383,10 +387,10 @@ static CurrentState _State_EscapedDoubleQuoteText_GoNextState(StateContext* cont
 /// single-quoted string.  We don't do anything with the escaped character
 /// other than output it.  Handling escaped characters allows us to more
 /// accurately detect the end of the string.
-/// 
+///
 /// Process the next character from the context, returning the next
 /// state the context should move to.
-/// 
+///
 /// Transitions to the following states for the seen input:
 /// - {ANY} - go to State_SingleQuotedText (end of escape sequence)
 /// - EOF_CHAR - go to State_Done (no more input)
@@ -423,10 +427,10 @@ static CurrentState _State_EscapedSingleQuoteText_GoNextState(StateContext* cont
 /// <summary>
 /// Handles the state of being at the possible start of a line or block
 /// comment.
-/// 
+///
 /// Process the next character from the context, returning the next
 /// state the context should move to.
-/// 
+///
 /// Transitions to the following states for the seen input:
 /// - /   - go to State_LineComment (start of a line comment)
 /// - *   - go to State_BlockComment (start of a block comment)
@@ -477,10 +481,10 @@ static CurrentState _State_StartComment_GoNextState(StateContext* context)
 
 /// <summary>
 /// Handles the state of being in a line comment.
-/// 
+///
 /// Process the next character from the context, returning the next
 /// state the context should move to.
-/// 
+///
 /// Transitions to the following states for the seen input:
 /// - \n  - go to State_NormalText (a newline is the end of a line comment)
 /// - EOF_CHAR - go to State_Done (no more input)
@@ -521,10 +525,10 @@ static CurrentState _State_LineComment_GoNextState(StateContext* context)
 
 /// <summary>
 /// Handles the state of being in a block comment.
-/// 
+///
 /// Process the next character from the context, returning the next
 /// state the context should move to.
-/// 
+///
 /// Transitions to the following states for the seen input:
 /// - *  - go to State_EndBlockComment (possible end of block comment)
 /// - EOF_CHAR - go to State_Done (no more input)
@@ -563,10 +567,10 @@ static CurrentState _State_BlockComment_GoNextState(StateContext* context)
 
 /// <summary>
 /// Handles the state of possibly being at the end of a block comment.
-/// 
+///
 /// Process the next character from the context, returning the next
 /// state the context should move to.
-/// 
+///
 /// Transitions to the following states for the seen input:
 /// - /  - go to State_NormalText (found end of block comment)
 /// - {ANY} - go to State_BlockComment (still in block comment)
@@ -607,10 +611,10 @@ static CurrentState _State_EndBlockComment_GoNextState(StateContext* context)
 
 /// <summary>
 /// Handles the state of being done with input.
-/// 
+///
 /// Process the next character from the context, returning the next
 /// state the context should move to.
-/// 
+///
 /// Transitions to the following states for the seen input:
 /// - Always stay in State_Done
 /// </summary>
@@ -669,7 +673,7 @@ static StateHandler _stateHandlers[] = {
 /// Retrieve the function that is used to transition from the given state to
 /// another state.
 /// </summary>
-/// <param name="state">A value from the @ref CurrentState enumeration indicating 
+/// <param name="state">A value from the @ref CurrentState enumeration indicating
 /// state for which to get a transition function.</param>
 /// <returns>Returns a StateFunctionPtr for the specified state.</returns>
 static StateFunctionPtr _GetStateFunction(CurrentState state)
@@ -706,7 +710,7 @@ static StateFunctionPtr _GetStateFunction(CurrentState state)
 /// the state to which to transition.</param>
 /// <returns>Returns true if the next state was successfully set; otherwise,
 /// returns false, indicating some kind of problem.</returns>
-bool _SetNextState(StateContext* context, CurrentState newState)
+static bool _SetNextState(StateContext *context, CurrentState newState)
 {
     bool success = false;
 

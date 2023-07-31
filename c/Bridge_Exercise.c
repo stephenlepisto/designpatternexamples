@@ -1,7 +1,7 @@
 
 /// @file
 /// @brief
-/// Implementation of the Bridge_Exercise() function as used in the 
+/// Implementation of the Bridge_Exercise() function as used in the
 /// @ref bridge_pattern.
 
 #include <stdbool.h>
@@ -18,7 +18,7 @@
 
 /// <summary>
 /// Helper function to show an example of writing to a logger.
-/// 
+///
 /// This is called for all types of loggers, showing how the ILogger interface
 /// hides the details of the underlying implementation.
 /// </summary>
@@ -51,7 +51,7 @@ static void _Bridge_Exercise_Demonstrate_Logging(ILogger* logger, const char* lo
 
 /// <summary>
 /// Example of using the @ref bridge_pattern.
-/// 
+///
 /// The Bridge pattern is used to allow a program to offer multiple
 /// ways to perform logging without changing how the logging is
 /// used throughout the program.
@@ -60,7 +60,7 @@ static void _Bridge_Exercise_Demonstrate_Logging(ILogger* logger, const char* lo
 /// same regardless of the logger used.
 /// </summary>
 // ! [Using Bridge in C]
-void Bridge_Exercise()
+void Bridge_Exercise(void)
 {
     printf("\nBridge_Exercise\n");
 
@@ -109,4 +109,3 @@ void Bridge_Exercise()
     printf("  Done.\n");
 }
 // ! [Using Bridge in C]
-

@@ -1,6 +1,6 @@
 /// @file
 /// @brief
-/// Implementation of the Strategy_Exercise() function as used in the 
+/// Implementation of the Strategy_Exercise() function as used in the
 /// @ref strategy_pattern.
 
 #include <stdbool.h>
@@ -17,7 +17,7 @@
 /// <summary>
 /// Sort the list of EntryInformation objects using the sorting strategy
 /// given in the SortStrategy object.
-/// 
+///
 /// Note: This function actually sorts the given indices and not the entries
 /// themselves.  The entries are treated as immutable.
 /// </summary>
@@ -55,7 +55,7 @@ static void Sort_Entries(const EntryInformation* entries, size_t numEntries, int
 /// <summary>
 /// Display the list of EntryInformation objects that have (presumably) been
 /// sorted with the given SortStrategy object.
-/// 
+///
 /// Note: Must use the contents of the given indices to access the entries in
 /// the correct (sorted) order.
 /// </summary>
@@ -102,23 +102,23 @@ static EntryInformation entries[] =
 
 /// <summary>
 /// Example of using the @ref strategy_pattern.
-/// 
+///
 /// The Strategy pattern provides a way to easily assign different
 /// algorithms to a function that can be changed at the time the function is
 /// called.
-/// 
+///
 /// In this exercise, the Sort_Entries() is given a sorting strategy via the
 /// SortStrategy structure, which is initialized with the appropriate options
 /// based on the value from the @ref SortOptions enumeration.
-/// 
+///
 /// The Display_Entries() function is given the same strategy object to display
 /// the results of the sort.
-/// 
+///
 /// Three different sorting strategies are provided (Name, Age, Height) and an
 /// option to reverse the normal order of the sort.
 /// </summary>
 // ! [Using Strategy in C]
-void Strategy_Exercise()
+void Strategy_Exercise(void)
 {
     printf("\nStrategy Exercise\n");
 
@@ -155,4 +155,3 @@ void Strategy_Exercise()
     printf("  Done.\n");
 }
 // ! [Using Strategy in C]
-

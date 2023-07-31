@@ -90,7 +90,7 @@ DynamicString* UnderlineDecorator(DynamicString* s)
 
 /// <summary>
 /// Example of using the @ref decorator_pattern.
-/// 
+///
 /// The Decorator pattern is used when some data element at run time needs
 /// to have its behavior altered.  This is supported by providing wrapper
 /// functions called decorators that take an instance of the data element and
@@ -98,7 +98,7 @@ DynamicString* UnderlineDecorator(DynamicString* s)
 /// returns it so it can be passed to the next wrapper function.
 /// </summary>
 // ! [Using Decorator in C]
-void Decorator_Exercise()
+void Decorator_Exercise(void)
 {
     printf("\nDecorator_Exercise\n");
 

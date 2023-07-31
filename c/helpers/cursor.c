@@ -22,7 +22,7 @@ static DWORD inputMode = 0;
 /// <summary>
 /// Initialize the console.
 /// </summary>
-static void _init_console_mode()
+static void _init_console_mode(void)
 {
 #ifdef _MSC_VER
     if (hStdOut == INVALID_HANDLE_VALUE)
@@ -54,7 +54,7 @@ static void _init_console_mode()
 /// Disable echoing of input and disable line input mode (where the Enter
 /// key must be entered to complete input).
 /// </summary>
-static void _disableInputEcho()
+static void _disableInputEcho(void)
 {
 #ifdef _MSC_VER
     _init_console_mode();
@@ -73,7 +73,7 @@ static void _disableInputEcho()
 /// <summary>
 /// Enable echoing of input.
 /// </summary>
-static void _enableInputEcho()
+static void _enableInputEcho(void)
 {
 #ifdef _MSC_VER
     _init_console_mode();

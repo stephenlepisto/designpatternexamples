@@ -11,16 +11,16 @@
 /// <summary>
 /// Alias for a function that executes a move command.
 /// </summary>
-typedef void (*ExecuteFunction)();
+typedef void (*ExecuteFunction)(void);
 
 
 /// <summary>
 /// Represents a move command.  A move command has a name and the command
 /// character that represents the command in the initial string of movement
 /// commands.
-/// 
+///
 /// Yes, this is a variation of the @ref command_pattern.
-/// 
+///
 /// In this example, a move command, when executed, prints "move xxx" on
 /// the current line.  A move command, when displayed, shows the command
 /// character followed by the name of the command.
@@ -53,4 +53,3 @@ MoveCommand* MoveCommand_Create(char commandToken, const char* commandName, Exec
 void MoveCommand_Destroy(MoveCommand* moveCommand);
 
 #endif // __NULLOBJECT_MOVECOMMAND_H__
-

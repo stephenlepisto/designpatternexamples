@@ -1,6 +1,6 @@
 /// @file
 /// @brief
-/// Implementation of the Mediator_Exercise() function as used in the 
+/// Implementation of the Mediator_Exercise() function as used in the
 /// @ref mediator_pattern.
 
 #include <stdbool.h>
@@ -27,7 +27,7 @@
 /// <returns>Returns true if the string was created successfully; otherwise,
 /// returns false indicating an out of memory condition (or NULL argument).
 /// </returns>
-bool _ListToString(StringList* items, DynamicString* output)
+static bool _ListToString(StringList* items, DynamicString* output)
 {
     bool success = false;
 
@@ -62,7 +62,7 @@ bool _ListToString(StringList* items, DynamicString* output)
 /// <param name="errorCode">A value from the @ref MediatorErrorCode enumeration
 /// indicating some kind of error condition from the mediator.</param>
 /// <returns>Returns a pointer to a string representing the error code.</returns>
-const char* _GetMediatorErrorMessage(MediatorErrorCode errorCode)
+static const char* _GetMediatorErrorMessage(MediatorErrorCode errorCode)
 {
     const char* msg = "";
 
@@ -84,6 +84,10 @@ const char* _GetMediatorErrorMessage(MediatorErrorCode errorCode)
             msg = "Out of memory";
             break;
 
+        case MediatorErrorCode_No_Error:
+            msg = "No error";
+            break;
+
         default:
             msg = "Unknown error";
             break;
@@ -96,14 +100,14 @@ const char* _GetMediatorErrorMessage(MediatorErrorCode errorCode)
 /// Helper function for reporting an error if an error has occurred.  Always
 /// call this after any mediator call; if there is no error, nothing is
 /// reported.
-/// 
+///
 /// This function makes it easier to capture the context in which an error
 /// occurred.
 /// </summary>
 /// <param name="prompt">What was happening when the error occurred.</param>
 /// <param name="errorCode">A value from the @ref MediatorErrorCode enumeration
 /// indicating what went wrong, if anything.</param>
-void _ReportAnyMediatorError(const char* prompt, MediatorErrorCode errorCode)
+static void _ReportAnyMediatorError(const char *prompt, MediatorErrorCode errorCode)
 {
     if (errorCode != MediatorErrorCode_No_Error)
     {
@@ -123,7 +127,7 @@ void _ReportAnyMediatorError(const char* prompt, MediatorErrorCode errorCode)
 /// <returns>Returns true if okay to continue running example; otherwise,
 /// returns false, an error occurred.  The error has already been
 /// reported.</returns>
-bool Mediator_SetupUsers()
+static bool Mediator_SetupUsers(void)
 {
     MediatorErrorCode errorCode;
     // Operation 12: Add a user
@@ -156,7 +160,7 @@ bool Mediator_SetupUsers()
 /// <returns>Returns true if okay to continue running example; otherwise,
 /// returns false, an error occurred.  The error has already been
 /// reported.</returns>
-bool Mediator_SetupGroups()
+static bool Mediator_SetupGroups(void)
 {
     MediatorErrorCode errorCode;
     // Operation 10: Add a group
@@ -214,7 +218,7 @@ bool Mediator_SetupGroups()
 /// <returns>Returns true if okay to continue running example; otherwise,
 /// returns false, an error occurred.  The error has already been
 /// reported.</returns>
-bool _Mediator_Example_ShowAllGroups()
+static bool _Mediator_Example_ShowAllGroups(void)
 {
     bool canContinue = false;
     DynamicString output = { 0 };
@@ -235,7 +239,7 @@ bool _Mediator_Example_ShowAllGroups()
         DynamicString_Clear(&output);
         StringList_Clear(&groupNames);
     }
-    
+
     return canContinue;
 }
 
@@ -245,7 +249,7 @@ bool _Mediator_Example_ShowAllGroups()
 /// <returns>Returns true if okay to continue running example; otherwise,
 /// returns false, an error occurred.  The error has already been
 /// reported.</returns>
-bool _Mediator_Example_ShowAllUsers()
+static bool _Mediator_Example_ShowAllUsers(void)
 {
     bool canContinue = false;
     DynamicString output = { 0 };
@@ -276,7 +280,7 @@ bool _Mediator_Example_ShowAllUsers()
 /// <returns>Returns true if okay to continue running example; otherwise,
 /// returns false, an error occurred.  The error has already been
 /// reported.</returns>
-bool _Mediator_Example_SeeIfUserInGroup()
+static bool _Mediator_Example_SeeIfUserInGroup(void)
 {
     bool canContinue = true;
     const char* userName = "Arthur";
@@ -295,7 +299,7 @@ bool _Mediator_Example_SeeIfUserInGroup()
 /// <returns>Returns true if okay to continue running example; otherwise,
 /// returns false, an error occurred.  The error has already been
 /// reported.</returns>
-bool _Mediator_Example_ShowUsersInGroup()
+static bool _Mediator_Example_ShowUsersInGroup(void)
 {
     bool canContinue = false;
     DynamicString output = { 0 };
@@ -326,7 +330,7 @@ bool _Mediator_Example_ShowUsersInGroup()
 /// <returns>Returns true if okay to continue running example; otherwise,
 /// returns false, an error occurred.  The error has already been
 /// reported.</returns>
-bool _Mediator_Example_ShowAllGroupsContainingUser()
+static bool _Mediator_Example_ShowAllGroupsContainingUser(void)
 {
     bool canContinue = false;
     DynamicString output = { 0 };
@@ -358,7 +362,7 @@ bool _Mediator_Example_ShowAllGroupsContainingUser()
 /// <returns>Returns true if okay to continue running example; otherwise,
 /// returns false, an error occurred.  The error has already been
 /// reported.</returns>
-bool _Mediator_Example_RemoveUserFromGroup()
+static bool _Mediator_Example_RemoveUserFromGroup(void)
 {
     bool canContinue = false;
     DynamicString output = { 0 };
@@ -396,7 +400,7 @@ bool _Mediator_Example_RemoveUserFromGroup()
 /// <returns>Returns true if okay to continue running example; otherwise,
 /// returns false, an error occurred.  The error has already been
 /// reported.</returns>
-bool _Mediator_Example_AddUserToGroup()
+static bool _Mediator_Example_AddUserToGroup(void)
 {
     bool canContinue = false;
     DynamicString output = { 0 };
@@ -434,7 +438,7 @@ bool _Mediator_Example_AddUserToGroup()
 /// <returns>Returns true if okay to continue running example; otherwise,
 /// returns false, an error occurred.  The error has already been
 /// reported.</returns>
-bool _Mediator_Example_RemoveUserFromAllGroups()
+static bool _Mediator_Example_RemoveUserFromAllGroups(void)
 {
     bool canContinue = false;
     DynamicString output = { 0 };
@@ -484,7 +488,7 @@ bool _Mediator_Example_RemoveUserFromAllGroups()
 /// <returns>Returns true if okay to continue running example; otherwise,
 /// returns false, an error occurred.  The error has already been
 /// reported.</returns>
-bool _Mediator_Example_RemoveUser()
+static bool _Mediator_Example_RemoveUser(void)
 {
     bool canContinue = false;
     DynamicString output = { 0 };
@@ -555,22 +559,22 @@ bool _Mediator_Example_RemoveUser()
 
 /// <summary>
 /// Example of using the @ref mediator_pattern.
-/// 
+///
 /// A mediator is instantiated then populated with users and groups.
 /// Users are added to some of the groups.
-/// 
+///
 /// A series of operations are then performed through the Mediator.
 /// The output shows the results of each operation.  Note that all
 /// operations are done using user and group names, with no knowledge
 /// of the actual lists of users and groups.  The mediator hides all
 /// the details.
-/// 
+///
 /// The odd design of this example is to more effectively accommodate error
 /// handling from the mediator.  This is what you get if you don't have
 /// exceptions, like in C++.
 /// </summary>
 // ! [Using Mediator in C]
-void Mediator_Exercise()
+void Mediator_Exercise(void)
 {
     printf("\nMediator Exercise\n");
 
@@ -594,7 +598,7 @@ void Mediator_Exercise()
     {
         canContinue = _Mediator_Example_SeeIfUserInGroup();
     }
-    
+
     if (canContinue)
     {
         canContinue = _Mediator_Example_ShowUsersInGroup();

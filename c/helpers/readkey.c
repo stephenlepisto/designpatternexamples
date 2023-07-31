@@ -9,7 +9,7 @@
 
 #include "readkey.h"
 
-int readkey()
+int readkey(void)
 {
 #ifdef _MSC_VER
     int retval = _getch();

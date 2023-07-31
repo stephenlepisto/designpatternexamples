@@ -14,7 +14,7 @@ static IDeviceNetworkLowLevel* _lowlevelSystem = NULL;
 /// </summary>
 /// <returns>Returns true if the low-level system is available; otherwise,
 /// return false, cannot use the low-level system.</returns>
-static bool _InitializeLowLevelSystem()
+static bool _InitializeLowLevelSystem(void)
 {
     if (_lowlevelSystem == NULL)
     {
@@ -30,7 +30,7 @@ static bool _InitializeLowLevelSystem()
 //====================================================================
 
 /// @copydoc IDeviceNetworkHighLevel::NumChains()
-static int NumChains()
+static int NumChains(void)
 {
     int numChains = 0;
 
@@ -103,7 +103,7 @@ IDeviceNetworkHighLevel highlevelService =
 
 //-----------------------------------------------------------------------------
 
-IDeviceNetworkHighLevel* Facade_GetHighLevelDeviceService()
+IDeviceNetworkHighLevel* Facade_GetHighLevelDeviceService(void)
 {
     return &highlevelService;
 }

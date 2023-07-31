@@ -37,7 +37,7 @@ static BigResourceList _resources = { 0 };
 /// <summary>
 /// Clear the given BigResourceList object by freeing up all allocated BigResource
 /// objects and resetting the list to a "new" state so it can be reused.
-/// 
+///
 /// This is called from the BigResourceManager_Clear() function.
 /// </summary>
 /// <param name="resourceList">A pointer to the BigResourceList to be cleared.</param>
@@ -59,7 +59,7 @@ static void BigResourceList_Clear(BigResourceList* resourceList)
 /// Add a BigResource object to the given BigResourceList object.  The list
 /// takes ownership of the BigResource object and is responsible for releasing
 /// all memory associated with it.
-/// 
+///
 /// This is called from the BigResourceManager_AddResource() function.
 /// </summary>
 /// <param name="resourceList">The BigResourceList object to add to.</param>
@@ -102,7 +102,7 @@ static int BigResourceList_AddResource(BigResourceList* resourceList, BigResourc
 ///////////////////////////////////////////////////////////////////////////////
 // BigResourceManager_Clear()
 ///////////////////////////////////////////////////////////////////////////////
-void BigResourceManager_Clear()
+void BigResourceManager_Clear(void)
 {
     BigResourceList_Clear(&_resources);
 }

@@ -13,7 +13,6 @@
 /// </summary>
 /// <returns>Returns true if a key has been pressed; otherwise, returns
 /// false.</returns>
-bool checkforkey();
+bool checkforkey(void);
 
 #endif // __CHECKFORKEY_H__
-

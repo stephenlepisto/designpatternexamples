@@ -226,7 +226,7 @@ static void DeviceChain_GetIdCodesForVisibleNodes(int chainIndex, UIntArray* idc
 /// Retrieve the number of device chains.
 /// </summary>
 /// <returns>Returns the number of device chains</returns>
-static int GetNumChains()
+static int GetNumChains(void)
 {
     return (int)deviceChainCount;
 }
@@ -365,7 +365,7 @@ IDeviceNetworkLowLevel lowlevelService =
 
 //-----------------------------------------------------------------------------
 
-IDeviceNetworkLowLevel* Facade_GetLowLevelDeviceService()
+IDeviceNetworkLowLevel* Facade_GetLowLevelDeviceService(void)
 {
     return &lowlevelService;
 }

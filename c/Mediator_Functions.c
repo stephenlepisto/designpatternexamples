@@ -15,7 +15,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 // Mediator_ClearAll()
 ///////////////////////////////////////////////////////////////////////////////
-void Mediator_ClearAll()
+void Mediator_ClearAll(void)
 {
     Users_Clear();
     Groups_Clear();
@@ -254,7 +254,7 @@ bool Mediator_IsUserInGroup(const char* userName, const char* groupName)
     {
         inGroup = Groups_UserInGroup(userName, groupName);
     }
-    
+
     return inGroup;
 }
 

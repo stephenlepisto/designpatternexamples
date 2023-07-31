@@ -48,7 +48,7 @@ static void _DestroyMutex(void)
 /// </summary>
 /// <returns>Returns true if the mutex was created or already exists;
 /// otherwise, returns false, the mutex is not usable.</returns>
-static bool _CreateMutex()
+static bool _CreateMutex(void)
 {
     if (!_mutex_initialized)
     {
@@ -64,7 +64,7 @@ static bool _CreateMutex()
 /// <summary>
 /// Helper function to lock the mutex.
 /// </summary>
-static void _LockMutex()
+static void _LockMutex(void)
 {
     if (_CreateMutex())
     {
@@ -75,7 +75,7 @@ static void _LockMutex()
 /// <summary>
 /// Helper function to unlock the mutex.
 /// </summary>
-static void _UnlockMutex()
+static void _UnlockMutex(void)
 {
     if (_CreateMutex())
     {

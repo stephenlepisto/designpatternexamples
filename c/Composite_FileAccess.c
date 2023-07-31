@@ -115,7 +115,7 @@ static void _DestroyTree(FileDirEntry* root)
 /// root built to that point is freed, leaving the program in the same state
 /// as before this function was called.
 /// </summary>
-static void _ConstructTree()
+static void _ConstructTree(void)
 {
     if (_root == NULL)
     {

@@ -1,6 +1,6 @@
 /// @file
 /// @brief
-/// Implementation of the Memento_Exercise() function as used in the 
+/// Implementation of the Memento_Exercise() function as used in the
 /// @ref memento_pattern.
 
 #include <stdbool.h>
@@ -153,18 +153,18 @@ static void Memento_ApplyReverseOperation(Memento_TextObject* text)
 
 /// <summary>
 /// Example of using the @ref memento_pattern "Memento" design pattern.
-/// 
+///
 /// In this exercise, the Memento pattern is used to take snapshots of
 /// a text object so as to form an undo list of changes to the text
 /// object.  Undoing an operation means restoring a snapshot of the
 /// text object.
-/// 
+///
 /// The undo list is implemented as a stack of memento objects that
 /// each represent a snapshot of the text object taken before each
 /// operation is applied.  After all operations are applied, the
 /// mementos are used to restore the text object in reverse order,
 /// effectively undoing each operation in turn.
-/// 
+///
 /// Compare this to the Command_Exercise() and note that the steps
 /// taken there are identical to here (except for method names, of
 /// course).  The difference lies in how operations are executed
@@ -176,7 +176,7 @@ static void Memento_ApplyReverseOperation(Memento_TextObject* text)
 /// more cleanly separate the save from the operation.
 /// </summary>
 // ! [Using Memento in C]
-void Memento_Exercise()
+void Memento_Exercise(void)
 {
     printf("\nMemento_Exercise\n");
 
@@ -210,4 +210,3 @@ void Memento_Exercise()
     printf("  Done.\n");
 }
 // ! [Using Memento in C]
-

@@ -11,12 +11,11 @@
 
 /// <summary>
 /// Obtain the proxy service.
-/// 
+///
 /// Note that the real service will not be obtained until the first call into
 /// the proxy service.
 /// </summary>
 /// <returns>Returns an IWorkByProxy object representing the proxy service.</returns>
-IWorkByProxy* GetProxyService();
+IWorkByProxy* GetProxyService(void);
 
 #endif // __PROXY_PROXYSERVICE_H__
-

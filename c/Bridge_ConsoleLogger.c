@@ -73,7 +73,7 @@ static void _Console_LogError(const char* message, void* data)
 ///////////////////////////////////////////////////////////////////////////////
 // CreateConsoleLogger()
 ///////////////////////////////////////////////////////////////////////////////
-ILogger* CreateConsoleLogger()
+ILogger* CreateConsoleLogger(void)
 {
     ILogger* logger = calloc(1, sizeof(ILogger));
     if (logger != NULL)

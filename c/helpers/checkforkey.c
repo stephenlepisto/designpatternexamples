@@ -18,7 +18,7 @@
 /// </summary>
 /// <returns>Returns true if a key has been pressed; otherwise, returns
 /// false.  Call readkey() to get the actual key.</returns>
-bool checkforkey()
+bool checkforkey(void)
 {
 #ifdef _MSC_VER
     return _kbhit() != 0;
@@ -26,4 +26,3 @@ bool checkforkey()
     return false;
 #endif
 }
-

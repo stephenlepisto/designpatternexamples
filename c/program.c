@@ -34,7 +34,7 @@
 /// <summary>
 /// Alias for a function pointer, using C# as inspiration for the name.
 /// </summary>
-typedef void(*Action)();
+typedef void(*Action)(void);
 
 /// <summary>
 /// Represents a single exercise or example for a design pattern.
@@ -89,10 +89,9 @@ static void Help(ExerciseList exercises)
         "Options:\n"
         "--help, -?\n"
         "     This help text.\n"
-        "\n"
         ""; // End of string.
 
-    printf(usage);
+    printf("%s\n", usage);
 
     printf("Exercises available:\n");
     for (size_t index = 0; exercises[index].name != NULL; index++)

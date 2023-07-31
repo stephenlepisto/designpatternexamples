@@ -51,7 +51,7 @@ static const char* _GetBlockNameForBlockNumber(MemoryBlockNumber blockNumber)
 /// Set the last error message to an empty string.  Call this before doing any
 /// operation.
 /// </summary>
-static void _ResetLastError()
+static void _ResetLastError(void)
 {
     _lastError[0] = '\0';
 }
@@ -409,7 +409,7 @@ bool Adapter_WriteMemory(int dataHandle, int byteOffset, const uint8_t* buffer, 
 ///////////////////////////////////////////////////////////////////////////////
 // Adapter_GetLastErrorMessage()
 ///////////////////////////////////////////////////////////////////////////////
-const char* Adapter_GetLastErrorMessage()
+const char* Adapter_GetLastErrorMessage(void)
 {
     return _lastError;
 }

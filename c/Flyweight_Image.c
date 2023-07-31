@@ -21,9 +21,8 @@ void Flyweight_ImageList_Clear(Flyweight_ImageList* imageList)
     }
 }
 
-
 ///////////////////////////////////////////////////////////////////////////////
-// Flyweight_ImageList_Clear()
+// Flyweight_ImageList_Add()
 ///////////////////////////////////////////////////////////////////////////////
 void Flyweight_ImageList_Add(Flyweight_ImageList* imageList, Flyweight_Image* image)
 {

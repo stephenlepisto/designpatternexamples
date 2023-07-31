@@ -1,6 +1,6 @@
 /// @file
 /// @brief
-/// Implementation of the Observer_Exercise() function as used in the 
+/// Implementation of the Observer_Exercise() function as used in the
 /// @ref observer_pattern.
 
 #include <stdio.h>
@@ -23,7 +23,7 @@
 /// Subject in decimal.
 /// </summary>
 /// <param name="number">The number that was changed.</param>
-void ObserverForDecimal_NumberChanged(uint32_t number)
+static void ObserverForDecimal_NumberChanged(uint32_t number)
 {
     printf("    Decimal    : %u\n", number);
 }
@@ -33,7 +33,7 @@ void ObserverForDecimal_NumberChanged(uint32_t number)
 /// Subject in hexadecimal.
 /// </summary>
 /// <param name="number">The number that was changed.</param>
-void ObserverForHexadecimal_NumberChanged(uint32_t number)
+static void ObserverForHexadecimal_NumberChanged(uint32_t number)
 {
     printf("    Hexadecimal: 0X%08X\n", number);
 }
@@ -43,7 +43,7 @@ void ObserverForHexadecimal_NumberChanged(uint32_t number)
 /// Subject in binary.
 /// </summary>
 /// <param name="number">The number that was changed.</param>
-void ObserverForBinary_NumberChanged(uint32_t number)
+static void ObserverForBinary_NumberChanged(uint32_t number)
 {
     char buffer[(sizeof(uint32_t) * 8) + 1];
     uint32_to_binary(number, buffer, sizeof(buffer));
@@ -56,22 +56,22 @@ void ObserverForBinary_NumberChanged(uint32_t number)
 
 /// <summary>
 /// Example of using the @ref observer_pattern.
-/// 
+///
 /// The Observer pattern allows for one or more observers to react to
 /// changes in a Subject entity.
-/// 
+///
 /// In this exercise, a number producer (the Subject) updates an internal
 /// value every time the NumberProducer_UpdateNumber() function is called.
 /// Three different observers are attached to the number producer and print out
 /// the current value in different formats whenever the number is changed.
-/// 
+///
 /// Since functions are used as the observers of the NumberProducer object,
 /// the "push" model is used to push the updated number to each observer.
 /// Otherwise, the observers would have to be given the NumberProducer object
 /// so as to call a function to fetch the number from that object.
 /// </summary>
 // ! [Using Observer in C]
-void Observer_Exercise()
+void Observer_Exercise(void)
 {
     printf("\nObserver_Exercise\n");
 

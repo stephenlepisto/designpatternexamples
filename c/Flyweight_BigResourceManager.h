@@ -16,7 +16,7 @@
 /// <summary>
 /// Release all resources owned by the Big Resource Manager.
 /// </summary>
-void BigResourceManager_Clear();
+void BigResourceManager_Clear(void);
 
 /// <summary>
 /// Add a new big resource and return the ID of the resource.  If the resource
@@ -38,4 +38,3 @@ BigResource* BigResourceManager_GetResource(int bigResourceId);
 
 
 #endif // __FLYWEIGHT_BIGRESOURCEMANAGER_H__
-

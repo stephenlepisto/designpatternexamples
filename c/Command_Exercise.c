@@ -1,7 +1,7 @@
 
 /// @file
 /// @brief
-/// Implementation of the Command_Exercise() function as used in the 
+/// Implementation of the Command_Exercise() function as used in the
 /// @ref command_pattern.
 
 #include <stdbool.h>
@@ -171,18 +171,18 @@ static void Command_ApplyReverseCommand(Command_TextObject* text)
 
 /// <summary>
 /// Example of using the @ref command_pattern.
-/// 
+///
 /// The Command pattern is used to encapsulate an operation or command
 /// associated with an object so that the command can be applied to
 /// the object at a later time.
-/// 
+///
 /// In this exercise, an undo list is implemented using Commands that
 /// associate commands defined in this file with a text object.  The
 /// commands are applied to the text object in succession then
 /// effectively undone.
 /// </summary>
 // ! [Using Command in C]
-void Command_Exercise()
+void Command_Exercise(void)
 {
     printf("\nCommand_Exercise\n");
 
@@ -212,4 +212,3 @@ void Command_Exercise()
     printf("  Done.\n");
 }
 // ! [Using Command in C]
-

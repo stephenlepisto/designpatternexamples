@@ -1,7 +1,7 @@
 
 /// @file
 /// @brief
-/// Implementation of the Composite_Exercise() function as used in the 
+/// Implementation of the Composite_Exercise() function as used in the
 /// @ref composite_pattern.
 
 #include <stdbool.h>
@@ -23,7 +23,7 @@
 
 /// <summary>
 /// Format the specified entry for display.
-/// 
+///
 /// This is a recursive call.
 /// </summary>
 /// <param name="entry">The FileDirEntry object to format</param>
@@ -137,17 +137,17 @@ static void Composite_Exercise_ShowEntry(FileDirEntry* entry)
 
 /// <summary>
 /// Example of using the @ref composite_pattern.
-/// 
+///
 /// The Composite pattern is used when a collection of objects is to
 /// be formed in a hierarchical form where each object needs to be
 /// treated like any other object but some objects can contain other
 /// objects.
-/// 
+///
 /// This example uses a file structure of file and directories to
 /// represent each object type.
 /// </summary>
 // ! [Using Composite in C]
-void Composite_Exercise()
+void Composite_Exercise(void)
 {
     printf("\nComposite_Exercise\n");
 
@@ -177,4 +177,3 @@ void Composite_Exercise()
     printf("  Done.\n");
 }
 // ! [Using Composite in C]
-

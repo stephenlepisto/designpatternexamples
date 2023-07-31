@@ -80,6 +80,10 @@ bool Message_ToString(Message* message, DynamicString* output)
                 messageTypeAsString = "ButtonUp";
                 break;
 
+            case Destroy:
+                // Handled elsewhere
+                break;
+
             default:
                 messageTypeAsString = "Unknown message type";
                 break;

@@ -1,6 +1,6 @@
 /// @file
 /// @brief
-/// Implementation of the Flyweight_Exercise() function as used in the 
+/// Implementation of the Flyweight_Exercise() function as used in the
 /// @ref flyweight_pattern.
 
 #include <stdbool.h>
@@ -25,7 +25,7 @@
 /// Generate a big resource, in this case, a text master "image" of the
 /// specified height, containing the specified number of smaller images
 /// laid out horizontally, using the given width for each image.
-/// 
+///
 /// If there are 5 images requested, then create a single image that is
 /// `5 * width` wide and `1 * height` tall.
 /// </summary>
@@ -133,13 +133,13 @@ static int _Flyweight_GenerateBigResource(int numImages, int width, int height)
 /// <summary>
 /// Move the given flyweight instances within the display, bouncing them off
 /// the edges of the display.
-/// 
+///
 /// The display size and image size are provided here
 /// </summary>
 /// <param name="imageList">List of Flyweight_Class instances to move.</param>
 /// <param name="display_width">Width of display.</param>
 /// <param name="display_height">Height of display.</param>
-void _Flyweight_MoveFlyweights(Flyweight_ImageList* imageList,
+static void _Flyweight_MoveFlyweights(Flyweight_ImageList* imageList,
     int display_width, int display_height)
 {
     if (imageList != NULL)
@@ -193,7 +193,7 @@ void _Flyweight_MoveFlyweights(Flyweight_ImageList* imageList,
 /// </summary>
 /// <param name="imageList">List of Flyweight_Image objects to render.</param>
 /// <param name="displayArea">The "display" in which to render.</param>
-void _Flyweight_RenderFlyweights(Flyweight_ImageList* imageList, Display* displayArea)
+static void _Flyweight_RenderFlyweights(Flyweight_ImageList* imageList, Display* displayArea)
 {
     if (imageList != NULL && displayArea != NULL)
     {
@@ -220,7 +220,7 @@ void _Flyweight_RenderFlyweights(Flyweight_ImageList* imageList, Display* displa
 /// is either + or -.
 /// </summary>
 /// <returns>Returns the velocity.</returns>
-double GenerateVelocity()
+static double GenerateVelocity(void)
 {
     double speed = ((rand() % 5) + 1) / 5.0;
     double direction = ((rand() % 100) > 50) ? 1.0 : -1.0;
@@ -231,7 +231,7 @@ double GenerateVelocity()
 /// <summary>
 /// Helper function to generate the specified number of Flyweight_image objects
 /// and associate those objects with individual contexts and a single big resource.
-/// 
+///
 /// The image and display sizes are provided so as to randomize the
 /// position of each flyweight within the display.
 /// </summary>
@@ -243,7 +243,7 @@ double GenerateVelocity()
 /// <param name="display_height">Height of the display in which the flyweight is to be rendered.</param>
 /// <param name="imageList">A Flyweight_ImageList object to be filled in with
 /// the generated Flyweight_Image objects.</param>
-void _Flyweight_GenerateFlyweightClasses(int bigResourceId, int numFlyweights,
+static void _Flyweight_GenerateFlyweightClasses(int bigResourceId, int numFlyweights,
     int image_width, int image_height, int display_width, int display_height,
     Flyweight_ImageList* imageList)
 {
@@ -274,7 +274,7 @@ void _Flyweight_GenerateFlyweightClasses(int bigResourceId, int numFlyweights,
 /// Clear the "display" to a background image, erasing whatever was there before.
 /// </summary>
 /// <param name="display">A list of character arrays representing the display.</param>
-void _Flyweight_ClearDisplay(Display* display)
+static void _Flyweight_ClearDisplay(Display* display)
 {
     if (display != NULL && display->area != NULL)
     {
@@ -296,7 +296,7 @@ void _Flyweight_ClearDisplay(Display* display)
 /// <param name="display">A Display object to initialize as the "display" window.</param>
 /// <param name="width">Width of the display area.</param>
 /// <param name="height">Height of the display area.</param>
-void _Flyweight_GenerateDisplay(Display* display, int width, int height)
+static void _Flyweight_GenerateDisplay(Display* display, int width, int height)
 {
     if (Display_Create(display, width, height))
     {
@@ -308,7 +308,7 @@ void _Flyweight_GenerateDisplay(Display* display, int width, int height)
 /// Render the display to the screen.
 /// </summary>
 /// <param name="display">The Display object to output to the console.</param>
-void _Flyweight_ShowDisplay(Display* display)
+static void _Flyweight_ShowDisplay(Display* display)
 {
     if (display != NULL && display->area != NULL)
     {
@@ -325,11 +325,11 @@ void _Flyweight_ShowDisplay(Display* display)
 
 /// <summary>
 /// Example of using the @ref flyweight_pattern "Flyweight" design pattern.
-/// 
+///
 /// The Flyweight pattern is used when a large object needs to be
 /// represented by a much lighter weight class, possibly multiple
 /// instances of said light-weight class.
-/// 
+///
 /// In this example, a large object is represented by a so-called "big
 /// resource" (a two-dimensional array of text characters) containing
 /// multiple images, one associated with each flyweight class.
@@ -343,7 +343,7 @@ void _Flyweight_ShowDisplay(Display* display)
 /// is pressed.
 /// </summary>
 // ! [Using Flyweight in C]
-void Flyweight_Exercise()
+void Flyweight_Exercise(void)
 {
     printf("\nFlyweight_Exercise\n");
 

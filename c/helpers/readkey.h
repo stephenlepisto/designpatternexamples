@@ -12,8 +12,7 @@
 /// checkforkey() function to see if a key has been pressed.
 /// </summary>
 /// <returns>Returns the ASCII for the key pressed.</returns>
-int readkey();
+int readkey(void);
 
 
 #endif //__READKEY_H__
-

@@ -30,7 +30,7 @@ typedef enum
 /// <summary>
 /// Clear all memory associated with groups and users.
 /// </summary>
-void Mediator_ClearAll();
+void Mediator_ClearAll(void);
 
 
 /// <summary>
@@ -178,4 +178,3 @@ MediatorErrorCode Mediator_GetGroupsWithUser(const char* userName, StringList* g
 
 
 #endif // __MEDIATOR_FUNCTIONS_H__
-
