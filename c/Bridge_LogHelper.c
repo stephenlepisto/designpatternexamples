@@ -34,7 +34,7 @@ bool LogHelper_FormatLogLine(const char* loglevel, const char* message, char* ou
     {
         *output = '\0';
         const char* timestamp = _GetTimeStamp();
-        int numChars = sprintf_s(output, maxOutputSize, "%s [%s] %s\n", timestamp, loglevel, message);
+        int numChars = snprintf(output, maxOutputSize, "%s [%s] %s\n", timestamp, loglevel, message);
         if (numChars != -1)
         {
             success = true;
