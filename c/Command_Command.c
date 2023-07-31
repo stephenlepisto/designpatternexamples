@@ -82,7 +82,12 @@ const char* Command_ToString(Command* commandObject)
     {
         if (commandObject->operation_two_parameters != NULL)
         {
-            sprintf_s(commandAsString, sizeof(commandAsString), "%s \"%s\" with \"%s\"", commandObject->commandName, commandObject->argument1, commandObject->argument2);
+            int numChars = snprintf(commandAsString, sizeof(commandAsString), "%s \"%s\" with \"%s\"", commandObject->commandName, commandObject->argument1, commandObject->argument2);
+            if (numChars < 0)
+            {
+                int errorCode = errno;
+                printf("  Error(%d)! Failed to format command '%s' as a string: %s\n", errorCode, commandObject->commandName, strerror(errorCode));
+            }
         }
         else if (commandObject->operation_no_parameters != NULL)
         {
