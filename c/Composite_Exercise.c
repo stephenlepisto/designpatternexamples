@@ -11,6 +11,7 @@
 
 #include "helpers/datetime.h"
 #include "helpers/dynamicstring.h"
+#include "helpers/formatstring.h"
 #include "helpers/makelocaltime.h"
 
 #include "Composite_FileDirEntry.h"
@@ -33,88 +34,49 @@
 static void Composite_Exercise_FormatEntry(FileDirEntry* entry, int depth, DynamicString* output)
 {
     size_t NAME_PADDING_SIZE = 20;
-    char indentspaces[20] = { 0 };
 
-    const char* entryName = FileDirEntry_GetName(entry);
-    if (entryName != NULL)
+    char indentspaces[20] = {0};
+    const char *entryName = FileDirEntry_GetName(entry);
+    const char *dir_marker = (FileDirEntry_GetFileDirType(entry) == FileDirType_Directory) ? "/" : "";
+    size_t nameSize = strlen(entryName);
+    size_t padding = NAME_PADDING_SIZE - nameSize - (depth * 2);
+    int entryLength = FileDirEntry_GetLength(entry);
+    const char *timestampAsString = datetime_to_string(FileDirEntry_GetWhenModified(entry));
+    for (int index = 0; index < depth * 2 && index < (int)(sizeof(indentspaces) - 1); index++)
     {
-        char line[128] = { 0 };
-        errno_t err = 0;
-        for (int index = 0; index < depth * 2 && index < (int)(sizeof(indentspaces) - 1); index++)
-        {
-            indentspaces[index] = ' ';
-        }
+        indentspaces[index] = ' ';
+    }
 
-        err = strcpy_s(line, sizeof(line), indentspaces);
-        if (!err)
+    char* line = formatstring("%s%s%-*s%4d  %s\n", indentspaces, entryName, padding, dir_marker, entryLength, timestampAsString);
+    if (line != NULL)
+    {
+        if (DynamicString_Append(output, line))
         {
-            err = strcat_s(line, sizeof(line), entryName);
-            if (err)
+            free(line);
+            line = NULL;
+            FileDirEntry *child = FileDirEntry_GetChildren(entry);
+            if (child != NULL)
             {
-                printf("  Error!  strcat_s() failed in Composite_Exercise_FormatEntry()!\n");
+                while (child != NULL)
+                {
+                    Composite_Exercise_FormatEntry(child, depth + 1, output);
+                    child = child->next;
+                }
             }
         }
         else
         {
-            printf("  Error!  strcpy_s() failed in Composite_Exercise_FormatEntry()!\n");
-        }
-
-        if (!err)
-        {
-            size_t nameSize = strlen(entryName);
-            size_t padding = NAME_PADDING_SIZE - nameSize - (depth * 2);
-            if (FileDirEntry_GetFileDirType(entry) == FileDirType_Directory)
-            {
-                strcat_s(line, sizeof(line), "/");
-                padding--;
-            }
-
-            char* paddingSpaces = calloc(1, padding + 1);
-            if (paddingSpaces != NULL)
-            {
-                memset(paddingSpaces, ' ', padding);
-                err = strcat_s(line, sizeof(line), paddingSpaces);
-                free(paddingSpaces);
-                if (err)
-                {
-                    printf("  Error!  strcat_s failed in Composite_Exercise_FormatEntry() to add padding to line!\n");
-                }
-            }
-        }
-        if (!err)
-        {
-            int entryLength = FileDirEntry_GetLength(entry);
-            const char* timestampAsString = datetime_to_string(FileDirEntry_GetWhenModified(entry));
-            size_t lineLength = strlen(line);
-            size_t bufferLength = sizeof(line) - lineLength;
-            int num_chars = sprintf_s(line + lineLength, bufferLength, "%4d  %s\n", entryLength, timestampAsString);
-            if (num_chars != -1)
-            {
-                if (DynamicString_Append(output, line))
-                {
-
-                    FileDirEntry* child = FileDirEntry_GetChildren(entry);
-                    if (child != NULL)
-                    {
-                        while (child != NULL)
-                        {
-                            Composite_Exercise_FormatEntry(child, depth + 1, output);
-                            child = child->next;
-                        }
-                    }
-                }
-                else
-                {
-                    printf("  Error!  Out of memory appending line to the output in Composite_Exercise_FormatEntry()!\n");
-                }
-            }
-            else
-            {
-                printf("  Error!  sprintf_s() failed in Composite_Exercise_FormatEntry() while building line for output.\n");
-            }
+            free(line);
+            line = NULL;
+            printf("  Error!  Out of memory appending line to the output in Composite_Exercise_FormatEntry()!\n");
         }
     }
+    else
+    {
+        printf("  Error!  Out of memory formatting line in Composite_Exercise_FormatEntry()!\n");
+    }
 }
+
 //-----------------------------------------------------------------------------
 
 /// <summary>
