@@ -30,17 +30,9 @@ static void _WriteLine(const char* loglevel, const char* message, FILE* fp)
             size_t numElementsWritten = fwrite(buffer, sizeof(char), numElementsToWrite, fp);
             if (numElementsWritten != numElementsToWrite)
             {
-                errno_t errorcode = errno;
-                char errmessage[64] = { 0 };
-                errno_t err = strerror_s(errmessage, sizeof(errmessage), errorcode);
-                if (err == 0)
-                {
-                    printf("  Error (%d) writing log file: %s\n", errorcode, errmessage);
-                }
-                else
-                {
-                    printf("  Error writing log file: Unable to get error string for code %d\n", errorcode);
-                }
+                int errorcode = errno;
+                char *errmessage = strerror(errorcode);
+                printf("  Error (%d) writing log file: %s\n", errorcode, errmessage);
                 printf("%s", buffer);
             }
         }
@@ -106,18 +98,21 @@ ILogger* CreateFileLogger(const char* filename)
     ILogger* logger = calloc(1, sizeof(ILogger));
     if (logger != NULL && filename != NULL)
     {
+        FILE *fp = NULL;
         logger->LogTrace = _File_LogTrace;
         logger->LogInfo = _File_LogInfo;
         logger->LogError = _File_LogError;
         logger->data = NULL;
-        FILE* fp = NULL;
-        errno_t err = fopen_s(&fp, filename, "w");
-        if (err == 0)
+        fp = fopen(filename, "w");
+        if (fp != NULL)
         {
             logger->data = fp;
         }
         else
         {
+            int errorcode = errno;
+            char *errmessage = strerror(errorcode);
+            printf("  Error (%d) opening log file '%s': %s\n", errorcode, filename, errmessage);
             free(logger);
             logger = NULL;
         }
