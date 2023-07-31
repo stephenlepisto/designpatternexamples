@@ -1,8 +1,20 @@
 add_library(cxx_compiler_flags INTERFACE)
 target_compile_features(cxx_compiler_flags INTERFACE cxx_std_20)
+if(MSVC)
 # Need to tell Microsoft compiler to enable the __cplusplus macro to match
 # the C++ standard we are compiling against.
 target_compile_options(cxx_compiler_flags INTERFACE "/Zc:__cplusplus")
+target_compile_definitions(cxx_compiler_flags INTERFACE _CRT_SECURE_NO_WARNINGS)
+endif()
+
+# add compiler warning flags just when building this project via
+# the BUILD_INTERFACE genex
+set(gcc_like_cxx "$<COMPILE_LANG_AND_ID:CXX,ARMClang,AppleClang,Clang,GNU,LCC>")
+set(msvc_cxx "$<COMPILE_LANG_AND_ID:CXX,MSVC>")
+target_compile_options(cxx_compiler_flags INTERFACE
+  "$<${gcc_like_cxx}:$<BUILD_INTERFACE:-Wall;-Wextra;-Wshadow;-Wformat=2;-Wunused>>"
+  "$<${msvc_cxx}:$<BUILD_INTERFACE:-W4;-WX>>"
+)
 
 add_executable(DesignPatternExamples_cpp)
 

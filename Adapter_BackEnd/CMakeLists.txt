@@ -2,6 +2,9 @@
 
 add_library(adapter_compiler_flags INTERFACE)
 target_compile_features(adapter_compiler_flags INTERFACE c_std_17)
+if(MSVC)
+target_compile_definitions(adapter_compiler_flags INTERFACE _CRT_SECURE_NO_WARNINGS)
+endif()
 
 add_library(Adapter_BackEnd SHARED)
 target_sources(Adapter_BackEnd

@@ -1,6 +1,19 @@
 add_library(c_compiler_flags INTERFACE)
 target_compile_features(c_compiler_flags INTERFACE c_std_17)
 
+if(MSVC)
+target_compile_definitions(c_compiler_flags INTERFACE _CRT_SECURE_NO_WARNINGS)
+endif()
+
+# add compiler warning flags just when building this project via
+# the BUILD_INTERFACE genex
+set(gcc_like_cxx "$<COMPILE_LANG_AND_ID:C,ARMClang,AppleClang,Clang,GNU,LCC>")
+set(msvc_cxx "$<COMPILE_LANG_AND_ID:C,MSVC>")
+target_compile_options(c_compiler_flags INTERFACE
+  "$<${gcc_like_cxx}:$<BUILD_INTERFACE:-Wall;-Wextra;-Wshadow;-Wformat=2;-Wunused>>"
+  "$<${msvc_cxx}:$<BUILD_INTERFACE:-W4;-w34255;-WX>>"
+)
+
 add_executable(DesignPatternExamples_c)
 
 target_link_libraries(DesignPatternExamples_c
