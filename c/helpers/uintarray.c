@@ -126,19 +126,11 @@ bool UIntArray_Copy(UIntArray* sourceArray, UIntArray* destinationArray)
             uint32_t* new_list = malloc(new_size);
             if (new_list != NULL)
             {
-                errno_t err = memcpy_s(new_list, new_size, sourceArray->data, new_size);
-                if (err == 0)
-                {
-                    destinationArray->data = new_list;
-                    destinationArray->allocatedLength = new_size;
-                    destinationArray->length = sourceArray->length;
-                    success = true;
-                }
-                else
-                {
-                    free(new_list);
-                    new_list = NULL;
-                }
+                memcpy(new_list, sourceArray->data, new_size);
+                destinationArray->data = new_list;
+                destinationArray->allocatedLength = new_size;
+                destinationArray->length = sourceArray->length;
+                success = true;
             }
         }
     }
