@@ -8,6 +8,8 @@
 #include <stdio.h>
 #include <string.h>
 
+#include "helpers/formatstring.h"
+
 #include "Proxy_RealService.h"
 
 //-----------------------------------------------------------------------------
@@ -22,19 +24,10 @@ static bool _Real_DoWork(DynamicString* someArgument)
     if (someArgument != NULL)
     {
         const char* prompt = "Real class received '%s'";
-        size_t bufferSize = strlen(prompt) + someArgument->length;
-        char* buffer = malloc(bufferSize + 1);
+        char *buffer = formatstring(prompt, someArgument->string);
         if (buffer != NULL)
         {
-            int num_chars = sprintf_s(buffer, bufferSize + 1, prompt, someArgument->string);
-            if (num_chars != -1)
-            {
-                success = DynamicString_Set(someArgument, buffer);
-            }
-            else
-            {
-                printf("  Error!  sprintf_s() failed to create real string!\n");
-            }
+            success = DynamicString_Set(someArgument, buffer);
             free(buffer);
         }
     }
