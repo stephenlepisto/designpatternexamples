@@ -29,11 +29,9 @@ char* titlecase(const char* s)
                 if (isspace(c) || !isalpha(c))
                 {
                     // Reached end of a word, copy rest of string over
-                    errno_t err = strcat_s(buffer, stringSize, s + index);
-                    if (err)
-                    {
-                        printf("  Error!  strcat_s failed in titlecase()!\n");
-                    }
+                    // Note: buffer was initialized with 0's and we allocated
+                    // for enough space to hold string plus null terminator.
+                    strcat(buffer, s + index);
                     // And we are done
                     break;
                 }
