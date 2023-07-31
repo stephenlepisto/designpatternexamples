@@ -9,6 +9,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "helpers/formatstring.h"
+
 #include "Bridge_ILogger.h"
 
 #include "Bridge_Exercise.h"
@@ -29,18 +31,21 @@ static void _Bridge_Exercise_Demonstrate_Logging(ILogger* logger, const char* lo
 {
     if (logger != NULL && loggerType != NULL)
     {
-        char buffer[128] = { 0 };
-        int numChars = sprintf_s(buffer, sizeof(buffer), "Starting log to %s example", loggerType);
-        if (numChars != -1)
+        char *buffer = formatstring("Starting log to %s example", loggerType);
+        if (buffer != NULL)
         {
             logger->LogTrace(buffer, logger->data);
             logger->LogInfo("An example of an informational line", logger->data);
             logger->LogError("An example of an error log entry", logger->data);
+            free(buffer);
+            buffer = NULL;
         }
-        numChars = sprintf_s(buffer, sizeof(buffer), "Done with log to %s example", loggerType);
-        if (numChars != -1)
+        buffer = formatstring("Done with log to %s example", loggerType);
+        if (buffer != NULL)
         {
             logger->LogTrace(buffer, logger->data);
+            free(buffer);
+            buffer = NULL;
         }
     }
 }
