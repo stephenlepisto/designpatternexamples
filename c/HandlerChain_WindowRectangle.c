@@ -9,6 +9,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+#include "helpers/formatstring.h"
+
 #include "HandlerChain_WindowRectangle.h"
 
 /// <summary>
@@ -71,20 +73,20 @@ bool WindowRectangle_ToString(WindowRectangle* rectangle, DynamicString* output)
 
     if (rectangle != NULL && output != NULL)
     {
-        char buffer[64] = { 0 };
-        int num_chars = sprintf_s(buffer, sizeof(buffer), "x1=%2d, y1=%2d, x2=%2d, y2=%2d",
-            rectangle->Left, rectangle->Top, rectangle->Right, rectangle->Bottom);
-        if (num_chars != -1)
+        char *buffer = formatstring("x1=%2d, y1=%2d, x2=%2d, y2=%2d",
+                                    rectangle->Left, rectangle->Top, rectangle->Right, rectangle->Bottom);
+        if (buffer != NULL)
         {
             success = DynamicString_Append(output, buffer);
             if (!success)
             {
                 printf("  Error!  Out of memory condition formatting a window's rectangle as a string in WindowRectangle_ToString()!\n");
             }
+            free(buffer);
         }
         else
         {
-            printf("  Error!  sprintf_s() failed in WindowRectangle_ToString() to format a window's rectangle as a string!\n");
+            printf("  Error!  Out of memory formatting window rectangle in WindowRectangle_ToString()!\n");
         }
     }
 

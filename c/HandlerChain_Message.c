@@ -6,6 +6,9 @@
 
 #include <stdlib.h>
 #include <stdio.h>
+
+#include "helpers/formatstring.h"
+
 #include "HandlerChain_Message.h"
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -17,19 +20,19 @@ bool MessagePosition_ToString(MessagePosition* position, DynamicString* output)
 
     if (position != NULL && output != NULL)
     {
-        char buffer[64] = { 0 };
-        int num_chars = sprintf_s(buffer, sizeof(buffer), "x=%2d,y=%2d", position->X, position->Y);
-        if (num_chars != -1)
+        char* buffer = formatstring("x=%2d,y=%2d", position->X, position->Y);
+        if (buffer != NULL)
         {
             success = DynamicString_Append(output, buffer);
             if (!success)
             {
                 printf("  Error!  out of memory condition appending message position as string in MessagePosition_ToString()!\n");
             }
+            free(buffer);
         }
         else
         {
-            printf("  Error!  sprintf_s() failed in MessagePosition_ToString()!\n");
+            printf("  Error!  Out of memory formatting position in MessagePosition_ToString()!\n");
         }
     }
 
@@ -64,7 +67,6 @@ bool Message_ToString(Message* message, DynamicString* output)
 
     if (message != NULL && output != NULL)
     {
-        char buffer[64] = { 0 };
         const char* messageTypeAsString = NULL;
         switch (message->MessageType)
         {
@@ -94,19 +96,20 @@ bool Message_ToString(Message* message, DynamicString* output)
 
         if (success)
         {
-            int num_chars = sprintf_s(buffer, sizeof(buffer), "%s at (%s)", messageTypeAsString, positionOutput.string);
-            if (num_chars != -1)
-            {
-                success = DynamicString_Append(output, buffer);
-                if (!success)
+                char *buffer = formatstring("%s at (%s)", messageTypeAsString, positionOutput.string);
+                if (buffer != NULL)
                 {
-                    printf("  Error!  Out of memory condition in Message_ToString() while appending string to output!\n");
+                    success = DynamicString_Append(output, buffer);
+                    if (!success)
+                    {
+                        printf("  Error!  Out of memory condition in Message_ToString() while appending string to output!\n");
+                    }
+                    free(buffer);
                 }
-            }
-            else
-            {
-                printf("  Error!  sprintf_s() failed in Message_ToString!\n");
-            }
+                else
+                {
+                    printf("  Error!  out of memory formatting message in Message_ToString()!\n");
+                }
         }
         DynamicString_Clear(&positionOutput);
     }

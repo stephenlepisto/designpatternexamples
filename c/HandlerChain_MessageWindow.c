@@ -10,6 +10,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+#include "helpers/formatstring.h"
+
 #include "HandlerChain_WindowRectangle.h"
 #include "HandlerChain_HandlerFunctions.h"
 #include "HandlerChain_MessageWindow.h"
@@ -30,7 +32,7 @@ struct _Window
     // Note: We must specify struct _Window so we can add pointer references for
     // next and prev in the structure.  These cannot be specified with the
     // typedef alias of MessageWindow.
-        
+
     /// <summary>
     /// Previous window in a linked list.  NULL if this window is the head of the list.
     /// </summary>
@@ -184,7 +186,7 @@ static bool _HandleButtonDownMessage(MessageWindow* window, Message* message)
     // we want other windows to get the button down message as
     // well so they can select or deselect themselves.
     bool messageProcessed = false;
-    
+
     if (window != NULL && message != NULL)
     {
         if (WindowRectangle_PointInside(&window->_windowBox, &message->Position))
@@ -286,7 +288,7 @@ static bool _HandleCloseMessage(MessageWindow* window, Message* message)
 /// <summary>
 /// Helper function to trigger the destruction of the window.  The window is
 /// destroyed and can no longer receive any messages.
-/// 
+///
 /// The given @ref MessageWindow is destroyed and can no longer be used after this
 /// function returns.
 /// </summary>
@@ -413,25 +415,25 @@ bool MessageWindow_ToString(int windowId, DynamicString* output)
         MessageWindow* window = _FindWindow(windowId);
         if (window != NULL)
         {
-            char buffer[256] = { 0 };
             DynamicString boxOutput = { 0 };
             success = WindowRectangle_ToString(&window->_windowBox, &boxOutput);
             if (success)
             {
-                int num_chars = sprintf_s(buffer, sizeof(buffer), "[id=%2d] \"%s\" (%s), selected=%s",
+                char* buffer = formatstring("[id=%2d] \"%s\" (%s), selected=%s",
                     window->_windowId, window->_title, boxOutput.string,
                     (window->_selected) ? "true" : "false");
-                if (num_chars != -1)
+                if (buffer != NULL)
                 {
                     success = DynamicString_Append(output, buffer);
                     if (!success)
                     {
                         printf("  Error!  Out of memory condition formatting a MessageWindow as a string!\n");
                     }
+                    free(buffer);
                 }
                 else
                 {
-                    printf("  Error!  sprintf_s() failed in MessageWindow_ToString()!\n");
+                    printf("  Error!  Out of memory formatting message window in MessageWindow_ToString()!\n");
                 }
             }
             DynamicString_Clear(&boxOutput);
