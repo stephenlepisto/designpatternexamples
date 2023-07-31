@@ -101,12 +101,9 @@ static void _append_range(char** buffer, const char* start, const char* end)
             text = malloc(charsToCopy + 1);
             if (text != NULL)
             {
-                errno_t err = strncpy_s(text, charsToCopy + 1, start, charsToCopy);
-                if (err == 0)
-                {
-                    text[charsToCopy] = '\0';
-                    *buffer = text;
-                }
+                memcpy(text, start, charsToCopy);
+                text[charsToCopy] = '\0';
+                *buffer = text;
             }
         }
         else
@@ -115,12 +112,9 @@ static void _append_range(char** buffer, const char* start, const char* end)
             char* reallocText = realloc(text, currentLength + charsToCopy + 1);
             if (reallocText != NULL)
             {
-                errno_t err = strncpy_s(reallocText + currentLength, charsToCopy + 1, start, charsToCopy);
-                if (err == 0)
-                {
-                    reallocText[currentLength + charsToCopy] = '\0';
-                    *buffer = reallocText;
-                }
+                memcpy(reallocText + currentLength, start, charsToCopy);
+                reallocText[currentLength + charsToCopy] = '\0';
+                *buffer = reallocText;
             }
         }
     }
@@ -198,4 +192,3 @@ char* replace_stri(const char* s, const char* str1, const char* str2)
 
     return newText;
 }
-
