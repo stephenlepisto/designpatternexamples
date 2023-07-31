@@ -154,6 +154,7 @@ target_sources(DesignPatternExamples_c
         helpers/datetime.h
         helpers/dynamicstring.h
         helpers/enablevtmode.h
+        helpers/formatstring.h
         helpers/makelocaltime.h
         helpers/mapofint.h
         helpers/mapofstrings.h
@@ -175,6 +176,7 @@ target_sources(DesignPatternExamples_c
         helpers/datetime.c
         helpers/dynamicstring.c
         helpers/enablevtmode.c
+        helpers/formatstring.c
         helpers/makelocaltime.c
         helpers/mapofint.c
         helpers/mapofstrings.c
