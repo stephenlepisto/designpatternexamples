@@ -8,6 +8,7 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "helpers/formatstring.h"
 #include "helpers/stack.h"
 #include "helpers/replace.h"
 
@@ -118,17 +119,17 @@ static void Memento_ApplyReplaceOperation(Memento_TextObject* text, const char* 
 {
     if (text != NULL && searchPattern != NULL && replaceText != NULL)
     {
-        char operationName[128] = { 0 };
-        int num_chars = sprintf_s(operationName, sizeof(operationName), "Replace '%s' with '%s'", searchPattern, replaceText);
-        if (num_chars != -1)
+        char *operationName = formatstring("Replace '%s' with '%s'", searchPattern, replaceText);
+        if (operationName != NULL)
         {
             Memento_SaveForUndo(text, operationName);
             Memento_Operation_Replace(text, searchPattern, replaceText);
             printf("    operation %-31s: \"%s\"\n", operationName, Memento_TextObject_ToString(text));
+            free(operationName);
         }
         else
         {
-            printf("  Error (code = %u)! sprintf_s() failed to create operation name for replace operation!\n", errno);
+            printf("  Error! Out of memory while creating operation name for replace operation!\n");
         }
     }
 }
