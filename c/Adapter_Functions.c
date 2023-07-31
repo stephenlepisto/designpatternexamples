@@ -135,27 +135,6 @@ static void _ReportDDRError(DDR_ErrorCode errorCode, const char* prompt)
     _ReportErrorMessage(message, prompt);
 }
 
-/// <summary>
-/// Report as an error an error code returned from the C library (typically
-/// through a "safe" library function).
-/// </summary>
-/// <param name="errorCode">An error returned by a "safe" library function.</param>
-/// <param name="prompt">A prompt that indicates the context in which the error
-/// occurred.</param>
-static void _ReportLibraryError(errno_t errorCode, const char* prompt)
-{
-    char buffer[80] = { 0 };
-
-    errno_t err = strerror_s(buffer, sizeof(buffer), errorCode);
-    if (err == 0)
-    {
-        _ReportErrorMessage(buffer, prompt);
-    }
-    else
-    {
-        _ReportErrorMessage("Failed to get error message", prompt);
-    }
-}
 
 ///////////////////////////////////////////////////////////////////////////////
 // Adapter_OpenMemory()
@@ -430,56 +409,43 @@ const char* Adapter_BufferToString(const uint8_t* data, uint32_t maxBytes, int i
         {
             indent = _countof(indentation) - 1;
         }
-        errno_t err = strncpy_s(indentation, sizeof(indentation), "          ", indent);
-        if (err != 0)
+        memcpy(indentation, "          ", indent);
+        indentation[indent] = '\0';
+        uint32_t bytesPerRow = 32;
+        size_t stringBufferLength = 0;
+        size_t hexdumpBufferLength = sizeof(_hexdump);
+        char stringBuffer[192] = {0};
+        for (uint32_t row = 0; row < maxBytes; row += bytesPerRow)
         {
-            _ReportLibraryError(err, "Creating indentation for hex dump");
-            hexdumpstring = NULL;
-        }
-        else
-        {
-            uint32_t bytesPerRow = 32;
-            char stringBuffer[192] = { 0 };
-            for (uint32_t row = 0; row < maxBytes; row += bytesPerRow)
+            snprintf(stringBuffer, sizeof(stringBuffer), "%s%04x --", indentation, row);
+            stringBufferLength = strlen(stringBuffer);
+            if (stringBufferLength >= hexdumpBufferLength)
             {
-                int numCharsAdded = sprintf_s(stringBuffer, sizeof(stringBuffer), "%s%04x --", indentation, row);
-                if (numCharsAdded == -1)
+                _ReportErrorMessage("Out of buffer space", "Formatting hex dump address");
+                hexdumpstring = NULL;
+                break;
+            }
+            strncat(_hexdump, stringBuffer, stringBufferLength);
+            hexdumpBufferLength -= stringBufferLength;
+
+            for (uint32_t col = 0; col < bytesPerRow && (row + col) < maxBytes; col++)
+            {
+                char *prompt = col > 0 ? " %02x" : "%02x";
+                uint32_t dataIndex = row + col;
+                snprintf(stringBuffer, sizeof(stringBuffer), prompt, (int)data[dataIndex]);
+                stringBufferLength = strlen(stringBuffer);
+                if (stringBufferLength >= hexdumpBufferLength)
                 {
-                    _ReportLibraryError(errno, "Formatting hex dump address");
+                    _ReportErrorMessage("Out of buffer space", "Formatting hex data");
                     hexdumpstring = NULL;
                     break;
                 }
-                err = strcat_s(_hexdump, sizeof(_hexdump), stringBuffer);
-                if (err != 0)
-                {
-                    _ReportLibraryError(err, "Adding address to hex dump buffer");
-                    hexdumpstring = NULL;
-                    break;
-                }
-                for (uint32_t col = 0; col < bytesPerRow && (row + col) < maxBytes; col++)
-                {
-                    char* prompt = col > 0 ? " %02x" : "%02x";
-                    uint32_t dataIndex = row + col;
-                    numCharsAdded = sprintf_s(stringBuffer, sizeof(stringBuffer), prompt, (int)data[dataIndex]);
-                    if (numCharsAdded == -1)
-                    {
-                        _ReportLibraryError(err, "Formatting hex data");
-                        hexdumpstring = NULL;
-                        break;
-                    }
-                    err = strcat_s(_hexdump, sizeof(_hexdump), stringBuffer);
-                    if (err != 0)
-                    {
-                        _ReportLibraryError(err, "Adding hex data to hex dump buffer");
-                        hexdumpstring = NULL;
-                        break;
-                    }
-                }
-                if (err != 0)
-                {
-                    break;
-                }
-                strcat_s(_hexdump, sizeof(_hexdump), "\n");
+                strncat(_hexdump, stringBuffer, stringBufferLength);
+                hexdumpBufferLength -= stringBufferLength;
+            }
+            if (hexdumpBufferLength > 1)
+            {
+                strcat(_hexdump, "\n");
             }
         }
     }
