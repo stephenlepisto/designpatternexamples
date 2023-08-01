@@ -1,7 +1,7 @@
 
 /// @file
 /// @brief
-/// Implementation of the Composite_Exercise() function as used in the 
+/// Implementation of the Composite_Exercise() function as used in the
 /// @ref composite_pattern.
 
 #include <filesystem>
@@ -20,7 +20,7 @@ namespace // Anonymous
 
     /// <summary>
     /// Format the specified entry for display.
-    /// 
+    ///
     /// This is a recursive call.
     /// </summary>
     /// <param name="entry">The FileDirEntry object to format</param>
@@ -47,7 +47,7 @@ namespace // Anonymous
         FileDirEntryList children = entry->Children();
         if (!children.empty())
         {
-            for (int index = 0; index < children.size(); ++index)
+            for (size_t index = 0; index < children.size(); ++index)
             {
                 output.append(Composite_Exercise_FormatEntry(children[index].get(), depth + 1));
             }
@@ -76,12 +76,12 @@ namespace DesignPatternExamples_cpp
 
     /// <summary>
     /// Example of using the @ref composite_pattern "Composite" design pattern.
-    /// 
+    ///
     /// The Composite pattern is used when a collection of objects is to
     /// be formed in a hierarchical form where each object needs to be
     /// treated like any other object but some objects can contain other
     /// objects.
-    /// 
+    ///
     /// This example uses a file structure of file and directories to
     /// represent each object type.
     /// </summary>

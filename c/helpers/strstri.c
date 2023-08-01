@@ -2,11 +2,13 @@
 /// @brief
 /// Implementation of the strstri() function, case-insensitive
 /// string search for narrow character strings.
-/// 
+///
 /// Function to search for one string in another in a case-insensitive way
 /// (otherwise this is identical to the standard C library function strstr()).
 
 #include <ctype.h>
+#include <stddef.h>
+
 #include "strstri.h"
 
 

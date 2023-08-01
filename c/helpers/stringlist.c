@@ -7,7 +7,9 @@
 #include <string.h>
 #include <memory.h>
 
+#include "strdup.h"
 #include "stringlist.h"
+
 
 ///////////////////////////////////////////////////////////////////////////////
 // StringList_Initialize()
@@ -70,7 +72,7 @@ bool StringList_AddString(StringList* stringList, const char* string)
         if (new_list != NULL)
         {
             stringList->strings = new_list;
-            char* newString = _strdup(string);
+            char* newString = STRDUP(string);
             if (newString != NULL)
             {
                 stringList->strings[stringList->strings_count] = newString;
@@ -114,7 +116,7 @@ bool StringList_AddStrings(StringList* stringList, const char** strings, size_t 
             size_t offset = stringList->strings_count;
             for (size_t index = 0; index < numStrings; index++)
             {
-                char* newString = _strdup(strings[index]);
+                char *newString = STRDUP(strings[index]);
                 if (newString == NULL)
                 {
                     stringsAdded = false;
@@ -136,7 +138,7 @@ void StringList_Remove(StringList* stringList, int removeIndex)
 {
     if (stringList != NULL && stringList->strings != NULL)
     {
-        if (removeIndex >= 0 && removeIndex < stringList->strings_count)
+        if (removeIndex >= 0 && (size_t)removeIndex < stringList->strings_count)
         {
             const char* stringToRemove = stringList->strings[removeIndex];
             for (size_t stringIndex = removeIndex; stringIndex < stringList->allocated_count - 1; stringIndex++)

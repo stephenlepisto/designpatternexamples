@@ -3,6 +3,7 @@
 /// Implementation of the Command structure and associated functions
 /// as used in the @ref command_pattern.
 
+#include <errno.h>
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>

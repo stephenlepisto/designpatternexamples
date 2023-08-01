@@ -17,7 +17,7 @@ namespace Helpers
     std::string DateTime::ToString()
     {
         std::string time_as_string;
-        struct tm local_time { 0 };
+        struct tm local_time = { };
         struct tm* retval = Helpers::makelocaltime(&timestamp, &local_time);
         if (retval != nullptr)
         {

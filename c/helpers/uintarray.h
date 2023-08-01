@@ -9,12 +9,13 @@
 
 #include <stdbool.h>
 #include <stdint.h>
+#include <stddef.h>
 
 /// <summary>
 /// Represents an array of 32-bit unsigned integers.  The `data` field points
 /// to a block of memory allocated on the heap and needs to be freed when the
 /// pointer is no longer needed.
-/// 
+///
 /// Note: The contents of this structure can be copied to another instance but
 /// that means the ownership of the `data` field is also transferred to that
 /// other instance.
@@ -81,4 +82,3 @@ int UIntArray_Find(UIntArray* array, uint32_t value);
 bool UIntArray_Copy(UIntArray* sourceArray, UIntArray* destinationArray);
 
 #endif // __UINTARRAY_H__
-

@@ -11,6 +11,7 @@
 #include "helpers/datetime.h"
 #include "helpers/replace.h"
 #include "helpers/split.h"
+#include "helpers/strdup.h"
 
 #include "Composite_FileDirEntry.h"
 #include "Composite_FileAccess.h"
@@ -290,7 +291,7 @@ FileDirEntry* Composite_FileAccess_GetEntry(const char* path)
     if (path != NULL)
     {
         // _FindEntry() modifies the path string so create duplicate to work with.
-        char* filepath = _strdup(path);
+        char* filepath = STRDUP(path);
         if (filepath != NULL)
         {
             replace_chr(filepath, '\\', '/');

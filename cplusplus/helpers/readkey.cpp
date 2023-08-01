@@ -22,6 +22,7 @@ namespace Helpers
         }
         return retval;
 #else
+        return 0x1b; // Dummy for now
 #endif
     }
 

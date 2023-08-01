@@ -4,6 +4,7 @@
 /// Implementation of the Interpreter_Exercise() function as used in the
 /// @ref interpreter_pattern.
 
+#include <errno.h>
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>

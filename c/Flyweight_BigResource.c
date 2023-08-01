@@ -45,7 +45,7 @@ void BigResource_Render(Display* display, int bigResourceId, int offset_x,
 
             // Position into image to start rendering from (non-zero if
             // image is off the left or top edge of display).
-            int starting_row_in_image = 0;
+            //int starting_row_in_image = 0;
             int starting_col_in_image = offset_x;
 
             // Clip the image to the display.
@@ -61,7 +61,7 @@ void BigResource_Render(Display* display, int bigResourceId, int offset_x,
             }
             if (starting_position_y < 0)
             {
-                starting_row_in_image = -starting_position_y;
+                //starting_row_in_image = -starting_position_y;
                 image_render_height += starting_position_y;
                 starting_position_y = 0;
             }

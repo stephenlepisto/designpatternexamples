@@ -405,9 +405,9 @@ const char* Adapter_BufferToString(const uint8_t* data, uint32_t maxBytes, int i
     if (data != NULL && maxBytes > 0)
     {
         char indentation[10] = { 0 };
-        if (indent > _countof(indentation) - 1)
+        if (indent > (int)_countof(indentation) - 1)
         {
-            indent = _countof(indentation) - 1;
+            indent = (int)(_countof(indentation) - 1);
         }
         memcpy(indentation, "          ", indent);
         indentation[indent] = '\0';
@@ -430,9 +430,9 @@ const char* Adapter_BufferToString(const uint8_t* data, uint32_t maxBytes, int i
 
             for (uint32_t col = 0; col < bytesPerRow && (row + col) < maxBytes; col++)
             {
-                char *prompt = col > 0 ? " %02x" : "%02x";
+                char *separator = col > 0 ? " " : "";
                 uint32_t dataIndex = row + col;
-                snprintf(stringBuffer, sizeof(stringBuffer), prompt, (int)data[dataIndex]);
+                snprintf(stringBuffer, sizeof(stringBuffer), "%s%02x", separator, (int)data[dataIndex]);
                 stringBufferLength = strlen(stringBuffer);
                 if (stringBufferLength >= hexdumpBufferLength)
                 {

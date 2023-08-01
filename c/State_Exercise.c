@@ -10,6 +10,7 @@
 
 #include "helpers/dynamicstring.h"
 #include "helpers/split.h"
+#include "helpers/strdup.h"
 
 #include "State_RemoveComments.h"
 
@@ -26,7 +27,7 @@
 static void _State_DisplayText(const char* textToDisplay)
 {
     SplitList lines = { 0 };
-    char* text = _strdup(textToDisplay);
+    char* text = STRDUP(textToDisplay);
     if (text != NULL)
     {
         split(text, "\n", &lines);

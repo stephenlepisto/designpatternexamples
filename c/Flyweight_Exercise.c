@@ -119,12 +119,12 @@ static int _Flyweight_GenerateBigResource(int numImages, int width, int height)
         }
         else
         {
-            printf("  Error!  Failed to allocate memory for the big image: size = %llu\n", imageSize);
+            printf("  Error!  Failed to allocate memory for the big image: size = %lu\n", imageSize);
         }
     }
     else
     {
-        printf("  Error!  Failed to allocate memory for the big resource structure: size = %llu\n", sizeof(BigResource));
+        printf("  Error!  Failed to allocate memory for the big resource structure: size = %lu\n", sizeof(BigResource));
     }
     return resourceId;
 }
@@ -144,7 +144,7 @@ static void _Flyweight_MoveFlyweights(Flyweight_ImageList* imageList,
 {
     if (imageList != NULL)
     {
-        for (int imageIndex = 0; imageIndex < imageList->images_count; imageIndex++)
+        for (size_t imageIndex = 0; imageIndex < imageList->images_count; imageIndex++)
         {
             Flyweight_Image* image = &imageList->images[imageIndex];
             Flyweight_Context* context = &image->Context;
@@ -281,7 +281,7 @@ static void _Flyweight_ClearDisplay(Display* display)
         for (int rowIndex = 0; rowIndex < display->height; rowIndex++)
         {
             char* row = display->area[rowIndex];
-            for (size_t colIndex = 0; colIndex < display->width; ++colIndex)
+            for (int colIndex = 0; colIndex < display->width; ++colIndex)
             {
                 row[colIndex] = '~';
             }
@@ -312,7 +312,7 @@ static void _Flyweight_ShowDisplay(Display* display)
 {
     if (display != NULL && display->area != NULL)
     {
-        for (size_t rowIndex = 0; rowIndex < display->height; rowIndex++)
+        for (int rowIndex = 0; rowIndex < display->height; rowIndex++)
         {
             printf("  %s\n", display->area[rowIndex]);
         }

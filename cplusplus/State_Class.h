@@ -9,6 +9,7 @@
 #ifndef __STATE_CLASS_H__
 #define __STATE_CLASS_H__
 
+#include <memory>
 #include <string>
 
 
@@ -43,7 +44,7 @@ namespace DesignPatternExamples_cpp
     /// <summary>
     /// Indicates End-of-file (no more data available).
     /// </summary>
-    const char EOF_CHAR = static_cast<const char>(0xff);
+    const char EOF_CHAR = static_cast<char>(0xff);
 
 
     //########################################################################
@@ -52,7 +53,7 @@ namespace DesignPatternExamples_cpp
 
     /// <summary>
     /// Represents the context as passed to each state class.
-    /// 
+    ///
     /// Each state class can access the next character or output the current
     /// character through this interface.
     /// </summary>
@@ -90,7 +91,7 @@ namespace DesignPatternExamples_cpp
 
     /// <summary>
     /// Represents a class that implements one state of the state machine.
-    /// 
+    ///
     /// The context calls each state through this interface.
     /// </summary>
     /// <remarks>
@@ -165,4 +166,3 @@ namespace DesignPatternExamples_cpp
 } // end namespace
 
 #endif // __STATE_CLASS_H__
-
