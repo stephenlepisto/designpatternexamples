@@ -13,7 +13,7 @@ namespace Helpers
 {
     /// <summary>
     /// Convert the given time to local time.
-    /// 
+    ///
     /// Hides the differences between multiple C++ library implementations.
     /// </summary>
     /// <param name="time">Pointer to the time_t object representing the time to
@@ -31,6 +31,6 @@ namespace Helpers
     /// </remarks>
     struct tm* makelocaltime(const time_t* time, struct tm* timestruct);
 
-#endif __MAKELOCALTIME_H__
-
 } // end namespace
+
+#endif // __MAKELOCALTIME_H__
