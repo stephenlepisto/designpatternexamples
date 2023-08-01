@@ -106,7 +106,7 @@ int NumberChangedFunctionList_Find(NumberChangedFunctionList* functionList, Numb
 ///////////////////////////////////////////////////////////////////////////////
 void NumberChangedFunctionList_Remove(NumberChangedFunctionList* functionList, int functionIndex)
 {
-    if (functionList != NULL && functionIndex >= 0 && functionIndex < functionList->functions_count)
+    if (functionList != NULL && functionIndex >= 0 && (size_t)functionIndex < functionList->functions_count)
     {
         for (size_t index = functionIndex; index < functionList->allocation_count - 1; index++)
         {

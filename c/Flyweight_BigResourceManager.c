@@ -128,7 +128,7 @@ BigResource* BigResourceManager_GetResource(int bigResourceId)
 {
     BigResource* resource = NULL;
 
-    if (bigResourceId >= 0 && bigResourceId < _resources.resources_count)
+    if (bigResourceId >= 0 && (size_t)bigResourceId < _resources.resources_count)
     {
         resource = _resources.resources[bigResourceId];
     }

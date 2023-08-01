@@ -76,9 +76,9 @@ void UIntArray_RemoveInt(UIntArray* array, int removeIndex)
 {
     if (array != NULL && array->data != NULL)
     {
-        if (removeIndex >= 0 && removeIndex < array->length)
+        if (removeIndex >= 0 && (size_t)removeIndex < array->length)
         {
-            for (int index = removeIndex; index < array->allocatedLength - 1; index++)
+            for (size_t index = removeIndex; index < array->allocatedLength - 1; index++)
             {
                 array->data[index] = array->data[index + 1];
             }

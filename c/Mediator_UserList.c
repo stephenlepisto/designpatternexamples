@@ -102,7 +102,7 @@ void UserList_RemoveUser(UserList* userList, int removeIndex)
 {
     if (userList != NULL && userList->users != NULL)
     {
-        if (removeIndex >= 0 && removeIndex < userList->users_count)
+        if (removeIndex >= 0 && (size_t)removeIndex < userList->users_count)
         {
             User_Destroy(userList->users[removeIndex]);
             for (size_t userIndex = removeIndex; userIndex < userList->allocated_count - 1; userIndex++)

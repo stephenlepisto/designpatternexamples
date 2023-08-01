@@ -124,7 +124,7 @@ void ConstStringList_Remove(ConstStringList* stringList, int removeIndex)
 {
     if (stringList != NULL && stringList->strings != NULL)
     {
-        if (removeIndex >= 0 && removeIndex < stringList->strings_count)
+        if (removeIndex >= 0 && (size_t)removeIndex < stringList->strings_count)
         {
             for (size_t stringIndex = removeIndex; stringIndex < stringList->allocated_count - 1; stringIndex++)
             {

@@ -101,7 +101,7 @@ void GroupList_RemoveGroup(GroupList* groupList, int removeIndex)
 {
     if (groupList != NULL && groupList->groups != NULL)
     {
-        if (removeIndex >= 0 && removeIndex < groupList->groups_count)
+        if (removeIndex >= 0 && (size_t)removeIndex < groupList->groups_count)
         {
             Group_Destroy(groupList->groups[removeIndex]);
             for (size_t groupIndex = removeIndex; groupIndex < groupList->allocated_count - 1; groupIndex++)
