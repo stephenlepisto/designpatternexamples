@@ -6,6 +6,8 @@
 /// @ref Helpers::Replace(const std::string&, char, char, bool) "Replace(const std::string&, char, char, bool)"
 /// functions, for replacing narrow character characters and strings in a string.
 
+#include <cstring>
+
 #include "replace.h"
 #include "strstri.h"
 
