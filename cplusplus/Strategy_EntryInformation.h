@@ -7,14 +7,10 @@
 #ifndef __STRATEGY_ENTRYINFORMATION_H__
 #define __STRATEGY_ENTRYINFORMATION_H__
 
-// This test requires /Zc:__cplusplus to be specified on the build command line.
-#if !defined(__cplusplus) || __cplusplus < 202002L
-#error Requires C++ 20 or later to compile!
-#endif
-#include <format> // Requires C++20
-
 #include <memory>
 #include <string>
+
+#include "helpers/formatstring.h"
 
 namespace DesignPatternExamples_cpp
 {
@@ -65,7 +61,7 @@ namespace DesignPatternExamples_cpp
         /// <returns></returns>
         std::string ToString()
         {
-            return std::format("{0:6} {1:3} {2:3}\"", Name, Age, Height);
+            return Helpers::formatstring("%6s %3d %3d\"", Name.c_str(), Age, Height);
         }
     };
 

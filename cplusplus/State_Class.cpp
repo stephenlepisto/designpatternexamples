@@ -8,17 +8,14 @@
 /// The class implementations are in an anonymous namespace in a .cpp file to
 /// better hide them from the rest of the program.
 
-#if !defined(__cplusplus) || __cplusplus < 202002L
-#error Requires C++ 20 or later to compile!
-#endif
-#include <format> // Requires C++20
-
 #include <iostream>
 #include <stdexcept>
 #include <exception>
 #include <map>
 #include <memory>
 #include <sstream>
+
+#include "helpers/formatstring.h"
 
 #include "State_Class.h"
 
@@ -83,7 +80,7 @@ namespace // Anonymous
             break;
 
         default:
-            stateAsString = std::format("Unknown ({0})", static_cast<int>(state));
+            stateAsString = Helpers::formatstring("Unknown (%d)", static_cast<int>(state));
             break;
         }
 
@@ -659,8 +656,8 @@ namespace // Anonymous
 
             default:
             {
-                std::string msg = std::format("Unknown state: {0}.  Cannot create a state class.",
-                    _CurrentStateToString(state));
+                std::string msg = Helpers::formatstring("Unknown state: %s.  Cannot create a state class.",
+                    _CurrentStateToString(state).c_str());
                 throw std::runtime_error(msg.c_str());
             }
             }
@@ -749,8 +746,9 @@ namespace // Anonymous
                 }
 
                 std::cout
-                    << std::format("    --> State Transition: {0} -> {1}",
-                        _CurrentStateToString(_currentState), _CurrentStateToString(newState))
+                    << Helpers::formatstring("    --> State Transition: %s -> %s",
+                        _CurrentStateToString(_currentState).c_str(),
+                        _CurrentStateToString(newState).c_str())
                     << std::endl;
 
                 _currentStateBehavior = _stateBehaviors[newState];

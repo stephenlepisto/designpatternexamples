@@ -3,13 +3,9 @@
 /// Implementation of the Bridge_Exercise() function as used in the 
 /// @ref bridge_pattern.
 
-// This test requires /Zc:__cplusplus to be specified on the build command line.
-#if !defined(__cplusplus) || __cplusplus < 202002L
-#error Requires C++ 20 or later to compile!
-#endif
-#include <format> // Requires C++20
-
 #include <iostream>
+
+#include "helpers/formatstring.h"
 
 #include "Bridge_Exercise.h"
 #include "Bridge_Logger.h"
@@ -31,13 +27,13 @@ namespace // Anonymous
         Logger& logger, std::string loggerType)
     {
         std::string output;
-        output = std::format("Starting log to {} example", loggerType);
+        output = Helpers::formatstring("Starting log to %s example", loggerType.c_str());
         logger.LogTrace(output);
 
         logger.LogInfo("An example of an informational line");
         logger.LogError("An example of an error log entry");
 
-        output = std::format("Done with log to {} example", loggerType);
+        output = Helpers::formatstring("Done with log to %s example", loggerType.c_str());
         logger.LogTrace(output);
     }
 

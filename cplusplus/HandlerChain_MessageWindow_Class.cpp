@@ -3,6 +3,8 @@
 /// Implementation of the @ref DesignPatternExamples_cpp::MessageWindow "MessageWindow" class
 /// used in the @ref handlerchain_pattern
 
+#include "helpers/formatstring.h"
+
 #include "HandlerChain_MessageWindow_Class.h"
 
 namespace DesignPatternExamples_cpp
@@ -39,7 +41,7 @@ namespace DesignPatternExamples_cpp
             {
                 window->_selected = true;
                 std::cout
-                    << std::format("  --> Button Down in \"{0}\", window selected", window->_title)
+                    << Helpers::formatstring("  --> Button Down in \"%s\", window selected", window->_title.c_str())
                     << std::endl;
             }
         }
@@ -49,7 +51,7 @@ namespace DesignPatternExamples_cpp
             {
                 window->_selected = false;
                 std::cout
-                    << std::format("  --> Button Down not in \"{0}\", window deselected", window->_title)
+                    << Helpers::formatstring("  --> Button Down not in \"%s\", window deselected", window->_title.c_str())
                     << std::endl;
             }
         }
@@ -71,14 +73,14 @@ namespace DesignPatternExamples_cpp
                 if (window->_PointInCloseBox(message->Position))
                 {
                     std::cout
-                        << std::format("  --> Button Up in \"{0}\" close box, sending Close message", window->_title)
+                        << Helpers::formatstring("  --> Button Up in \"%s\" close box, sending Close message", window->_title.c_str())
                         << std::endl;
                     window->_handlerChain->SendMessage(std::make_unique<Message>(MessageType::Close, message->Position).get());
                 }
                 else
                 {
                     std::cout
-                        << std::format("  --> Button Up in \"{0}\", no further action taken", window->_title)
+                        << Helpers::formatstring("  --> Button Up in \"%s\", no further action taken", window->_title.c_str())
                         << std::endl;
                 }
             }
@@ -93,7 +95,7 @@ namespace DesignPatternExamples_cpp
         if (window->_selected)
         {
             std::cout
-                << std::format("  --> Close in \"{0}\", removing window from handler chain", window->_title)
+                << Helpers::formatstring("  --> Close in \"%s\", removing window from handler chain", window->_title.c_str())
                 << std::endl;
 
             // This window is being closed.  We are handling the message
@@ -105,7 +107,7 @@ namespace DesignPatternExamples_cpp
         else
         {
             std::cout
-                << std::format("  --> Close seen in \"{0}\" but this window is not selected, ignoring", window->_title)
+                << Helpers::formatstring("  --> Close seen in \"%s\" but this window is not selected, ignoring", window->_title.c_str())
                 << std::endl;
         }
         return messageProcessed;

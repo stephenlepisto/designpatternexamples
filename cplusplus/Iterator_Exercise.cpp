@@ -4,13 +4,9 @@
 /// Implementation of the Iterator_Exercise() function as used in the 
 /// @ref iterator_pattern.
 
-// This test requires /Zc:__cplusplus to be specified on the build command line.
-#if !defined(__cplusplus) || __cplusplus < 202002L
-#error Requires C++ 20 or later to compile!
-#endif
-#include <format> // Requires C++20
-
 #include <iostream>
+
+#include "helpers/formatstring.h"
 
 #include "Iterator_Exercise.h"
 #include "Iterator_Class.h"
@@ -43,7 +39,7 @@ namespace DesignPatternExamples_cpp
         std::string item;
         while (keyIterator->Next(item))
         {
-            std::cout << std::format("    {0}", item) << std::endl;
+            std::cout << Helpers::formatstring("    %s", item.c_str()) << std::endl;
         }
 
         std::cout << "  Iterating over values only:" << std::endl;
@@ -51,7 +47,7 @@ namespace DesignPatternExamples_cpp
         std::string value;
         while (valueIterator->Next(value))
         {
-            std::cout << std::format("    {0}", value) << std::endl;
+            std::cout << Helpers::formatstring("    %s", value.c_str()) << std::endl;
         }
 
         std::cout << "  Iterating over all items:" << std::endl;
@@ -59,7 +55,9 @@ namespace DesignPatternExamples_cpp
         ItemPair key_value_pair;
         while (itemIterator->Next(key_value_pair))
         {
-            std::cout << std::format("    {0} = {1}", key_value_pair.Key, key_value_pair.Value) << std::endl;
+            std::cout << Helpers::formatstring("    %s = %s",
+                            key_value_pair.Key.c_str(), key_value_pair.Value.c_str())
+                      << std::endl;
         }
 
         std::cout << "  Done." << std::endl;

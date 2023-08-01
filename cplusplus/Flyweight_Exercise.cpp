@@ -4,12 +4,6 @@
 /// Implementation of the Flyweight_Exercise() function as used in the 
 /// @ref flyweight_pattern.
 
-// This test requires /Zc:__cplusplus to be specified on the build command line.
-#if !defined(__cplusplus) || __cplusplus < 202002L
-#error Requires C++ 20 or later to compile!
-#endif
-#include <format> // Requires C++20
-
 #include <iostream>
 #include <sstream>
 
@@ -17,6 +11,7 @@
 #include "helpers/cursor.h"
 #include "helpers/readkey.h"
 #include "helpers/checkforkey.h"
+#include "helpers/formatstring.h"
 
 #include "Flyweight_Exercise.h"
 #include "Flyweight_Classes.h"
@@ -68,15 +63,15 @@ namespace // Anonymous
                 if (row == 0 || (row + 1) == height)
                 {
                     // top and bottom row are the same.
-                    image_row += std::format("+{0}+", std::string((size_t)width - 2, '-'));
+                    image_row += Helpers::formatstring("+%s+", std::string((size_t)width - 2, '-').c_str());
                 }
                 else
                 {
                     // All other rows are each the same -- except that
                     // each image is "numbered" where the background of the
                     // image reflects the number of the image (0, 1, 2, etc.).
-                    char c = std::format("{}", imageIndex)[0];
-                    image_row += std::format("|{0}|", std::string((size_t)width - 2, c));
+                    char c = Helpers::formatstring("%d", imageIndex)[0];
+                    image_row += Helpers::formatstring("|%s|", std::string((size_t)width - 2, c).c_str());
                 }
             }
             image.push_back(image_row);
@@ -333,7 +328,7 @@ namespace DesignPatternExamples_cpp
         std::vector<std::vector<char>> displayArea = _Flyweight_GenerateDisplay(DISPLAY_WIDTH, DISPLAY_HEIGHT);
 
         // Finally, display the rendered output.
-        std::cout << std::format("  The image rendered {0} times:", NUMFLYWEIGHTS) << std::endl;
+        std::cout << Helpers::formatstring("  The image rendered %d times:", NUMFLYWEIGHTS) << std::endl;
         std::cout << std::endl; // Blank line for iteration count
         _Flyweight_RenderFlyweights(flyweightInstances, displayArea);
         _Flyweight_ShowDisplay(displayArea);
@@ -353,7 +348,7 @@ namespace DesignPatternExamples_cpp
             {
                 Helpers::setcursorposition(cursorTop - 1, cursorLeft);
             }
-            std::cout << std::format("  {0:5}/{1} iterations [press a key to exit early]", index + 1, NUM_ITERATIONS) << std::endl;
+            std::cout << Helpers::formatstring("  %5d/%d iterations [press a key to exit early]", index + 1, NUM_ITERATIONS) << std::endl;
             if (cursorLeft != -1)
             {
                 Helpers::setcursorposition(cursorTop, cursorLeft);

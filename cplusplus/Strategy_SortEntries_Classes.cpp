@@ -3,6 +3,10 @@
 /// Implementation of the @ref DesignPatternExamples_cpp::Strategy_SortEntries_ClassFactory "Strategy_SortEntries_ClassFactory"
 /// class as used in the @ref strategy_pattern.
 
+#include <stdexcept>
+
+#include "helpers/formatstring.h"
+
 #include "Strategy_SortEntries_Classes.h"
 
 namespace // Anonymous
@@ -33,7 +37,7 @@ namespace // Anonymous
             break;
 
         default:
-            optionAsString = std::format("Unknown {0}", static_cast<int>(sortOption));
+            optionAsString = Helpers::formatstring("Unknown %d", static_cast<int>(sortOption));
             break;
         }
         return optionAsString;
@@ -70,7 +74,7 @@ namespace DesignPatternExamples_cpp
 
         default:
         {
-            std::string message = std::format("Unrecognized sort option: {0}", _SortOptionToString(sortOption));
+            std::string message = Helpers::formatstring("Unrecognized sort option: %s", _SortOptionToString(sortOption).c_str());
             throw std::runtime_error(message.c_str());
         }
         }

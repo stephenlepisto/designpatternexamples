@@ -3,13 +3,10 @@
 /// Implementation of the @ref DesignPatternExamples_cpp::DataReaderWriter "DataReaderWriter"
 /// class used in the @ref adapter_pattern.
 
-// This test requires /Zc:__cplusplus to be specified on the build command line.
-#if !defined(__cplusplus) || __cplusplus < 202002L
-#error Requires C++ 20 or later to compile!
-#endif
-#include <format> // Requires C++20
-
 #include <Adapter_BackEnd.h>
+
+#include "helpers/formatstring.h"
+
 #include "Adapter_FrontEndClass.h"
 
 namespace // Anonymous namespace
@@ -73,7 +70,7 @@ namespace // Anonymous namespace
     std::string _ConstructErrorMessage(DDR_ErrorCode errorCode, const char* operation)
     {
         std::string msg = _GetErrorMessage(errorCode);
-        return std::format("{0}: {1}", operation, msg);
+        return Helpers::formatstring("%s: %s", operation, msg.c_str());
     }
 
 } // end anonymous namespace
@@ -329,7 +326,7 @@ namespace DesignPatternExamples_cpp
             uint32_t bytesPerRow = 32;
             for (uint32_t row = 0; row < maxBytes; row += bytesPerRow)
             {
-                output += std::format("{}{:04x} --", indentSpaces, row);
+                output += Helpers::formatstring("%s%04x --", indentSpaces.c_str(), row);
                 for (uint32_t col = 0;
                     col < bytesPerRow && (row + col) < maxBytes;
                     ++col)
@@ -339,7 +336,7 @@ namespace DesignPatternExamples_cpp
                         output += " ";
                     }
                     size_t dataIndex = static_cast<size_t>(row) + col;
-                    output += std::format("{:02x}", data[dataIndex]);
+                    output += Helpers::formatstring("%02x", data[dataIndex]);
                 }
                 output += "\n";
             }

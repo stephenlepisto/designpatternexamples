@@ -8,14 +8,10 @@
 #ifndef __MEDIATOR_CLASS_H__
 #define __MEDIATOR_CLASS_H__
 
-// This test requires /Zc:__cplusplus to be specified on the build command line.
-#if !defined(__cplusplus) || __cplusplus < 202002L
-#error Requires C++ 20 or later to compile!
-#endif
-#include <format> // Requires C++20
 #include <exception>
 
 #include "helpers/argumentinvalid_error.h"
+#include "helpers/formatstring.h"
 
 #include "Mediator_User_Classes.h"
 #include "Mediator_Group_Classes.h"
@@ -115,14 +111,16 @@ namespace DesignPatternExamples_cpp
             // are stored, by design).
             if (_userGroupsContainer.Users.FindUser(userName) == nullptr)
             {
-                std::string message = std::format("User '{0}' does not exist.  Cannot add to group '{1}'!", userName, groupName);
+                std::string message = Helpers::formatstring("User '%s' does not exist.  Cannot add to group '%s'!",
+                    userName.c_str(), groupName.c_str());
                 throw Helpers::argumentinvalid_error("userName", message.c_str());
             }
 
             Group* foundGroup = _userGroupsContainer.Groups.FindGroup(groupName);
             if (foundGroup == nullptr)
             {
-                std::string message = std::format("Cannot add user '{0}' to group '{1}' as that group does not exist!", userName, groupName);
+                std::string message = Helpers::formatstring("Cannot add user '%s' to group '%s' as that group does not exist!",
+                    userName.c_str(), groupName.c_str());
                 throw Helpers::argumentinvalid_error("groupName", message.c_str());
             }
 
@@ -143,14 +141,16 @@ namespace DesignPatternExamples_cpp
             // are stored, by design).
             if (_userGroupsContainer.Users.FindUser(userName) == nullptr)
             {
-                std::string message = std::format("User '{0}' does not exist.  Cannot remove from group '{1}'!", userName, groupName);
+                std::string message = Helpers::formatstring("User '%s' does not exist.  Cannot remove from group '%s'!",
+                    userName.c_str(), groupName.c_str());
                 throw Helpers::argumentinvalid_error("userName", message.c_str());
             }
 
             Group* foundGroup = _userGroupsContainer.Groups.FindGroup(groupName);
             if (foundGroup == nullptr)
             {
-                std::string message = std::format("Cannot remove user '{0}' from group '{1}' as that group does not exist!", userName, groupName);
+                std::string message = Helpers::formatstring("Cannot remove user '%s' from group '%s' as that group does not exist!",
+                    userName.c_str(), groupName.c_str());
                 throw Helpers::argumentinvalid_error("groupName", message.c_str());
             }
 
@@ -170,7 +170,8 @@ namespace DesignPatternExamples_cpp
             // are stored, by design).
             if (_userGroupsContainer.Users.FindUser(userName) == nullptr)
             {
-                std::string message = std::format("User '{0}' does not exist.  Cannot remove from all groups'!", userName);
+                std::string message = Helpers::formatstring("User '%s' does not exist.  Cannot remove from all groups'!",
+                    userName.c_str());
                 throw Helpers::argumentinvalid_error("userName", message.c_str());
             }
 
@@ -201,14 +202,16 @@ namespace DesignPatternExamples_cpp
 
             if (_userGroupsContainer.Users.FindUser(userName) == nullptr)
             {
-                std::string message = std::format("User '{0}' does not exist.  Cannot determine if user is in group '{1}'!", userName, groupName);
+                std::string message = Helpers::formatstring("User '%s' does not exist.  Cannot determine if user is in group '%s'!",
+                    userName.c_str(), groupName.c_str());
                 throw Helpers::argumentinvalid_error("userName", message.c_str());
             }
 
             Group* foundGroup = _userGroupsContainer.Groups.FindGroup(groupName);
             if (foundGroup == nullptr)
             {
-                std::string message = std::format("Cannot determine if user '{0}' is in group '{1}' as that group does not exist!", userName, groupName);
+                std::string message = Helpers::formatstring("Cannot determine if user '%s' is in group '%s' as that group does not exist!",
+                    userName.c_str(), groupName.c_str());
                 throw Helpers::argumentinvalid_error("groupName", message.c_str());
             }
 
@@ -229,7 +232,8 @@ namespace DesignPatternExamples_cpp
         {
             if (_userGroupsContainer.Users.FindUser(userName) == nullptr)
             {
-                std::string message = std::format("User '{0}' does not exist.  Cannot get groups containing user!", userName);
+                std::string message = Helpers::formatstring("User '%s' does not exist.  Cannot get groups containing user!",
+                    userName.c_str());
                 throw Helpers::argumentinvalid_error("userName", message.c_str());
             }
 
@@ -261,7 +265,8 @@ namespace DesignPatternExamples_cpp
             Group* foundGroup = _userGroupsContainer.Groups.FindGroup(groupName);
             if (foundGroup == nullptr)
             {
-                std::string message = std::format("Cannot determine get users in group '{0}' as that group does not exist!", groupName);
+                std::string message = Helpers::formatstring("Cannot determine get users in group '%s' as that group does not exist!",
+                    groupName.c_str());
                 throw Helpers::argumentinvalid_error("groupName", message.c_str());
             }
             return foundGroup->Users();

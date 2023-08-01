@@ -4,11 +4,6 @@
 /// @ref Helpers::getcursorposition "getcursorposition()" functions for manipulating
 /// the cursor position on Windows terminals.
 
-// This test requires /Zc:__cplusplus to be specified on the build command line.
-#if !defined(__cplusplus) || __cplusplus < 202002L
-#error Requires C++ 20 or later to compile!
-#endif
-#include <format>
 #include <iostream>
 #include <string>
 #include <vector>
@@ -20,6 +15,7 @@
 #include "_countof.h"
 #include "cursor.h"
 #include "split.h"
+#include "formatstring.h"
 
 namespace
 {
@@ -41,7 +37,7 @@ namespace
             if (hStdOut == INVALID_HANDLE_VALUE)
             {
                 DWORD lastError = ::GetLastError();
-                std::cout << std::format("GetStdHandle(STD_OUTPUT_HANDLE) failed: code = {:x}", lastError) << std::endl;
+                std::cout << Helpers::formatstring("GetStdHandle(STD_OUTPUT_HANDLE) failed: code = 0x%x", lastError) << std::endl;
             }
         }
         if (hStdIn == INVALID_HANDLE_VALUE)
@@ -54,7 +50,7 @@ namespace
             else
             {
                 DWORD lastError = ::GetLastError();
-                std::cout << std::format("GetStdHandle(STD_INPUT_HANDLE) failed: code = {:x}", lastError) << std::endl;
+                std::cout << Helpers::formatstring("GetStdHandle(STD_INPUT_HANDLE) failed: code = 0x%x", lastError) << std::endl;
             }
         }
 #endif
@@ -74,7 +70,7 @@ namespace
             if (!::SetConsoleMode(hStdIn, newMode))
             {
                 DWORD lastError = ::GetLastError();
-                std::cout << std::format("SetConsoleMode(hStdIn, newMode) failed: code = {:x}", lastError) << std::endl;
+                std::cout << Helpers::formatstring("SetConsoleMode(hStdIn, newMode) failed: code = 0x%x", lastError) << std::endl;
             }
         }
 #endif
@@ -92,7 +88,7 @@ namespace
             if (!::SetConsoleMode(hStdIn, inputMode))
             {
                 DWORD lastError = ::GetLastError();
-                std::cout << std::format("SetConsoleMode(hStdIn, inputMode) failed: code = {:x}", lastError) << std::endl;
+                std::cout << Helpers::formatstring("SetConsoleMode(hStdIn, inputMode) failed: code = 0x%x", lastError) << std::endl;
             }
         }
 #endif

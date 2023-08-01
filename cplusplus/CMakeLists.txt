@@ -124,6 +124,7 @@ target_sources(DesignPatternExamples_cpp
         helpers/cursor.h
         helpers/DateTime.h
         helpers/enablevtmode.h
+        helpers/formatstring.h
         helpers/makelocaltime.h
         helpers/mapofstrings.h
         helpers/readkey.h
@@ -134,12 +135,14 @@ target_sources(DesignPatternExamples_cpp
         helpers/stringlist.h
         helpers/strstri.h
         helpers/titlecase.h
+        helpers/uint32_to_binary.h
         helpers/wcsstri.h
     PRIVATE
         helpers/checkforkey.cpp
         helpers/cursor.cpp
         helpers/DateTime.cpp
         helpers/enablevtmode.cpp
+        helpers/formatstring.cpp
         helpers/makelocaltime.cpp
         helpers/readkey.cpp
         helpers/replace.cpp
@@ -150,6 +153,7 @@ target_sources(DesignPatternExamples_cpp
         helpers/stricmp.cpp
         helpers/strstri.cpp
         helpers/titlecase.cpp
+        helpers/uint32_to_binary.cpp
         helpers/wcsstri.cpp
     )
 

@@ -3,14 +3,10 @@
 /// Implementation of the @ref DesignPatternExamples_cpp::Interpreter_Class "Interpreter_Class"
 /// class used in the @ref interpreter_pattern.
 
-// This test requires /Zc:__cplusplus to be specified on the build command line.
-#if !defined(__cplusplus) || __cplusplus < 202002L
-#error Requires C++ 20 or later to compile!
-#endif
-#include <format> // Requires C++20
 #include <sstream>
 
 #include "helpers/_countof.h"
+#include "helpers/formatstring.h"
 #include "helpers/titlecase.h"
 
 #include "Interpreter_Class.h"
@@ -87,7 +83,7 @@ namespace DesignPatternExamples_cpp
             else
             {
                 // Rule 1: Invalid tokens returned in a std::string.
-                tokenAsString = std::format("<UNKNOWN TOKEN {0}>", token);
+                tokenAsString = Helpers::formatstring("<UNKNOWN TOKEN %d>", token);
             }
         }
         return tokenAsString;

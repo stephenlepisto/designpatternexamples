@@ -3,17 +3,13 @@
 /// Implementation of the @ref DesignPatternExamples_cpp::LoggerHelpers "LoggerHelpers"
 /// namespace functions used in the @ref bridge_pattern.
 
-#if !defined(__cplusplus) || __cplusplus < 202002L
-#error Requires C++ 20 or later to compile!
-#endif
-
-#include <format> // Requires C++20
-
 // Posix way of asking for bounds-checked versions of library functions.
 #define __STDC_WANT_LIB_EXT1__ 1
 #include <chrono>
 
 #include "helpers/DateTime.h"
+#include "helpers/formatstring.h"
+
 #include "Bridge_LoggerHelpers.h"
 using Helpers::DateTime;
 
@@ -48,7 +44,7 @@ namespace DesignPatternExamples_cpp
         std::string FormatLogLine(const std::string& logLevel, const std::string& msg)
         {
             std::string timestamp = _GetTimeStamp();
-            return std::format("{} [{}] {}", timestamp, logLevel, msg);
+            return Helpers::formatstring("%s [%s] %s", timestamp.c_str(), logLevel.c_str(), msg.c_str());
         }
 
     } // end namespace

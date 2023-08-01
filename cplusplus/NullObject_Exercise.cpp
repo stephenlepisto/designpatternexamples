@@ -4,13 +4,9 @@
 /// Implementation of the @ref DesignPatternExamples_cpp::NullObject_Exercise "NullObject_Exercise"()
 /// function as used in the @ref nullobject_pattern.
 
-// This test requires /Zc:__cplusplus to be specified on the build command line.
-#if !defined(__cplusplus) || __cplusplus < 202002L
-#error Requires C++ 20 or later to compile!
-#endif
-#include <format> // Requires C++20
-
 #include <iostream>
+
+#include "helpers/formatstring.h"
 
 #include "NullObject_Exercise.h"
 #include "Null_Object.h"
@@ -53,7 +49,7 @@ namespace DesignPatternExamples_cpp
         moveProcessor.ShowMoveList(moveString);
 
         std::cout << "  Executing the move commands:" << std::endl;
-        std::cout << std::format("    {0} -> ", moveString);
+        std::cout << Helpers::formatstring("    %s -> ", moveString.c_str());
         moveProcessor.ExecuteMoveList(moveString);
 
         std::cout << "  Done." << std::endl;

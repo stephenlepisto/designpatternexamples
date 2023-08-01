@@ -3,19 +3,16 @@
 /// Implementation of the @ref DesignPatternExamples_cpp::Composite_FileAccess "Composite_FileAccess"
 /// class used in the @ref composite_pattern.
 
-// This test requires /Zc:__cplusplus to be specified on the build command line.
-#if !defined(__cplusplus) || __cplusplus < 202002L
-#error Requires C++ 20 or later to compile!
-#endif
-
-#include <format> // Requires C++20
 #include <filesystem>
 #include <system_error>
 
-#include "Composite_FileAccess.h"
+#include "helpers/DateTime.h"
+#include "helpers/formatstring.h"
 #include "helpers/replace.h"
 #include "helpers/split.h"
-#include "helpers/DateTime.h"
+
+#include "Composite_FileAccess.h"
+
 using Helpers::DateTime;
 
 namespace DesignPatternExamples_cpp
@@ -100,7 +97,7 @@ namespace DesignPatternExamples_cpp
 
             if (fileDirEntry == nullptr)
             {
-                std::string msg = std::format("Unable to find '{0}'", filepath);
+                std::string msg = Helpers::formatstring("Unable to find '%s'", filepath.c_str());
                 std::error_code errorcode(2, std::generic_category());
                 throw std::filesystem::filesystem_error(msg, errorcode);
             }

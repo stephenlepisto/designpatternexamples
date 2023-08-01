@@ -9,16 +9,11 @@
 #ifndef __DECORATOR_CLASSES_H__
 #define __DECORATOR_CLASSES_H__
 
-// This test requires /Zc:__cplusplus to be specified on the build command line.
-#if !defined(__cplusplus) || __cplusplus < 202002L
-#error Requires C++ 20 or later to compile!
-#endif
-#include <format> // Requires C++20
-
 #include <string>
 #include <memory>
 
 #include "helpers/argumentnull_error.h"
+#include "helpers/formatstring.h"
 
 namespace DesignPatternExamples_cpp
 {
@@ -120,7 +115,7 @@ namespace DesignPatternExamples_cpp
         /// <returns>A string containing the decorated rendered element.</returns>
         std::string Render()
         {
-            return std::format("\x1b[47m{0}\x1b[49m", Decorator::Render());
+            return Helpers::formatstring("\x1b[47m%s\x1b[49m", Decorator::Render().c_str());
         }
     };
 
@@ -157,7 +152,7 @@ namespace DesignPatternExamples_cpp
         /// <returns>A string containing the decorated rendered element.</returns>
         std::string Render()
         {
-            return std::format("\x1b[4m{0}\x1b[24m", Decorator::Render());
+            return Helpers::formatstring("\x1b[4m%s\x1b[24m", Decorator::Render().c_str());
         }
     };
 
@@ -194,7 +189,7 @@ namespace DesignPatternExamples_cpp
         /// <returns>A string containing the decorated rendered element.</returns>
         std::string Render()
         {
-            return std::format("\x1b[31m{0}\x1b[39m", Decorator::Render());
+            return Helpers::formatstring("\x1b[31m%s\x1b[39m", Decorator::Render().c_str());
         }
     };
 

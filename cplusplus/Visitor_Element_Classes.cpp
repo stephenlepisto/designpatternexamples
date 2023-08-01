@@ -3,15 +3,10 @@
 /// Implementation of the @ref DesignPatternExamples_cpp::Visitor_Shop "Visitor_Shop"
 /// base class used in the @ref visitor_pattern
 
-// This test requires /Zc:__cplusplus to be specified on the build command line.
-#if !defined(__cplusplus) || __cplusplus < 202002L
-#error Requires C++ 20 or later to compile!
-#endif
-#include <format> // Requires C++20
-
 #include <iostream>
 #include <sstream>
 
+#include "helpers/formatstring.h"
 #include "helpers/stringlist.h"
 
 #include "Visitor_Element_Classes.h"
@@ -113,8 +108,8 @@ namespace DesignPatternExamples_cpp
         if (!itemsInThisShop.empty())
         {
             std::cout
-                << std::format("  {0}: Received an order for {1}.",
-                    Name(), StringizeList(itemsInThisShop))
+                << Helpers::formatstring("  %s: Received an order for %s.",
+                    Name().c_str(), StringizeList(itemsInThisShop).c_str())
                 << std::endl;
             orderPlaced = true;
         }
@@ -125,8 +120,8 @@ namespace DesignPatternExamples_cpp
                 if (!ingredientsForItems[itemToOrder].empty())
                 {
                     std::cout
-                        << std::format("  {0}:   {1} out of stock, ordering ingredients to make more...",
-                            Name(), itemToOrder)
+                        << Helpers::formatstring("  %s:   %s out of stock, ordering ingredients to make more...",
+                            Name().c_str(), itemToOrder.c_str())
                         << std::endl;
                     OrderVisitor visitor(ingredientsForItems[itemToOrder]);
                     village->Accept(&visitor);
@@ -139,9 +134,9 @@ namespace DesignPatternExamples_cpp
                     else
                     {
                         std::cout
-                            << std::format("  {0}:  Error! Ordered {1} but only received {2}.",
-                                Name(), StringizeList(ingredientsForItems[itemToOrder]),
-                                StringizeList(visitor.ItemsReceived))
+                            << Helpers::formatstring("  %s:  Error! Ordered %s but only received %s.",
+                                Name().c_str(), StringizeList(ingredientsForItems[itemToOrder]).c_str(),
+                                StringizeList(visitor.ItemsReceived).c_str())
                             << std::endl;
                     }
                 }
@@ -150,8 +145,8 @@ namespace DesignPatternExamples_cpp
                     // The ordered item has no ingredients so the
                     // ordered item will be magically added to inventory
                     std::cout
-                        << std::format("  {0}:   {1} out of stock, making...",
-                            Name(), itemToOrder)
+                        << Helpers::formatstring("  %s:   %s out of stock, making...",
+                            Name().c_str(), itemToOrder.c_str())
                         << std::endl;
                     AddItemToInventory(itemToOrder);
                 }
@@ -175,8 +170,8 @@ namespace DesignPatternExamples_cpp
                 else
                 {
                     std::cout
-                        << std::format("  Error!  {0}: Item {1} is not in the inventory when it should be.",
-                            Name(), item)
+                        << Helpers::formatstring("  Error!  %s: Item %s is not in the inventory when it should be.",
+                            Name().c_str(), item.c_str())
                         << std::endl;
                 }
             }
@@ -197,7 +192,7 @@ namespace DesignPatternExamples_cpp
 
             std::string output = StringizeList(itemsReceivedFromThisShop);
             std::cout
-                << std::format("  {0}: Order picked up for {1}.", Name(), output)
+                << Helpers::formatstring("  %s: Order picked up for %s.", Name().c_str(), output.c_str())
                 << std::endl;
         }
     }

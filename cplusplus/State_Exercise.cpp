@@ -4,14 +4,9 @@
 /// Implementation of the State_Exercise() function as used in the 
 /// @ref state_pattern.
 
-// This test requires /Zc:__cplusplus to be specified on the build command line.
-#if !defined(__cplusplus) || __cplusplus < 202002L
-#error Requires C++ 20 or later to compile!
-#endif
-#include <format> // Requires C++20
-
 #include <iostream>
 
+#include "helpers/formatstring.h"
 #include "helpers/split.h"
 #include "helpers/stringlist.h"
 
@@ -34,7 +29,7 @@ namespace // Anonymous
         int lineNumber = 1;
         for (std::string line : lines)
         {
-            std::cout << std::format("    {0:2}) {1}", lineNumber, line) << std::endl;
+            std::cout << Helpers::formatstring("    %2d) %s", lineNumber, line.c_str()) << std::endl;
             ++lineNumber;
         }
     }

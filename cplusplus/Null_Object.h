@@ -8,17 +8,12 @@
 #ifndef __NULL_OBJECT_H__
 #define __NULL_OBJECT_H__
 
-// This test requires /Zc:__cplusplus to be specified on the build command line.
-#if !defined(__cplusplus) || __cplusplus < 202002L
-#error Requires C++ 20 or later to compile!
-#endif
-#include <format> // Requires C++20
-
 #include <iostream>
 #include <memory>
 #include <string>
 #include <vector>
 
+#include "helpers/formatstring.h"
 
 namespace DesignPatternExamples_cpp
 {
@@ -96,7 +91,7 @@ namespace DesignPatternExamples_cpp
         virtual void Show()
         {
             std::cout
-                << std::format("    '{0}' -> {1}", _command, _name)
+                << Helpers::formatstring("    '%s' -> %s", _command.c_str(), _name.c_str())
                 << std::endl;
         }
 

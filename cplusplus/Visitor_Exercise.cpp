@@ -4,13 +4,9 @@
 /// Implementation of the Visitor_Exercise() function as used in the 
 /// @ref visitor_pattern.
 
-// This test requires /Zc:__cplusplus to be specified on the build command line.
-#if !defined(__cplusplus) || __cplusplus < 202002L
-#error Requires C++ 20 or later to compile!
-#endif
-#include <format> // Requires C++20
-
 #include <iostream>
+
+#include "helpers/formatstring.h"
 
 #include "Visitor_Exercise.h"
 #include "Visitor_Visitor_Class.h"
@@ -48,8 +44,8 @@ namespace DesignPatternExamples_cpp
 
         OrderVisitor visitor(StringList{ "hamburger" });
         std::cout
-            << std::format("  Ordering a hamburger from a shop in the {0}",
-                village->Name)
+            << Helpers::formatstring("  Ordering a hamburger from a shop in the %s",
+                village->Name.c_str())
             << std::endl;
         // Visit all shops and place an order for a hamburger at the shop
         // that sells them.  We don't know which shop it is and we don't
@@ -59,8 +55,9 @@ namespace DesignPatternExamples_cpp
         {
             // We are expecting only a single item
             std::cout
-                << std::format("  We received a {0} from {1}.",
-                    visitor.ItemsReceived[0], visitor.ShopNameReceivedFrom)
+                << Helpers::formatstring("  We received a %s from %s.",
+                    visitor.ItemsReceived[0].c_str(),
+                    visitor.ShopNameReceivedFrom.c_str())
                 << std::endl;
         }
         else
