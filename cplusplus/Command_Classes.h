@@ -8,16 +8,10 @@
 #ifndef __COMMAND_CLASSES_H__
 #define __COMMAND_CLASSES_H__
 
-// This test requires /Zc:__cplusplus to be specified on the build command line.
-#if !defined(__cplusplus) || __cplusplus < 202002L
-#error Requires C++ 20 or later to compile!
-#endif
-#include <format> // Requires C++20
-
-
 #include <memory>
 #include <string>
 
+#include "helpers/formatstring.h"
 
 namespace DesignPatternExamples_cpp
 {
@@ -200,11 +194,12 @@ namespace DesignPatternExamples_cpp
             std::string output = "<NO COMMAND>";
             if (_two_parameter_operation != nullptr)
             {
-                output = std::format("{0} \"{1}\" with \"{2}\"", _commandName, _argument1, _argument2);
+                output = Helpers::formatstring("%s \"%s\" with \"%s\"",
+                    _commandName.c_str(), _argument1.c_str(), _argument2.c_str());
             }
             else if (_no_parameter_operation != nullptr)
             {
-                output = std::format("{0}", _commandName);
+                output = Helpers::formatstring("%s", _commandName.c_str());
             }
             return output;
         }

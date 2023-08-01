@@ -4,14 +4,10 @@
 /// Implementation of the Composite_Exercise() function as used in the 
 /// @ref composite_pattern.
 
-// This test requires /Zc:__cplusplus to be specified on the build command line.
-#if !defined(__cplusplus) || __cplusplus < 202002L
-#error Requires C++ 20 or later to compile!
-#endif
-#include <format> // Requires C++20
-
 #include <filesystem>
 #include <iostream>
+
+#include "helpers/formatstring.h"
 
 #include "Composite_Exercise.h"
 #include "Composite_FileDirEntry.h"
@@ -36,7 +32,7 @@ namespace // Anonymous
         const size_t NAME_PADDING_SIZE = 20;
         std::string output = "";
         std::string spaces(static_cast<size_t>(depth) * 2, ' ');
-        output.append(std::format("{0}{1}", spaces, entry->Name()));
+        output.append(Helpers::formatstring("%s%s", spaces.c_str(), entry->Name().c_str()));
         size_t padding = NAME_PADDING_SIZE - entry->Name().size() - (static_cast<size_t>(depth) * 2);
         if (entry->FileDirType() == FileDirTypes::Directory)
         {
@@ -44,8 +40,8 @@ namespace // Anonymous
             padding--;
         }
         output.append(std::string(padding, ' '));
-        output.append(std::format("{0:4}", entry->Length()));
-        output.append(std::format("  {0}", entry->WhenModified().ToString()));
+        output.append(Helpers::formatstring("%4d", entry->Length()));
+        output.append(Helpers::formatstring("  %s", entry->WhenModified().ToString().c_str()));
         output.append("\n");
 
         FileDirEntryList children = entry->Children();

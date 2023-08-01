@@ -8,16 +8,12 @@
 #ifndef __HANDLECHAIN_MESSAGEWINDOW_CLASS_H__
 #define __HANDLECHAIN_MESSAGEWINDOW_CLASS_H__
 
-// This test requires /Zc:__cplusplus to be specified on the build command line.
-#if !defined(__cplusplus) || __cplusplus < 202002L
-#error Requires C++ 20 or later to compile!
-#endif
-#include <format> // Requires C++20
-
 #include <iostream>
 #include <map>
 #include <memory>
 #include <string>
+
+#include "helpers/formatstring.h"
 
 #include "HandlerChain_Class.h"
 #include "HandlerChain_Message_Class.h"
@@ -96,7 +92,7 @@ namespace DesignPatternExamples_cpp
         /// <returns>Returns a representation of this rectangle.</returns>
         std::string ToString()
         {
-            return std::format("x1={0:2}, y1={1:2}, x2={2:2}, y2={3:2}", Left, Top, Right, Bottom);
+            return Helpers::formatstring("x1=%2d, y1=%2d, x2=%2d, y2=%2d", Left, Top, Right, Bottom);
         }
     };
 
@@ -332,7 +328,9 @@ namespace DesignPatternExamples_cpp
         /// <returns>Returns a string representation of the message handler.</returns>
         std::string ToString()
         {
-            return std::format("[id={0:2}] \"{1}\" ({2}), selected={3}", ID(), _title, _windowBox.ToString(), _selected);
+            return Helpers::formatstring("[id=%2d] \"%s\" (%s), selected=%s", ID(),
+                _title.c_str(), _windowBox.ToString().c_str(),
+                _selected ? "true" : "false");
         }
     };
 

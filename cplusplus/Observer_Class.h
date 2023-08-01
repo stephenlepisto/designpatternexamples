@@ -9,16 +9,12 @@
 #ifndef __OBSERVER_CLASS_H__
 #define __OBSERVER_CLASS_H__
 
-// This test requires /Zc:__cplusplus to be specified on the build command line.
-#if !defined(__cplusplus) || __cplusplus < 202002L
-#error Requires C++ 20 or later to compile!
-#endif
-#include <format> // Requires C++20
-
 #include <iostream>
 #include <string>
 
 #include "helpers/argumentnull_error.h"
+#include "helpers/formatstring.h"
+#include "helpers/uint32_to_binary.h"
 
 #include "ObserverSubject_NumberProducer.h"
 
@@ -65,7 +61,7 @@ namespace DesignPatternExamples_cpp
         void NumberChanged()
         {
             uint32_t number = _numberProducer->FetchNumber();
-            std::cout << std::format("    Decimal    : {0}", number) << std::endl;
+            std::cout << Helpers::formatstring("    Decimal    : %u", number) << std::endl;
         }
     };
 
@@ -109,12 +105,13 @@ namespace DesignPatternExamples_cpp
         /// </summary>
         /// <remarks>
         /// In this example, this notification handler prints out the current
-        /// number in hexadecimal using C++'s std::format to make the conversion.
+        /// number in hexadecimal using C++'s Helpers::formatstring to make the
+        /// conversion.
         /// </remarks>
         void NumberChanged()
         {
             uint32_t number = _numberProducer->FetchNumber();
-            std::cout << std::format("    Hexadecimal: {0:#08X}", number) << std::endl;
+            std::cout << Helpers::formatstring("    Hexadecimal: %#08X", number) << std::endl;
         }
     };
 
@@ -158,13 +155,14 @@ namespace DesignPatternExamples_cpp
         /// </summary>
         /// <remarks>
         /// In this example, this notification handler prints out the current
-        /// number in binary, using C++'s std::format() to make the conversion.
+        /// number in binary.
         /// </remarks>
         void NumberChanged()
         {
             uint32_t number = _numberProducer->FetchNumber();
-
-            std::cout << std::format("    Binary     : {0:#032b}", number) << std::endl;
+            std::string binary = Helpers::uint32_to_binary(number);
+            std::cout << Helpers::formatstring("    Binary     : %s", binary.c_str())
+                      << std::endl;
         }
     };
 

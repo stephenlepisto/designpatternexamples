@@ -4,14 +4,10 @@
 /// Implementation of the Mediator_Exercise() function as used in the 
 /// @ref mediator_pattern.
 
-// This test requires /Zc:__cplusplus to be specified on the build command line.
-#if !defined(__cplusplus) || __cplusplus < 202002L
-#error Requires C++ 20 or later to compile!
-#endif
-#include <format> // Requires C++20
-
 #include <iostream>
 #include <sstream>
+
+#include "helpers/formatstring.h"
 
 #include "Mediator_Exercise.h"
 #include "Mediator_Class.h"
@@ -108,14 +104,14 @@ namespace DesignPatternExamples_cpp
         // Operation 1: Determine all groups
         std::cout << "  Operation 1: Show all groups" << std::endl;
         std::cout
-            << std::format("    All groups: {0}", _ListToString(mediator.GetAllGroups()))
+            << Helpers::formatstring("    All groups: %s", _ListToString(mediator.GetAllGroups()).c_str())
             << std::endl;
 
         //-----------------------------------------------------------------
         // Operation 2: Determine all users
         std::cout << "  Operation 2: Show all users" << std::endl;
         std::cout
-            << std::format("    All users : {0}", _ListToString(mediator.GetAllUsers()))
+            << Helpers::formatstring("    All users : {0}", _ListToString(mediator.GetAllUsers()).c_str())
             << std::endl;
 
         //-----------------------------------------------------------------
@@ -123,9 +119,10 @@ namespace DesignPatternExamples_cpp
         std::cout << "  Operation 3: Determine if a user is a member of a specific group." << std::endl;
         std::string userName = "Arthur";
         std::string groupName = "admins";
-        std::cout << std::format("    Is user '{0}' in the '{1}' group?", userName, groupName);
+        std::cout << Helpers::formatstring("    Is user '%s' in the '%s' group?",
+            userName.c_str(), groupName.c_str());
         std::cout
-            << std::format("  {0}", mediator.IsUserInGroup(userName, groupName) ? "Yes" : "No")
+            << Helpers::formatstring("  %s", mediator.IsUserInGroup(userName, groupName) ? "Yes" : "No")
             << std::endl;
 
         //-----------------------------------------------------------------
@@ -134,7 +131,8 @@ namespace DesignPatternExamples_cpp
         groupName = "Users";
         StringList userNames = mediator.GetUsersInGroup(groupName);
         std::cout
-            << std::format("    All users in '{0}' group: {1}", groupName, _ListToString(userNames))
+            << Helpers::formatstring("    All users in '%s' group: %s",
+                groupName.c_str(), _ListToString(userNames).c_str())
             << std::endl;
 
         //-----------------------------------------------------------------
@@ -143,7 +141,8 @@ namespace DesignPatternExamples_cpp
         userName = "Marvin";
         StringList groupNames = mediator.GetGroupsWithUser(userName);
         std::cout
-            << std::format("    All groups with user '{0}': {1}", userName, _ListToString(groupNames))
+            << Helpers::formatstring("    All groups with user '%s': %s",
+                userName.c_str(), _ListToString(groupNames).c_str())
             << std::endl;
 
         //-----------------------------------------------------------------
@@ -152,21 +151,26 @@ namespace DesignPatternExamples_cpp
         userName = "Marvin";
         groupName = "Power Users";
         mediator.RemoveUserFromGroup(userName, groupName);
-        std::cout << std::format("    Removed user '{0}' from group '{1}'", userName, groupName) << std::endl;
+        std::cout << Helpers::formatstring("    Removed user '%s' from group '%s'",
+            userName.c_str(), groupName.c_str()) << std::endl;
         groupNames = mediator.GetGroupsWithUser(userName);
         std::cout
-            << std::format("      All groups with user '{0}': {1}", userName, _ListToString(groupNames))
+            << Helpers::formatstring("      All groups with user '%s': %s", userName.c_str(),
+                _ListToString(groupNames).c_str())
             << std::endl;
 
         //-----------------------------------------------------------------
         // Operation 7: Add a user to a group
         std::cout << "  Operation 7: Add a user to a group." << std::endl;
         groupName = "Users";
-        std::cout << std::format("    Adding user '{0}' to group '{1}'.", userName, groupName) << std::endl;
+        std::cout << Helpers::formatstring("    Adding user '%s' to group '%s'.",
+                       userName.c_str(), groupName.c_str())
+                  << std::endl;
         mediator.AddUserToGroup(userName, groupName);
         groupNames = mediator.GetGroupsWithUser(userName);
         std::cout
-            << std::format("      All groups with user '{0}': {1}", userName, _ListToString(groupNames))
+            << Helpers::formatstring("      All groups with user '%s': %s",
+                userName.c_str(), _ListToString(groupNames).c_str())
             << std::endl;
 
         //-----------------------------------------------------------------
@@ -174,32 +178,36 @@ namespace DesignPatternExamples_cpp
         std::cout << "  Operation 8: Remove a user from all groups." << std::endl;
         userName = "Arthur";
         groupNames = mediator.GetGroupsWithUser(userName);
-        std::cout << std::format("    Removing user '{0}' from all groups.", userName) << std::endl;
+        std::cout << Helpers::formatstring("    Removing user '%s' from all groups.",
+                      userName.c_str())
+                  << std::endl;
         std::cout
-            << std::format("      Start: all groups with user '{0}': {1}", userName, _ListToString(groupNames))
+            << Helpers::formatstring("      Start: all groups with user '%s': %s",
+                userName.c_str(), _ListToString(groupNames).c_str())
             << std::endl;
         std::cout << "      Removing..." << std::endl;
         mediator.RemoveUserFromAllGroups(userName);
         groupNames = mediator.GetGroupsWithUser(userName);
         std::cout
-            << std::format("      End: all groups with user '{0}': {1}", userName, _ListToString(groupNames))
+            << Helpers::formatstring("      End: all groups with user '%s': %s",
+                userName.c_str(), _ListToString(groupNames).c_str())
             << std::endl;
 
         //-----------------------------------------------------------------
         // Operation 9: Remove a user (which also removes user from all groups)
         std::cout << "  Operation 9: Remove a user (also removes the user from all groups)." << std::endl;
         userName = "Marvin";
-        std::cout << std::format("    Removing user '{0}'.", userName) << std::endl;
+        std::cout << Helpers::formatstring("    Removing user '%s'.", userName.c_str()) << std::endl;
         mediator.RemoveUser(userName);
         std::cout
-            << std::format("      All users : {0}", _ListToString(mediator.GetAllUsers()))
+            << Helpers::formatstring("      All users : %s", _ListToString(mediator.GetAllUsers()).c_str())
             << std::endl;
         groupNames = mediator.GetAllGroups();
         for (std::string name : groupNames)
         {
             userNames = mediator.GetUsersInGroup(name);
             std::cout
-                << std::format("      Users in group '{0}': {1}", name, _ListToString(userNames))
+                << Helpers::formatstring("      Users in group '%s': %s", name.c_str(), _ListToString(userNames).c_str())
                 << std::endl;
         }
         //-----------------------------------------------------------------

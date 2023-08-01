@@ -3,13 +3,9 @@
 /// Implementation of the Observer_Exercise() function as used in the 
 /// @ref observer_pattern.
 
-// This test requires /Zc:__cplusplus to be specified on the build command line.
-#if !defined(__cplusplus) || __cplusplus < 202002L
-#error Requires C++ 20 or later to compile!
-#endif
-#include <format> // Requires C++20
-
 #include <iostream>
+
+#include "helpers/formatstring.h"
 
 #include "Observer_Exercise.h"
 #include "Observer_Class.h"
@@ -70,7 +66,7 @@ namespace DesignPatternExamples_cpp
         for (int index = 0; index < 10; ++index)
         {
             std::cout
-                << std::format("  Update {0} on number producer.  Results from observers:", index)
+                << Helpers::formatstring("  Update %d on number producer.  Results from observers:", index)
                 << std::endl;
             numberProducer->Update();
         }

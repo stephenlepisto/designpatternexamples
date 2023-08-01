@@ -4,13 +4,9 @@
 /// Implementation of the Proxy_Exercise() function as used in the 
 /// @ref proxy_pattern.
 
-// This test requires /Zc:__cplusplus to be specified on the build command line.
-#if !defined(__cplusplus) || __cplusplus < 202002L
-#error Requires C++ 20 or later to compile!
-#endif
-#include <format> // Requires C++20
-
 #include <iostream>
+
+#include "helpers/formatstring.h"
 
 #include "Proxy_Exercise.h"
 #include "Proxy_Class.h"
@@ -46,15 +42,15 @@ namespace DesignPatternExamples_cpp
 
         std::cout << "  Calling Dowork() on proxy..." << std::endl;
         std::string output = proxyObject->DoWork("Initial call");
-        std::cout << std::format("  Output from proxy = \"{0}\"", output) << std::endl;
+        std::cout << Helpers::formatstring("  Output from proxy = \"%s\"", output.c_str()) << std::endl;
 
         std::cout << "  Calling Dowork() on proxy..." << std::endl;
         output = proxyObject->DoWork("Second call");
-        std::cout << std::format("  Output from proxy = \"{0}\"", output) << std::endl;
+        std::cout << Helpers::formatstring("  Output from proxy = \"%s\"", output.c_str()) << std::endl;
 
         std::cout << "  Calling Dowork() on proxy..." << std::endl;
         output = proxyObject->DoWork("Third call");
-        std::cout << std::format("  Output from proxy = \"{0}\"", output) << std::endl;
+        std::cout << Helpers::formatstring("  Output from proxy = \"%s\"", output.c_str()) << std::endl;
 
         std::cout << "  Done." << std::endl;
     }

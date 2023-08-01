@@ -8,18 +8,14 @@
 #ifndef __HANDLERCHAIN_CLASS_H__
 #define __HANDLERCHAIN_CLASS_H__
 
-// This test requires /Zc:__cplusplus to be specified on the build command line.
-#if !defined(__cplusplus) || __cplusplus < 202002L
-#error Requires C++ 20 or later to compile!
-#endif
-#include <format> // Requires C++20
-
 #include <algorithm>
 #include <list>
 #include <memory>
 #include <mutex>
 #include <sstream>
 #include <string>
+
+#include "helpers/formatstring.h"
 
 namespace DesignPatternExamples_cpp
 {
@@ -192,7 +188,7 @@ namespace DesignPatternExamples_cpp
 
             for(IMessageHandler::shared_ptr_t& window : copyof_MessageHandlers)
             {
-                output << std::format("    {0}", window->ToString()) << std::endl;
+                output << Helpers::formatstring("    %s", window->ToString().c_str()) << std::endl;
             }
             return output.str();
         }

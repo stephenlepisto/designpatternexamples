@@ -4,13 +4,9 @@
 /// Implementation of the Decorator_Exercise() function as used in the 
 /// @ref decorator_pattern.
 
-// This test requires /Zc:__cplusplus to be specified on the build command line.
-#if !defined(__cplusplus) || __cplusplus < 202002L
-#error Requires C++ 20 or later to compile!
-#endif
-#include <format> // Requires C++20
-
 #include <iostream>
+
+#include "helpers/formatstring.h"
 
 #include "Decorator_Exercise.h"
 #include "Decorator_Classes.h"
@@ -47,10 +43,10 @@ namespace DesignPatternExamples_cpp
 
         // Now render the elements to the console.
         std::cout
-            << std::format("  base Text element: \"{0}\"", baseElement->Render())
+            << Helpers::formatstring("  base Text element: \"%s\"", baseElement->Render().c_str())
             << std::endl;
         std::cout
-            << std::format("  Decorated element: \"{0}\"", wrappedElement->Render())
+            << Helpers::formatstring("  Decorated element: \"%s\"", wrappedElement->Render().c_str())
             << std::endl;
 
         std::cout << "  Done." << std::endl;

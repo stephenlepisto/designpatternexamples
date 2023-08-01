@@ -4,14 +4,10 @@
 /// Implementation of the Interpreter_Exercise() function as used in the 
 /// @ref interpreter_pattern.
 
-// This test requires /Zc:__cplusplus to be specified on the build command line.
-#if !defined(__cplusplus) || __cplusplus < 202002L
-#error Requires C++ 20 or later to compile!
-#endif
-#include <format> // Requires C++20
-
 #include <iostream>
 #include <sstream>
+
+#include "helpers/formatstring.h"
 
 #include "Interpreter_Exercise.h"
 #include "Interpreter_Class.h"
@@ -32,7 +28,7 @@ namespace // Anonymous
         output << "[";
         for (size_t index = 0; index < tokens.size(); ++index)
         {
-            output << std::format("{0:3}", tokens[index]);
+            output << Helpers::formatstring("%3d", tokens[index]);
             if (index + 1 < tokens.size())
             {
                 output << ", ";
@@ -101,7 +97,7 @@ namespace DesignPatternExamples_cpp
             // expressed as a string.  Derived empirically.  It makes the
             // output easier to, er, interpret.
             std::cout
-                << std::format("  {0:<50} ==> \"{1}\"", tokensAsString, sentence)
+                << Helpers::formatstring("  %-50s ==> \"%s\"", tokensAsString.c_str(), sentence.c_str())
                 << std::endl;
         }
 

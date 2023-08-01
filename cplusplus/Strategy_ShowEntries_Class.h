@@ -7,6 +7,8 @@
 #ifndef __STRATEGY_SHOWENTRIES_H__
 #define __STRATEGY_SHOWENTRIES_H__
 
+#include "helpers/formatstring.h"
+
 #include "Strategy_SortEntries_Classes.h"
 
 namespace DesignPatternExamples_cpp
@@ -84,18 +86,18 @@ namespace DesignPatternExamples_cpp
 
             // This is a tabular display, making it easier to follow the sorted data.
             std::cout
-                << std::format("    Sort strategy: {0} (order = {1})", _sortEntries->ToString(), _reversedSort ? "Descending" : "Ascending")
+                << Helpers::formatstring("    Sort strategy: %s (order = %s)", _sortEntries->ToString().c_str(), _reversedSort ? "Descending" : "Ascending")
                 << std::endl;
             std::cout
-                << std::format("      {0:6} {1:3} {2:3}", "Name", "Age", "Height")
+                << Helpers::formatstring("      %6s %3s %3s", "Name", "Age", "Height")
                 << std::endl;
             std::cout
-                << std::format("      {0:6} {1:3} {2:3}", "------", "---", "------")
+                << Helpers::formatstring("      %6s %3s %3s", "------", "---", "------")
                 << std::endl;
             for(EntryInformation& entry : localEntries)
             {
                 std::cout
-                    << std::format("      {0}", entry.ToString())
+                    << Helpers::formatstring("      %s", entry.ToString().c_str())
                     << std::endl;
             }
         }

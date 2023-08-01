@@ -4,16 +4,11 @@
 /// Implementation of the Memento_Exercise() function as used in the 
 /// @ref memento_pattern.
 
-// This test requires /Zc:__cplusplus to be specified on the build command line.
-#if !defined(__cplusplus) || __cplusplus < 202002L
-#error Requires C++ 20 or later to compile!
-#endif
-#include <format> // Requires C++20
-
 #include <iostream>
 #include <sstream>
 #include <vector>
 
+#include "helpers/formatstring.h"
 #include "helpers/replace.h"
 
 #include "Memento_Exercise.h"
@@ -84,7 +79,8 @@ namespace // Anonymous
 
             // Show off what we (un)did.
             std::cout
-                << std::format("    undoing operation {0:<31}: \"{1}\"", lastMemento->Name(), text.ToString())
+                << Helpers::formatstring("    undoing operation %-31s: \"%s\"",
+                    lastMemento->Name().c_str(), text.ToString().c_str())
                 << std::endl;
         }
     }
@@ -99,11 +95,12 @@ namespace // Anonymous
     /// <param name="replaceText">What to replace the searchPattern with.</param>
     void Memento_ApplyReplaceOperation(Memento_TextObject& text, std::string searchPattern, std::string replaceText)
     {
-        std::string operationName = std::format("Replace '{0}' with '{1}'", searchPattern, replaceText);
+        std::string operationName = Helpers::formatstring("Replace '%s' with '%s'",
+            searchPattern.c_str(), replaceText.c_str());
         Memento_SaveForUndo(text, operationName);
         Memento_Operation_Replace(text, searchPattern, replaceText);
         std::cout
-            << std::format("    operation {0:<31}: \"{1}\"", operationName, text.ToString())
+            << Helpers::formatstring("    operation %-31s: \"%s\"", operationName.c_str(), text.ToString().c_str())
             << std::endl;
     }
 
@@ -120,7 +117,7 @@ namespace // Anonymous
         Memento_SaveForUndo(text, operationName);
         Memento_Operation_Reverse(text);
         std::cout
-            << std::format("    operation {0:<31}: \"{1}\"", operationName, text.ToString())
+            << Helpers::formatstring("    operation %-31s: \"%s\"", operationName.c_str(), text.ToString().c_str())
             << std::endl;
     }
 
@@ -167,7 +164,7 @@ namespace DesignPatternExamples_cpp
         Memento_TextObject text("This is a line of text on which to experiment.");
 
         std::cout
-            << std::format("  Starting text: \"{0}\"", text.ToString())
+            << Helpers::formatstring("  Starting text: \"%s\"", text.ToString().c_str())
             << std::endl;
 
         // Apply four operations to the text.
@@ -185,7 +182,7 @@ namespace DesignPatternExamples_cpp
         Memento_Undo(text);
 
         std::cout
-            << std::format("  Final text   : \"{0}\"", text.ToString())
+            << Helpers::formatstring("  Final text   : \"%s\"", text.ToString().c_str())
             << std::endl;
 
         std::cout << "  Done." << std::endl;

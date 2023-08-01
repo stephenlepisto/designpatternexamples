@@ -11,6 +11,7 @@
 #include "Command_Exercise.h"
 #include "Command_Classes.h"
 
+#include "helpers/formatstring.h"
 #include "helpers/replace.h"
 
 namespace // Anonymous
@@ -86,7 +87,8 @@ namespace // Anonymous
             }
 
             // Show off what we (un)did.
-            std::cout << std::format("    undoing command {0:<31}==> \"{1}\"", lastCommand.ToString(), text->ToString()) << std::endl;
+            std::cout << Helpers::formatstring("    undoing command %-31s==> \"%s\"",
+                lastCommand.ToString().c_str(), text->ToString().c_str()) << std::endl;
         }
     }
 
@@ -102,7 +104,8 @@ namespace // Anonymous
     {
         Command command(text, "Replace", Command_Operation_Replace, searchPattern, replaceText);
         Command_Save_And_Execute(command);
-        std::cout << std::format("    command {0:<31}==> \"{1}\"", command.ToString(), text->ToString()) << std::endl;
+        std::cout << Helpers::formatstring("    command %-31s==> \"%s\"",
+            command.ToString().c_str(), text->ToString().c_str()) << std::endl;
     }
 
 
@@ -117,7 +120,8 @@ namespace // Anonymous
     {
         Command command(text, "Reverse", Command_Operation_Reverse);
         Command_Save_And_Execute(command);
-        std::cout << std::format("    command {0:<31}==> \"{1}\"", command.ToString(), text->ToString()) << std::endl;
+        std::cout << Helpers::formatstring("    command %-31s==> \"%s\"",
+            command.ToString().c_str(), text->ToString().c_str()) << std::endl;
     }
 
 } // end anonymous namespace
@@ -146,7 +150,7 @@ namespace DesignPatternExamples_cpp
         // The base text object to work from.
         Command_TextObject::shared_ptr_t text = std::make_shared<Command_TextObject>("This is a line of text on which to experiment.");
 
-        std::cout << std::format("  Starting text: \"{0}\"", text->ToString()) << std::endl;
+        std::cout << Helpers::formatstring("  Starting text: \"%s\"", text->ToString().c_str()) << std::endl;
 
         // Apply four operations to the text.
         Command_ApplyReplaceCommand(text, "text", "painting");
@@ -162,7 +166,7 @@ namespace DesignPatternExamples_cpp
         Command_Undo(text);
         Command_Undo(text);
 
-        std::cout << std::format("  Final text   : \"{0}\"", text->ToString()) << std::endl;
+        std::cout << Helpers::formatstring("  Final text   : \"%s\"", text->ToString().c_str()) << std::endl;
 
         std::cout << "  Done." << std::endl;
     }

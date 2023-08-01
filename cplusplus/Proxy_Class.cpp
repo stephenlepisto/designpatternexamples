@@ -5,13 +5,10 @@
 /// @ref DesignPatternExamples_cpp::Proxy_Classes_Container "Proxy_Classes_Container"
 /// class used in the @ref proxy_pattern
 
-// This test requires /Zc:__cplusplus to be specified on the build command line.
-#if !defined(__cplusplus) || __cplusplus < 202002L
-#error Requires C++ 20 or later to compile!
-#endif
-#include <format> // Requires C++20
 #include <iostream>
 #include <memory>
+
+#include "helpers/formatstring.h"
 
 #include "Proxy_Class.h"
 
@@ -43,7 +40,7 @@ namespace Proxy_Class_Private
         //////////////////////////////////////////////////////////////////
         std::string DoWork(std::string someArgument)
         {
-            return std::format("Real class received '{0}'", someArgument);
+            return Helpers::formatstring("Real class received '%s'", someArgument.c_str());
         }
     };
 

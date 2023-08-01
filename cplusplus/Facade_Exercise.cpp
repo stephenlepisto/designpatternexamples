@@ -4,13 +4,9 @@
 /// Implementation of the Facade_Exercise() function as used in the 
 /// @ref facade_pattern.
 
-// This test requires /Zc:__cplusplus to be specified on the build command line.
-#if !defined(__cplusplus) || __cplusplus < 202002L
-#error Requires C++ 20 or later to compile!
-#endif
-#include <format> // Requires C++20
-
 #include <iostream>
+
+#include "helpers/formatstring.h"
 
 #include "Facade_Exercise.h"
 #include "FacadeSubsystem_Interface.h"
@@ -28,10 +24,10 @@ namespace // Anonymous
     /// <param name="idcodes">Array of 32-bit idcodes to be printed in hex.</param>
     void _Facade_ShowIdCodes(int chainIndex, const std::vector<uint32_t>& idcodes)
     {
-        std::cout << std::format("    On chain {0}, idcodes = [ ", chainIndex);
+        std::cout << Helpers::formatstring("    On chain %d, idcodes = [ ", chainIndex);
         for (uint32_t idcode : idcodes)
         {
-            std::cout << std::format("0x{0:X} ", idcode);
+            std::cout << Helpers::formatstring("0x%X ", idcode);
         }
         std::cout << "]" << std::endl;
     }

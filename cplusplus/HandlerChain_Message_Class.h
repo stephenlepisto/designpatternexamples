@@ -8,12 +8,9 @@
 #ifndef __HANDLERCHAIN_MESSAGE_CLASS_H__
 #define __HANDLERCHAIN_MESSAGE_CLASS_H__
 
-// This test requires /Zc:__cplusplus to be specified on the build command line.
-#if !defined(__cplusplus) || __cplusplus < 202002L
-#error Requires C++ 20 or later to compile!
-#endif
-#include <format> // Requires C++20
 #include <string>
+
+#include "helpers/formatstring.h"
 
 namespace DesignPatternExamples_cpp
 {
@@ -83,7 +80,7 @@ namespace DesignPatternExamples_cpp
         /// <returns>A string containing a string representation of the position.</returns>
         std::string ToString()
         {
-            return std::format("x={0:2},y={1:2}", X, Y);
+            return Helpers::formatstring("x=%2d,y=%2d", X, Y);
         }
     };
 
@@ -151,7 +148,7 @@ namespace DesignPatternExamples_cpp
                     messageTypeAsString = "Unknown message type";
                     break;
             }
-            return std::format("{0} at ({1})", messageTypeAsString, Position.ToString());
+            return Helpers::formatstring("%s at (%s)", messageTypeAsString.c_str(), Position.ToString().c_str());
         }
     };
 
