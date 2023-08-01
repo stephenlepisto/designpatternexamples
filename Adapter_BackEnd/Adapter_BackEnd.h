@@ -67,7 +67,7 @@ extern "C" {
     /// specific memory block.</param>
     /// <returns>Returns a value from the DDR_ErrorCode enumeration indicating
     /// success or failure.</returns>
-    DllExport DDR_ErrorCode extern DDR_OpenMemoryBlock(const char* blockName, int* dataHandle);
+    DllExport DDR_ErrorCode DDR_OpenMemoryBlock(const char* blockName, int* dataHandle);
 
     /// <summary>
     /// Close access to a previously opened memory block, thus releasing it for
@@ -77,7 +77,7 @@ extern "C" {
     /// obtained from the DDR_OpenMemoryBlock() function.</param>
     /// <returns>Returns a value from the DDR_ErrorCode enumeration indicating
     /// success or failure.</returns>
-    DllExport DDR_ErrorCode extern DDR_CloseMemoryBlock(int dataHandle);
+    DllExport DDR_ErrorCode DDR_CloseMemoryBlock(int dataHandle);
 
     /// <summary>
     /// Retrieve the number of chunks in the memory block indicated by the handle
@@ -89,7 +89,7 @@ extern "C" {
     /// memory block.</param>
     /// <returns>Returns a value from the DDR_ErrorCode enumeration indicating
     /// success or failure.</returns>
-    DllExport DDR_ErrorCode extern DDR_GetMemorySize(int dataHandle, int *memorySizeInChunks);
+    DllExport DDR_ErrorCode DDR_GetMemorySize(int dataHandle, int *memorySizeInChunks);
 
     /// <summary>
     /// Read a single 32-bit value at the given offset in the memory block indicated
@@ -102,7 +102,7 @@ extern "C" {
     /// <param name="value">Returns the requested value.</param>
     /// <returns>Returns a value from the DDR_ErrorCode enumeration indicating
     /// success or failure.</returns>
-    DllExport DDR_ErrorCode extern DDR_GetDataChunk(int dataHandle, int chunkOffset, uint32_t *value);
+    DllExport DDR_ErrorCode DDR_GetDataChunk(int dataHandle, int chunkOffset, uint32_t *value);
 
     /// <summary>
     /// Writes a single 32-bit value to the given offset in the memory block indicated
@@ -115,7 +115,7 @@ extern "C" {
     /// <param name="value">The value to write to the memory block</param>
     /// <returns>Returns a value from the DDR_ErrorCode enumeration indicating
     /// success or failure.</returns>
-    DllExport DDR_ErrorCode extern DDR_SetDataChunk(int dataHandle, int chunkOffset, uint32_t value);
+    DllExport DDR_ErrorCode DDR_SetDataChunk(int dataHandle, int chunkOffset, uint32_t value);
 
 #ifdef __cplusplus
 }
