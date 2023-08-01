@@ -29,7 +29,7 @@ namespace DesignPatternExamples_cpp
     /// All visitors must implement this base class and then override one or
     /// more of the VisitXXX() methods, depending on which shop type the
     /// visitor class is interested in.
-    /// 
+    ///
     /// For every new shop class added, a new VisitXXX() method needs to be
     /// added to this base class and then all visitor classes must be rebuilt.
     /// There is no way around this as the Visitor_Shop and Visitor classes are
@@ -42,43 +42,43 @@ namespace DesignPatternExamples_cpp
         /// Let the visitor visit a Visitor_Restaurant shop.
         /// </summary>
         /// <param name="shop">The specific restaurant being visited.</param>
-        virtual void VisitRestaurant(Visitor_Restaurant* shop) { shop; }
+        virtual void VisitRestaurant(Visitor_Restaurant* /*shop*/) {  }
 
         /// <summary>
         /// Let the visitor visit a Visitor_Butcher shop.
         /// </summary>
         /// <param name="shop">The specific butcher shop being visited.</param>
-        virtual void VisitButcher(Visitor_Butcher* shop) { shop; }
+        virtual void VisitButcher(Visitor_Butcher* /*shop*/) {  }
 
         /// <summary>
         /// Let the visitor visit a Visitor_Baker shop.
         /// </summary>
         /// <param name="shop">The specific baker shop being visited.</param>
-        virtual void VisitBaker(Visitor_Baker* shop) { shop; }
+        virtual void VisitBaker(Visitor_Baker* /*shop*/) {  }
 
         /// <summary>
         /// Let the visitor visit a Visitor_VegetableGrocer shop.
         /// </summary>
         /// <param name="shop">The specific vegetable grocer being visited.</param>
-        virtual void VisitVegetableGrocer(Visitor_VegetableGrocer* shop) { shop; }
+        virtual void VisitVegetableGrocer(Visitor_VegetableGrocer* /*shop*/) {  }
 
         /// <summary>
         /// Let the visitor visit a Visitor_CondimentGrocer shop.
         /// </summary>
         /// <param name="shop">The specific condiment grocer being visited.</param>
-        virtual void VisitCondimentGrocer(Visitor_CondimentGrocer* shop) { shop; }
+        virtual void VisitCondimentGrocer(Visitor_CondimentGrocer* /*shop*/) {  }
 
         /// <summary>
         /// Let the visitor visit a Visitor_PickleGrocer shop.
         /// </summary>
         /// <param name="shop">The specific pickle grocer being visited.</param>
-        virtual void VisitPickleGrocer(Visitor_PickleGrocer* shop) { shop; }
+        virtual void VisitPickleGrocer(Visitor_PickleGrocer* /*shop*/) {  }
 
         /// <summary>
         /// Let the visitor visit a Visitor_Maker shop.
         /// </summary>
         /// <param name="shop">The specific maker shop being visited.</param>
-        virtual void VisitMaker(Visitor_Maker* shop) { shop; }
+        virtual void VisitMaker(Visitor_Maker* /*shop*/) {  }
     };
 
 
@@ -252,4 +252,3 @@ namespace DesignPatternExamples_cpp
 } // end namespace
 
 #endif // __VISITOR_ELEMENT_CLASSES_H__
-
