@@ -10,6 +10,7 @@
 #define __ITERATOR_ITERATORS_H__
 
 #include <stdbool.h>
+#include <stddef.h>
 
 /// <summary>
 /// Represents a key/value pair where the key and value are strings.
