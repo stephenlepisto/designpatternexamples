@@ -8,6 +8,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "helpers/strdup.h"
+
 #include "Command_TextObject.h"
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -21,7 +23,7 @@ bool Command_TextObject_Initialize(Command_TextObject* textObject, const char* s
     if (textObject != NULL && startingText != NULL)
     {
         textObject->startingText = startingText;
-        textObject->text = _strdup(textObject->startingText);
+        textObject->text = STRDUP(textObject->startingText);
         initialized = true;
     }
     return initialized;
@@ -48,7 +50,7 @@ void Command_TextObject_Reset(Command_TextObject* textObject)
     if (textObject != NULL)
     {
         free(textObject->text);
-        textObject->text = _strdup(textObject->startingText);
+        textObject->text = STRDUP(textObject->startingText);
     }
 }
 
@@ -75,7 +77,7 @@ void Command_TextObject_SetText(Command_TextObject* textObject, const char* newT
     if (textObject != NULL && newText != NULL)
     {
         free(textObject->text);
-        textObject->text = _strdup(newText);
+        textObject->text = STRDUP(newText);
     }
 }
 
