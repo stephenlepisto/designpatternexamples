@@ -27,8 +27,8 @@ namespace Helpers
         /// <param name="parm">The parameter that was invalid.</param>
         /// <param name="what_arg">Specific message indicating the problem.</param>
         argumentinvalid_error(const std::string& parm, const std::string& what_arg)
-            : _parameter(parm)
-            , runtime_error(what_arg)
+            : runtime_error(what_arg)
+            , _parameter(parm)
         {
         }
 
@@ -38,8 +38,8 @@ namespace Helpers
         /// <param name="parm">The parameter that was invalid.</param>
         /// <param name="what_arg">Specific message indicating the problem.</param>
         argumentinvalid_error(const char* parm, const char* what_arg)
-            : _parameter(parm != nullptr ? parm : "")
-            , runtime_error(what_arg)
+            : runtime_error(what_arg)
+            , _parameter(parm != nullptr ? parm : "")
         {
         }
 
@@ -56,4 +56,3 @@ namespace Helpers
 } // end namespace
 
 #endif // __ARGUMENT_ERROR_H__
-

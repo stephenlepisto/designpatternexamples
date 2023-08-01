@@ -3,6 +3,7 @@
 /// Implementation of the Interpreter_Interpret() function
 /// used in the @ref interpreter_pattern.
 
+#include <errno.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>

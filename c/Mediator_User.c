@@ -7,6 +7,8 @@
 #include <string.h>
 #include <memory.h>
 
+#include "helpers/strdup.h"
+
 #include "Mediator_User.h"
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -21,7 +23,7 @@ User* User_Create(const char* userName)
         user = calloc(1, sizeof(User));
         if (user != NULL)
         {
-            user->Name = (const char*)_strdup(userName);
+            user->Name = (const char*)STRDUP(userName);
             if (user->Name == NULL)
             {
                 free(user);

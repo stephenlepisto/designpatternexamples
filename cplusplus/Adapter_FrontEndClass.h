@@ -30,8 +30,15 @@ namespace DesignPatternExamples_cpp
     public:
         DataReaderWriterInitException(std::string msg)
             : message(msg)
-            , exception(message.c_str())
         {
+        }
+
+        /// <summary>
+        /// Override exception::what() to return the message we are tracking.
+        /// </summary>
+        const char* what()
+        {
+            return message.c_str();
         }
     };
 
@@ -47,11 +54,17 @@ namespace DesignPatternExamples_cpp
     public:
         DataReaderWriterException(std::string msg)
             : message(msg)
-            , exception(message.c_str())
         {
         }
-    };
 
+        /// <summary>
+        /// Override exception::what() to return the message we are tracking.
+        /// </summary>
+        const char *what()
+        {
+            return message.c_str();
+        }
+    };
 
     /// <summary>
     /// Represents a data reader/writer to a caller.
@@ -70,7 +83,7 @@ namespace DesignPatternExamples_cpp
             Memory_Block_1 = 1,  ///< Second block
             Memory_Block_2 = 2,  ///< Third block
         };
-    
+
     private:
         bool _initialized;
         int _dataHandle;

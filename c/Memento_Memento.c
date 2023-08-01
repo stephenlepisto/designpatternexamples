@@ -9,6 +9,8 @@
 #include <string.h>
 #include <memory.h>
 
+#include "helpers/strdup.h"
+
 #include "Memento_Memento.h"
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -24,11 +26,11 @@ Memento* Memento_Create(const char* text, const char* name)
         if (memento != NULL)
         {
             memento->text = NULL;
-            memento->name = _strdup(name);
+            memento->name = STRDUP(name);
             if (memento->name != NULL)
             {
 
-                memento->text = _strdup(text);
+                memento->text = STRDUP(text);
                 if (memento->text == NULL)
                 {
                     printf("  Error! Out of memory preserving text in the Memento!\n");
@@ -67,4 +69,3 @@ void Memento_Destroy(Memento* memento)
         free(memento);
     }
 }
-

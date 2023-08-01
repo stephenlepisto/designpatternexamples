@@ -24,7 +24,7 @@ namespace DesignPatternExamples_cpp
     /// <summary>
     /// Represents a rectangular region, with upper left and lower right
     /// coordinates.
-    /// 
+    ///
     /// For this example, the minimum width of a rectangle is 4 x 4.
     /// </summary>
     class WindowRectangle
@@ -233,8 +233,8 @@ namespace DesignPatternExamples_cpp
             , _title(title)
             , _windowBox(WindowRectangle(x, y, width, height))
             , _closeBox(WindowRectangle(_windowBox.Right - CLOSE_WIDTH, _windowBox.Top, CLOSE_WIDTH, CLOSE_HEIGHT))
-            , _handlerChain(handlerChain)
             , _selected(false)
+            , _handlerChain(handlerChain)
         {
             // Construct our lookup table for message handlers.
             _messageHandlers[MessageType::ButtonDown] = &_HandleButtonDownMessage;

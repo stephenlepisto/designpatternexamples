@@ -164,6 +164,7 @@ target_sources(DesignPatternExamples_c
         helpers/sleep.h
         helpers/split.h
         helpers/stack.h
+        helpers/strdup.h
         helpers/stringlist.h
         helpers/strstri.h
         helpers/titlecase.h

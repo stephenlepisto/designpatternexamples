@@ -6,13 +6,14 @@
 /// Memento_TextObject_ToString(),
 /// as used in the @ref memento_pattern.
 
-#include "Memento_TextObject.h"
-
 #include <stdlib.h>
 #include <stdio.h>
 #include <memory.h>
 #include <string.h>
 
+#include "helpers/strdup.h"
+
+#include "Memento_TextObject.h"
 
 ///////////////////////////////////////////////////////////////////////////////
 // Memento_TextObject_Create()
@@ -26,7 +27,7 @@ Memento_TextObject* Memento_TextObject_Create(const char* text)
         textObject = calloc(1, sizeof(Memento_TextObject));
         if (textObject != NULL)
         {
-            textObject->text = _strdup(text);
+            textObject->text = STRDUP(text);
             if (textObject->text == NULL)
             {
                 printf("  Error!  Out of memory duplicating text for Memento_TextObject!\n");
@@ -78,7 +79,7 @@ void Memento_TextObject_SetText(Memento_TextObject* textObject, const char* newT
     if (textObject != NULL && newText != NULL)
     {
         free(textObject->text);
-        textObject->text = _strdup(newText);
+        textObject->text = STRDUP(newText);
         if (textObject->text == NULL)
         {
             printf("  Error!  Out of memory setting text on a Memento_TextObject!\n");

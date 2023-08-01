@@ -19,12 +19,12 @@ static HANDLE hStdOut = INVALID_HANDLE_VALUE;
 static DWORD inputMode = 0;
 #endif
 
+#ifdef _MSC_VER
 /// <summary>
 /// Initialize the console.
 /// </summary>
 static void _init_console_mode(void)
 {
-#ifdef _MSC_VER
     if (hStdOut == INVALID_HANDLE_VALUE)
     {
         hStdOut = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -47,8 +47,8 @@ static void _init_console_mode(void)
             printf("GetStdHandle(STD_INPUT_HANDLE) failed: code = 0x%x\n", lastError);
         }
     }
-#endif
 }
+#endif
 
 /// <summary>
 /// Disable echoing of input and disable line input mode (where the Enter
@@ -106,24 +106,29 @@ void getcursorposition(int* row, int* column)
         char buffer[16] = { 0 };
         // Must specify a delimiter, otherwise will block until eof (ctrl-Z).
         int c = 0;
-        int bufferIndex = 0;
-        while (c != 'R' && c != EOF)
+        size_t bufferIndex = 0;
+        while (c != 'R' && c != EOF && bufferIndex < sizeof(buffer))
         {
             c = getc(stdin);
             buffer[bufferIndex] = (char)c;
             bufferIndex++;
         }
-        // Expecting ESC [ <r> ; <c> R (no spaces)
-        if (strlen(buffer) > 2 && buffer[0] == '\x1b' && buffer[1] == '[')
+        // If we filled the buffer, we got some really strange input so assume
+        // it's something we can't handle and ignore it.
+        if (bufferIndex < sizeof(buffer))
         {
-            SplitList elements = { 0 };
-            split(buffer, "[;R", &elements);
-            if (elements.strings_count >= 3)
+            // Expecting ESC [ <r> ; <c> R (no spaces)
+            if (bufferIndex > 2 && buffer[0] == '\x1b' && buffer[1] == '[')
             {
-                *row = (int)_strtoi64(elements.strings[1], NULL, 0);
-                *column = (int)_strtoi64(elements.strings[2], NULL, 0);
+                SplitList elements = { 0 };
+                split(buffer, "[;R", &elements);
+                if (elements.strings_count >= 3)
+                {
+                    *row = (int)strtol(elements.strings[1], NULL, 0);
+                    *column = (int)strtol(elements.strings[2], NULL, 0);
+                }
+                SplitList_Clear(&elements);
             }
-            SplitList_Clear(&elements);
         }
         _enableInputEcho();
     }

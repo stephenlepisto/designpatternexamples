@@ -3,7 +3,7 @@
 /// Implementation of the @ref Helpers::wcsstri "wcsstri" function, case-insensitive
 /// string search for wide character strings.
 
-#include <ctype.h>
+#include <wctype.h>
 #include "wcsstri.h"
 
 namespace Helpers

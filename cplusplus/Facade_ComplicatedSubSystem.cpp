@@ -49,10 +49,10 @@ namespace DesignPatternExamples_cpp
         /// <param name="tapType">Value from the DeviceTypes enumeration.</param>
         /// <param name="initiallyVisible">true if initially visible; otherwise false.</param>
         DeviceNode(std::string name, uint32_t idcode, DeviceTypes tapType, bool initiallyVisible)
-            : Name(name)
+            : Visible(initiallyVisible)
+            , Name(name)
             , Idcode(idcode)
             , DeviceType(tapType)
-            , Visible(initiallyVisible)
         {
         }
     };
@@ -276,7 +276,7 @@ namespace DesignPatternExamples_cpp
         {
             bool locked = false;
 
-            if (chainIndex >= 0 && chainIndex < _deviceChains.size())
+            if (chainIndex >= 0 && chainIndex < static_cast<int>(_deviceChains.size()))
             {
                 if (!_deviceChains[chainIndex].IsLocked)
                 {
@@ -299,7 +299,7 @@ namespace DesignPatternExamples_cpp
         {
             bool unlocked = false;
 
-            if (chainIndex >= 0 && chainIndex < _deviceChains.size())
+            if (chainIndex >= 0 && chainIndex < static_cast<int>(_deviceChains.size()))
             {
                 if (_deviceChains[chainIndex].IsLocked)
                 {
@@ -318,7 +318,7 @@ namespace DesignPatternExamples_cpp
         /// <param name="chainIndex">The index of the device chain to access (0..n-1).</param>
         void ResetDeviceChain(int chainIndex) override
         {
-            if (chainIndex >= 0 && chainIndex < _deviceChains.size())
+            if (chainIndex >= 0 && chainIndex < static_cast<int>(_deviceChains.size()))
             {
                 _deviceChains[chainIndex].ResetVisibility();
             }
@@ -335,7 +335,7 @@ namespace DesignPatternExamples_cpp
         /// visible.</param>
         void EnableDevicesInDeviceChain(int chainIndex, uint32_t deviceselectMask) override
         {
-            if (chainIndex >= 0 && chainIndex < _deviceChains.size())
+            if (chainIndex >= 0 && chainIndex < static_cast<int>(_deviceChains.size()))
             {
                 _deviceChains[chainIndex].SelectNodes(deviceselectMask);
             }
@@ -352,7 +352,7 @@ namespace DesignPatternExamples_cpp
         /// visible.</param>
         void DisableDevicesInDeviceChain(int chainIndex, uint32_t deviceselectMask) override
         {
-            if (chainIndex >= 0 && chainIndex < _deviceChains.size())
+            if (chainIndex >= 0 && chainIndex < static_cast<int>(_deviceChains.size()))
             {
                 _deviceChains[chainIndex].DeselectNodes(deviceselectMask);
             }
@@ -369,7 +369,7 @@ namespace DesignPatternExamples_cpp
         {
             std::vector<uint32_t> idcodes;
 
-            if (chainIndex >= 0 && chainIndex < _deviceChains.size())
+            if (chainIndex >= 0 && chainIndex < static_cast<int>(_deviceChains.size()))
             {
                 idcodes = _deviceChains[chainIndex].GetIdCodesForVisibleNodes();
             }

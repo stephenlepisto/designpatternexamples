@@ -23,14 +23,12 @@ namespace
     HANDLE hStdIn = INVALID_HANDLE_VALUE;
     HANDLE hStdOut = INVALID_HANDLE_VALUE;
     DWORD inputMode = 0;
-#endif
 
     /// <summary>
     /// Initialize the console.
     /// </summary>
     void _init_console_mode()
     {
-#ifdef _MSC_VER
         if (hStdOut == INVALID_HANDLE_VALUE)
         {
             hStdOut = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -53,8 +51,8 @@ namespace
                 std::cout << Helpers::formatstring("GetStdHandle(STD_INPUT_HANDLE) failed: code = 0x%x", lastError) << std::endl;
             }
         }
-#endif
     }
+#endif
 
     /// <summary>
     /// Disable echoing of input and disable line input mode (where the Enter

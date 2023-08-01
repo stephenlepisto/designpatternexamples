@@ -3,6 +3,7 @@
 /// Implementation of the @ref Helpers::split "split" functions, for splitting
 /// a narrow character string on delimiters.
 
+#include <cstring>
 #include "split.h"
 
 namespace Helpers

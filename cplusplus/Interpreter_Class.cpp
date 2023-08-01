@@ -64,7 +64,7 @@ namespace DesignPatternExamples_cpp
         std::string tokenAsString = "";
 
         // Rule 1: token is between 0 and the number of common words.
-        if (token >= 0 && token < _countof(_commonwords))
+        if (token >= 0 && token < static_cast<int>(_countof(_commonwords)))
         {
             tokenAsString = _commonwords[token];
         }
