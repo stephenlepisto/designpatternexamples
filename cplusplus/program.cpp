@@ -139,7 +139,7 @@ namespace DesignPatternExamples_cpp
         {
             bool optionsValid = true;
 
-            options.exercise_names;
+            options.exercise_names.clear();
 
             if (args.size() > 0)
             {
