@@ -9,7 +9,7 @@
 
 #include "helpers/stringlist.h"
 
-#include "Visitor_Element_classes.h"
+#include "Visitor_Element_Classes.h"
 
 namespace DesignPatternExamples_cpp
 {
@@ -17,7 +17,7 @@ namespace DesignPatternExamples_cpp
     /// <summary>
     /// A visitor used for ordering items from various shops.  The user starts
     /// with an instance of this class and a list of what they want to order.
-    /// 
+    ///
     /// A shop will used this visitor to order ingredients to make a requested
     /// item.
     /// </summary>
