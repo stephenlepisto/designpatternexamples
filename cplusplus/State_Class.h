@@ -44,7 +44,7 @@ namespace DesignPatternExamples_cpp
     /// <summary>
     /// Indicates End-of-file (no more data available).
     /// </summary>
-    const char EOF_CHAR = static_cast<const char>(0xff);
+    const char EOF_CHAR = static_cast<char>(0xff);
 
 
     //########################################################################
