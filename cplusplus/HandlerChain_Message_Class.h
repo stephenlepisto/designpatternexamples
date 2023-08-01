@@ -101,7 +101,7 @@ namespace DesignPatternExamples_cpp
         /// <summary>
         /// Value from the MessageType enumeration indicating the type of this message.
         /// </summary>
-        MessageType MessageType;
+        enum MessageType MessageType;
 
         /// <summary>
         /// Position of message when the message was sent.  In a real system, this
@@ -155,4 +155,3 @@ namespace DesignPatternExamples_cpp
 } // end namespace
 
 #endif // __HANDLERCHAIN_MESSAGE_CLASS_H__
-
