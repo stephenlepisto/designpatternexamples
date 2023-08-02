@@ -42,43 +42,43 @@ namespace DesignPatternExamples_cpp
         /// Let the visitor visit a Visitor_Restaurant shop.
         /// </summary>
         /// <param name="shop">The specific restaurant being visited.</param>
-        virtual void VisitRestaurant(Visitor_Restaurant* /*shop*/) {  }
+        virtual void VisitRestaurant(Visitor_Restaurant* shop) { (void)shop; /* unused */  }
 
         /// <summary>
         /// Let the visitor visit a Visitor_Butcher shop.
         /// </summary>
         /// <param name="shop">The specific butcher shop being visited.</param>
-        virtual void VisitButcher(Visitor_Butcher* /*shop*/) {  }
+        virtual void VisitButcher(Visitor_Butcher* shop) { (void)shop; /* unused */  }
 
         /// <summary>
         /// Let the visitor visit a Visitor_Baker shop.
         /// </summary>
         /// <param name="shop">The specific baker shop being visited.</param>
-        virtual void VisitBaker(Visitor_Baker* /*shop*/) {  }
+        virtual void VisitBaker(Visitor_Baker* shop) { (void)shop; /* unused */  }
 
         /// <summary>
         /// Let the visitor visit a Visitor_VegetableGrocer shop.
         /// </summary>
         /// <param name="shop">The specific vegetable grocer being visited.</param>
-        virtual void VisitVegetableGrocer(Visitor_VegetableGrocer* /*shop*/) {  }
+        virtual void VisitVegetableGrocer(Visitor_VegetableGrocer* shop) { (void)shop; /* unused */  }
 
         /// <summary>
         /// Let the visitor visit a Visitor_CondimentGrocer shop.
         /// </summary>
         /// <param name="shop">The specific condiment grocer being visited.</param>
-        virtual void VisitCondimentGrocer(Visitor_CondimentGrocer* /*shop*/) {  }
+        virtual void VisitCondimentGrocer(Visitor_CondimentGrocer* shop) { (void)shop; /* unused */  }
 
         /// <summary>
         /// Let the visitor visit a Visitor_PickleGrocer shop.
         /// </summary>
         /// <param name="shop">The specific pickle grocer being visited.</param>
-        virtual void VisitPickleGrocer(Visitor_PickleGrocer* /*shop*/) {  }
+        virtual void VisitPickleGrocer(Visitor_PickleGrocer* shop) { (void)shop; /* unused */  }
 
         /// <summary>
         /// Let the visitor visit a Visitor_Maker shop.
         /// </summary>
         /// <param name="shop">The specific maker shop being visited.</param>
-        virtual void VisitMaker(Visitor_Maker* /*shop*/) {  }
+        virtual void VisitMaker(Visitor_Maker* shop) { (void)shop; /* unused */  }
     };
 
 

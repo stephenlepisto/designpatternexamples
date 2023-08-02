@@ -12,10 +12,13 @@
 /// <summary>
 /// Write a trace message to a null logger (basically, discard the log message).
 /// </summary>
-/// <param name="const char*">The message to log.</param>
-/// <param name="void*">Unused.</param>
-static void _Null_LogTrace(const char* /*message*/, void* /*data*/)
+/// <param name="message">Unused.</param>
+/// <param name="data">Unused.</param>
+static void _Null_LogTrace(const char* message, void* data)
 {
+    (void)message; // unused
+    (void)data; // unused
+
     // We don't do anything here, just reference the parameters to avoid a
     // compiler warning.
 }
@@ -24,10 +27,13 @@ static void _Null_LogTrace(const char* /*message*/, void* /*data*/)
 /// <summary>
 /// Write an informational message to a null logger (basically, discard the log message).
 /// </summary>
-/// <param name="const char*">The message to log.</param>
-/// <param name="void*">Unused.</param>
-static void _Null_LogInfo(const char* /*message*/, void* /*data*/)
+/// <param name="message">Unused.</param>
+/// <param name="data">Unused.</param>
+static void _Null_LogInfo(const char* message, void* data)
 {
+    (void)message; // unused
+    (void)data; // unused
+
     // We don't do anything here, just reference the parameters to avoid a
     // compiler warning.
 }
@@ -36,10 +42,13 @@ static void _Null_LogInfo(const char* /*message*/, void* /*data*/)
 /// <summary>
 /// Write an error message to a null logger (basically, discard the log message).
 /// </summary>
-/// <param name="const char*">The message to log.</param>
-/// <param name="void*">Unused.</param>
-static void _Null_LogError(const char* /*message*/, void* /*data*/)
+/// <param name="message">Unused.</param>
+/// <param name="data">Unused.</param>
+static void _Null_LogError(const char* message, void* data)
 {
+    (void)message; // unused
+    (void)data; // unused
+
     // We don't do anything here, just reference the parameters to avoid a
     // compiler warning.
 }

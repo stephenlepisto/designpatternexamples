@@ -29,9 +29,11 @@ static void _WriteLine(const char* loglevel, const char* message)
 /// Write a trace message to the console.
 /// </summary>
 /// <param name="message">The message to log.</param>
-/// <param name="void*">Unused.</param>
-static void _Console_LogTrace(const char* message, void* /*data*/)
+/// <param name="data">Unused.</param>
+static void _Console_LogTrace(const char* message, void* data)
 {
+    (void)data; // Unused
+
     // We don't use the data field, so just add a local reference to avoid
     // a compiler warning.
 
@@ -43,9 +45,11 @@ static void _Console_LogTrace(const char* message, void* /*data*/)
 /// Write an informational message to the console.
 /// </summary>
 /// <param name="message">The message to log.</param>
-/// <param name="void*">Unused.</param>
-static void _Console_LogInfo(const char* message, void* /*data*/)
+/// <param name="data">Unused.</param>
+static void _Console_LogInfo(const char* message, void* data)
 {
+    (void)data; // Unused
+
     // We don't use the data field, so just add a local reference to avoid
     // a compiler warning.
 
@@ -57,9 +61,11 @@ static void _Console_LogInfo(const char* message, void* /*data*/)
 /// Write an error message to the console.
 /// </summary>
 /// <param name="message">The message to log.</param>
-/// <param name="void*">Unused.</param>
-static void _Console_LogError(const char* message, void* /*data*/)
+/// <param name="data">Unused.</param>
+static void _Console_LogError(const char* message, void* data)
 {
+    (void)data; // Unused
+
     // We don't use the data field, so just add a local reference to avoid
     // a compiler warning.
 
