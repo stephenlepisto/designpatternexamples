@@ -10,13 +10,13 @@
 /// <summary>
 /// Disable echoing input until enableinputecho() is called.
 /// </summary>
-void disableinputecho();
+void disableinputecho(void);
 
 /// <summary>
 /// Enable echoing input, which should be the default mode.
 /// Call this only after calling disableinputecho();
 /// </summary>
-void enableinputecho();
+void enableinputecho(void);
 
 /// <summary>
 /// Move the text cursor to the specified screen coordinates.
