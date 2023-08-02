@@ -18,9 +18,9 @@ namespace Helpers
     /// formatted string.  The format and arguments follow the printf()
     /// functionality.
     /// </summary>
-    /// <param name="format">String containing formatting codes as used with the
+    /// <param name="fmt">String containing formatting codes as used with the
     /// printf() function.</param>
-    /// <return>Returns a newly allocated buffer containing the zero-terminated
+    /// <returns>Returns a newly allocated buffer containing the zero-terminated
     /// formatted string.  Use free() to delete the buffer.  Returns NULL if no
     /// memory could be allocated.</returns>
     std::string formatstring(const char* fmt, ...);
