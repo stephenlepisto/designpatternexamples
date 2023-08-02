@@ -119,12 +119,12 @@ static int _Flyweight_GenerateBigResource(int numImages, int width, int height)
         }
         else
         {
-            printf("  Error!  Failed to allocate memory for the big image: size = %lu\n", imageSize);
+            printf("  Error!  Failed to allocate memory for the big image: size = %zu\n", imageSize);
         }
     }
     else
     {
-        printf("  Error!  Failed to allocate memory for the big resource structure: size = %lu\n", sizeof(BigResource));
+        printf("  Error!  Failed to allocate memory for the big resource structure: size = %zu\n", sizeof(BigResource));
     }
     return resourceId;
 }
