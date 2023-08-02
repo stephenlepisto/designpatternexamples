@@ -1,7 +1,7 @@
 
 /// @file
 /// @brief
-/// Implementation of the Flyweight_Exercise() function as used in the 
+/// Implementation of the Flyweight_Exercise() function as used in the
 /// @ref flyweight_pattern.
 
 #include <iostream>
@@ -19,12 +19,12 @@
 namespace // Anonymous
 {
     using namespace DesignPatternExamples_cpp;
-    
+
     /// <summary>
     /// Generate a big resource, in this case, a text master "image" of the
     /// specified height, containing the specified number of smaller images
     /// laid out horizontally, using the given width for each image.
-    /// 
+    ///
     /// If there are 5 images requested, then create a single image that is
     /// `5 * width` wide and `1 * height` tall.
     /// </summary>
@@ -141,7 +141,7 @@ namespace // Anonymous
     /// <summary>
     /// Move the given flyweight instances within the display, bouncing them off
     /// the edges of the display.
-    /// 
+    ///
     /// The display size and image size are provided here
     /// </summary>
     /// <param name="flyweightInstances">List of Flyweight_Class instances to move.</param>
@@ -238,7 +238,7 @@ namespace // Anonymous
     /// Helper method to generate the specified number of flyweight class
     /// instances and associate those instances with individual contexts
     /// and a single big resource.
-    /// 
+    ///
     /// The image and display sizes are provided so as to randomize the
     /// position of each flyweight within the display.
     /// </summary>
@@ -285,11 +285,11 @@ namespace DesignPatternExamples_cpp
 
     /// <summary>
     /// Example of using the @ref flyweight_pattern "Flyweight" design pattern.
-    /// 
+    ///
     /// The Flyweight pattern is used when a large object needs to be
     /// represented by a much lighter weight class, possibly multiple
     /// instances of said light-weight class.
-    /// 
+    ///
     /// In this example, a large object is represented by a so-called "big
     /// resource" (a two-dimensional array of text characters) containing
     /// multiple images, one associated with each flyweight class.
@@ -333,6 +333,7 @@ namespace DesignPatternExamples_cpp
         _Flyweight_RenderFlyweights(flyweightInstances, displayArea);
         _Flyweight_ShowDisplay(displayArea);
 
+        Helpers::disableinputecho();
         // Now let's have some fun and bounce those images around for a while!
         // (Or until a keypress.)
         int cursorLeft = -1;
@@ -365,6 +366,7 @@ namespace DesignPatternExamples_cpp
                 break;
             }
         }
+        Helpers::enableinputecho();
 
         std::cout << "  Done." << std::endl;
     }

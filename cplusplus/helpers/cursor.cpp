@@ -10,6 +10,9 @@
 
 #ifdef _MSC_VER
 #include <windows.h>
+#else
+#include <termios.h>
+#include <unistd.h>
 #endif
 
 #include "_countof.h"
@@ -19,6 +22,7 @@
 
 namespace
 {
+    bool inputEchoDisabled = false;
 #ifdef _MSC_VER
     HANDLE hStdIn = INVALID_HANDLE_VALUE;
     HANDLE hStdOut = INVALID_HANDLE_VALUE;
@@ -52,6 +56,8 @@ namespace
             }
         }
     }
+#else
+    static struct termios oldt, newt;
 #endif
 
     /// <summary>
@@ -71,7 +77,13 @@ namespace
                 std::cout << Helpers::formatstring("SetConsoleMode(hStdIn, newMode) failed: code = 0x%x", lastError) << std::endl;
             }
         }
+#else
+        tcgetattr(STDIN_FILENO, &oldt);
+        newt = oldt;
+        newt.c_lflag &= ~(ICANON | ECHO);
+        tcsetattr(STDIN_FILENO, TCSANOW, &newt);
 #endif
+        inputEchoDisabled = true;
     }
 
     /// <summary>
@@ -89,7 +101,10 @@ namespace
                 std::cout << Helpers::formatstring("SetConsoleMode(hStdIn, inputMode) failed: code = 0x%x", lastError) << std::endl;
             }
         }
+#else
+        tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
 #endif
+        inputEchoDisabled = false;
     }
 
 } // end anonymous namespace
@@ -97,18 +112,51 @@ namespace
 
 namespace Helpers
 {
+    ///////////////////////////////////////////////////////////////////////////
+    // disableinputecho()
+    ///////////////////////////////////////////////////////////////////////////
+    void disableinputecho()
+    {
+        if (!inputEchoDisabled)
+        {
+            _disableInputEcho();
+        }
+    }
 
+    ///////////////////////////////////////////////////////////////////////////
+    // enableinputecho()
+    ///////////////////////////////////////////////////////////////////////////
+    void enableinputecho()
+    {
+        if (inputEchoDisabled)
+        {
+            _enableInputEcho();
+        }
+    }
+
+    ///////////////////////////////////////////////////////////////////////////
+    // setcursorposition()
+    ///////////////////////////////////////////////////////////////////////////
     void setcursorposition(int row, int column)
     {
         std::cout << "\x1b[" << row << ";" << column << "H";
         std::cout.flush();
     }
 
-    void getcursorposition(int* row, int* column)
+    ///////////////////////////////////////////////////////////////////////////
+    // getcursorposition()
+    ///////////////////////////////////////////////////////////////////////////
+    void getcursorposition(int *row, int *column)
     {
         if (row != nullptr && column != nullptr)
         {
-            _disableInputEcho();
+            // Don't disable input echo if it is already disabled.
+            bool wasInputEchoDisabled = inputEchoDisabled;
+            if (!wasInputEchoDisabled)
+            {
+                _disableInputEcho();
+            }
+
             std::cout << "\x1b[6n";
             std::cout.flush();
             char buffer[16]{ 0 };
@@ -127,7 +175,10 @@ namespace Helpers
                     *column = std::stoi(elements[2], nullptr);
                 }
             }
-            _enableInputEcho();
+            if (!wasInputEchoDisabled)
+            {
+                _enableInputEcho();
+            }
         }
     }
 

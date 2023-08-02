@@ -8,15 +8,22 @@
 
 #ifdef _MSC_VER
 #include <windows.h>
+#else
+#include <termios.h>
+#include <unistd.h>
 #endif
 
 #include "cursor.h"
 #include "split.h"
 
+static bool inputEchoDisabled = false;
+
 #ifdef _MSC_VER
 static HANDLE hStdIn = INVALID_HANDLE_VALUE;
 static HANDLE hStdOut = INVALID_HANDLE_VALUE;
 static DWORD inputMode = 0;
+#else
+static struct termios oldt, newt;
 #endif
 
 #ifdef _MSC_VER
@@ -67,7 +74,13 @@ static void _disableInputEcho(void)
             printf("SetConsoleMode(hStdIn, newMode) failed: code = 0x%x\n", lastError);
         }
     }
+#else
+    tcgetattr(STDIN_FILENO, &oldt);
+    newt = oldt;
+    newt.c_lflag &= ~(ICANON | ECHO);
+    tcsetattr(STDIN_FILENO, TCSANOW, &newt);
 #endif
+    inputEchoDisabled = true;
 }
 
 /// <summary>
@@ -85,22 +98,59 @@ static void _enableInputEcho(void)
             printf("SetConsoleMode(hStdIn, inputMode) failed: code = 0x%x\n", lastError);
         }
     }
+#else
+    tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
 #endif
+    inputEchoDisabled = false;
 }
 
+//=============================================================================
 
+///////////////////////////////////////////////////////////////////////////////
+// disableinputecho()
+///////////////////////////////////////////////////////////////////////////////
+void disableinputecho()
+{
+    if (!inputEchoDisabled)
+    {
+        _disableInputEcho();
+    }
+}
 
+///////////////////////////////////////////////////////////////////////////////
+// enableinputecho()
+///////////////////////////////////////////////////////////////////////////////
+void enableinputecho()
+{
+    if (inputEchoDisabled)
+    {
+        _enableInputEcho();
+    }
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// setcursorposition()
+///////////////////////////////////////////////////////////////////////////////
 void setcursorposition(int row, int column)
 {
     printf("\x1b[%d;%dH", row, column);
     fflush(stdout);
 }
 
-void getcursorposition(int* row, int* column)
+///////////////////////////////////////////////////////////////////////////////
+// getcursorposition()
+///////////////////////////////////////////////////////////////////////////////
+void getcursorposition(int *row, int *column)
 {
     if (row != NULL && column != NULL)
     {
-        _disableInputEcho();
+        // Don't disable input echo if it is already disabled.
+        bool wasInputEchoDisabled = inputEchoDisabled;
+        if (!wasInputEchoDisabled)
+        {
+            _disableInputEcho();
+        }
+
         printf("\x1b[6n");
         fflush(stdout);
         char buffer[16] = { 0 };
@@ -130,6 +180,9 @@ void getcursorposition(int* row, int* column)
                 SplitList_Clear(&elements);
             }
         }
-        _enableInputEcho();
+        if (!wasInputEchoDisabled)
+        {
+            _enableInputEcho();
+        }
     }
 }

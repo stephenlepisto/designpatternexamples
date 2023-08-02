@@ -5,6 +5,8 @@
 
 #ifdef _MSC_VER
 #include <conio.h>
+#else
+#include <stdio.h>
 #endif
 
 #include "readkey.h"
@@ -22,7 +24,7 @@ namespace Helpers
         }
         return retval;
 #else
-        return 0x1b; // Dummy for now
+        return getchar();
 #endif
     }
 

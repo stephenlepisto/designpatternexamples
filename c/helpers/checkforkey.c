@@ -5,13 +5,31 @@
 
 #ifdef _MSC_VER
 #include <conio.h>
+#else
+#include <unistd.h>
+#include <sys/time.h>
 #endif
 
 #include "checkforkey.h"
 
-/// <summary>
-/// The namespace containing all the "helper" functions in the C++ code.
-/// </summary>
+#ifndef _MSC_VER
+int kbhit (void)
+{
+    struct timeval tv;
+    fd_set rdfs;
+
+    tv.tv_sec = 0;
+    tv.tv_usec = 0;
+
+    FD_ZERO(&rdfs);
+    FD_SET (STDIN_FILENO, &rdfs);
+
+    select(STDIN_FILENO+1, &rdfs, NULL, NULL, &tv);
+    return FD_ISSET(STDIN_FILENO, &rdfs);
+
+}
+#endif
+
 
 /// <summary>
 /// Determine if a key has been pressed.
@@ -23,6 +41,6 @@ bool checkforkey(void)
 #ifdef _MSC_VER
     return _kbhit() != 0;
 #else
-    return true;  // Always return true for now so we don't appear to hang.
+    return kbhit() != 0;
 #endif
 }

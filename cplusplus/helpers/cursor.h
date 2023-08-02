@@ -10,6 +10,16 @@
 
 namespace Helpers
 {
+    /// <summary>
+    /// Disable echoing input until enableinputecho() is called.
+    /// </summary>
+    void disableinputecho();
+
+    /// <summary>
+    /// Enable echoing input, which should be the default mode.
+    /// Call this only after calling disableinputecho();
+    /// </summary>
+    void enableinputecho();
 
     /// <summary>
     /// Move the text cursor to the specified screen coordinates.
@@ -29,4 +39,3 @@ namespace Helpers
 } // end namespace
 
 #endif // __CURSOR_H__
-
