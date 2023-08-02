@@ -23,6 +23,6 @@ bool checkforkey(void)
 #ifdef _MSC_VER
     return _kbhit() != 0;
 #else
-    return false;
+    return true;  // Always return true for now so we don't appear to hang.
 #endif
 }
