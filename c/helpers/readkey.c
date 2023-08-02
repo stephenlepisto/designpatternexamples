@@ -19,6 +19,6 @@ int readkey(void)
     }
     return retval;
 #else
-    return 0;
+    return 0x1b; // Dummy for now
 #endif
 }
