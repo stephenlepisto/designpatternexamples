@@ -375,6 +375,7 @@ void Flyweight_Exercise(void)
     _Flyweight_RenderFlyweights(&imageList, &displayArea);
     _Flyweight_ShowDisplay(&displayArea);
 
+    disableinputecho();
     // Now let's have some fun and bounce those images around for a while!
     // (Or until a keypress.)
     int cursorLeft = -1;
@@ -408,6 +409,7 @@ void Flyweight_Exercise(void)
             break;
         }
     }
+    enableinputecho();
 
     // Cleanup
     Display_Destroy(&displayArea);

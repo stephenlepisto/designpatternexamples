@@ -5,6 +5,8 @@
 
 #ifdef _MSC_VER
 #include <conio.h>
+#else
+#include <stdio.h>
 #endif
 
 #include "readkey.h"
@@ -19,6 +21,6 @@ int readkey(void)
     }
     return retval;
 #else
-    return 0;
+    return getchar();
 #endif
 }
