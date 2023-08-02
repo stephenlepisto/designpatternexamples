@@ -33,7 +33,7 @@ namespace Helpers
         /// <summary>
         /// Constructor that takes a time_t.
         /// </summary>
-        /// <param name="timestamp">The time to use in this DateTime.</param>
+        /// <param name="_timestamp">The time to use in this DateTime.</param>
         DateTime(time_t _timestamp) : timestamp(_timestamp) {}
         /// <summary>
         /// Copy constructor.  Construct from another DateTime.
