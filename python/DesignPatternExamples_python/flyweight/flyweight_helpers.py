@@ -153,11 +153,11 @@ class Helpers:
 
     ## Move the text cursor to the specified screen coordinates.
     #
-    # @param row
-    #        Row index from top, starting at 1.
     # @param column
     #        Column index from left, starting at 1
-    def setcursorposition(self, row: int, column: int) -> None:
+    # @param row
+    #        Row index from top, starting at 1.
+    def setcursorposition(self, column: int, row: int) -> None:
         sys.stdout.write("{}[{};{}H".format(ASCII_ESC, row, column))
         sys.stdout.flush()
 

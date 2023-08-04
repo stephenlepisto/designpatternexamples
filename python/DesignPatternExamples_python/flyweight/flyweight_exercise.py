@@ -13,7 +13,7 @@ from .flyweight_classes import BigResourceManager, Flyweight_Class, Flyweight_Co
 ## Generate a big resource, in this case, a text master "image" of the
 #  specified height, containing the specified number of smaller images
 #  laid out horizontally, using the given width for each image.
-#  
+#
 #  If there are 5 images requested, then create a single image that is
 #  `5 * width` wide and `1 * height` tall.
 #
@@ -82,15 +82,12 @@ def _Flyweight_GenerateDisplay(width : int, height : int) -> list[bytearray]:
 #  @param display
 #         A list of `bytearray`s representing the display.
 def _Flyweight_ShowDisplay(display : list[bytearray]) -> None:
-    #output = StringIO()
     for row in display:
-        print("  ", end='')
-        print(row.decode())
-
+        print("  {}".format(row.decode()))
 
 ## Move the given flyweight instances within the display, bouncing them off
 #  the edges of the display.
-#  
+#
 #  The display size and image size are provided here
 #
 #  @param flyweightInstances
@@ -161,7 +158,7 @@ def GenerateVelocity() -> float:
 ## Helper method to generate the specified number of flyweight class
 #  instances and associate those instances with individual contexts
 #  and a single big resource.
-#  
+#
 #  The image and display sizes are provided so as to randomize the
 #  position of each flyweight within the display.
 #
@@ -205,11 +202,11 @@ def _Flyweight_GenerateFlyweightClasses(bigResourceId : int, numFlyweights : int
 
 
 ##  Example of using the @ref flyweight_pattern.
-#  
+#
 #  The Flyweight pattern is used when a large object needs to be
 #  represented by a much lighter weight class, possibly multiple
 #  instances of said light-weight class.
-#  
+#
 #  In this example, a large object is represented by a so-called "big
 #  resource" (a two-dimensional array of text characters) containing
 #  multiple images, one associated with each flyweight class.
@@ -260,10 +257,10 @@ def Flyweight_Exercise():
 
     for index in range(0, NUM_ITERATIONS):
         if cursorLeft != -1:
-            helpers.setcursorposition(cursorTop - 1, cursorLeft)
+            helpers.setcursorposition(cursorLeft, cursorTop - 1)
         print("  {0:5}/{1} iterations [press a key to exit early]".format(index + 1, NUM_ITERATIONS))
         if cursorLeft != -1:
-            helpers.setcursorposition(cursorTop, cursorLeft)
+            helpers.setcursorposition(cursorLeft, cursorTop)
 
         _Flyweight_ClearDisplay(displayArea)
         _Flyweight_MoveFlyweights(flyweightInstances, DISPLAY_WIDTH, DISPLAY_HEIGHT)
