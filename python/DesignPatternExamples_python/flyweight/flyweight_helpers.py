@@ -44,18 +44,19 @@ except:
         print("  Error! No termios or msvcrt.  Cannot check for keys or get cursor position.")
 
 
-## Class for temporarily disabling echoing of characters sent to standard in.
-#
-#  Use this class like this:
-#  ~~~~~~~~~~~~~~~~~~~~~~~~~~~{.py}
-#  with DisableInputEcho():
-#     pass
-#  ~~~~~~~~~~~~~~~~~~~~~~~~~~~
-class DisableInputEcho():
-    def __init__(self):
-        if termios:
-            self.old_settings = None
-        elif kernel32:
+if kernel32:
+
+    #==================== Windows Functionality ===============================
+    ## Class for temporarily disabling echoing of characters sent to standard
+    #  when run on Windows.
+    #
+    #  Use this class like this:
+    #  ~~~~~~~~~~~~~~~~~~~~~~~~~~~{.py}
+    #  with DisableInputEcho():
+    #     pass
+    #  ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    class DisableInputEcho_Windows():
+        def __init__(self):
             self._inputMode = None
             self._hStdIn = kernel32.GetStdHandle(STD_INPUT_HANDLE)
             if self._hStdIn != INVALID_HANDLE_VALUE:
@@ -66,37 +67,77 @@ class DisableInputEcho():
                 lastError = kernel32.GetLastError()
                 print("GetStdHandle(STD_INPUT_HANDLE) failed: code = {:x}".format(lastError))
 
-    def disable_input_echo(self):
-        if termios:
-            stdin_fd = sys.stdin.fileno()
-            self.old_settings = termios.tcgetattr(stdin_fd)
-            new_settings = termios.tcgetattr(stdin_fd);
-            new_settings[3] = new_settings[3] & ~termios.ICANON & ~termios.ECHO
-            termios.tcsetattr(stdin_fd, termios.TCSANOW, new_settings)
-        elif kernel32:
+        ## Disable echoing of anything sent to standard in.
+        def disable_input_echo(self):
             if self._hStdIn != INVALID_HANDLE_VALUE:
                 newMode = self._inputMode & ~(ENABLE_LINE_INPUT | ENABLE_ECHO_INPUT)
                 if not kernel32.SetConsoleMode(self._hStdIn, newMode):
                     lastError = kernel32.GetLastError()
                     print("SetConsoleMode(hStdIn, newMode) failed: code = {:x}".format(lastError))
 
-    def enable_input_echo(self):
-        if termios:
-            stdin_fd = sys.stdin.fileno()
-            if self.old_settings:
-                termios.tcsetattr(stdin_fd, termios.TCSANOW, self.old_settings)
-                self.old_settings = None
-        elif kernel32:
+        ## Enable echoing of everything sent to standard in.
+        def enable_input_echo(self):
             if self._hStdIn != INVALID_HANDLE_VALUE and self._inputMode is not None:
                 if not kernel32.SetConsoleMode(self._hStdIn, self._inputMode):
                     lastError = kernel32.GetLastError()
                     print("SetConsoleMode(hStdIn, inputMode) failed: code = {:x}".format(lastError))
 
-    def __enter__(self):
-        self.disable_input_echo()
+        ## Entry function used in the `with` statement to initialize an
+        #  instance of this class.
+        def __enter__(self):
+            self.disable_input_echo()
 
-    def __exit__(self, *args):
-        self.enable_input_echo()
+        ## Exit function automatically called when used in the `with` statement.
+        def __exit__(self, *args):
+            self.enable_input_echo()
+
+    DisableInputEcho = DisableInputEcho_Windows
+    #==========================================================================
+
+elif termios:
+
+    #====================== Linux Functionality ===============================
+
+    ## Class for temporarily disabling echoing of characters sent to standard
+    #  in when run on Linux.
+    #
+    #  Use this class like this:
+    #  ~~~~~~~~~~~~~~~~~~~~~~~~~~~{.py}
+    #  with DisableInputEcho():
+    #     pass
+    #  ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    class DisableInputEcho_Linux():
+
+        ## Constructor.
+        def __init__(self):
+            self.old_settings = None
+
+        ## Disable echoing of anything sent to standard in.
+        def disable_input_echo(self):
+            stdin_fd = sys.stdin.fileno()
+            self.old_settings = termios.tcgetattr(stdin_fd)
+            new_settings = termios.tcgetattr(stdin_fd);
+            new_settings[3] = new_settings[3] & ~termios.ICANON & ~termios.ECHO
+            termios.tcsetattr(stdin_fd, termios.TCSANOW, new_settings)
+
+        ## Enable echoing of everything sent to standard in.
+        def enable_input_echo(self):
+            stdin_fd = sys.stdin.fileno()
+            if self.old_settings:
+                termios.tcsetattr(stdin_fd, termios.TCSANOW, self.old_settings)
+                self.old_settings = None
+
+        ## Entry function used in the `with` statement to initialize an
+        #  instance of this class.
+        def __enter__(self):
+            self.disable_input_echo()
+
+        ## Exit function automatically called when used in the `with` statement.
+        def __exit__(self, *args):
+            self.enable_input_echo()
+
+    DisableInputEcho = DisableInputEcho_Linux
+    #==========================================================================
 
 
 
@@ -117,7 +158,7 @@ class Helpers:
     # @param column
     #        Column index from left, starting at 1
     def setcursorposition(self, row: int, column: int) -> None:
-        print("{}[{};{}H".format(ASCII_ESC, row, column), end="")
+        sys.stdout.write("{}[{};{}H".format(ASCII_ESC, row, column))
         sys.stdout.flush()
 
     ## Retrieve the current cursor position in the console window.
