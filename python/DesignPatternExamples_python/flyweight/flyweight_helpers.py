@@ -5,6 +5,7 @@
 #  class as used in the @ref flyweight_pattern.
 
 import re
+import select
 import sys
 import time
 
@@ -24,18 +25,80 @@ ASCII_CTRL_Z = '\x1a'
 ASCII_ESC = '\x1b'
 
 
-## Try to import ctypes and get the kernel32 DLL along with the Microsoft C
-#  Runtime.  If neither is possible, the rest of the code in this module does
-#  nothing.
+# For Windows, try to import the Microsoft C Runtime (mscvrt) and ctypes to get
+# the kernel32 DLL.  If neither is possible, the rest of the Windows-specific
+# code in this module does nothing.
 try:
+    import msvcrt  # Only on Windows
     import ctypes
     kernel32 = ctypes.windll.kernel32
-    import msvcrt  # Only on Windows
+    termios = None
 except:
-    # ctypes does not exist, assume not on Windows
-    kernel32 = None
-    # And, therefore, the Microsoft C Runtime does not exist either.
+    # The Microsoft C Runtime does not exist, so assume Windows kernel32
+    # doesn't exist.
     msvcrt = None
+    kernel32 = None
+    try:
+        import termios # Assume we are on Linux
+    except:
+        print("  Error! No termios or msvcrt.  Cannot check for keys or get cursor position.")
+
+
+## Class for temporarily disabling echoing of characters sent to standard in.
+#
+#  Use this class like this:
+#  ~~~~~~~~~~~~~~~~~~~~~~~~~~~{.py}
+#  with DisableInputEcho():
+#     pass
+#  ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+class DisableInputEcho():
+    def __init__(self):
+        if termios:
+            self.old_settings = None
+        elif kernel32:
+            self._inputMode = None
+            self._hStdIn = kernel32.GetStdHandle(STD_INPUT_HANDLE)
+            if self._hStdIn != INVALID_HANDLE_VALUE:
+                oldMode = ctypes.c_uint32(0)
+                if kernel32.GetConsoleMode(self._hStdIn, ctypes.byref(oldMode)):
+                    self._inputMode = oldMode.value
+            else:
+                lastError = kernel32.GetLastError()
+                print("GetStdHandle(STD_INPUT_HANDLE) failed: code = {:x}".format(lastError))
+
+    def disable_input_echo(self):
+        if termios:
+            stdin_fd = sys.stdin.fileno()
+            self.old_settings = termios.tcgetattr(stdin_fd)
+            new_settings = termios.tcgetattr(stdin_fd);
+            new_settings[3] = new_settings[3] & ~termios.ICANON & ~termios.ECHO
+            termios.tcsetattr(stdin_fd, termios.TCSANOW, new_settings)
+        elif kernel32:
+            if self._hStdIn != INVALID_HANDLE_VALUE:
+                newMode = self._inputMode & ~(ENABLE_LINE_INPUT | ENABLE_ECHO_INPUT)
+                if not kernel32.SetConsoleMode(self._hStdIn, newMode):
+                    lastError = kernel32.GetLastError()
+                    print("SetConsoleMode(hStdIn, newMode) failed: code = {:x}".format(lastError))
+
+    def enable_input_echo(self):
+        if termios:
+            stdin_fd = sys.stdin.fileno()
+            if self.old_settings:
+                termios.tcsetattr(stdin_fd, termios.TCSANOW, self.old_settings)
+                self.old_settings = None
+        elif kernel32:
+            if self._hStdIn != INVALID_HANDLE_VALUE and self._inputMode is not None:
+                if not kernel32.SetConsoleMode(self._hStdIn, self._inputMode):
+                    lastError = kernel32.GetLastError()
+                    print("SetConsoleMode(hStdIn, inputMode) failed: code = {:x}".format(lastError))
+
+    def __enter__(self):
+        self.disable_input_echo()
+
+    def __exit__(self, *args):
+        self.enable_input_echo()
+
+
 
 ## Class containing a number of helper methods for use in the
 #  @ref flyweight_pattern example.
@@ -46,68 +109,26 @@ except:
 #  helpers.sleep(10)
 #  ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 class Helpers:
-    ## Constructor.
-    def __init__(self) -> None:
-        self._hStdIn = INVALID_HANDLE_VALUE
-        self._inputMode = 0
-
-    ## @var _hStdIn
-    #       Handle to the Windows standard input (Windows only)
-    #  @var _inputMode
-    #       The initial mode controlling the standard input (Windows only)
-
-    ## Initialize the console.
-    def _init_console_mode(self) -> None:
-        if kernel32:
-            if self._hStdIn == INVALID_HANDLE_VALUE:
-                self._hStdIn = kernel32.GetStdHandle(STD_INPUT_HANDLE)
-                if self._hStdIn != INVALID_HANDLE_VALUE:
-                    oldMode = ctypes.c_uint32(0)
-                    if kernel32.GetConsoleMode(self._hStdIn, ctypes.byref(oldMode)):
-                        self._inputMode = oldMode.value
-                else:
-                    lastError = kernel32.GetLastError()
-                    print("GetStdHandle(STD_INPUT_HANDLE) failed: code = {:x}".format(lastError))
-
-
-    ## Disable echoing of input and disable line input mode (where the Enter
-    #  key must be entered to complete input).
-    def _disableInputEcho(self) -> None:
-        self._init_console_mode()
-        if kernel32 and self._hStdIn != INVALID_HANDLE_VALUE:
-            newMode = self._inputMode & ~(ENABLE_LINE_INPUT | ENABLE_ECHO_INPUT)
-            if not kernel32.SetConsoleMode(self._hStdIn, newMode):
-                lastError = kernel32.GetLastError()
-                print("SetConsoleMode(hStdIn, newMode) failed: code = {:x}".format(lastError))
-
-
-    ## Enable echoing of input.
-    def _enableInputEcho(self):
-        self._init_console_mode()
-        if kernel32 and self._hStdIn != INVALID_HANDLE_VALUE:
-            if not kernel32.SetConsoleMode(self._hStdIn, self._inputMode):
-                lastError = kernel32.GetLastError()
-                print("SetConsoleMode(hStdIn, inputMode) failed: code = {:x}".format(lastError))
-
 
     ## Move the text cursor to the specified screen coordinates.
     #
     # @param row
-    #        Row index from top, starting at 0.
+    #        Row index from top, starting at 1.
     # @param column
-    #        Column index from left, starting at 0
+    #        Column index from left, starting at 1
     def setcursorposition(self, row: int, column: int) -> None:
-        print("{}[{};{}H".format(ASCII_ESC, row, column))
+        print("{}[{};{}H".format(ASCII_ESC, row, column), end="")
+        sys.stdout.flush()
 
     ## Retrieve the current cursor position in the console window.
     #
-    # @returns
-    #   Returns tuple containing the column,row.
+    #  @returns
+    #   Returns tuple containing the column,row, relative to the upper left
+    #   corner of the window.  Position starts at 1,1
     def getcursorposition(self) -> tuple:
         row = 0
         column = 0
-        self._disableInputEcho()
-        try:
+        with DisableInputEcho():
             # Send, via standard out, the ANSI string to request the current cursor
             # position.  The position will be returned in standard input.
             sys.stdout.write("{}[6n".format(ASCII_ESC))
@@ -136,8 +157,6 @@ class Helpers:
                 if len(elements) >= 3:
                     row = int(elements[1])
                     column = int(elements[2])
-        finally:
-            self._enableInputEcho()
         return (column, row)
 
 
@@ -152,6 +171,10 @@ class Helpers:
     def checkforkey(self) -> bool:
         if msvcrt:
             return msvcrt.kbhit()
+        else:
+            dr,dw,de = select.select([sys.stdin], [], [], 0)
+            if not dr == []:
+                return True
         return False
 
 
@@ -163,9 +186,4 @@ class Helpers:
     #  @returns
     #     Returns the ASCII for the key pressed.
     def readkey(self) -> int:
-        self._disableInputEcho()
-        try:
-            retval = sys.stdin.read(1)
-        finally:
-            self._enableInputEcho()
-        return retval
+        return sys.stdin.read(1)
