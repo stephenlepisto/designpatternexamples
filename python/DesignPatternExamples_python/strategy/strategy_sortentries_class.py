@@ -4,8 +4,6 @@
 #  @ref DesignPatternExamples_python.strategy.strategy_sortentries_class.Strategy_SortEntries_ClassFactory "Strategy_SortEntries_ClassFactory"
 #  class as used in the @ref strategy_pattern.
 
-from audioop import reverse
-from tkinter import Entry
 from .strategy_isortentries import ISortEntries, SortOptions
 from .strategy_entryinformation import EntryInformation
 
