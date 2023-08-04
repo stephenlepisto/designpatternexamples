@@ -84,6 +84,7 @@ def _Flyweight_GenerateDisplay(width : int, height : int) -> list[bytearray]:
 def _Flyweight_ShowDisplay(display : list[bytearray]) -> None:
     for row in display:
         print("  {}".format(row.decode()))
+    print()
 
 ## Move the given flyweight instances within the display, bouncing them off
 #  the edges of the display.
