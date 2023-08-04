@@ -10,6 +10,7 @@ use crossterm::{
     terminal,
 };
 
+
 /// Hide or turn off the cursor that is normally always visible on the console.
 ///
 /// We could use an ANSI sequence for this (ESC[?25l), but the sequence is
