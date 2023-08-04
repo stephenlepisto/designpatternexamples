@@ -5,6 +5,7 @@
 
 import os
 import os.path
+import sys
 from ctypes import *
 from enum import Enum
 
@@ -41,7 +42,7 @@ BLOCK_NAME_2 = "yaga"
 
 
 ## Represents an opaque token or handle to data.  Since a class is passed by
-#  reference in Python, a function can write to the handle to set its value. 
+#  reference in Python, a function can write to the handle to set its value.
 #  Use the `value` attribute to read/write the handle.
 class Handle:
     ## Constructor
@@ -68,7 +69,10 @@ class ValueHandle:
 
 ## Path to the @ref Adapter_BackEnd.h "Adapter_BackEnd" DLL that will be loaded
 #  by ctypes.  The DLL is located in the same directory as this file.
-dll_path = os.path.join(os.path.dirname(__file__), "Adapter_BackEnd")
+if sys.platform == "win32":
+    dll_path = os.path.join(os.path.dirname(__file__), "Adapter_BackEnd")
+else:
+    dll_path = os.path.join(os.path.dirname(__file__), "libAdapter_BackEnd.so")
 
 ## Instance of a CDLL object representing the loaded @ref Adapter_BackEnd.h "Adapter_BackEnd" DLL.
 adapter_backend = cdll.LoadLibrary(dll_path)

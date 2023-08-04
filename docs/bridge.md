@@ -82,7 +82,7 @@ __Python__
 
 __C__
 
-@snippet c/bridge_exercise.c Using Bridge in C
+@snippet c/Bridge_Exercise.c Using Bridge in C
 
 __Rust__
 

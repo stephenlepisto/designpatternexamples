@@ -86,7 +86,7 @@ __Python__
 
 __C__
 
-@snippet c/command_exercise.c Using Command in C
+@snippet c/Command_Exercise.c Using Command in C
 
 __Rust__
 
