@@ -13,7 +13,7 @@ to the calling entity.
 This kind of architecture requires cooperation among all the decorators and
 classes being decorated by having each class implement the same abstract
 interface (again, so all the classes look the same to each other).  The
-decorators then wrap any object with the same abstract interface.  The 
+decorators then wrap any object with the same abstract interface.  The
 ability of decorators being able to wrap other decorators automatically
 builds a kind of nested hierarchy, similar to a Composite pattern except
 that the decorators don't typically support multiple children in a single
@@ -89,7 +89,7 @@ __Python__
 
 __C__
 
-@snippet c/decorator_exercise.c Using Decorator in C
+@snippet c/Decorator_Exercise.c Using Decorator in C
 
 __Rust__
 
