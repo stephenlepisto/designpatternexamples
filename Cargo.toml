@@ -1,4 +1,28 @@
+# 8/2/2023
+# The primary reason for this Rust workspace file is to satisfy the rust analyzer
+# extension in Visual Studio Code, which demands a Cargo.toml file in the root
+# directory that is opened in Visual Studio Code.  Perhaps a reasonable
+# assumption if only dealing with Rust packages/projects but if the Rust
+# project is part of a collection of other projects for other languages, this
+# assumption is no longer reasonable.
+#
+# Cargo will look upwards from a directory, looking for a parent Cargo.toml
+# file and will use that root Cargo.toml file's directory for placing the
+# Cargo.lock file and for placing the default output (target) directory.  If
+# Cargo doesn't find that parent Cargo.toml file, it is content with working
+# in the directory it was invoked from that has a Cargo.toml file.
+
 [workspace]
 members = [
   "rust/design_pattern_examples_rust",
+]
+exclude = [
+  "Adapter_BackEnd",
+  "build",
+  "c",
+  "cplusplus",
+  "CreateDocs",
+  "csharp",
+  "docs",
+  "python",
 ]
