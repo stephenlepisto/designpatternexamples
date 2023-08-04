@@ -7,6 +7,7 @@ use std::io::{stdin, stdout, Read, Write};
 use crossterm::{
     ExecutableCommand,
     cursor,
+    terminal,
 };
 
 /// Hide or turn off the cursor that is normally always visible on the console.
@@ -42,6 +43,7 @@ pub fn get_cursor_position() -> (u16, u16) {
     let mut position_x = 0;
     let mut position_y = 0;
 
+    terminal::enable_raw_mode().unwrap();
     print!("\x1b[6n"); // Make sure we don't add a newline
     let mut stdout = stdout();
     stdout.flush().unwrap(); // No newline so we must flush to activate the sequence.
@@ -62,6 +64,7 @@ pub fn get_cursor_position() -> (u16, u16) {
             }
         }
     }
+    terminal::disable_raw_mode().unwrap();
 
     (position_x, position_y)
 }

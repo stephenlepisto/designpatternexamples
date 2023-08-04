@@ -285,7 +285,6 @@ pub fn flyweight_exercise() -> Result<(), String> {
     _flyweight_show_display(&display);
 
     // Initialize raw key input before getting cursor position.
-    key_input::disable_input_echo();
     cursor::hide_cursor();
 
     // Now let's have some fun and bounce those images around for a while!
@@ -307,7 +306,6 @@ pub fn flyweight_exercise() -> Result<(), String> {
         }
     }
     cursor::show_cursor();
-    key_input::enable_input_echo();
 
     println!("  Done.");
 
