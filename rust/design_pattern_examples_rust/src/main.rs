@@ -13,7 +13,6 @@
 
 use std::env;
 
-//extern crate winconsole;
 extern crate crossterm;
 
 mod adapter;
@@ -176,7 +175,13 @@ fn main() {
     // Windows Terminal already have ANSI sequence support enabled by default.
     // On Linux, all terminals I have ever worked with automatically support
     // ANSI sequences.
+    //
+    // Read the source for supports_ansi() and verified that an internal
+    // initialization call is made.
+    //
+    // Also, the ansi_support module is for Windows only.  Not documented.
 
+    #[cfg(windows)]
     if !crossterm::ansi_support::supports_ansi() {
         println!("ANSI sequences are not supported by this terminal, according to the crossterm crate.");
         println!("The Decorator and Flyweight examples will not work correctly.");
