@@ -13,7 +13,8 @@
 
 use std::env;
 
-extern crate winconsole;
+//extern crate winconsole;
+extern crate crossterm;
 
 mod adapter;
 mod bridge;
@@ -81,7 +82,7 @@ struct Options {
 
 
 /// Helper function to show usage information for this program.
-/// 
+///
 /// # Parameters
 /// - exercises
 ///
@@ -162,6 +163,24 @@ fn main() {
         Exercise::new("Strategy", strategy::strategy_exercise),
         Exercise::new("Visitor", visitor::visitor_exercise),
     );
+
+    // 8/1/2023
+    // If supports_ansi() is not called, crossterm does not respond to ANSI
+    // escape sequences.  I'm guessing that crossterm needs to do some internal
+    // initialization without providing an explicit public initializing
+    // function.  Perhaps it was assumed that everyone using ANSI escape
+    // sequences would call supports_ansi() to check for availability.
+    //
+    // In the Windows Command prompt, rust appears to automatically enable ANSI
+    // sequences so supports_ansi() always returns true.  PowerShell and the
+    // Windows Terminal already have ANSI sequence support enabled by default.
+    // On Linux, all terminals I have ever worked with automatically support
+    // ANSI sequences.
+
+    if !crossterm::ansi_support::supports_ansi() {
+        println!("ANSI sequences are not supported by this terminal, according to the crossterm crate.");
+        println!("The Decorator and Flyweight examples will not work correctly.");
+    }
 
     // skip() first argument as it is the program name.
     let args = env::args().skip(1).collect::<Vec<String>>();

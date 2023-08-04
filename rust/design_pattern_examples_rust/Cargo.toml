@@ -8,4 +8,4 @@ edition = "2021"
 [dependencies]
 time = { version = "0.3.21", features = ["formatting", "local-offset", "macros"] }
 rand = {version = "0.8.5" }
-winconsole = { version = "0.11.1", features = ["input"] }
+crossterm = { version = "0.26.1" }

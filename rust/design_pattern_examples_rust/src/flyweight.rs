@@ -3,15 +3,15 @@
 //! The Flyweight pattern is used when a large object needs to be
 //! represented by a much lighter weight struct, possibly multiple
 //! instances of said light-weight struct.
-//! 
+//!
 //! In this example, a large object is represented by a so-called "big
 //! resource" (a two-dimensional array of text characters) containing
 //! multiple images, one associated with each flyweight struct.
 //! FlyweightImage structs that contain an offset into the big resource,
 //! along with position and velocity, are attached to the big resource
 //! image so they all share the same image but have different positions
-//! and velocities.  The image is rendered to a display area using
-//! the FlyweightImage struct.  The FlyweightImage struct instances then have
+//! and velocities.  The image is rendered to a display area using the
+//! FlyweightImage struct.  The FlyweightImage struct instances then have
 //! their positions updated, bouncing off the edges of the display area 60
 //! times a second.  This continues for 1000 iterations or until a key
 //! is pressed.
@@ -125,7 +125,7 @@ fn _flyweight_generate_velocity() -> f32 {
 /// Helper function to generate the specified number of FlyweightImage struct
 /// instances and associate those objects with individual contexts and a single
 /// big resource.
-/// 
+///
 /// The image and display sizes are provided so as to randomize the
 /// position of each flyweight within the display.
 fn _flyweight_generate_flyweight_images(big_resource_id: usize, num_flyweights: usize,
@@ -148,7 +148,7 @@ fn _flyweight_generate_flyweight_images(big_resource_id: usize, num_flyweights: 
 
 /// Move the given flyweight instances within the display, bouncing them off
 /// the edges of the display.
-/// 
+///
 /// The display size and image size are provided here
 fn _flyweight_move_images(images: &mut Vec<FlyweightImage>, display_width: usize, display_height: usize) {
     for image in images.iter_mut() {
@@ -228,6 +228,7 @@ fn _flyweight_show_display(display: &Display) {
     let mut output = String::new();
     for row in 0..display.height {
         let mut row_string = String::new();
+        row_string.push_str("  ");
         for col in 0..display.width {
             row_string.push(display.display[row][col]);
         }
@@ -240,19 +241,19 @@ fn _flyweight_show_display(display: &Display) {
 
 //-----------------------------------------------------------------------------
 /// Example of using the "Flyweight" design pattern.
-/// 
+///
 /// The Flyweight pattern is used when a large object needs to be
 /// represented by a much lighter weight struct, possibly multiple
 /// instances of said light-weight struct.
-/// 
+///
 /// In this example, a large object is represented by a so-called "big
 /// resource" (a two-dimensional array of text characters) containing
 /// multiple images, one associated with each flyweight struct.
 /// FlyweightImage structs that represent an offset into the big resource,
 /// along with position and velocity, are attached to the big resource
 /// image so they all share the same image but have different positions
-/// and velocities.  The image is rendered to a display area using
-/// the FlyweightImage struct.  The FlyweightImage struct instances then have their
+/// and velocities.  The image is rendered to a display area using the
+/// FlyweightImage struct.  The FlyweightImage struct instances then have their
 /// positions updated, bouncing off the edges of the display area 60
 /// times a second.  This continues for 1000 iterations or until a key
 /// is pressed.
@@ -273,22 +274,25 @@ pub fn flyweight_exercise() -> Result<(), String> {
 
     // Create the "display".
     // We use a list of character arrays so we can write to each
-    // character position individually.  In C#, strings are immutable
+    // character position individually.  In Rust, strings are immutable
     // and changing a character in a string is not allowed.
     let mut display = _fylweight_generate_display(DISPLAY_WIDTH, DISPLAY_HEIGHT);
 
     // Finally, display the rendered output.
     println!("  The image rendered {} times:", NUMFLYWEIGHTS);
-    println!();
+    println!(); // Blank line for iteration count
     _flyweight_render_images(&big_resource_manager, &flyweight_images, &mut display);
     _flyweight_show_display(&display);
+
+    // Initialize raw key input before getting cursor position.
+    key_input::disable_input_echo();
+    cursor::hide_cursor();
 
     // Now let's have some fun and bounce those images around for a while!
     // (Or until a keypress.)
     let (cursor_left, mut cursor_top) = cursor::get_cursor_position();
     cursor_top -= (DISPLAY_HEIGHT + 1) as u16;
 
-    let mut key_input = key_input::KeyInput::new();
     for index in 0..NUM_ITERATIONS {
         cursor::set_cursor_position(cursor_left, cursor_top - 1);
         println!("  {:5}/{} iterations [press a key to exit early]", index + 1, NUM_ITERATIONS);
@@ -298,10 +302,12 @@ pub fn flyweight_exercise() -> Result<(), String> {
         _flyweight_render_images(&big_resource_manager, &flyweight_images, &mut display);
         _flyweight_show_display(&display);
         thread::sleep(Duration::from_millis(16)); // 60 frames a second
-        if key_input.check_for_key() {
+        if key_input::check_for_key() {
             break;
         }
     }
+    cursor::show_cursor();
+    key_input::enable_input_echo();
 
     println!("  Done.");
 
