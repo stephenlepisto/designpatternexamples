@@ -29,58 +29,126 @@ continue to work.
 
 ### Windows
 - CMake v3.26
-- Doxygen v1.9
+- Doxygen v1.9.6
 - GraphViz v7.1
 - Visual Studio 2022 (I used Community edition)
 - Python 3.10
 - rust v1.69 in release 2021
 - Git Bash for Windows v2.40
 
+### Linux
+(I used Ubuntu 22.04 mounted through Windows Subsystem for Linux (WSL) v2)
+- C/C++ build tools
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.sh}
+  sudo apt install build-essential
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+- CMake v3.27
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.sh}
+  sudo snap install cmake --classic
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+- Doxygen v1.9
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.sh}
+  sudo apt install doxygen gsfonts
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+- Graphviz v7.1
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.sh}
+  cd ~
+  mkdir tools
+  cd tools
+  wget https://gitlab.com/api/v4/projects/4207231/packages/generic/graphviz-releases/7.1.0/graphviz-7.1.0.tar.gz
+  tar xzf graphviz-7.1.0.tar.gz
+  cd graphviz-7.1.0
+  ./configure
+  make
+  make install
+  sudo ln /usr/local/bin/dot /usr/bin/dot
+  sudo ln /usr/lib/x86_64-linux-gnu/graphviz/libgvplugin_gd.so.6.0.0 /usr/local/lib/graphviz/libgvplugin_gd.so.6
+  sudo dot -c
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+- Python 3.10
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.sh}
+  sudo apt install python310-full
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+- rust v1.71.1 in release 2021
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.sh}
+  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  _Select option 1 (default) then follow the prompts._
+
+
 ## Building the Code
-1. Open a Git Bash prompt create a directory where to download the code.  For
-   example:
-
-        md c:\work
-        cd c:\work
-
+1. Open a Git Bash prompt or Linux terminal and create a directory where to
+   download the code.  For example:
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.sh}
+    cd ~
+    mkdir work
+    cd work
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 2. Use git to get the code from GitHub.com:
-
-        git https://github.com/stephenlepisto/designpatternexamples.git
-
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.sh}
+    git https://github.com/stephenlepisto/designpatternexamples.git
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 3. Go into the created directory:
-
-        cd designpatternexamples
-
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.sh}
+    cd designpatternexamples
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 4. Create the build directory for cmake and go into it:
-
-        md build
-        cd build
-
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.sh}
+    mkdir build
+    cd build
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 5. Use cmake to build everything:
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.sh}
+    cmake ..
+    cmake --build . --config release
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-        cmake ..\
-        cmake --build . --config release
-
-## Running the Examples
+# View the Code Documentation
 After building everything, the following command lines displays Doxygen or Rust
-source documentation or runs all examples (from Command Prompt, navigate to the
-build directory first).
+source documentation when run from a Windows Command Prompt (navigate to the
+build directory first, for example `cd %HOMEPATH%\designpatternexamples\build`).
 
 | Documentation | Command Line  |
 | ------------- | ------------- |
 | Doxygen       | html\index.html |
 | Rust          | rust\doc\design_pattern_examples_rust\index.html |
 
-| Language | Command line |
-| -------- | ------------ |
-| C        | c\release\DesignPatternExamples_c.exe |
-| C++      | cplusplus\release\DesignPatternExamples_cpp.exe |
-| C#       | csharp\release\DesignPatternExamples_csharp.exe |
-| Python   | py -m python.DesignPatternExamples_python |
-| Rust     | rust\release\design_pattern_examples_rust.exe |
+# Running the Examples
+After building everything, the following command lines runs all examples
+(navigate to the build directory first).
 
+| Language | Windows Command line                              | Linux Command Line                      |
+| -------- | ------------------------------------------------- | --------------------------------------- |
+|          | `cd "%HOMEPATH%\desingpatternexamples\build"`     | `cd ~/work/designpatternexamples/build` |
+| C        | `c\release\DesignPatternExamples_c.exe`           | `c/DesignPatternExamples_c`             |
+| C++      | `cplusplus\release\DesignPatternExamples_cpp.exe` | `cplusplus/DesignPatternExamples_cpp`   |
+| C#       | `csharp\release\DesignPatternExamples_csharp.exe` | N/A                                     |
+| Python   | `py -m python.DesignPatternExamples_python`       | `python3 -m python.DesignPatternExamples_python` |
+| Rust     | `rust\release\design_pattern_examples_rust.exe`   | `LD_LIBRARY_PATH=$(pwd)/Adapter_BackEnd/ rust/Release/design_pattern_examples_rust` |
 
 To get help for each set of examples, use --help switch after the command line.
 
 To run an individual design pattern example, add the name (or names) of the
 example after the command line (all the names are shown with --help).
+
+# Known Issues (all on Ubuntu Linux v22.04)
+- C
+  - The full path to the libAdapter_BackEnd.so is hardcoded into the
+    DesignPatternExamples_c executable.  It can be run after being built but
+    it cannot be installed.
+- C++
+  - The full path to the libAdapter_BackEnd.so is hardcoded into the
+    DesignPatternExamples_cpp executable.  It can be run after being built but
+    it cannot be installed.
+- Python
+  - Flyweight can be skipped only with the Enter key.
+  - Doxygen might produce two warnings:
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    memento/memento.py:110: warning: unable to resolve reference to 'DesignPatternExamples_python.memento.memento.Memento_TextObject' for \ref command
+    mediator/mediator_user_classes.py:37: warning: unable to resolve reference to 'DesignPatternExamples_python.mediator.mediator_user_classes.User' for \ref command
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    This may be due to doxygen being v1.9.1 on Ubuntu.
+- Rust
+  - Requires setting the LD_LIBRARY_PATH to the Adapter_BackEnd build directory
+    in order to run the rust executable.
+  - Flyweight can be skipped only with the Enter key.
