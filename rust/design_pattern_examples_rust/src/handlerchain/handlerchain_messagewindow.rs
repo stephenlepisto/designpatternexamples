@@ -2,7 +2,7 @@
 
 use std::cmp::max;
 use std::fmt::Display;
-use std::sync::Mutex;
+use std::sync::atomic::{AtomicI32, Ordering};
 
 use super::handlerchain_message::{MessagePosition, MessageType, Message};
 use super::handlerchain_imessagehandler_trait::IMessageHandler;
@@ -21,29 +21,23 @@ const CLOSE_WIDTH: i32 = 2;
 /// Height of the QUIT region in the upper right corner of the region.
 const CLOSE_HEIGHT: i32 = 2;
 
-/// Used for assigning a unique ID to each created window.
-static NEXT_WINDOW_ID: Mutex<i32> = Mutex::new(1);
-
-/// Retrieve the next window ID from a global static and update the static for
-/// the next window ID.
+/// Retrieve the next window ID.
 fn get_next_window_id() -> i32 {
-    let window_id : i32;
-    {
-        window_id = *NEXT_WINDOW_ID.lock().unwrap();
-    }
-    *NEXT_WINDOW_ID.lock().unwrap() = window_id + 1;
+    // Use a static to hold the next window ID.
+    static NEXT_WINDOW_ID: AtomicI32 = AtomicI32::new(1);
 
-    window_id
+    NEXT_WINDOW_ID.fetch_add(1, Ordering::Relaxed)
 }
+
 //-----------------------------------------------------------------------------
 
 /// Represents a rectangular region, with upper left and lower right
 /// coordinates.
-/// 
+///
 /// For this example, the minimum width of a rectangle is 4 x 4.
 pub struct WindowRectangle {
         pub left: i32,
-        pub top: i32, 
+        pub top: i32,
         pub right: i32,
         pub bottom: i32,
 }
