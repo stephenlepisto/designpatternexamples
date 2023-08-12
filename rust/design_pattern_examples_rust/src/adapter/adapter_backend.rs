@@ -7,22 +7,21 @@
 
 #![allow(non_camel_case_types, non_upper_case_globals)]
 
-// Note: This #[link()] applies to all extern "C" {} blocks in this file.
 #[link(name="Adapter_BackEnd")]
-extern "C" {}
-
 extern "C" {
     #[doc = " Name of the first block."]
     #[link_name="BLOCK_NAME_0"]
     pub static block_name_0: *const ::std::os::raw::c_char;
 }
 
+#[link(name="Adapter_BackEnd")]
 extern "C" {
     #[doc = " Name of the second block."]
     #[link_name="BLOCK_NAME_1"]
     pub static block_name_1: *const ::std::os::raw::c_char;
 }
 
+#[link(name="Adapter_BackEnd")]
 extern "C" {
     #[doc = " Name of the third block."]
     #[link_name="BLOCK_NAME_2"]
