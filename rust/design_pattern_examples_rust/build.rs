@@ -10,9 +10,12 @@ use std::path::{Path, PathBuf};
 fn main() {
     // Note: the DEBUG environment variable is not in the cargo metadata so we
     // go to the environment for the value.
-    let debug_config = match env::var("DEBUG").unwrap().as_str() {
-        "true" => "debug",
-        _ => "release",
+    let debug_config = match env::var("DEBUG") {
+        Ok(var) => match var.as_str()  {
+                            "true" => "debug",
+                            _ => "release",
+                        },
+        Err(_) => ".", // No DEBUG?  Assume single-configuration build
     };
 
     // We expect CMake to provide the ADAPTER_BINARY_DIR variable.  However,
@@ -23,9 +26,12 @@ fn main() {
     // might have been.
     let library_path = match env::var("ADAPTER_BINARY_DIR") {
         Ok(value) => PathBuf::from(value),
-        Err(_) => Path::join(&env::current_dir().unwrap(), "..").join("..").join("build").join("Adapter_BackEnd").join(format!("{debug_config}/")),
+        Err(_) => Path::join(&env::current_dir().unwrap(), "..").join("..").join("build").join("Adapter_BackEnd").join(format!("{debug_config}")),
     };
 
-    println!("cargo:rustc-link-lib=Adapter_BackEnd");
+    // We don't need to use cargo:rustc-link-lib here since the use of the
+    // #[link()] in adapter_backend.rs automatically adds the library to the
+    // link line.
+    //println!("cargo:rustc-link-lib=Adapter_BackEnd");
     println!("cargo:rustc-link-search={}", library_path.display());
 }
