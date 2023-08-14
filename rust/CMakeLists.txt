@@ -149,7 +149,8 @@ source_group("visitor" REGULAR_EXPRESSION ${RUST_SRC}/visitor/.*\.rs)
 set(IS_WINDOWS $<STREQUAL:${CMAKE_HOST_SYSTEM_NAME},Windows>)
 set(ADAPTER_LIBRARY "$<TARGET_FILE:Adapter_BackEnd>")
 set(ADAPTER_PDB "$<${IS_WINDOWS}:$<TARGET_PDB_FILE:Adapter_BackEnd>>")
-set(RUST_OUTPUT_DIR "${RUST_BINARY_DIR}/$<CONFIG>")
+# Note: Rust prefers lowercase for the configuration directory
+set(RUST_OUTPUT_DIR "${RUST_BINARY_DIR}/$<LOWER_CASE:$<CONFIG>>/")
 
 # Copy the Adapter_BackEnd dynamic library to the rust output directory so
 # the rust program can be run from there.
