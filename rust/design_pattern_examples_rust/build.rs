@@ -34,4 +34,7 @@ fn main() {
     // link line.
     //println!("cargo:rustc-link-lib=Adapter_BackEnd");
     println!("cargo:rustc-link-search={}", library_path.display());
+    // Note: The following is platform-specific but appears to be ignored on
+    // Windows when building with cargo.
+    println!("cargo:rustc-link-arg=-Wl,-rpath=$ORIGIN");
 }
