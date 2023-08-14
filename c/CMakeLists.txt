@@ -16,6 +16,14 @@ target_compile_options(c_compiler_flags INTERFACE
 
 add_executable(DesignPatternExamples_c)
 
+# Set things up so that if the libAdapter_BackEnd.so is in the same library
+# as DesignPatternExamples_c, then use that library instead.
+set_target_properties(DesignPatternExamples_c
+      PROPERTIES
+        BUILD_RPATH_USE_ORIGIN true
+        BUILD_RPATH "$ORIGIN"
+)
+
 target_link_libraries(DesignPatternExamples_c
                       PUBLIC Adapter_BackEnd
                       PUBLIC c_compiler_flags
@@ -197,9 +205,26 @@ target_sources(DesignPatternExamples_c
 # Group all helper/ files in the project group "Helper Files"
 source_group("Helper Files" REGULAR_EXPRESSION helpers/.*)
 
+
+# Since TARGET generators are not supported in custom commands, get the needed
+# file paths and directories first and pass those in simple variables.
+set(IS_WINDOWS $<STREQUAL:${CMAKE_HOST_SYSTEM_NAME},Windows>)
+set(ADAPTER_LIBRARY "$<TARGET_FILE:Adapter_BackEnd>")
+set(ADAPTER_PDB "$<${IS_WINDOWS}:$<TARGET_PDB_FILE:Adapter_BackEnd>>")
+set(C_OUTPUT_DIR "$<TARGET_FILE_DIR:DesignPatternExamples_c>/")
+
+# Copy the Adapter_BackEnd dynamic library to the application output directory
+# so the application can be run from there.
 add_custom_command(TARGET DesignPatternExamples_c POST_BUILD
-  COMMAND ${CMAKE_COMMAND} -E copy -t
-    $<TARGET_FILE_DIR:DesignPatternExamples_c>
-    $<TARGET_RUNTIME_DLLS:DesignPatternExamples_c>
-  COMMAND_EXPAND_LISTS
-)
+                   COMMAND ${CMAKE_COMMAND} -E copy ${ADAPTER_LIBRARY} ${C_OUTPUT_DIR}
+                  )
+
+# Copy the Adapter_BackEnd dynamic library debug symbol file, if it exists, to
+# the application output directory so the application can use it from there.
+add_custom_command(TARGET DesignPatternExamples_c POST_BUILD
+                   COMMAND ${CMAKE_COMMAND}
+                       "-DFILE_TO_COPY=${ADAPTER_PDB}"
+                       "-DDESTINATION=${C_OUTPUT_DIR}"
+                       -P ${CMAKE_SOURCE_DIR}/copyfile_if_exists.cmake
+                   COMMENT "Copying ${ADAPTER_PDB} if it exists."
+                  )

@@ -18,6 +18,14 @@ target_compile_options(cxx_compiler_flags INTERFACE
 
 add_executable(DesignPatternExamples_cpp)
 
+# Set things up so that if the libAdapter_BackEnd.so is in the same library
+# as DesignPatternExamples_cpp, then use that library instead.
+set_target_properties(DesignPatternExamples_cpp
+      PROPERTIES
+        BUILD_RPATH_USE_ORIGIN true
+        BUILD_RPATH "$ORIGIN"
+)
+
 target_link_libraries(DesignPatternExamples_cpp
                       PUBLIC Adapter_BackEnd
                       PUBLIC cxx_compiler_flags
@@ -160,9 +168,26 @@ target_sources(DesignPatternExamples_cpp
     # Group all helper/ files in the project group "Helper Files"
 source_group("Helper Files" REGULAR_EXPRESSION helpers/.*)
 
+
+# Since TARGET generators are not supported in custom commands, get the needed
+# file paths and directories first and pass those in simple variables.
+set(IS_WINDOWS $<STREQUAL:${CMAKE_HOST_SYSTEM_NAME},Windows>)
+set(ADAPTER_LIBRARY "$<TARGET_FILE:Adapter_BackEnd>")
+set(ADAPTER_PDB "$<${IS_WINDOWS}:$<TARGET_PDB_FILE:Adapter_BackEnd>>")
+set(CPP_OUTPUT_DIR "$<TARGET_FILE_DIR:DesignPatternExamples_cpp>/")
+
+# Copy the Adapter_BackEnd dynamic library to the application output directory
+# so the application can be run from there.
 add_custom_command(TARGET DesignPatternExamples_cpp POST_BUILD
-  COMMAND ${CMAKE_COMMAND} -E copy -t
-    $<TARGET_FILE_DIR:DesignPatternExamples_cpp>
-    $<TARGET_RUNTIME_DLLS:DesignPatternExamples_cpp>
-  COMMAND_EXPAND_LISTS
-)
+                   COMMAND ${CMAKE_COMMAND} -E copy ${ADAPTER_LIBRARY} ${CPP_OUTPUT_DIR}
+                  )
+
+# Copy the Adapter_BackEnd dynamic library debug symbol file, if it exists, to
+# the application output directory so the application can use it from there.
+add_custom_command(TARGET DesignPatternExamples_cpp POST_BUILD
+                   COMMAND ${CMAKE_COMMAND}
+                       "-DFILE_TO_COPY=${ADAPTER_PDB}"
+                       "-DDESTINATION=${CPP_OUTPUT_DIR}"
+                       -P ${CMAKE_SOURCE_DIR}/copyfile_if_exists.cmake
+                   COMMENT "Copying ${ADAPTER_PDB} if it exists."
+                  )
