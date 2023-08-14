@@ -144,7 +144,7 @@ After building everything, the following command lines runs each example
 | C++           | `cplusplus\release\DesignPatternExamples_cpp.exe` | `cplusplus/DesignPatternExamples_cpp`   |
 | C#            | `csharp\release\DesignPatternExamples_csharp.exe` | N/A                                     |
 | Python        | `py -m python.DesignPatternExamples_python`       | `python3 -m python.DesignPatternExamples_python` |
-| Rust          | `rust\release\design_pattern_examples_rust.exe`   | `LD_LIBRARY_PATH=$(pwd)/Adapter_BackEnd/ rust/release/design_pattern_examples_rust` |
+| Rust          | `rust\release\design_pattern_examples_rust.exe`   | `rust/release/design_pattern_examples_rust` |
 
 To get help for each set of examples, use `--help` switch after the command line.
 For example: `c\release\DesignPatternExamples_c.exe --help`
@@ -172,6 +172,4 @@ the example after the command line (view all the names of examples with the
     This may be due to doxygen being v1.9.1 on Ubuntu.  Doxygen v1.9.6 on
     Windows does not produce this warning (the fix might have occurred in v1.9.2).
 - Rust
-  - Requires setting the LD_LIBRARY_PATH to the Adapter_BackEnd build directory
-    in order to run the rust executable.
   - Flyweight can be skipped only with the Enter key.
