@@ -154,14 +154,6 @@ the example after the command line (view all the names of examples with the
 `--help` option.  For example: `c\release\DesignPatternExamples_c.exe Flyweight`).
 
 # Known Issues (all on Ubuntu Linux v22.04)
-- C
-  - The full path to the libAdapter_BackEnd.so is hardcoded into the
-    DesignPatternExamples_c executable.  It can be run after being built but
-    it cannot be installed.
-- C++
-  - The full path to the libAdapter_BackEnd.so is hardcoded into the
-    DesignPatternExamples_cpp executable.  It can be run after being built but
-    it cannot be installed.
 - Python
   - Flyweight can be skipped only with the Enter key.
   - Doxygen might produce two warnings:
