@@ -18,6 +18,9 @@ target_compile_options(cxx_compiler_flags INTERFACE
 
 add_executable(DesignPatternExamples_cpp)
 
+configure_file(version.h.in version.h)
+target_include_directories(DesignPatternExamples_cpp PUBLIC ${CMAKE_CURRENT_BINARY_DIR})
+
 # Set things up so that if the libAdapter_BackEnd.so is in the same library
 # as DesignPatternExamples_cpp, then use that library instead.
 set_target_properties(DesignPatternExamples_cpp
@@ -163,10 +166,15 @@ target_sources(DesignPatternExamples_cpp
         helpers/titlecase.cpp
         helpers/uint32_to_binary.cpp
         helpers/wcsstri.cpp
+    PRIVATE
+        resource.h
+        version.h.in
+        resource.rc
     )
 
     # Group all helper/ files in the project group "Helper Files"
 source_group("Helper Files" REGULAR_EXPRESSION helpers/.*)
+source_group("Resource Files" FILES resource.h version.h.in resource.rc)
 
 
 # Since TARGET generators are not supported in custom commands, get the needed

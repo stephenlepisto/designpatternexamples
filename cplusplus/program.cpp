@@ -6,6 +6,8 @@
 #include <functional>
 #include <iostream>
 
+#include <version.h>
+
 #include "helpers/replace.h"
 #include "helpers/stringlist.h"
 #include "helpers/enablevtmode.h"
@@ -100,7 +102,7 @@ namespace DesignPatternExamples_cpp
         void Help(ExerciseList exercises)
         {
             std::string usage =
-                "{0} by Stephen P. Lepisto\n"
+                "{0} (v" APP_VERSION ") by Stephen P. Lepisto\n"
                 "usage: {0} [options] [exercise_name][[ exercise_name][...]]\n"
                 "\n"
                 "Runs through a series of exercises showing off design patterns.  If no\n"
@@ -109,6 +111,8 @@ namespace DesignPatternExamples_cpp
                 "Options:\n"
                 "--help, -?\n"
                 "     This help text.\n"
+                "--version\n"
+                "     Show just the version number of this application.\n"
                 "\n"
                 ""; // End of string.
 
@@ -120,6 +124,14 @@ namespace DesignPatternExamples_cpp
             {
                 std::cout << "  " << exercise.name << std::endl;
             }
+        }
+
+        /// <summary>
+        /// Helper function to show just the version of the application.
+        /// </summary>
+        void ShowVersion()
+        {
+            std::cout << APP_VERSION << std::endl;
         }
 
         /// <summary>
@@ -150,6 +162,12 @@ namespace DesignPatternExamples_cpp
                         argument == "/?")
                     {
                         Help(exercises);
+                        optionsValid = false;
+                        break;
+                    }
+                    else if (argument == "--version")
+                    {
+                        ShowVersion();
                         optionsValid = false;
                         break;
                     }
