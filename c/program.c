@@ -9,6 +9,8 @@
 #include <string.h>
 #include <time.h>
 
+#include <version.h>
+
 #include "helpers/enablevtmode.h"
 #include "helpers/stringlist.h"
 
@@ -80,7 +82,7 @@ typedef struct _Options
 static void Help(ExerciseList exercises)
 {
     const char* usage =
-        "DesignPatternExamples_c by Stephen P. Lepisto\n"
+        "DesignPatternExamples_c (v" APP_VERSION ") by Stephen P. Lepisto\n"
         "usage: DesignPatternExamples_c [options] [exercise_name][[ exercise_name][...]]\n"
         "\n"
         "Runs through a series of exercises showing off design patterns.  If no\n"
@@ -89,6 +91,9 @@ static void Help(ExerciseList exercises)
         "Options:\n"
         "--help, -?\n"
         "     This help text.\n"
+        "--version\n"
+        "     Show just the version number of this application.\n"
+        "\n"
         ""; // End of string.
 
     printf("%s\n", usage);
@@ -99,6 +104,15 @@ static void Help(ExerciseList exercises)
         printf("  %s\n", exercises[index].name);
     }
 }
+
+/// <summary>
+/// Helper function to show just the version of the application.
+/// </summary>
+static void ShowVersion(void)
+{
+    printf("%s\n", APP_VERSION);
+}
+
 
 /// <summary>
 /// Helper function to parse the given options and store the results in
@@ -136,6 +150,12 @@ static bool ParseOptions(int argc, char** argv, Options* options, ExerciseList e
                 strcmp(argv[index], "/?") == 0)
             {
                 Help(exercises);
+                optionsValid = false;
+                break;
+            }
+            if (strcmp(argv[index], "--version") == 0)
+            {
+                ShowVersion();
                 optionsValid = false;
                 break;
             }

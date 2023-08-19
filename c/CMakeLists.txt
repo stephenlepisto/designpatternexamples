@@ -16,6 +16,9 @@ target_compile_options(c_compiler_flags INTERFACE
 
 add_executable(DesignPatternExamples_c)
 
+configure_file(version.h.in version.h)
+target_include_directories(DesignPatternExamples_c PUBLIC ${CMAKE_CURRENT_BINARY_DIR})
+
 # Set things up so that if the libAdapter_BackEnd.so is in the same library
 # as DesignPatternExamples_c, then use that library instead.
 set_target_properties(DesignPatternExamples_c
@@ -200,11 +203,15 @@ target_sources(DesignPatternExamples_c
         helpers/titlecase.c
         helpers/uint32_to_binary.c
         helpers/uintarray.c
+    PRIVATE
+        resource.h
+        version.h.in
+        resource.rc
         )
 
 # Group all helper/ files in the project group "Helper Files"
 source_group("Helper Files" REGULAR_EXPRESSION helpers/.*)
-
+source_group("Resource Files" FILES resource.h version.h.in resource.rc)
 
 # Since TARGET generators are not supported in custom commands, get the needed
 # file paths and directories first and pass those in simple variables.
