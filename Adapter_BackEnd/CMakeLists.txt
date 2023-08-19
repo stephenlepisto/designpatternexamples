@@ -7,6 +7,10 @@ target_compile_definitions(adapter_compiler_flags INTERFACE _CRT_SECURE_NO_WARNI
 endif()
 
 add_library(Adapter_BackEnd SHARED)
+
+configure_file(version.h.in version.h)
+target_include_directories(Adapter_BackEnd PUBLIC ${CMAKE_CURRENT_BINARY_DIR})
+
 target_sources(Adapter_BackEnd
     PUBLIC
         Adapter_BackEnd.h
@@ -17,7 +21,8 @@ target_sources(Adapter_BackEnd
         Adapter_BackEnd.rc
         framework.h
         pch.h
-        resource.h)
+        resource.h
+        version.h.in)
 
 source_group("Resource Files" FILES Adapter_BackEnd.rc)
 
