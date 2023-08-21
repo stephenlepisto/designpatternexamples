@@ -36,6 +36,8 @@ mod visitor;
 mod helpers;
 
 
+const CARGO_PKG_VERSION: Option<&'static str> = option_env!("CARGO_PKG_VERSION");
+
 /// Alias for a pointer to a function that takes no parameters and returns a
 /// `Result<(), String>` (so only the error needs any action taken), using C#
 /// as inspiration for the name.
@@ -87,9 +89,9 @@ struct Options {
 ///
 ///     List of Exercise objects to display if help is needed.
 fn help(exercise_list: &Vec<Exercise>) {
-    let usage =
-"DesignPatternExamples_c by Stephen P. Lepisto
-usage: DesignPatternExamples_c [options] [exercise_name][[ exercise_name][...]]
+    let usage = format!(
+"{0} (v{1}) by Stephen P. Lepisto
+usage: {0} [options] [exercise_name][[ exercise_name][...]]
 
 Runs through a series of exercises showing off design patterns.  If no
 exercise_name is given, then run through all exercises.
@@ -97,7 +99,12 @@ exercise_name is given, then run through all exercises.
 Options:
 --help, -?
         This help text.
-"; // End of string.
+--version
+        Show just the version number of this application.
+"
+, "DesignPatternExamples_rust"
+, CARGO_PKG_VERSION.unwrap_or("NOT FOUND")
+); // End of string.
 
     println!("{usage}");
 
@@ -106,6 +113,13 @@ Options:
         println!("  {}", exercise.exercise_name);
     }
 }
+
+
+/// Helper function to show just the version of the application.
+fn show_version() {
+    println!("{}", CARGO_PKG_VERSION.unwrap_or("NOT FOUND"));
+}
+
 
 /// Helper function to parse the given options and return the results in
 /// the given Options structure.  Displays help if requested.
@@ -132,6 +146,10 @@ fn parse_options(args: &[String], exercise_list: &Vec<Exercise>) -> Result<Optio
                 help(exercise_list);
                 return Err("");
             },
+            "--version" => {
+                show_version();
+                return Err("");
+            }
             _ => exercise_names.push(arg.to_string()),
         }
     }
