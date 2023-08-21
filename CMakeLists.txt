@@ -40,10 +40,6 @@ endif()
 project(DesignPatternExamples_python VERSION 1.0.0.0)
 add_subdirectory(python)
 
-# Note: The version for the rust project is actually defined in the Cargo.toml
-# manifest file.  There is currently no way to override that value from the
-# cargo command line or an external file, so the version provided in this
-# project() command is currently unused.
 project(DesignPatternExamples_rust VERSION 1.0.0.0)
 add_subdirectory(rust)
 

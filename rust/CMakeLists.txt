@@ -29,6 +29,7 @@ set(ADAPTER_BINARY_DIR "$<TARGET_FILE_DIR:Adapter_BackEnd>")
 add_custom_command(OUTPUT rust_files
     COMMAND ${CMAKE_COMMAND} -E env
                 "ADAPTER_BINARY_DIR=${ADAPTER_BINARY_DIR}"
+                "RUST_VERSION=${CMAKE_PROJECT_VERSION}"
                 ${CARGO} build $<$<CONFIG:Release>:--release> --target-dir ${RUST_BINARY_DIR}
     WORKING_DIRECTORY ${RUST_ROOT}
     COMMAND_EXPAND_LISTS

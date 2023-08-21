@@ -29,6 +29,13 @@ fn main() {
         Err(_) => Path::join(&env::current_dir().unwrap(), "..").join("..").join("build").join("Adapter_BackEnd").join(format!("{debug_config}")),
     };
 
+    // Override the CARGO_PKG_VERSION used in the program if RUST_VERSION is
+    // set.  Allows CMake to override the version stored in the Cargo.toml
+    // manifest file.
+    if let Ok(val) = env::var("RUST_VERSION") {
+        println!("cargo:rustc-env=CARGO_PKG_VERSION={}", val);
+    }
+
     // We don't need to use cargo:rustc-link-lib here since the use of the
     // #[link()] in adapter_backend.rs automatically adds the library to the
     // link line.
