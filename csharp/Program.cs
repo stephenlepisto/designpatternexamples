@@ -6,6 +6,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 
 /// <summary>
 /// The namespace containing all Design Pattern Examples implemented in C#.
@@ -61,15 +62,23 @@ namespace DesignPatternExamples_csharp
 
         //########################################################################
 
+        /// <summary>
+        /// Helper method to get the version of this assembly.
+        /// </summary>
+        /// <returns>The version as a string.</returns>
+        private string GetVersion()
+        {
+            return Assembly.GetExecutingAssembly().GetName().Version.ToString();
+        }
 
         /// <summary>
         /// Helper method to show usage information for this program.
         /// </summary>
         /// <param name="exercises">List of Exercise objects for which to show the names.</param>
-        void Help(Exercise[] exercises)
+        private void Help(Exercise[] exercises)
         {
             string usage =
-                "{0} by Stephen P. Lepisto\n" +
+                "{0} (v{1}) by Stephen P. Lepisto\n" +
                 "usage: {0} [--help][-?][options] [exercise_name][[ exercise_name][...]]\n" +
                 "\n" +
                 "Runs through a series of exercises showing off design patterns.  If no exercise_name\n" +
@@ -78,17 +87,27 @@ namespace DesignPatternExamples_csharp
                 "Options:\n" +
                 "--help, -?\n" +
                 "     This help text.\n" +
+                "--version\n" +
+                "     Show just the version number of this application.\n" +
                 "\n" +
                 ""; // End of string.
 
             string appName = System.IO.Path.GetFileNameWithoutExtension(AppDomain.CurrentDomain.FriendlyName);
-            Console.Write(usage, appName);
+            Console.Write(usage, appName, GetVersion());
 
             Console.WriteLine("\nExercises available:");
             foreach (Exercise exercise in exercises)
             {
                 Console.WriteLine("  {0}", exercise.name);
             }
+        }
+
+        /// <summary>
+        /// Helper method to show just the version of the application.
+        /// </summary>
+        private void ShowVersion()
+        {
+            Console.WriteLine(GetVersion());
         }
 
         /// <summary>
@@ -117,6 +136,12 @@ namespace DesignPatternExamples_csharp
                         string.Compare(arg, "/?") == 0)
                     {
                         Help(exercises);
+                        optionsValid = false;
+                        break;
+                    }
+                    else if (string.Compare(arg, "--version") == 0)
+                    {
+                        ShowVersion();
                         optionsValid = false;
                         break;
                     }
