@@ -25,6 +25,8 @@ from .state import State_Exercise
 from .strategy import Strategy_Exercise
 from .visitor import Visitor_Exercise
 
+from .version import app_version
+
 
 ## Contains all the top-level Design Pattern Examples to match C#.
 class Program:
@@ -65,7 +67,7 @@ class Program:
     #        List of Exercise objects for which to show the names.
     def Help(self, exercises: list[Exercise]):
         usage = \
-                "{0} by Stephen P. Lepisto\n" + \
+                "{0} v({1}) by Stephen P. Lepisto\n" + \
                 "usage: {0} [--help][-?][options] [exercise_name][[ exercise_name][...]]\n" + \
                 "\n"  + \
                 "Runs through a series of exercises showing off design patterns.  If no exercise_name\n" + \
@@ -73,14 +75,19 @@ class Program:
                 "\n" + \
                 "Options:\n" + \
                 "--help, -?\n" + \
-                "     This help text.\n"
+                "     This help text.\n" + \
+                "--version\n" + \
+                "     Show just the version number of this application.\n"
 
-        print(usage.format("DesignPatternExamples_python"))
+        print(usage.format("DesignPatternExamples_python", app_version))
 
         print("Exercises available:")
         for exercise in exercises:
             print("  {0}".format(exercise.name))
 
+    ## Helper method to show just the version of the application.
+    def ShowVersion(self):
+        print(app_version)
 
 
     ## Helper method to parse the given options and store the results in
@@ -98,6 +105,10 @@ class Program:
             for argument in args:
                 if argument in ["--help", "-?", "/?"]:
                     self.Help(exercises)
+                    optionsValid = False
+                    break
+                elif argument in ["--version"]:
+                    self.ShowVersion()
                     optionsValid = False
                     break
                 options.exercise_names.append(argument)

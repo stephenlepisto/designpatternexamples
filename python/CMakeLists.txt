@@ -8,10 +8,13 @@ add_custom_target(DesignPatternExamples_python ALL
 add_dependencies(DesignPatternExamples_python Adapter_BackEnd)
 
 
+configure_file(${PYTHON_SOURCE_DIR}/version.py.in ${PYTHON_OUTPUT_DIR}/version.py)
+
 add_custom_command(OUTPUT python_files
                     COMMAND ${CMAKE_COMMAND} -E echo "Copying python files over..."
                     COMMAND ${CMAKE_COMMAND} -E copy_directory_if_different
                         ${PYTHON_SOURCE_DIR} ${PYTHON_OUTPUT_DIR}
+                    COMMAND ${CMAKE_COMMAND} -E rm ${PYTHON_OUTPUT_DIR}/version.py.in
                     VERBATIM
                     COMMAND_EXPAND_LISTS
                   )
@@ -24,6 +27,7 @@ target_sources(DesignPatternExamples_python
         ${PYTHON_SOURCE_DIR}/__main__.py
         ${PYTHON_SOURCE_DIR}/enablevtmode.py
         ${PYTHON_SOURCE_DIR}/program.py
+        ${PYTHON_SOURCE_DIR}/version.py.in
     PRIVATE
         ${PYTHON_SOURCE_DIR}/adapter/adapter_backendfunctions.py
         ${PYTHON_SOURCE_DIR}/adapter/adapter_exercise.py
