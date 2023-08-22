@@ -33,7 +33,8 @@ add_subdirectory(cplusplus)
 
 if(${CMAKE_HOST_SYSTEM_NAME} STREQUAL Windows)
     project(DesignPatternExamples_csharp LANGUAGES CSharp VERSION 1.0.0.0)
-    SET(CMAKE_DOTNET_TARGET_FRAMEWORK_VERSION "v4.7.2")
+    #SET(CMAKE_DOTNET_TARGET_FRAMEWORK_VERSION "v4.7.2")
+    SET(CMAKE_DOTNET_TARGET_FRAMEWORK "net7.0")
     add_subdirectory(csharp)
 endif()
 
