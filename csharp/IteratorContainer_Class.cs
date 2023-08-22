@@ -60,7 +60,7 @@ namespace DesignPatternExamples_csharp
         /// </summary>
         /// <returns>Returns a TItemType object or null, if there are no more
         /// items in the iteration.</returns>
-        TItemType Next();
+        TItemType? Next();
     }
 
 
@@ -113,9 +113,9 @@ namespace DesignPatternExamples_csharp
         /// more items.
         /// </summary>
         /// <returns>The next item or null if no more items.</returns>
-        public TItemType Next()
+        public TItemType? Next()
         {
-            TItemType item = default(TItemType);
+            TItemType? item = default(TItemType);
 
             if (_index < _items.Length)
             {

@@ -273,8 +273,15 @@ namespace DesignPatternExamples_csharp
 
                 // Create an instance of the Flyweight_Class for the given big
                 // resource and with the new context.
-                Flyweight_Class flyweightInstance = BigResourceManager.CreateFlyweight(bigResourceId, context);
-                flyweightInstances.Add(flyweightInstance);
+                Flyweight_Class? flyweightInstance = BigResourceManager.CreateFlyweight(bigResourceId, context);
+                if (flyweightInstance != null)
+                {
+                    flyweightInstances.Add(flyweightInstance);
+                }
+                else
+                {
+                    Console.WriteLine("  Error!  Failed to find big resource ID {}, which is needed for the flyweight.", bigResourceId);
+                }
             }
             return flyweightInstances;
         }

@@ -77,12 +77,23 @@ namespace DesignPatternExamples_csharp
         /// The children of this entry.  Is null if the entry can never have
         /// any children (that is, it isn't a container of other entries).
         /// </summary>
-        public virtual FileDirEntry[] Children
+        public virtual FileDirEntry[]? Children
         {
             get
             {
                 return null;
             }
+        }
+
+        /// <summary>
+        /// Default constructor.
+        /// </summary>
+        public FileDirEntry()
+        {
+            FileDirType = FileDirTypes.File;
+            Name = string.Empty;
+            Length = 0;
+            WhenModified = DateTime.MinValue;
         }
 
     }

@@ -354,7 +354,7 @@ namespace DesignPatternExamples_csharp
         public bool ProcessMessage(Message message)
         {
             bool messageProcessed = false;
-            MessageHandler handler = null;
+            MessageHandler? handler;
 
             if (_messageHandlers.TryGetValue(message.MessageType, out handler))
             {

@@ -68,7 +68,8 @@ namespace DesignPatternExamples_csharp
         /// </summary>
         /// <param name="chainIndex">Index of the device chain (0..n-1).</param>
         /// <returns>Returns an array of idcodes for each visible TAP, with the first
-        /// TAP being at index 0.</returns>
+        /// TAP being at index 0.  Can be empty if the chainIndex parameter
+        /// is out of bounds.</returns>
         uint[] GetIdcodes(int chainIndex);
     }
 
@@ -106,7 +107,7 @@ namespace DesignPatternExamples_csharp
         /// </summary>
         /// <param name="chainIndex">Index of the device chain to access (0..NumChains-1).</param>
         /// <returns>An array holding the idcodes of all visible devices in the given
-        /// chain.</returns>
+        /// chain.  Can be empty if the chainIndex parameter is out of bounds.</returns>
         uint[] GetIdcodes(int chainIndex);
 
         /// <summary>

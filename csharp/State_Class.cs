@@ -622,7 +622,7 @@ namespace DesignPatternExamples_csharp
         /// <returns>Returns an IStateBehavior instance for the specified state.</returns>
         static public IStateBehavior CreateState(CurrentState state)
         {
-            IStateBehavior stateBehavior = null;
+            IStateBehavior stateBehavior;
             switch(state)
             {
                 case CurrentState.NormalText:
@@ -697,17 +697,17 @@ namespace DesignPatternExamples_csharp
         /// <summary>
         /// The text to be filtered.
         /// </summary>
-        private string _inputText;
+        private string _inputText = string.Empty;
 
         /// <summary>
         /// Index into the text to be filtered.
         /// </summary>
-        private int _textIndex;
+        private int _textIndex = 0;
 
         /// <summary>
         /// The results of the filtering.
         /// </summary>
-        private StringBuilder _outputText;
+        private StringBuilder _outputText = new StringBuilder();
 
         /// <summary>
         /// Maps values from the CurrentState enumeration to instances of the
@@ -724,7 +724,7 @@ namespace DesignPatternExamples_csharp
         /// The current behavior (that is, a reference to the state behavior
         /// class) for the current state.
         /// </summary>
-        private IStateBehavior _currentStateBehavior;
+        private IStateBehavior _currentStateBehavior = new State_NormalText();
 
 
         //--------------------------------------------------------------------

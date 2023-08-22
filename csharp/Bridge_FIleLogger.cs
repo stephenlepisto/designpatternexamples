@@ -21,9 +21,22 @@ namespace DesignPatternExamples_csharp
         bool _disposed;
 
         /// <summary>
-        /// Constructor.  If successful, the file is opened for writing.
+        /// Constructor.  If successful, the file is opened for writing.  Raises
+        /// an exception if the output file cannot be created.
         /// </summary>
         /// <param name="filename">Name of file to log to.</param>
+        /// <exception cref="UnauthorizedAccessException">
+        /// "The caller does not have the required permission.",
+        /// "path specified a file that is read-only.", or
+        /// "path specified a file that is hidden."</exception>
+        /// <exception cref="ArgumentException">path is a zero-length string,
+        /// contains only white space, or contains one or more invalid characters.</exception>
+        /// <exception cref="ArgumentNullException">path is null.</exception>
+        /// <exception cref="PathTooLongException">The specified path, file name,
+        /// or both exceed the system-defined maximum length.</exception>
+        /// <exception cref="DirectoryNotFoundException">The specified path is
+        /// invalid (for example, it is on an unmapped drive).</exception>
+        /// <exception cref="NotSupportedException">path is in an invalid format.</exception>
         public FileLogger(string filename)
         {
             _outputFile = File.CreateText(filename);
@@ -37,12 +50,8 @@ namespace DesignPatternExamples_csharp
         /// <param name="msg">The message to log.</param>
         private void _WriteLine(string logLevel, string msg)
         {
-            if (_outputFile != null)
-            {
-                string output = LoggerHelpers.FormatLogLine(logLevel, msg);
-                _outputFile.WriteLine(output);
-            }
-
+            string output = LoggerHelpers.FormatLogLine(logLevel, msg);
+            _outputFile.WriteLine(output);
         }
 
         #region ILogger Members
@@ -73,11 +82,7 @@ namespace DesignPatternExamples_csharp
         {
             if (!_disposed)
             {
-                if (_outputFile != null)
-                {
-                    _outputFile.Close();
-                    _outputFile = null;
-                }
+                _outputFile.Close();
                 _disposed = true;
             }
         }

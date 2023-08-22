@@ -393,10 +393,11 @@ namespace DesignPatternExamples_csharp
         /// </summary>
         /// <param name="chainIndex">The index of the device chain to access (0..n-1).</param>
         /// <returns>An array of uints holding the idcodes for each device, with the
-        /// first idcode corresponding to the first visible device.</returns>
+        /// first idcode corresponding to the first visible device.  Can be
+        /// empty if the chainIndex parameter is out of bounds.</returns>
         uint[] IDeviceNetworkLowLevel.GetIdcodes(int chainIndex)
         {
-            uint[] idcodes = null;
+            uint[] idcodes = new uint[0];
 
             if (chainIndex >= 0 && chainIndex < _deviceChains.Length)
             {
@@ -429,10 +430,10 @@ namespace DesignPatternExamples_csharp
         /// </summary>
         /// <param name="chainIndex">Index of the device chain to access (0..NumChains-1).</param>
         /// <returns>An array holding the idcodes of all visible devices in the given
-        /// chain.</returns>
+        /// chain.  Can be empty if the chainIndex parameter is out of bounds.</returns>
         uint[] IDeviceNetworkHighLevel.GetIdcodes(int chainIndex)
         {
-            uint[] idcodes = null;
+            uint[] idcodes = new uint[0];
 
             if (((IDeviceNetworkLowLevel)this).LockDeviceChain(chainIndex))
             {
@@ -493,7 +494,7 @@ namespace DesignPatternExamples_csharp
         /// <summary>
         /// A singleton instance of the sub-system.
         /// </summary>
-        static IDeviceNetworkLowLevel _instance;
+        static IDeviceNetworkLowLevel? _instance;
 
 
         /// <summary>

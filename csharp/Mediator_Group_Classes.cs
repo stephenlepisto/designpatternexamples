@@ -104,15 +104,18 @@ namespace DesignPatternExamples_csharp
         /// </summary>
         /// <param name="obj">A string or an instance of the Group class.</param>
         /// <returns>True if the names are equal (case-sensitive).</returns>
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
-            if (obj is Group)
+            if (obj != null)
             {
-                return ((Group)obj).Name == Name;
-            }
-            if (obj is string)
-            {
-                return (string)obj == Name;
+                if (obj is Group)
+                {
+                    return ((Group)obj).Name == Name;
+                }
+                if (obj is string)
+                {
+                    return (string)obj == Name;
+                }
             }
             return false;
         }
@@ -172,7 +175,7 @@ namespace DesignPatternExamples_csharp
         /// </summary>
         /// <param name="name">Group name to search for.</param>
         /// <returns>Returns a Group object if name found.  Returns null if not found.</returns>
-        public Group FindGroup(string name)
+        public Group? FindGroup(string name)
         {
             return _groups.Find(x => x.Equals(name));
         }

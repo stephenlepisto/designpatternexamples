@@ -68,7 +68,13 @@ namespace DesignPatternExamples_csharp
         /// <returns>The version as a string.</returns>
         private string GetVersion()
         {
-            return Assembly.GetExecutingAssembly().GetName().Version.ToString();
+            string version = string.Empty;
+            Version? asm_version = typeof(Program).Assembly.GetName().Version;
+            if (asm_version != null)
+            {
+                version = asm_version.ToString();
+            }
+            return version;
         }
 
         /// <summary>

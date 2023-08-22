@@ -117,10 +117,10 @@ namespace DesignPatternExamples_csharp
         string _commandName;
 
         // Two parameter operation to apply to the receiver.
-        two_parameter_operation _two_parameter_operation;
+        two_parameter_operation? _two_parameter_operation;
 
         // No parameter operation to apply to the receiver.
-        no_parameter_operation _no_parameter_operation;
+        no_parameter_operation? _no_parameter_operation;
 
         // The first argument to the operation.
         string _argument1;
@@ -142,6 +142,7 @@ namespace DesignPatternExamples_csharp
             _receiver = source;
             _commandName = commandName;
             _two_parameter_operation = operation;
+            _no_parameter_operation = null;
             _argument1 = argument1;
             _argument2 = argument2;
         }
@@ -158,6 +159,9 @@ namespace DesignPatternExamples_csharp
             _receiver = source;
             _commandName = commandName;
             _no_parameter_operation = operation;
+            _two_parameter_operation = null;
+            _argument1 = string.Empty;
+            _argument2 = string.Empty;
         }
 
         /// <summary>
@@ -169,7 +173,7 @@ namespace DesignPatternExamples_csharp
             {
                 _two_parameter_operation(_receiver, _argument1, _argument2);
             }
-            else // if (_no_parameter_operation != null)
+            else if (_no_parameter_operation != null)
             {
                 _no_parameter_operation(_receiver);
             }

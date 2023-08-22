@@ -40,7 +40,7 @@ namespace DesignPatternExamples_csharp
         /// The list of memento objects that form a series of snapshots in time
         /// of a Memento_TextObject.
         /// </summary>
-        Stack<IMemento> _mementoUndoList;
+        Stack<IMemento> _mementoUndoList = new Stack<IMemento>();
 
         /// <summary>
         /// Take a snapshot of the given text object associated with the name of
@@ -140,7 +140,7 @@ namespace DesignPatternExamples_csharp
             Console.WriteLine("Memento Exercise");
 
             // Start with a fresh undo list.
-            _mementoUndoList = new Stack<IMemento>();
+            _mementoUndoList.Clear();
 
             // The base text object to work from.
             Memento_TextObject text = new Memento_TextObject("This is a line of text on which to experiment.");

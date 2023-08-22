@@ -98,21 +98,18 @@ namespace DesignPatternExamples_csharp
         /// <summary>
         /// Name of the shop.
         /// </summary>
-        public string Name
-        { get; set; }
+        public string Name = string.Empty;
 
         /// <summary>
         /// Address of the shop (could be a structure but a simple string is
         /// sufficient for this example).
         /// </summary>
-        public string Address
-        { get; set; }
+        public string Address = string.Empty;
 
         /// <summary>
         /// The Village that contains this shop.
         /// </summary>
-        public Village Village
-        { get; set; }
+        public Village Village = new Village();
 
         //-------------------------------------------------------------------
 
@@ -121,8 +118,7 @@ namespace DesignPatternExamples_csharp
         /// Also, the keys are what the shop sells.  The ingredient list could
         /// be empty if this shop is the origin of the item used as the key.
         /// </summary>
-        public Dictionary<string, string[]> IngredientsForItems
-        { get; set; }
+        public Dictionary<string, string[]> IngredientsForItems = new Dictionary<string, string[]>();
 
 
         /// <summary>

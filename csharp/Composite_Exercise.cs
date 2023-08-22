@@ -48,7 +48,7 @@ namespace DesignPatternExamples_csharp
             output.AppendFormat("  {0}", entry.WhenModified.ToString());
             output.AppendFormat("{0}", Environment.NewLine);
 
-            FileDirEntry[] children = entry.Children;
+            FileDirEntry[]? children = entry.Children;
             if (children != null)
             {
                 for (int index = 0; index < children.Length; ++index)

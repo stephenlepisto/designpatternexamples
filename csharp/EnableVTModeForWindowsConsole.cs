@@ -36,12 +36,12 @@ namespace DesignPatternExamples_csharp
         public EnableVTModeForWindowsConsole()
         {
             originalOutConsoleMode = INVALID_MODE;
-            hStdOut = (IntPtr)INVALID_HANDLE_VALUE;
+            hStdOut = INVALID_HANDLE_VALUE;
             // If we running on Windows then change the mode
             if (Path.DirectorySeparatorChar == '\\')
             {
                 hStdOut = GetStdHandle(STD_OUTPUT_HANDLE);
-                if (hStdOut != (IntPtr)INVALID_HANDLE_VALUE)
+                if (hStdOut != INVALID_HANDLE_VALUE)
                 {
                     if (GetConsoleMode(hStdOut, out uint originalOutConsoleMode))
                     {
@@ -52,7 +52,7 @@ namespace DesignPatternExamples_csharp
             }
         }
 
-        internal const ulong INVALID_HANDLE_VALUE = 0xffffffffffffffff;
+        internal const IntPtr INVALID_HANDLE_VALUE = -1;
         internal const uint INVALID_MODE = 0xffffffff;
         internal const int STD_OUTPUT_HANDLE = -11;
         internal const uint ENABLE_VIRTUAL_TERMINAL_PROCESSING = 0x0004;

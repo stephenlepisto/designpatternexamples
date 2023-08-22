@@ -252,7 +252,7 @@ namespace DesignPatternExamples_csharp
             foreach (char command in moveList)
             {
                 string testCommand = command.ToString().ToUpper();
-                MoveCommand moveCommand = null;
+                MoveCommand moveCommand;
 
                 switch (testCommand)
                 {

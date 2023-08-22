@@ -18,7 +18,7 @@ namespace DesignPatternExamples_csharp
         /// <summary>
         /// Name of this village
         /// </summary>
-        public string Name;
+        public string Name = string.Empty;
 
         /// <summary>
         /// List of Visitor_Shop class-derived shops in this village that can be visited.

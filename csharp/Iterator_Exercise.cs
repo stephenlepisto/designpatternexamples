@@ -37,21 +37,21 @@ namespace DesignPatternExamples_csharp
 
             Console.WriteLine("  Iterating over keys only:");
             var keyIterator = items.GetKeys();
-            for (string item = keyIterator.Next(); item != null; item = keyIterator.Next())
+            for (string? item = keyIterator.Next(); item != null; item = keyIterator.Next())
             {
                 Console.WriteLine("    {0}", item);
             }
 
             Console.WriteLine("  Iterating over values only:");
             var valueIterator = items.GetValues();
-            for (string item = valueIterator.Next(); item != null; item = valueIterator.Next())
+            for (string? item = valueIterator.Next(); item != null; item = valueIterator.Next())
             {
                 Console.WriteLine("    {0}", item);
             }
 
             Console.WriteLine("  Iterating over all items:");
             var itemIterator = items.GetItems();
-            for (ItemPair item = itemIterator.Next(); item != null; item = itemIterator.Next())
+            for (ItemPair? item = itemIterator.Next(); item != null; item = itemIterator.Next())
             {
                 Console.WriteLine("    {0} = {1}", item.Key, item.Value);
             }

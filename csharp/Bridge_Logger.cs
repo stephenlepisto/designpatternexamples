@@ -137,7 +137,7 @@ namespace DesignPatternExamples_csharp
         /// <summary>
         /// The logger implementation represented by the ILogger interface.
         /// </summary>
-        private ILogger _logger;
+        private ILogger? _logger;
     }
 
 }

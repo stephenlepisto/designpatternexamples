@@ -27,7 +27,7 @@ namespace DesignPatternExamples_csharp
         /// <summary>
         /// The list of commands applied.
         /// </summary>
-        Stack<Command> _commandUndoList;
+        Stack<Command> _commandUndoList = new Stack<Command>();
 
         /// <summary>
         /// Save the given command on the undo list then execute the command on
@@ -134,7 +134,7 @@ namespace DesignPatternExamples_csharp
             Console.WriteLine("Command Exercise");
 
             // Start with a fresh undo list.
-            _commandUndoList = new Stack<Command>();
+            _commandUndoList.Clear();
 
             // The base text object to work from.
             Command_TextObject text = new Command_TextObject("This is a line of text on which to experiment.");

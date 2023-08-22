@@ -390,9 +390,9 @@ namespace DesignPatternExamples_csharp
         /// <param name="resourceId">ID of the big resource to find.</param>
         /// <returns>Returns a BigResource object corresponding to the specified ID.
         /// Returns null if there is no corresponding IBigResource object.</returns>
-        internal static BigResource FindResource(int resourceId)
+        internal static BigResource? FindResource(int resourceId)
         {
-            BigResource foundResource = null;
+            BigResource? foundResource = null;
             foreach (BigResource resource in _resources)
             {
                 if (resource.ResourceId == resourceId)
@@ -414,10 +414,10 @@ namespace DesignPatternExamples_csharp
         /// desired Flyweight_Class instance.</param>
         /// <returns>A new instance of the Flyweight_Class.  Returns null if the big resource
         /// was not found.</returns>
-        public static Flyweight_Class CreateFlyweight(int bigResourceId, Flyweight_Context context)
+        public static Flyweight_Class? CreateFlyweight(int bigResourceId, Flyweight_Context context)
         {
-            Flyweight_Class flyweightClass = null;
-            BigResource bigResource = FindResource(bigResourceId);
+            Flyweight_Class? flyweightClass = null;
+            BigResource? bigResource = FindResource(bigResourceId);
             if (bigResource != null)
             {
                 flyweightClass = bigResource.CreateFlyweight(context);

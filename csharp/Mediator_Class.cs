@@ -98,14 +98,14 @@ namespace DesignPatternExamples_csharp
             // As mediator, we must verify the user exists because the group
             // has no way to do this (groups have no knowledge of how users
             // are stored, by design).
-            User foundUser = _userGroupsContainer.Users.FindUser(userName);
+            User? foundUser = _userGroupsContainer.Users.FindUser(userName);
             if (foundUser == null)
             {
                 string message = String.Format("User '{0}' does not exist.  Cannot add to group '{1}'!", userName, groupName);
                 throw new ArgumentException(message);
             }
 
-            Group foundGroup = _userGroupsContainer.Groups.FindGroup(groupName);
+            Group? foundGroup = _userGroupsContainer.Groups.FindGroup(groupName);
             if (foundGroup == null)
             {
                 string message = String.Format("Cannot add user '{0}' to group '{1}' as that group does not exist!", userName, groupName);
@@ -127,14 +127,14 @@ namespace DesignPatternExamples_csharp
             // As mediator, we must verify the user exists because the group
             // has no way to do this (groups have no knowledge of how users
             // are stored, by design).
-            User foundUser = _userGroupsContainer.Users.FindUser(userName);
+            User? foundUser = _userGroupsContainer.Users.FindUser(userName);
             if (foundUser == null)
             {
                 string message = String.Format("User '{0}' does not exist.  Cannot remove from group '{1}'!", userName, groupName);
                 throw new ArgumentException(message);
             }
 
-            Group foundGroup = _userGroupsContainer.Groups.FindGroup(groupName);
+            Group? foundGroup = _userGroupsContainer.Groups.FindGroup(groupName);
             if (foundGroup == null)
             {
                 string message = String.Format("Cannot remove user '{0}' from group '{1}' as that group does not exist!", userName, groupName);
@@ -155,7 +155,7 @@ namespace DesignPatternExamples_csharp
             // As mediator, we must verify the user exists because the group
             // has no way to do this (groups have no knowledge of how users
             // are stored, by design).
-            User foundUser = _userGroupsContainer.Users.FindUser(userName);
+            User? foundUser = _userGroupsContainer.Users.FindUser(userName);
             if (foundUser == null)
             {
                 string message = String.Format("User '{0}' does not exist.  Cannot remove from all groups'!", userName);
@@ -164,7 +164,7 @@ namespace DesignPatternExamples_csharp
 
             foreach (string groupName in _userGroupsContainer.Groups.GroupNames)
             {
-                Group group = _userGroupsContainer.Groups.FindGroup(groupName);
+                Group? group = _userGroupsContainer.Groups.FindGroup(groupName);
                 if (group != null)
                 {
                     if (group.ContainsUser(userName))
@@ -187,14 +187,14 @@ namespace DesignPatternExamples_csharp
         {
             bool userInGroup = false;
 
-            User foundUser = _userGroupsContainer.Users.FindUser(userName);
+            User? foundUser = _userGroupsContainer.Users.FindUser(userName);
             if (foundUser == null)
             {
                 string message = String.Format("User '{0}' does not exist.  Cannot determine if user is in group '{1}'!", userName, groupName);
                 throw new ArgumentException(message);
             }
 
-            Group foundGroup = _userGroupsContainer.Groups.FindGroup(groupName);
+            Group? foundGroup = _userGroupsContainer.Groups.FindGroup(groupName);
             if (foundGroup == null)
             {
                 string message = String.Format("Cannot determine if user '{0}' is in group '{1}' as that group does not exist!", userName, groupName);
@@ -216,7 +216,7 @@ namespace DesignPatternExamples_csharp
         /// <exception cref="ArgumentException">User or group does not exist.</exception>
         public string[] GetGroupsWithUser(string userName)
         {
-            User foundUser = _userGroupsContainer.Users.FindUser(userName);
+            User? foundUser = _userGroupsContainer.Users.FindUser(userName);
             if (foundUser == null)
             {
                 string message = String.Format("User '{0}' does not exist.  Cannot get groups container user!", userName);
@@ -226,7 +226,7 @@ namespace DesignPatternExamples_csharp
             List<string> groupNames = new List<string>();
             foreach(string groupName in _userGroupsContainer.Groups.GroupNames)
             {
-                Group group = _userGroupsContainer.Groups.FindGroup(groupName);
+                Group? group = _userGroupsContainer.Groups.FindGroup(groupName);
                 if (group != null)
                 {
                     if (group.ContainsUser(userName))
@@ -248,7 +248,7 @@ namespace DesignPatternExamples_csharp
         /// <exception cref="ArgumentException">Group does not exist.</exception>
         public string[] GetUsersInGroup(string groupName)
         {
-            Group foundGroup = _userGroupsContainer.Groups.FindGroup(groupName);
+            Group? foundGroup = _userGroupsContainer.Groups.FindGroup(groupName);
             if (foundGroup == null)
             {
                 string message = String.Format("Cannot determine get users in group '{0}' as that group does not exist!", groupName);

@@ -70,7 +70,7 @@ namespace DesignPatternExamples_csharp
             /// The one and only instance of the real class associated with
             /// this proxy class instance.
             /// </summary>
-            IWorkByProxy _realClassInstance;
+            IWorkByProxy? _realClassInstance;
 
             /// <summary>
             /// Helper method to retrieve the one and only instance of the

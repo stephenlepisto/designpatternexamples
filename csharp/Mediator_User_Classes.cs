@@ -44,15 +44,18 @@ namespace DesignPatternExamples_csharp
         /// </summary>
         /// <param name="obj">A string or an instance of the User class.</param>
         /// <returns>True if the names are equal (case-sensitive).</returns>
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
-            if (obj is User)
+            if (obj != null)
             {
-                return ((User)obj).Name == Name;
-            }
-            if (obj is string)
-            {
-                return (string)obj == Name;
+                if (obj is User)
+                {
+                    return ((User)obj).Name == Name;
+                }
+                if (obj is string)
+                {
+                    return (string)obj == Name;
+                }
             }
             return false;
         }
@@ -112,7 +115,7 @@ namespace DesignPatternExamples_csharp
         /// </summary>
         /// <param name="name">User name to search for.</param>
         /// <returns>Returns a User object if name found.  Returns null if not found.</returns>
-        public User FindUser(string name)
+        public User? FindUser(string name)
         {
             return _users.Find(x => x.Equals(new User(name)));
         }

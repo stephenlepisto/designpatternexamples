@@ -192,7 +192,7 @@ namespace DesignPatternExamples_csharp
         /// <exception cref="ApplicationException">The sorting option was not recognized.</exception>
         internal static ISortEntries Create(Strategy_ShowEntries_Class.SortOptions sortOption, bool reversedSort)
         {
-            ISortEntries sortEntries = null;
+            ISortEntries sortEntries;
 
             switch(sortOption)
             {

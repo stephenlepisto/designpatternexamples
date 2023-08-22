@@ -49,9 +49,9 @@ namespace DesignPatternExamples_csharp
         /// component separated by '/'.</param>
         /// <returns>Returns a FileDirEntry object for the requested object;
         /// otherwise, returns null, indicating the entry was not found.</returns>
-        private static FileDirEntry _FindEntry(string filepath)
+        private static FileDirEntry? _FindEntry(string filepath)
         {
-            FileDirEntry root = rootEntry;
+            FileDirEntry? root = rootEntry;
 
             string[] pathComponents = filepath.Split('/');
             int numComponents = pathComponents.Length;
@@ -72,7 +72,7 @@ namespace DesignPatternExamples_csharp
                 // Still haven't reached end of specified path, look at
                 // the current root for children.
 
-                FileDirEntry[] children = root.Children;
+                FileDirEntry[]? children = root.Children;
                 if (children == null)
                 {
                     // Path included leaf in the middle, bad path
@@ -118,7 +118,7 @@ namespace DesignPatternExamples_csharp
         public static FileDirEntry GetEntry(string filepath)
         {
             filepath = filepath.Replace('\\', '/');
-            FileDirEntry filedirEntry = _FindEntry(filepath);
+            FileDirEntry? filedirEntry = _FindEntry(filepath);
 
             if (filedirEntry == null)
             {

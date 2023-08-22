@@ -225,6 +225,7 @@ namespace DesignPatternExamples_csharp
         {
             ItemsToOrder = itemsToOrder;
             ItemsReceived = new List<string>();
+            ShopNameReceivedFrom = string.Empty;
         }
 
         public override void VisitBaker(Visitor_Baker shop)
