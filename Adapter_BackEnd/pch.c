@@ -1,4 +1,6 @@
-// pch.cpp: source file corresponding to the pre-compiled header
+/// @file
+/// @brief
+/// Implementation for precompiled headers.  Used only on Windows.
 
 #include "pch.h"
 

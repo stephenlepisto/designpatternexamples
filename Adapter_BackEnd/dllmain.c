@@ -1,14 +1,22 @@
-// dllmain.cpp : Defines the entry point for the DLL application.
+/// @file
+/// @brief
+/// Implementation of the DllMain() entry point for Windows.
+
 #include "pch.h"
 
 #ifdef _MSC_VER
+/// @brief Entry point for the DLL (on Windows)
+/// @param hModule Handle to this module (not used)
+/// @param ul_reason_for_call (not used)
+/// @param lpReserved (not used)
+/// @return Always returns TRUE
 BOOL APIENTRY DllMain( HMODULE hModule,
                        DWORD  ul_reason_for_call,
                        LPVOID lpReserved
                      )
 {
-    hModule; // reference it to avoid compiler warning
-    lpReserved; // reference it to avoid compiler warning
+    (void)hModule; // reference it to avoid compiler warning
+    (void)lpReserved; // reference it to avoid compiler warning
 
     switch (ul_reason_for_call)
     {

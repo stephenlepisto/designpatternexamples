@@ -1,3 +1,7 @@
+/// @file
+/// @brief
+/// Header for including Windows headers.  Used only on Windows.
+
 #pragma once
 
 // Only compile this on Windows
