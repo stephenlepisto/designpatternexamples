@@ -36,6 +36,8 @@ mod visitor;
 mod helpers;
 
 
+/// Holds the version of this application as obtained from the embedded
+/// option variable.
 const CARGO_PKG_VERSION: Option<&'static str> = option_env!("CARGO_PKG_VERSION");
 
 /// Alias for a pointer to a function that takes no parameters and returns a
