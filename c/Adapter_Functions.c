@@ -413,7 +413,7 @@ const char* Adapter_BufferToString(const uint8_t* data, uint32_t maxBytes, int i
         indentation[indent] = '\0';
         uint32_t bytesPerRow = 32;
         size_t stringBufferLength = 0;
-        size_t hexdumpBufferLength = sizeof(_hexdump);
+        size_t hexdumpBufferLength = sizeof(_hexdump); // Amount of space left in the destination buffer
         char stringBuffer[192] = {0};
         for (uint32_t row = 0; row < maxBytes; row += bytesPerRow)
         {
@@ -425,7 +425,7 @@ const char* Adapter_BufferToString(const uint8_t* data, uint32_t maxBytes, int i
                 hexdumpstring = NULL;
                 break;
             }
-            strncat(_hexdump, stringBuffer, stringBufferLength);
+            strncat(_hexdump, stringBuffer, hexdumpBufferLength);
             hexdumpBufferLength -= stringBufferLength;
 
             for (uint32_t col = 0; col < bytesPerRow && (row + col) < maxBytes; col++)
@@ -440,7 +440,7 @@ const char* Adapter_BufferToString(const uint8_t* data, uint32_t maxBytes, int i
                     hexdumpstring = NULL;
                     break;
                 }
-                strncat(_hexdump, stringBuffer, stringBufferLength);
+                strncat(_hexdump, stringBuffer, hexdumpBufferLength);
                 hexdumpBufferLength -= stringBufferLength;
             }
             if (hexdumpBufferLength > 1)
