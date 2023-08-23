@@ -8,7 +8,12 @@ add_custom_target(DesignPatternExamples_csharp ALL
     DEPENDS csharp_project)
 
 set(ADAPTER_LIBRARY "$<TARGET_FILE:Adapter_BackEnd>")
-set(ADAPTER_PDB "$<TARGET_PDB_FILE:Adapter_BackEnd>")
+
+if(${CMAKE_HOST_SYSTEM_NAME} STREQUAL Windows)
+  set(ADAPTER_PDB "$<TARGET_PDB_FILE:Adapter_BackEnd>")
+else()
+  set(ADAPTER_PDB "")
+endif()
 
 if(${CMAKE_HOST_SYSTEM_NAME} STREQUAL Windows)
   set(CSHARP_BINARY_DIR ${CMAKE_CURRENT_BINARY_DIR}/$<IF:$<CONFIG:Release>,Release,Debug>)
