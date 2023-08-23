@@ -31,8 +31,12 @@ continue to work.
 - Doxygen v1.9.6
 - GraphViz v7.1
 - Visual Studio 2022 (I used Community edition)
-- Python 3.10
-- rust v1.69 in release 2021
+  - Work Loads
+    - Python Development
+    - .Net Desktop Development
+    - Desktop Development with C++
+- Python 3.11
+- Rust v1.69 in release 2021
 - Git Bash for Windows v2.40
 
 ### Linux
@@ -75,11 +79,15 @@ _(I used Ubuntu 22.04 mounted through Windows Subsystem for Linux (WSL) v2)_
   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.sh}
   sudo apt install python310-full
   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-- rust v1.71.1 in release 2021
+- Rust v1.71.1 in release 2021
   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.sh}
   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   _Select option 1 (default) then follow the prompts._
+- .Net SDK 7.0 (for C#)
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.sh}
+  sudo apt install dotnet-sdk-7.0
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
 ## Building the Code
@@ -139,10 +147,10 @@ After building everything, the following command lines runs each example
 
 | Language      | Windows Command line                              | Linux Command Line                      |
 | ------------- | ------------------------------------------------- | --------------------------------------- |
-| _go to build_ | `cd "%HOMEPATH%\desingpatternexamples\build"`     | `cd ~/work/designpatternexamples/build` |
+| _go to build_ | `cd "%HOMEPATH%\designpatternexamples\build"`     | `cd ~/work/designpatternexamples/build` |
 | C             | `c\release\DesignPatternExamples_c.exe`           | `c/DesignPatternExamples_c`             |
 | C++           | `cplusplus\release\DesignPatternExamples_cpp.exe` | `cplusplus/DesignPatternExamples_cpp`   |
-| C#            | `csharp\release\DesignPatternExamples_csharp.exe` | N/A                                     |
+| C#            | `csharp\release\DesignPatternExamples_csharp.exe` | `csharp/DesignPatternExamples_csharp`   |
 | Python        | `py -m python.DesignPatternExamples_python`       | `python3 -m python.DesignPatternExamples_python` |
 | Rust          | `rust\release\design_pattern_examples_rust.exe`   | `rust/release/design_pattern_examples_rust` |
 
