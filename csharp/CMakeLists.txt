@@ -24,6 +24,7 @@ endif()
 add_custom_command(OUTPUT csharp_project
     COMMAND ${CMAKE_COMMAND} -E env
         dotnet build -a x64 ${CMAKE_BINARY_DIR}/csharp/DesignPatternExamples_csharp.csproj
+        -c $<CONFIG>
         -o ${CSHARP_BINARY_DIR}
     COMMAND ${CMAKE_COMMAND} -E copy ${ADAPTER_LIBRARY} ${CSHARP_BINARY_DIR}
         VERBATIM
