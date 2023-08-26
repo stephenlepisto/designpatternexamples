@@ -1,6 +1,10 @@
 # Design Pattern Examples
 by Stephen P. Lepisto
 
+### Copyright (c) 2023 Stephen P. Lepisto
+### Licensed under the MIT License.  See LICENSE.md for details.
+
+
 # Overview
 This repository contains implementations of 18 of the classic object-oriented
 Design Patterns as described in the book _Design Patterns: Elements of Reusable
