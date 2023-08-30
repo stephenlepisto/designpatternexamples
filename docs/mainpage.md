@@ -32,7 +32,7 @@ documentation in a separate location:
 [Rust Design Pattern Examples](https://stephenlepisto.com/developer/designpatternexamples/rust/doc/design_pattern_examples_rust/index.html "Browse Design Pattern Examples in Rust").
 
 
-## Source Code
+### Source Code
 
 The source code for these examples can be found on GitHub: https://github.com/stephenlepisto/designpatternexamples.
 
@@ -46,7 +46,7 @@ to make it easier to compare implementations.
 Explore.  Educate yourself.  Enjoy!
 
 
-## The Design Pattern Examples Implemented Here
+### The Design Pattern Examples Implemented Here
 - @ref adapter_pattern
 - @ref bridge_pattern
 - @ref command_pattern
@@ -66,7 +66,7 @@ Explore.  Educate yourself.  Enjoy!
 - @ref strategy_pattern
 - @ref visitor_pattern
 
-## The Design Patterns with Indirect Examples
+### The Design Patterns with Indirect Examples
 These design patterns do not have dedicated examples but instead point to one
 or more of the above examples that use the following patterns.
 
@@ -74,7 +74,7 @@ or more of the above examples that use the following patterns.
 - @ref private_pattern
 - @ref singleton_pattern
 
-## The Design Patterns with No Examples
+### The Design Patterns with No Examples
 I did not create examples of the following design patterns as they are intended
 for highly complex, object-oriented designs.  I tend to keep away from such
 complex designs as they represent, in my opinion, the worst excesses of
