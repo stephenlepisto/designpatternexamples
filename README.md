@@ -16,7 +16,7 @@ experience with these patterns.
 The C, C++, C#, and Python examples are documented with Doxygen and the results
 are online at https://stephenlepisto.com/developer/designpatternexamples/.
 
-Doxygen does not support Doxygen so the Rust example uses Rust's own
+Doxygen does not support Rust so the Rust example uses Rust's own
 documentation support, with the results also available at
 https://stephenlepisto.com/developer/designpatternexamples/.  Refer to the
 Doxygen-based documentation for the overall discussion of each pattern (I didn't
