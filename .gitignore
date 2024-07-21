@@ -1,5 +1,6 @@
 build/
 target/
+.vs/
 .vscode/settings.json
 .~lock.Design Pattern Examples Notes.odt#
 Adapter_BackEnd/Adapter_BackEnd.aps
